@@ -10,7 +10,7 @@ import com.android.volley.toolbox.Volley;
  */
 public class NiupiaoApplication extends Application {
 
-    private RequestQueue requestQueue;
+    private static RequestQueue requestQueue;
 
     @Override
     public void onCreate() {
@@ -18,7 +18,7 @@ public class NiupiaoApplication extends Application {
         requestQueue = Volley.newRequestQueue(this);
     }
 
-    public RequestQueue getRequestQueue() {
+    public static RequestQueue getRequestQueue() {
         return requestQueue;
     }
 }

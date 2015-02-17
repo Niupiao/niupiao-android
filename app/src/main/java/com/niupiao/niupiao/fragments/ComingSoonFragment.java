@@ -13,9 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.requesters.EventsRequester;
+import com.niupiao.niupiao.utils.ImageLoaderHelper;
 
 import java.util.List;
 
@@ -82,6 +86,7 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
         }
 
         class ViewHolder {
+            NetworkImageView image;
             TextView name;
         }
 
@@ -91,6 +96,7 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_view_item_concert, parent, false);
                 viewHolder = new ViewHolder();
+                viewHolder.image = (NetworkImageView) convertView.findViewById(R.id.image);
                 viewHolder.name = (TextView) convertView.findViewById(R.id.name);
                 convertView.setTag(viewHolder);
             } else {
@@ -98,6 +104,7 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
             }
 
             Event event = getItem(position);
+            viewHolder.image.setImageUrl(Constants.Url.fullUrl(event.getLink()), ImageLoaderHelper.getInstance().getImageLoader());
             viewHolder.name.setText(position + ": " + event.getName());
             return convertView;
         }

@@ -10,5 +10,12 @@ public class Constants {
         public static final String BASE_URL = "http://localhost:3000";
         public static final String EVENTS_URL = BASE_URL + "/events.json";
 
+        /**
+         * @param path must start with '/'
+         */
+        public static String fullUrl(String path) {
+            return BASE_URL + path;
+        }
+
     }
 }

@@ -30,4 +30,36 @@ public class Event {
 
     @SerializedName("tickets_sold")
     private int ticketsSold;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getOrganizer() {
+        return organizer;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public int getTotalTickets() {
+        return totalTickets;
+    }
+
+    public int getTicketsSold() {
+        return ticketsSold;
+    }
 }

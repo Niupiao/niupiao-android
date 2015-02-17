@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -104,7 +105,10 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
             }
 
             Event event = getItem(position);
-            viewHolder.image.setImageUrl(Constants.Url.fullUrl(event.getLink()), ImageLoaderHelper.getInstance().getImageLoader());
+
+            NetworkImageView image = viewHolder.image;
+            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            image.setImageUrl(Constants.Url.fullUrl(event.getLink()), ImageLoaderHelper.getInstance().getImageLoader());
             viewHolder.name.setText(position + ": " + event.getName());
             return convertView;
         }

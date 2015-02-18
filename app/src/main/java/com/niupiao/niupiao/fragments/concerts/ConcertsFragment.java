@@ -1,10 +1,12 @@
 package com.niupiao.niupiao.fragments.concerts;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import java.util.List;
  */
 public class ConcertsFragment extends Fragment {
 
+    public static final String TAG = ConcertsFragment.class.getSimpleName();
     public static final String FRAGMENT_POSITION_KEY = "position";
 
     @Nullable
@@ -47,5 +50,55 @@ public class ConcertsFragment extends Fragment {
         //tabs.setOnPageChangeListener(mPageChangeListener);
 
         return root;
+    }
+
+
+
+
+
+
+    ///////////// LIFE CYCLE CALLBACKS FOR TESTING
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        Log.d(TAG, "onAttach");
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState");
+//        outState.putParcelableArrayList("events", ((EventsAdapter) concertsListView.getAdapter()).getParcelableArrayList());
     }
 }

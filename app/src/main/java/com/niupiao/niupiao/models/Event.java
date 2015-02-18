@@ -1,11 +1,57 @@
 package com.niupiao.niupiao.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by kmchen1 on 2/17/15.
  */
-public class Event {
+public class Event implements Parcelable {
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(organizer);
+        dest.writeString(date);
+        dest.writeString(location);
+        dest.writeString(description);
+        dest.writeString(link);
+        dest.writeString(imagePath);
+        dest.writeInt(totalTickets);
+        dest.writeInt(ticketsSold);
+    }
+
+    public Event(Parcel in) {
+        name = in.readString();
+        organizer = in.readString();
+        date = in.readString();
+        location = in.readString();
+        description = in.readString();
+        link = in.readString();
+        imagePath = in.readString();
+        totalTickets = in.readInt();
+        ticketsSold = in.readInt();
+    }
+
+    public static final Creator<Event> CREATOR = new Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel source) {
+            return new Event(source);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
+
 
     @SerializedName("name")
     private String name;

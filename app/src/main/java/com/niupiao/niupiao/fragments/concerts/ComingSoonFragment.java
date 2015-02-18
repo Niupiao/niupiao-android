@@ -1,8 +1,10 @@
 package com.niupiao.niupiao.fragments.concerts;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.adapters.ParcelableArrayAdapter;
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
 import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.requesters.EventsRequester;
@@ -29,12 +32,13 @@ import java.util.List;
  */
 public class ComingSoonFragment extends ViewPagerFragment implements EventsRequester.OnEventsLoadedListener {
 
+    public static final String TAG = ComingSoonFragment.class.getSimpleName();
     private ListView concertsListView;
 
     @Override
     public void onEventsLoaded(List<Event> events) {
         EventsAdapter adapter = ((EventsAdapter) concertsListView.getAdapter());
-        adapter.setEvents(events);
+        adapter.setParcelables(events);
         adapter.notifyDataSetChanged();
     }
 
@@ -73,22 +77,10 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
         return new ComingSoonFragment();
     }
 
-    class EventsAdapter extends ArrayAdapter<Event> {
+    class EventsAdapter extends ParcelableArrayAdapter<Event> {
+
         public EventsAdapter(Context context) {
             super(context, R.layout.list_view_item_concert);
-        }
-
-        public void setEvents(List<Event> events) {
-            clear();
-            addEvents(events);
-        }
-
-        public void addEvents(List<Event> events) {
-            if (events != null) {
-                for (Event event : events) {
-                    add(event);
-                }
-            }
         }
 
         class ViewHolder {
@@ -124,4 +116,51 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
             return convertView;
         }
     }
+
+
+    ///////////// LIFE CYCLE CALLBACKS FOR TESTING
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        Log.d(TAG, "onAttach");
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState");
+//        outState.putParcelableArrayList("events", ((EventsAdapter) concertsListView.getAdapter()).getParcelableArrayList());
+    }
+
 }

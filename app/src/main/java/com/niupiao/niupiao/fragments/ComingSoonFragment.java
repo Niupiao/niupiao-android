@@ -110,7 +110,6 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
             Event event = getItem(position);
 
             NetworkImageView image = viewHolder.image;
-            image.setScaleType(ImageView.ScaleType.FIT_CENTER);
             image.setImageUrl(Constants.Url.fullUrl(event.getImagePath()), ImageLoaderHelper.getInstance().getImageLoader());
 
             viewHolder.date.setText(event.getDate());

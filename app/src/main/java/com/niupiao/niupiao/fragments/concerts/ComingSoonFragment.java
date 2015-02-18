@@ -1,4 +1,4 @@
-package com.niupiao.niupiao.fragments;
+package com.niupiao.niupiao.fragments.concerts;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.fragments.ViewPagerFragment;
 import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.requesters.EventsRequester;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;

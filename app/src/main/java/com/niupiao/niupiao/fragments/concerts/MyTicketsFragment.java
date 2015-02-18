@@ -1,4 +1,6 @@
-package com.niupiao.niupiao.fragments;
+package com.niupiao.niupiao.fragments.concerts;
+
+import com.niupiao.niupiao.fragments.ViewPagerFragment;
 
 /**
  * Created by kevinchen on 2/17/15.

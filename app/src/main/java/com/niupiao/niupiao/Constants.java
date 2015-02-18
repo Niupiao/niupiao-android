@@ -5,9 +5,19 @@ package com.niupiao.niupiao;
  */
 public class Constants {
 
+    public final static class SharedPrefs {
+        public static final String LOGIN_CREDENTIALS = "login";
+        public static final String USERNAME = "username";
+        public static final String PASSWORD = "password";
+        public static final String REMEMBER_ME = "remember_me";
+        public static final String ACCESS_TOKEN = "access_token";
+        public static final String ACCESS_TOKEN_EXPIRES_AT = "expires_at";
+    }
+
     public final static class Url {
 
         public static final String BASE_URL = "http://localhost:3000";
+        public static final String LOGIN_URL = BASE_URL + "/login.json";
         public static final String EVENTS_URL = BASE_URL + "/events.json";
 
         /**

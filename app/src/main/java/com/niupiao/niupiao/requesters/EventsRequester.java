@@ -16,24 +16,25 @@ import java.util.List;
 /**
  * Created by kmchen1 on 2/17/15.
  */
-public class EventsRequester extends VolleyRequester {
+public class EventsRequester {
 
     public interface OnEventsLoadedListener extends ResourceCallback {
         public void onEventsLoaded(List<Event> events);
     }
 
     public static void loadEvents(final OnEventsLoadedListener listener) {
-        JsonArrayRequest request = new JsonArrayRequest(
+        ResourcesRequest request = new ResourcesRequest(
+                listener,
                 Constants.Url.EVENTS_URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {
+                        // TODO handle errors from server
                         Log.d("From localhost: ", jsonArray.toString());
                         List<Event> events = EventsDeserializer.fromJsonArray(jsonArray);
                         listener.onEventsLoaded(events);
                     }
-                },
-                createNewErrorListener(listener)
+                }
         );
         NiupiaoApplication.getRequestQueue().add(request);
     }

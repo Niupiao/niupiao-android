@@ -7,5 +7,6 @@ import com.android.volley.VolleyError;
  */
 public interface ResourceCallback {
 
+    public String getAccessToken();
     public void onVolleyError(VolleyError volleyError);
 }

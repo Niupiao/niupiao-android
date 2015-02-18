@@ -20,6 +20,8 @@ import java.util.List;
  */
 public class MainActivity extends ActionBarActivity {
 
+    public static final String INTENT_KEY_FOR_USER = "user";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

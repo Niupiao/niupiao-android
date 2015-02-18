@@ -5,4 +5,31 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    <style name="Event">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="Event.TextViewItem">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:background">@color/story_title_background</item>
+    </style>
+
+    <style name="Event.TextViewItem.Date">
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="Event.Image">
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:contentDescription">Holds the image of each event</item>
+    </style>
+
 </resources>

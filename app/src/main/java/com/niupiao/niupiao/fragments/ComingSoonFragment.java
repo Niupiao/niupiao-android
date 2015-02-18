@@ -87,7 +87,9 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
 
         class ViewHolder {
             NetworkImageView image;
+            TextView date;
             TextView name;
+            TextView ticketInfo;
         }
 
         @Override
@@ -97,7 +99,9 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_view_item_concert, parent, false);
                 viewHolder = new ViewHolder();
                 viewHolder.image = (NetworkImageView) convertView.findViewById(R.id.image);
+                viewHolder.date = (TextView) convertView.findViewById(R.id.date);
                 viewHolder.name = (TextView) convertView.findViewById(R.id.name);
+                viewHolder.ticketInfo = (TextView) convertView.findViewById(R.id.ticket_info);
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
@@ -108,7 +112,10 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
             NetworkImageView image = viewHolder.image;
             image.setScaleType(ImageView.ScaleType.FIT_CENTER);
             image.setImageUrl(Constants.Url.fullUrl(event.getImagePath()), ImageLoaderHelper.getInstance().getImageLoader());
-            viewHolder.name.setText(position + ": " + event.getName());
+
+            viewHolder.date.setText(event.getDate());
+            viewHolder.name.setText(event.getName());
+            viewHolder.ticketInfo.setText(String.format("%d out of %d tickets sold", event.getTicketsSold(), event.getTotalTickets()));
             return convertView;
         }
     }

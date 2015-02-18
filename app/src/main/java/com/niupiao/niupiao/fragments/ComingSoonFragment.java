@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
@@ -108,7 +107,7 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
 
             NetworkImageView image = viewHolder.image;
             image.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            image.setImageUrl(Constants.Url.fullUrl(event.getLink()), ImageLoaderHelper.getInstance().getImageLoader());
+            image.setImageUrl(Constants.Url.fullUrl(event.getImagePath()), ImageLoaderHelper.getInstance().getImageLoader());
             viewHolder.name.setText(position + ": " + event.getName());
             return convertView;
         }

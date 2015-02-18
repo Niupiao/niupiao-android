@@ -25,6 +25,9 @@ public class Event {
     @SerializedName("link")
     private String link;
 
+    @SerializedName("image_path")
+    private String imagePath;
+
     @SerializedName("total_tickets")
     private int totalTickets;
 
@@ -51,8 +54,8 @@ public class Event {
         return description;
     }
 
-    public String getLink() {
-        return link;
+    public String getImagePath() {
+        return imagePath;
     }
 
     public int getTotalTickets() {

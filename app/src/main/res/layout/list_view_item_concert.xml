@@ -7,31 +7,27 @@
         android:id="@+id/image"
         style="@style/Event.Image" />
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/date"
+        style="@style/Event.TextViewItem.Date"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
 
         <TextView
-            android:id="@+id/date"
-            style="@style/Event.TextViewItem.Date"
-            android:layout_alignRight="@+id/image"
-            android:layout_alignTop="@+id/image" />
+            android:id="@+id/name"
+            style="@style/Event.TextViewItem" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/image">
+        <TextView
+            android:id="@+id/ticket_info"
+            style="@style/Event.TextViewItem" />
 
-            <TextView
-                android:id="@+id/name"
-                style="@style/Event.TextViewItem" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/ticket_info"
-                style="@style/Event.TextViewItem" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
 
 </RelativeLayout>

@@ -7,6 +7,4 @@ import android.support.v4.app.Fragment;
  */
 public abstract class NiuNavigationDrawerFragment extends Fragment {
 
-    public abstract void iwantstuff(ViewPagerFragment fragment);
-
 }

@@ -108,12 +108,6 @@ public class ConcertsFragment extends NiuNavigationDrawerFragment {
     }
 
     @Override
-    public void iwantstuff(ViewPagerFragment fragment) {
-        // TODO unused?
-        fragment.setParcelables(getActivity().getIntent().getParcelableArrayListExtra(fragment.getTitle()));
-    }
-
-    @Override
     public void onPause() {
         super.onPause();
         Log.d(TAG, "onPause");

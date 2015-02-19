@@ -20,6 +20,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.fragments.AboutFragment;
+import com.niupiao.niupiao.fragments.FeedFragment;
+import com.niupiao.niupiao.fragments.MoreFragment;
+import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
+import com.niupiao.niupiao.fragments.ProgramFragment;
+import com.niupiao.niupiao.fragments.RateThisAppFragment;
 import com.niupiao.niupiao.fragments.concerts.ConcertsFragment;
 
 import java.util.ArrayList;
@@ -48,8 +54,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Log.d(TAG, "onCreate");
 
         mTitle = mDrawerTitle = getTitle();
         mFragmenTitles = getResources().getStringArray(R.array.fragments_array);
@@ -117,13 +121,30 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    private NiuNavigationDrawerFragment getSelectedFragment(int position) {
+        switch (position) {
+            case 0:
+                return new ProgramFragment();
+            case 1:
+                return new FeedFragment();
+            case 2:
+                return new ConcertsFragment();
+            case 3:
+                return new MoreFragment();
+            case 4:
+                return new AboutFragment();
+            case 5:
+                return new RateThisAppFragment();
+            default:
+                Log.wtf(TAG, "unhandled fragment");
+                return null;
+
+        }
+    }
+
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        Fragment fragment = new ConcertsFragment();
-        Bundle args = new Bundle();
-        args.putInt(ConcertsFragment.FRAGMENT_POSITION_KEY, position);
-        fragment.setArguments(args);
-
+        Fragment fragment = getSelectedFragment(position);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
@@ -165,7 +186,6 @@ public class MainActivity extends ActionBarActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // If the nav drawer is open, hide action items related to the content view
@@ -174,30 +194,4 @@ public class MainActivity extends ActionBarActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-
-    ///////////// LIFE CYCLE CALLBACKS FOR TESTING
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause");
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.d(TAG, "onSaveInstanceState");
-    }
 }

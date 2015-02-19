@@ -2,7 +2,12 @@
     <string name="app_name">Niupiao</string>
 
     <string-array name="fragments_array">
-        <item>Concerts</item>
+        <item>Program</item>
+        <item>Feed</item>
+        <item>My Program</item>
+        <item>More</item>
+        <item>About</item>
+        <item>Rate this App</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>

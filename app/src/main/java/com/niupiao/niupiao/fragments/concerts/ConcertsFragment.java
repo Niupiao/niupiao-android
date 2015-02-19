@@ -51,7 +51,7 @@ public class ConcertsFragment extends NiuNavigationDrawerFragment {
 
         // Initialize the ViewPager and set an adapter
         pager = (ViewPager) root.findViewById(R.id.pager);
-        pager.setAdapter(new ViewPagerAdapter(getActivity().getSupportFragmentManager(), fragments));
+        pager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), fragments));
 
         // Bind the tabs to the ViewPager
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) root.findViewById(R.id.tabs);

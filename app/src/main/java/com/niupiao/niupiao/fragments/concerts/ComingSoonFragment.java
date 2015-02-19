@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,9 +35,14 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
     private ListView concertsListView;
 
     @Override
+    public ParcelableArrayAdapter getParcelableArrayAdapter() {
+        return (EventsAdapter) concertsListView.getAdapter();
+    }
+
+    @Override
     public void onEventsLoaded(List<Event> events) {
         EventsAdapter adapter = ((EventsAdapter) concertsListView.getAdapter());
-        adapter.setParcelables(events);
+        adapter.setObjects(events);
         adapter.notifyDataSetChanged();
     }
 
@@ -73,8 +77,15 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
         return "Coming Soon";
     }
 
-    public static ComingSoonFragment newInstance() {
-        return new ComingSoonFragment();
+    /**
+     * @param position This fragment's position in its ViewPager
+     */
+    public static ComingSoonFragment newInstance(int position) {
+        ComingSoonFragment fragment = new ComingSoonFragment();
+        Bundle args = new Bundle();
+        args.putInt(POSITION_KEY, position);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     class EventsAdapter extends ParcelableArrayAdapter<Event> {
@@ -160,7 +171,7 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.d(TAG, "onSaveInstanceState");
-//        outState.putParcelableArrayList("events", ((EventsAdapter) concertsListView.getAdapter()).getParcelableArrayList());
+//        outState.putParcelableArrayList("events", ((EventsAdapter) concertsListView.getAdapter()).getArrayList());
     }
 
 }

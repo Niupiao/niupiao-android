@@ -1,13 +1,16 @@
 package com.niupiao.niupiao.activities;
 
-import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,11 +22,14 @@ import android.widget.ListView;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.concerts.ConcertsFragment;
 
+import java.util.ArrayList;
+
 /**
  * Created by kmchen1 on 2/17/15.
  */
 public class MainActivity extends ActionBarActivity {
 
+    public static final String TAG = MainActivity.class.getSimpleName();
     public static final String INTENT_KEY_FOR_USER = "user";
 
     private DrawerLayout mDrawerLayout;
@@ -34,11 +40,16 @@ public class MainActivity extends ActionBarActivity {
     private CharSequence mTitle;
     private String[] mFragmenTitles;
 
+    public void saveParcelables(String key, ArrayList<Parcelable> parcelables) {
+        getIntent().putParcelableArrayListExtra(key, parcelables);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Log.d(TAG, "onCreate");
 
         mTitle = mDrawerTitle = getTitle();
         mFragmenTitles = getResources().getStringArray(R.array.fragments_array);
@@ -108,12 +119,12 @@ public class MainActivity extends ActionBarActivity {
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        android.app.Fragment fragment = new ConcertsFragment();
+        Fragment fragment = new ConcertsFragment();
         Bundle args = new Bundle();
         args.putInt(ConcertsFragment.FRAGMENT_POSITION_KEY, position);
         fragment.setArguments(args);
 
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
         // update selected item and title, then close the drawer
@@ -161,5 +172,32 @@ public class MainActivity extends ActionBarActivity {
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
 //        menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
+    }
+
+
+    ///////////// LIFE CYCLE CALLBACKS FOR TESTING
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState");
     }
 }

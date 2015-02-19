@@ -4,8 +4,6 @@ import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.NiupiaoApplication;
 import com.niupiao.niupiao.deserializers.ApiKeyDeserializer;

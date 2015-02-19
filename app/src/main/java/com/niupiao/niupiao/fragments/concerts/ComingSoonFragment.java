@@ -35,11 +35,6 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
     private ListView concertsListView;
 
     @Override
-    public ParcelableArrayAdapter getParcelableArrayAdapter() {
-        return (EventsAdapter) concertsListView.getAdapter();
-    }
-
-    @Override
     public void onEventsLoaded(List<Event> events) {
         EventsAdapter adapter = ((EventsAdapter) concertsListView.getAdapter());
         adapter.setObjects(events);

@@ -20,18 +20,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.fragments.AboutFragment;
 import com.niupiao.niupiao.fragments.EventsFragment;
-import com.niupiao.niupiao.fragments.FeedFragment;
-import com.niupiao.niupiao.fragments.MoreFragment;
 import com.niupiao.niupiao.fragments.MyAccountFragment;
 import com.niupiao.niupiao.fragments.MyTicketsFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
-import com.niupiao.niupiao.fragments.ProgramFragment;
-import com.niupiao.niupiao.fragments.RateThisAppFragment;
 import com.niupiao.niupiao.fragments.SettingsFragment;
 import com.niupiao.niupiao.fragments.StarredFragment;
-import com.niupiao.niupiao.fragments.concerts.ConcertsFragment;
 
 import java.util.ArrayList;
 
@@ -49,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-    private String[] mFragmenTitles;
+    private String[] mFragmentTitles;
 
     public void saveParcelables(String key, ArrayList<Parcelable> parcelables) {
         getIntent().putParcelableArrayListExtra(key, parcelables);
@@ -61,7 +55,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         mTitle = mDrawerTitle = getTitle();
-        mFragmenTitles = getResources().getStringArray(R.array.fragments_array);
+        mFragmentTitles = getResources().getStringArray(R.array.fragments_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -69,7 +63,7 @@ public class MainActivity extends ActionBarActivity {
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<>(this,
-                R.layout.drawer_list_item, mFragmenTitles));
+                R.layout.drawer_list_item, mFragmentTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
@@ -153,7 +147,7 @@ public class MainActivity extends ActionBarActivity {
 
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(mFragmenTitles[position]);
+        setTitle(mFragmentTitles[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 

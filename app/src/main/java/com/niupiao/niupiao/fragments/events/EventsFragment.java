@@ -1,4 +1,4 @@
-package com.niupiao.niupiao.fragments.concerts;
+package com.niupiao.niupiao.fragments.events;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,26 +19,26 @@ import java.util.List;
 /**
  * Created by kevinchen on 2/18/15.
  */
-public class ConcertsFragment extends NiuNavigationDrawerFragment {
+public class EventsFragment extends NiuNavigationDrawerFragment {
 
-    public static final String TAG = ConcertsFragment.class.getSimpleName();
+    public static final String TAG = EventsFragment.class.getSimpleName();
 
-    private static final int FRAGMENT_POSITION_COMING_SOON = 0;
-    private static final int FRAGMENT_POSITION_ON_SALE = 1;
-    private static final int FRAGMENT_POSITION_MY_TICKETS = 2;
+    private static final int FRAGMENT_POSITION_ON_SALE = 0;
+    private static final int FRAGMENT_POSITION_COMING_SOON = 1;
+    private static final int FRAGMENT_POSITION_RECOMMENDED = 2;
 
     private ViewPager pager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_concerts, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_events, container, false);
 
         // Initialize fragments
         List<Fragment> fragments = new ArrayList<>(3);
         fragments.add(FRAGMENT_POSITION_COMING_SOON, ComingSoonFragment.newInstance(FRAGMENT_POSITION_COMING_SOON));
         fragments.add(FRAGMENT_POSITION_ON_SALE, OnSaleFragment.newInstance(FRAGMENT_POSITION_ON_SALE));
-        fragments.add(FRAGMENT_POSITION_MY_TICKETS, MyTicketsFragment.newInstance(FRAGMENT_POSITION_MY_TICKETS));
+        fragments.add(FRAGMENT_POSITION_RECOMMENDED, RecommendedFragment.newInstance(FRAGMENT_POSITION_RECOMMENDED));
 
         // Initialize the ViewPager and set an adapter
         pager = (ViewPager) root.findViewById(R.id.pager);

@@ -117,10 +117,6 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-        // Set up the Registration Fragment
-        RegistrationFragment test = new RegistrationFragment();
-        setContentView(R.layout.fragment_registration);
     }
 
     private void populateFieldsFromSharedPrefs() {

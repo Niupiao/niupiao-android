@@ -24,6 +24,8 @@
 
         <EditText
             android:id="@+id/fragment_registration_legal_name"
+            android:layout_alignLeft="@id/fragment_registration_password"
+            android:layout_alignRight="@id/fragment_registration_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/full_name_prompt"
@@ -32,28 +34,28 @@
 
         <EditText
             android:id="@+id/fragment_registration_cell_phone"
-            android:layout_alignLeft="@id/fragment_registration_legal_name"
-            android:layout_alignRight="@id/fragment_registration_legal_name"
+            android:layout_alignLeft="@id/fragment_registration_password"
+            android:layout_alignRight="@id/fragment_registration_password"
             android:layout_below="@id/fragment_registration_legal_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/cell_phone_prompt"
+            android:background="@drawable/white_edit_text"
             />
 
         <EditText
             android:id="@+id/fragment_registration_email"
-            android:layout_alignLeft="@id/fragment_registration_legal_name"
-            android:layout_alignRight="@id/fragment_registration_legal_name"
+            android:layout_alignLeft="@id/fragment_registration_password"
+            android:layout_alignRight="@id/fragment_registration_password"
             android:layout_below="@id/fragment_registration_cell_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/email_prompt"
+            android:background="@drawable/white_edit_text"
             />
 
         <EditText
             android:id="@+id/fragment_registration_password"
-            android:layout_alignLeft="@id/fragment_registration_legal_name"
-            android:layout_alignRight="@id/fragment_registration_legal_name"
             android:layout_below="@id/fragment_registration_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

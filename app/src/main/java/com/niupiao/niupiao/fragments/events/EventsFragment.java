@@ -1,4 +1,4 @@
-package com.niupiao.niupiao.fragments.concerts;
+package com.niupiao.niupiao.fragments.events;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,9 +19,9 @@ import java.util.List;
 /**
  * Created by kevinchen on 2/18/15.
  */
-public class ConcertsFragment extends NiuNavigationDrawerFragment {
+public class EventsFragment extends NiuNavigationDrawerFragment {
 
-    public static final String TAG = ConcertsFragment.class.getSimpleName();
+    public static final String TAG = EventsFragment.class.getSimpleName();
 
     private static final int FRAGMENT_POSITION_COMING_SOON = 0;
     private static final int FRAGMENT_POSITION_ON_SALE = 1;
@@ -32,7 +32,7 @@ public class ConcertsFragment extends NiuNavigationDrawerFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_concerts, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_events, container, false);
 
         // Initialize fragments
         List<Fragment> fragments = new ArrayList<>(3);

@@ -1,4 +1,4 @@
-package com.niupiao.niupiao.fragments.concerts;
+package com.niupiao.niupiao.fragments.events;
 
 import android.os.Bundle;
 

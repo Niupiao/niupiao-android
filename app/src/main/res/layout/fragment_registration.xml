@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#e5e5e5">
     
     <TextView
         android:id="@+id/fragment_registration_title"
@@ -14,9 +15,11 @@
         android:text="@string/registration_title"
         android:textSize="35sp"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/niupiao_blue"
         />
 
     <RelativeLayout
+        android:id="@+id/fragment_registration_edit_text_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/fragment_registration_title"
@@ -65,4 +68,15 @@
 
         </RelativeLayout>
 
+    <Button
+        android:background="@color/niupiao_orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registration_button"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/fragment_registration_edit_text_layout"
+        android:layout_margin="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        />
 </RelativeLayout>

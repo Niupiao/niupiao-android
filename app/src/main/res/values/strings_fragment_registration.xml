@@ -7,5 +7,6 @@
     <string name="email_prompt">Email</string>
     <string name="password_prompt">Password</string>
     <string name="confirm_password_prompt">Confirm Password</string>
+    <string name="registration_button">Register</string>
 
 </resources>

@@ -2,11 +2,11 @@
 <resources>
     <!--Strings related to registration -->
     <string name="registration_title">Registration</string>
-    <string name="full_name_prompt">Full Legal Name</string>
-    <string name="cell_phone_prompt">Cell Phone</string>
-    <string name="email_prompt">Email</string>
-    <string name="password_prompt">Password</string>
-    <string name="confirm_password_prompt">Confirm Password</string>
+    <string name="full_name_prompt">FULL LEGAL NAME</string>
+    <string name="cell_phone_prompt">CELL PHONE</string>
+    <string name="email_prompt">EMAIL</string>
+    <string name="password_prompt">PASSWORD</string>
+    <string name="confirm_password_prompt">CONFIRM PASSWORD</string>
     <string name="registration_button">Register</string>
 
 </resources>

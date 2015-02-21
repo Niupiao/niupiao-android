@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Strings related to registration -->
+    <string name="registration_title">Registration</string>
     <string name="full_name_prompt">Full Legal Name</string>
     <string name="cell_phone_prompt">Cell Phone</string>
     <string name="email_prompt">Email</string>

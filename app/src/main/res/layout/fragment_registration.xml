@@ -7,6 +7,14 @@
         android:id="@+id/fragment_registration_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/registration_title"
+        android:textSize="35sp"
+        android:layout_centerHorizontal="true"
         />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tops_rounded_edittext"/>
 
 </RelativeLayout>

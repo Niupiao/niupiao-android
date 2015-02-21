@@ -21,11 +21,16 @@ import android.widget.ListView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.AboutFragment;
+import com.niupiao.niupiao.fragments.EventsFragment;
 import com.niupiao.niupiao.fragments.FeedFragment;
 import com.niupiao.niupiao.fragments.MoreFragment;
+import com.niupiao.niupiao.fragments.MyAccountFragment;
+import com.niupiao.niupiao.fragments.MyTicketsFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
 import com.niupiao.niupiao.fragments.ProgramFragment;
 import com.niupiao.niupiao.fragments.RateThisAppFragment;
+import com.niupiao.niupiao.fragments.SettingsFragment;
+import com.niupiao.niupiao.fragments.StarredFragment;
 import com.niupiao.niupiao.fragments.concerts.ConcertsFragment;
 
 import java.util.ArrayList;
@@ -124,17 +129,15 @@ public class MainActivity extends ActionBarActivity {
     private NiuNavigationDrawerFragment getSelectedFragment(int position) {
         switch (position) {
             case 0:
-                return new ProgramFragment();
+                return new EventsFragment();
             case 1:
-                return new FeedFragment();
+                return new MyTicketsFragment();
             case 2:
-                return new ConcertsFragment();
+                return new StarredFragment();
             case 3:
-                return new MoreFragment();
+                return new MyAccountFragment();
             case 4:
-                return new AboutFragment();
-            case 5:
-                return new RateThisAppFragment();
+                return new SettingsFragment();
             default:
                 Log.wtf(TAG, "unhandled fragment");
                 return null;

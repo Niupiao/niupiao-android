@@ -69,6 +69,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:hint="@string/password_prompt"
+            android:maxLines="1"
+            android:background="@drawable/edit_text_white"
+            />
+
+        <EditText
+            android:id="@+id/fragment_registration_confirm_password"
+            android:layout_below="@id/fragment_registration_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:hint="@string/confirm_password_prompt"
             android:maxLines="1"
             android:background="@drawable/edit_text_bottom_rounded"
@@ -78,7 +89,7 @@
 
     <Button
         android:id="@+id/fragment_registration_button"
-        android:background="@color/niupiao_orange"
+        android:background="@drawable/button_registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registration_button"

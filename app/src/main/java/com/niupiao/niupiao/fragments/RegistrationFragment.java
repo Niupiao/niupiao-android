@@ -16,11 +16,6 @@ import com.niupiao.niupiao.R;
  * Created by kevinchen on 2/18/15.
  */
 public class RegistrationFragment extends Fragment implements View.OnClickListener {
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

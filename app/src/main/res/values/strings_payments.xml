@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Strings related to payments -->
+    <string name="transfer_title">TRANSFER TICKETS</string>
+    <string name="transfer_category_type">TYPE</string>
+    <string name="transfer_category_me">ME</string>
+    <string name="transfer_category_name">RECIPIENT NAME</string>
+    <string name="transfer_category_cell">RECIPIENT CELL</string>
+    <string name="transfer_type_general">GENERAL</string>
+    <string name="transfer_type_vip">VIP</string>
+    <string name="transfer_payment_option_title">PAYMENT OPTION</string>
+    <string name="transfer_saved_credit">Saved</string>
+    <string name="transfer_add_a_credit">Add a Credit/Debit Card</string>
+    <string name="transfer_full_name_on_card">Full Name on Card</string>
+    <string name="transfer_credit_card_number">Credit Card Number</string>
+    <string name="transfer_exp_date">TRANSFER TICKETS</string>
+    <string name="transfer_csv">CSV</string>
+    <string name="transfer_billing_address">Billing Address</string>
+    <string name="transfer_city">City</string>
+    <string name="transfer_state">State</string>
+    <string name="transfer_zip">Zip</string>
+    <string name="transfer_save_this_card">Save this Card</string>
+
+</resources>

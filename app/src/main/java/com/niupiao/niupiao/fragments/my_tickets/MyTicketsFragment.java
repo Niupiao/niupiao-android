@@ -12,7 +12,6 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.adapters.ViewPagerAdapter;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
-import com.niupiao.niupiao.fragments.events.ComingSoonFragment;
 
 import java.util.ArrayList;
 import java.util.List;

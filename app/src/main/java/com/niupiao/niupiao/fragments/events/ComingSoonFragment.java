@@ -1,9 +1,7 @@
 package com.niupiao.niupiao.fragments.events;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,14 +48,13 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_coming_soon, container, false);
         concertsListView = (ListView) root.findViewById(R.id.list_view);
-        concertsListView.setAdapter(new EventsAdapter(getActivity()));
+        concertsListView.setAdapter(new EventsAdapter(getActivity(), R.layout.list_view_item_concert));
         concertsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
             }
         });
-
         EventsRequester.loadEvents(this);
         return root;
     }
@@ -76,52 +73,6 @@ public class ComingSoonFragment extends ViewPagerFragment implements EventsReque
         args.putInt(POSITION_KEY, position);
         fragment.setArguments(args);
         return fragment;
-    }
-
-
-    ///////////// LIFE CYCLE CALLBACKS FOR TESTING
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        Log.d(TAG, "onAttach");
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate");
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Log.d(TAG, "onViewCreated");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause");
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.d(TAG, "onSaveInstanceState");
-//        outState.putParcelableArrayList("events", ((EventsAdapter) concertsListView.getAdapter()).getArrayList());
     }
 
 }

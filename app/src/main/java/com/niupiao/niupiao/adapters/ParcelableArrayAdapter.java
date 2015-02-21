@@ -10,10 +10,14 @@ import java.util.List;
 /**
  * Created by kevinchen on 2/18/15.
  */
-public class ParcelableArrayAdapter<T extends Parcelable> extends ArrayAdapter<T> {
+public abstract class ParcelableArrayAdapter<T extends Parcelable> extends ArrayAdapter<T> {
+
+    // Resource pointing to ListView item layout
+    protected int resource;
 
     public ParcelableArrayAdapter(Context context, int resource) {
         super(context, resource);
+        this.resource = resource;
     }
 
     public ArrayList<Parcelable> getParcelableArrayList() {

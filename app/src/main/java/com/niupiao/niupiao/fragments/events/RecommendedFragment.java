@@ -7,7 +7,7 @@ import com.niupiao.niupiao.fragments.ViewPagerFragment;
 /**
  * Created by kevinchen on 2/17/15.
  */
-public class MyTicketsFragment extends ViewPagerFragment {
+public class RecommendedFragment extends ViewPagerFragment {
     @Override
     public String getTitle() {
         return "My Tickets";
@@ -16,8 +16,8 @@ public class MyTicketsFragment extends ViewPagerFragment {
     /**
      * @param position This fragment's position in its ViewPager
      */
-    public static MyTicketsFragment newInstance(int position) {
-        MyTicketsFragment fragment = new MyTicketsFragment();
+    public static RecommendedFragment newInstance(int position) {
+        RecommendedFragment fragment = new RecommendedFragment();
         Bundle args = new Bundle();
         args.putInt(POSITION_KEY, position);
         fragment.setArguments(args);

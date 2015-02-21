@@ -10,7 +10,7 @@ import com.niupiao.niupiao.fragments.ViewPagerFragment;
 public class RecommendedFragment extends ViewPagerFragment {
     @Override
     public String getTitle() {
-        return "My Tickets";
+        return "Recommended";
     }
 
     /**

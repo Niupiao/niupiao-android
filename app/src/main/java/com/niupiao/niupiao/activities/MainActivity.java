@@ -21,7 +21,7 @@ import android.widget.ListView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.MyAccountFragment;
-import com.niupiao.niupiao.fragments.MyTicketsFragment;
+import com.niupiao.niupiao.fragments.my_tickets.MyTicketsFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
 import com.niupiao.niupiao.fragments.SettingsFragment;
 import com.niupiao.niupiao.fragments.StarredFragment;

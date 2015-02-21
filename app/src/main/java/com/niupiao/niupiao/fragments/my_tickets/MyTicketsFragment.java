@@ -1,4 +1,4 @@
-package com.niupiao.niupiao.fragments.events;
+package com.niupiao.niupiao.fragments.my_tickets;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.adapters.ViewPagerAdapter;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
+import com.niupiao.niupiao.fragments.events.ComingSoonFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,26 +20,23 @@ import java.util.List;
 /**
  * Created by kevinchen on 2/18/15.
  */
-public class EventsFragment extends NiuNavigationDrawerFragment {
+public class MyTicketsFragment extends NiuNavigationDrawerFragment {
 
-    public static final String TAG = EventsFragment.class.getSimpleName();
-
-    private static final int FRAGMENT_POSITION_ON_SALE = 0;
-    private static final int FRAGMENT_POSITION_COMING_SOON = 1;
-    private static final int FRAGMENT_POSITION_RECOMMENDED = 2;
+    private static final int FRAGMENT_POSITION_UPCOMING_EVENTS = 0;
+    private static final int FRAGMENT_POSITION_PAST_EVENTS = 1;
 
     private ViewPager pager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_events, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_mytickets, container, false);
 
         // Initialize fragments
-        List<Fragment> fragments = new ArrayList<>(3);
-        fragments.add(FRAGMENT_POSITION_ON_SALE, OnSaleFragment.newInstance(FRAGMENT_POSITION_ON_SALE));
-        fragments.add(FRAGMENT_POSITION_COMING_SOON, ComingSoonFragment.newInstance(FRAGMENT_POSITION_COMING_SOON));
-        fragments.add(FRAGMENT_POSITION_RECOMMENDED, RecommendedFragment.newInstance(FRAGMENT_POSITION_RECOMMENDED));
+        List<Fragment> fragments = new ArrayList<>(2);
+        fragments.add(FRAGMENT_POSITION_UPCOMING_EVENTS, UpcomingEventsFragment.newInstance());
+        fragments.add(FRAGMENT_POSITION_PAST_EVENTS, PastEventsFragment.newInstance());
+
 
         // Initialize the ViewPager and set an adapter
         pager = (ViewPager) root.findViewById(R.id.pager);
@@ -53,5 +51,4 @@ public class EventsFragment extends NiuNavigationDrawerFragment {
 
         return root;
     }
-
 }

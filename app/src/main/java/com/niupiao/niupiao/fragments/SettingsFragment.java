@@ -11,12 +11,12 @@ import com.niupiao.niupiao.R;
 /**
  * Created by kevinchen on 2/18/15.
  */
-public class ProgramFragment extends NiuNavigationDrawerFragment {
+public class SettingsFragment extends NiuNavigationDrawerFragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_program, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_settings, container, false);
         return root;
     }
 }

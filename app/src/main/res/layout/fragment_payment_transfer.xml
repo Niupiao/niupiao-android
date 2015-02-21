@@ -14,7 +14,7 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:text="@string/transfer_title"
         android:textAllCaps="true"
-        android:textSize="35sp"
+        android:textSize="30sp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/niupiao_blue"
         />
@@ -28,7 +28,226 @@
         android:layout_below="@id/fragment_payment_transfer_title"
         android:layout_centerHorizontal="true">
 
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rowCount="6"
+            android:columnCount="5"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_height="1dp"
+                android:layout_width="1dp">
+                <!-- This is filler for the "Numbers" column. -->
+            </View>
+
+            <!-- Column category names. -->
+            <TextView
+                android:id="@+id/fragment_payment_transfer_category_type"
+                android:text="@string/transfer_category_type"
+                />
+
+            <TextView
+                android:id="@+id/fragment_payment_transfer_category_me"
+                android:text="@string/transfer_category_me"
+                />
+
+            <TextView
+                android:id="@+id/fragment_payment_transfer_category_name"
+                android:text="@string/transfer_category_name"
+                />
+
+            <TextView
+                android:id="@+id/fragment_payment_transfer_category_cell"
+                android:text="@string/transfer_category_cell"
+                />
+
+            <!-- Row 1. -->
+            <TextView
+                android:text="1"
+                />
+
+            <TextView
+                android:text="@string/transfer_type_general"
+                />
+
+            <CheckBox
+                android:id="@+id/fragment_payment_transfer_me_checkbox_one"
+                />
+
+            <EditText
+                android:id="@+id/fragment_payment_transfer_recipient_name_one"
+                android:hint="@string/transfer_recipient_name_hint"
+                />
+
+            <EditText
+                android:id="@+id/fragment_payment_transfer_recipient_cell_one"
+                android:hint="@string/transfer_recipient_cell_hint"
+                />
+
+            <!-- Row 2. -->
+            <TextView
+                android:text="2"
+                />
+
+            <TextView
+                android:text="@string/transfer_type_general"
+                />
+
+            <CheckBox
+                android:id="@+id/fragment_payment_transfer_me_checkbox_two"
+                />
+
+            <EditText
+                android:id="@+id/fragment_payment_transfer_recipient_name_two"
+                android:hint="@string/transfer_recipient_name_hint"
+                />
+
+            <EditText
+                android:id="@+id/fragment_payment_transfer_recipient_cell_two"
+                android:hint="@string/transfer_recipient_cell_hint"
+                />
+
+            <!-- Row 3. -->
+            <TextView
+                android:text="3"
+                />
+
+            <TextView
+                android:text="@string/transfer_type_general"
+                />
+
+            <CheckBox
+                android:id="@+id/fragment_payment_transfer_me_checkbox_three"
+                />
+
+            <EditText
+                android:id="@+id/fragment_payment_transfer_recipient_name_three"
+                android:hint="@string/transfer_recipient_name_hint"
+                />
+
+            <EditText
+                android:id="@+id/fragment_payment_transfer_recipient_cell_three"
+                android:hint="@string/transfer_recipient_cell_hint"
+                />
+
+            <!-- Row 4. -->
+            <TextView
+                android:text="4"
+                />
+
+            <TextView
+                android:text="@string/transfer_type_vip"
+                />
+
+            <CheckBox
+                android:id="@+id/fragment_payment_transfer_me_checkbox_four"
+                />
+
+            <EditText
+                android:id="@+id/fragment_payment_transfer_recipient_name_four"
+                android:hint="@string/transfer_recipient_name_hint"
+                />
+
+            <EditText
+                android:id="@+id/fragment_payment_transfer_recipient_cell_four"
+                android:hint="@string/transfer_recipient_cell_hint"
+                />
+
+            <!-- Row 5. -->
+            <TextView
+                android:text="5"
+                />
+
+            <TextView
+                android:text="@string/transfer_type_vip"
+                />
+
+            <CheckBox
+                android:id="@+id/fragment_payment_transfer_me_checkbox_five"
+                />
+
+            <EditText
+                android:id="@+id/fragment_payment_transfer_recipient_name_five"
+                android:hint="@string/transfer_recipient_name_hint"
+                />
+
+            <EditText
+                android:id="@+id/fragment_payment_transfer_recipient_cell_five"
+                android:hint="@string/transfer_recipient_cell_hint"
+                />
+
+            </GridLayout>
 
     </RelativeLayout>
+
+    <!-- Payment Option layouts below. -->
+    <RelativeLayout
+        android:id="@+id/fragment_payment_option_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_below="@id/fragment_payment_transfer_layout"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/fragment_payment_option_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@string/transfer_payment_option_title"
+            android:textAllCaps="true"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/niupiao_blue"
+            />
+
+        <!-- Row 1, or Saved Card Row, below. -->
+        <TextView
+            android:id="@+id/fragment_payment_option_saved_card_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_payment_option_title"
+            android:text="@string/transfer_saved_credit"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/fragment_payment_option_saved_card_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_payment_option_title"
+            android:layout_toRightOf="@id/fragment_payment_option_saved_card_textview"
+            android:layout_alignBottom="@id/fragment_payment_option_saved_card_textview"
+            android:text="@string/transfer_saved_credit_info_default"
+            />
+        
+        <CheckBox
+            android:id="@+id/fragment_payment_option_saved_card_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/fragment_payment_option_saved_card_textview"
+            />
+
+        <!-- Row 2, or Paypal Row, below. -->
+        <ImageView
+            android:id="@+id/fragment_payment_option_paypal_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_payment_option_saved_card_textview"
+            android:src="@drawable/payment_option_paypal"
+            />
+
+        <CheckBox
+            android:id="@+id/fragment_payment_option_paypal_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/fragment_payment_option_paypal_logo"
+            />
+        </RelativeLayout>
 
 </RelativeLayout>

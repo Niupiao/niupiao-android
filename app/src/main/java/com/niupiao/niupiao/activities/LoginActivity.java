@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.fragments.RegistrationFragment;
 import com.niupiao.niupiao.models.ApiKey;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.LoginRequester;
@@ -118,9 +119,8 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
         mProgressView = findViewById(R.id.login_progress);
 
         // Set up the Registration Fragment
-        TextView title = (TextView) findViewById(R.id.fragment_registration_title);
-        //Typeface roboto_black = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Black.ttf");
-        //title.setTypeface(roboto_black);
+        RegistrationFragment test = new RegistrationFragment();
+        setContentView(R.layout.fragment_registration);
     }
 
     private void populateFieldsFromSharedPrefs() {

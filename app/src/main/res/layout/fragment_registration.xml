@@ -30,40 +30,37 @@
 
         <EditText
             android:id="@+id/fragment_registration_legal_name"
-            android:layout_alignLeft="@+id/fragment_registration_password"
-            android:layout_alignRight="@+id/fragment_registration_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:hint="@string/full_name_prompt"
+            android:maxLines="1"
             android:textAllCaps="true"
-            android:background="@drawable/top_rounded_edit_text"
+            android:background="@drawable/edit_text_top_rounded"
             />
 
         <EditText
             android:id="@+id/fragment_registration_cell_phone"
-            android:layout_alignLeft="@+id/fragment_registration_password"
-            android:layout_alignRight="@+id/fragment_registration_password"
             android:layout_below="@id/fragment_registration_legal_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:hint="@string/cell_phone_prompt"
+            android:maxLines="1"
             android:textAllCaps="true"
-            android:background="@drawable/white_edit_text"
+            android:background="@drawable/edit_text_white"
             />
 
         <EditText
             android:id="@+id/fragment_registration_email"
-            android:layout_alignLeft="@+id/fragment_registration_password"
-            android:layout_alignRight="@+id/fragment_registration_password"
             android:layout_below="@id/fragment_registration_cell_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:hint="@string/email_prompt"
+            android:maxLines="1"
             android:textAllCaps="true"
-            android:background="@drawable/white_edit_text"
+            android:background="@drawable/edit_text_white"
             />
 
         <EditText
@@ -73,7 +70,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:hint="@string/confirm_password_prompt"
-            android:background="@drawable/bottom_rounded_edit_text"
+            android:maxLines="1"
+            android:background="@drawable/edit_text_bottom_rounded"
             />
 
         </RelativeLayout>

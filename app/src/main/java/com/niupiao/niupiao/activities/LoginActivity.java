@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -115,6 +116,11 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        // Set up the Registration Fragment
+        TextView title = (TextView) findViewById(R.id.fragment_registration_title);
+        Typeface roboto_black = Typeface.createFromAsset(getAssets(), "Roboto-Black.ttf");
+        title.setTypeface(roboto_black);
     }
 
     private void populateFieldsFromSharedPrefs() {

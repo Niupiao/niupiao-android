@@ -119,8 +119,8 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
 
         // Set up the Registration Fragment
         TextView title = (TextView) findViewById(R.id.fragment_registration_title);
-        Typeface roboto_black = Typeface.createFromAsset(getAssets(), "Roboto-Black.ttf");
-        title.setTypeface(roboto_black);
+        //Typeface roboto_black = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Black.ttf");
+        //title.setTypeface(roboto_black);
     }
 
     private void populateFieldsFromSharedPrefs() {

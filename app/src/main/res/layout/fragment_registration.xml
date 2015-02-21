@@ -58,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/confirm_password_prompt"
+            android:background="@drawable/bottom_rounded_edit_text"
             />
 
         </RelativeLayout>

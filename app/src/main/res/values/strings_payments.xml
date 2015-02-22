@@ -16,7 +16,7 @@
     <string name="transfer_add_a_credit">Add a Credit/Debit Card</string>
     <string name="transfer_full_name_on_card">Full Name on Card</string>
     <string name="transfer_credit_card_number">Credit Card Number</string>
-    <string name="transfer_exp_date">TRANSFER TICKETS</string>
+    <string name="transfer_exp_date">Exp. Date</string>
     <string name="transfer_csv">CSV</string>
     <string name="transfer_billing_address">Billing Address</string>
     <string name="transfer_city">City</string>

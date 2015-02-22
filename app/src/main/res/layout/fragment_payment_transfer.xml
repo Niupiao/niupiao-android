@@ -307,6 +307,10 @@
         <!-- Row 1, or Saved Card Row, below. -->
         <TextView
             android:id="@+id/fragment_payment_option_saved_card_textview"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/fragment_payment_option_title"
@@ -326,23 +330,30 @@
 
         <CheckBox
             android:id="@+id/fragment_payment_option_saved_card_checkbox"
+            android:button="@drawable/payments_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/fragment_payment_option_saved_card_textview"
+            android:layout_below="@id/fragment_payment_option_title"
             />
 
         <!-- Row 2, or Paypal Row, below. -->
         <ImageView
             android:id="@+id/fragment_payment_option_paypal_logo"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/fragment_payment_option_saved_card_textview"
+            android:maxWidth="80dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
             android:src="@drawable/payment_option_paypal"
             />
 
         <CheckBox
             android:id="@+id/fragment_payment_option_paypal_checkbox"
+            android:button="@drawable/payments_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -352,6 +363,10 @@
         <!-- Row 3, or Paypal Row, below. -->
         <TextView
             android:id="@+id/fragment_payment_option_add_card_text"
+            android:paddingTop="0dp"
+            android:paddingBottom="3dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/fragment_payment_option_paypal_logo"
@@ -360,6 +375,7 @@
 
         <CheckBox
             android:id="@+id/fragment_payment_option_add_card_checkbox"
+            android:button="@drawable/payments_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -378,6 +394,8 @@
             <!-- Full on Card -->
             <TextView
                 android:id="@+id/fragment_payment_full_name_on_card_text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/transfer_full_name_on_card"
@@ -385,8 +403,11 @@
 
             <EditText
                 android:id="@+id/fragment_payment_full_name_on_card_edittext"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="150dp"
                 android:background="@drawable/edit_text_grey"
                 android:layout_toRightOf="@id/fragment_payment_full_name_on_card_text"
                 />
@@ -394,6 +415,8 @@
             <!-- Credit Card Number -->
             <TextView
                 android:id="@+id/fragment_payment_credit_card_number_text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/fragment_payment_full_name_on_card_text"
@@ -402,8 +425,11 @@
 
             <EditText
                 android:id="@+id/fragment_payment_credit_card_number_edittext"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="300dp"
                 android:background="@drawable/edit_text_grey"
                 android:layout_below="@id/fragment_payment_full_name_on_card_text"
                 android:layout_toRightOf="@id/fragment_payment_credit_card_number_text"
@@ -412,6 +438,8 @@
             <!-- Exp date -->
             <TextView
                 android:id="@+id/fragment_payment_exp_date_text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/fragment_payment_credit_card_number_text"
@@ -420,8 +448,11 @@
 
             <EditText
                 android:id="@+id/fragment_payment_exp_date_month"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="50dp"
                 android:background="@drawable/edit_text_grey"
                 android:layout_below="@id/fragment_payment_credit_card_number_text"
                 android:layout_toRightOf="@id/fragment_payment_exp_date_text"
@@ -429,8 +460,11 @@
 
             <EditText
                 android:id="@+id/fragment_payment_exp_date_day"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="50dp"
                 android:background="@drawable/edit_text_grey"
                 android:layout_below="@id/fragment_payment_credit_card_number_text"
                 android:layout_toRightOf="@id/fragment_payment_exp_date_month"
@@ -439,17 +473,22 @@
             <!-- CSV -->
             <TextView
                 android:id="@+id/fragment_payment_csv_text"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fragment_payment_credit_card_number_text"
                 android:layout_toRightOf="@id/fragment_payment_exp_date_day"
+                android:layout_alignBottom="@id/fragment_payment_exp_date_text"
                 android:text="@string/transfer_csv"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_csv_edittext"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="50dp"
                 android:background="@drawable/edit_text_grey"
                 android:layout_below="@id/fragment_payment_credit_card_number_text"
                 android:layout_toRightOf="@id/fragment_payment_csv_text"
@@ -458,6 +497,8 @@
             <!-- Billing Address -->
             <TextView
                 android:id="@+id/fragmet_payment_billing_address_text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/fragment_payment_exp_date_text"
@@ -466,8 +507,11 @@
 
             <EditText
                 android:id="@+id/fragment_payment_billing_address_edittext"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="100dp"
                 android:background="@drawable/edit_text_grey"
                 android:layout_below="@id/fragment_payment_exp_date_text"
                 android:layout_toRightOf="@id/fragmet_payment_billing_address_text"
@@ -476,17 +520,22 @@
             <!-- City -->
             <TextView
                 android:id="@+id/fragment_payment_city_text"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fragment_payment_exp_date_text"
+                android:layout_alignBottom="@id/fragmet_payment_billing_address_text"
                 android:layout_toRightOf="@id/fragment_payment_billing_address_edittext"
                 android:text="@string/transfer_city"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_city_edittext"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="100dp"
                 android:background="@drawable/edit_text_grey"
                 android:layout_below="@id/fragment_payment_exp_date_text"
                 android:layout_toRightOf="@id/fragment_payment_city_text"
@@ -495,6 +544,8 @@
             <!-- State -->
             <TextView
                 android:id="@+id/fragment_payment_state_text"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/fragmet_payment_billing_address_text"
@@ -503,8 +554,11 @@
 
             <EditText
                 android:id="@+id/fragment_payment_state_edittext"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="35dp"
                 android:background="@drawable/edit_text_grey"
                 android:layout_below="@id/fragmet_payment_billing_address_text"
                 android:layout_toRightOf="@id/fragment_payment_state_text"
@@ -513,31 +567,36 @@
             <!-- Zip -->
             <TextView
                 android:id="@+id/fragment_payment_zip_text"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fragmet_payment_billing_address_text"
+                android:layout_alignBottom="@id/fragment_payment_state_text"
                 android:layout_toRightOf="@id/fragment_payment_state_edittext"
                 android:text="@string/transfer_zip"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_zip_edittext"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="80dp"
                 android:background="@drawable/edit_text_grey"
                 android:layout_below="@id/fragmet_payment_billing_address_text"
                 android:layout_toRightOf="@id/fragment_payment_zip_text"
                 />
 
-            <!-- Zip -->
+            <!-- Save This Card Checkbox -->
             <CheckBox
                 android:id="@+id/fragment_payment_save_this_card_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/fragmet_payment_billing_address_text"
                 android:layout_toRightOf="@id/fragment_payment_zip_edittext"
-                android:hint="@string/transfer_save_this_card"
-                />
+                android:hint="@string/transfer_save_this_card"/>
+
             </RelativeLayout>
         </RelativeLayout>
 

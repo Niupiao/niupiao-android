@@ -101,21 +101,6 @@ public class MainActivity extends ActionBarActivity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
-
-        // FONTS
-        Typeface roboto_bold = Typeface.createFromAsset(getAssets(), "Roboto-Bold.ttf");
-
-        // Setting fonts of various view objects
-        Button login_button = (Button) findViewById(R.id.login_button);
-        login_button.setTypeface(roboto_bold);
-
-        EditText username = (EditText) findViewById(R.id.username);
-        username.setTypeface(roboto_bold);
-
-        EditText password = (EditText) findViewById(R.id.password);
-        password.setTypeface(roboto_bold);
-
-
     }
 
     @Override

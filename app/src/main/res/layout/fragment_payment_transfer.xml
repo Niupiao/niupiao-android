@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5e5e5">
+    android:background="#e1e1e1">
 
     <TextView
         android:id="@+id/fragment_payment_transfer_title"
@@ -611,10 +611,13 @@
 
         <TextView
             android:id="@+id/fragment_payment_cost_of_tickets"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$300"
-            android:textSize="30dp"
+            android:layout_centerVertical="true"
+            android:text="$0"
+            android:textSize="40dp"
             android:textColor="@color/niupiao_blue"/>
 
         <ImageButton
@@ -622,10 +625,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/paynow"
+            android:background="@android:color/transparent"
             android:maxHeight="200dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:layout_toRightOf="@id/fragment_payment_cost_of_tickets"
+            android:layout_alignParentRight="true"
             android:layout_alignBottom="@id/fragment_payment_cost_of_tickets"/>
         </RelativeLayout>
 </RelativeLayout>

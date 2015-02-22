@@ -52,6 +52,8 @@ public class Event implements Parcelable {
         }
     };
 
+    @SerializedName("id")
+    private int id;
 
     @SerializedName("name")
     private String name;
@@ -80,6 +82,10 @@ public class Event implements Parcelable {
     @SerializedName("tickets_sold")
     private int ticketsSold;
 
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -100,6 +106,10 @@ public class Event implements Parcelable {
         return description;
     }
 
+    public String getLink() {
+        return link;
+    }
+
     public String getImagePath() {
         return imagePath;
     }
@@ -110,5 +120,14 @@ public class Event implements Parcelable {
 
     public int getTicketsSold() {
         return ticketsSold;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Event) {
+            Event e = (Event) o;
+            return e.getId() == this.getId();
+        }
+        return false;
     }
 }

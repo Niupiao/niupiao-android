@@ -3,7 +3,6 @@ package com.niupiao.niupiao.activities;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,7 +23,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.MyAccountFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
@@ -32,13 +33,14 @@ import com.niupiao.niupiao.fragments.SettingsFragment;
 import com.niupiao.niupiao.fragments.StarredFragment;
 import com.niupiao.niupiao.fragments.events.EventsFragment;
 import com.niupiao.niupiao.fragments.my_tickets.MyTicketsFragment;
-
-import java.util.ArrayList;
+import com.niupiao.niupiao.managers.EventManager;
+import com.niupiao.niupiao.requesters.ResourceCallback;
+import com.niupiao.niupiao.utils.SharedPrefsUtils;
 
 /**
  * Created by kmchen1 on 2/17/15.
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements ResourceCallback {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String INTENT_KEY_FOR_USER = "user";
@@ -51,14 +53,29 @@ public class MainActivity extends ActionBarActivity {
     private CharSequence mTitle;
     private String[] mFragmentTitles;
 
-    public void saveParcelables(String key, ArrayList<Parcelable> parcelables) {
-        getIntent().putParcelableArrayListExtra(key, parcelables);
+    private EventManager eventManager;
+
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
+    @Override
+    public String getAccessToken() {
+        return SharedPrefsUtils.getAccessToken(this);
+    }
+
+    @Override
+    public void onVolleyError(VolleyError volleyError) {
+        Toast.makeText(this, "Oops: " + volleyError.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // TODO broadcast receiver should listen for connection and have EventManger go then
+        eventManager = new EventManager(this);
 
         mTitle = mDrawerTitle = getTitle();
         mFragmentTitles = getResources().getStringArray(R.array.fragments_array);

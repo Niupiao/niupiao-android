@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -38,7 +39,7 @@ public abstract class ParcelableArrayAdapter<T extends Parcelable> extends Array
         return objects;
     }
 
-    public void setObjects(List<T> objects) {
+    public void setObjects(Collection<T> objects) {
         clear();
         addAll(objects);
     }

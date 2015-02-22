@@ -23,8 +23,8 @@
         android:id="@+id/fragment_payment_transfer_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_below="@id/fragment_payment_transfer_title"
         android:layout_centerHorizontal="true">
 
@@ -35,146 +35,246 @@
             android:columnCount="5"
             android:orientation="horizontal">
 
+            <!-- This is filler for the "Numbers" column. -->
             <View
+                android:layout_gravity="bottom"
                 android:layout_height="1dp"
-                android:layout_width="1dp">
-                <!-- This is filler for the "Numbers" column. -->
+                android:layout_width="1dp"
+                android:background="@android:color/transparent">
             </View>
 
             <!-- Column category names. -->
             <TextView
                 android:id="@+id/fragment_payment_transfer_category_type"
                 android:text="@string/transfer_category_type"
+                android:background="@drawable/thinbottomborder"
+                android:paddingLeft="8dp"
+                android:paddingRight="12dp"
+                android:layout_gravity="right"
                 />
 
             <TextView
                 android:id="@+id/fragment_payment_transfer_category_me"
                 android:text="@string/transfer_category_me"
+                android:background="@drawable/thinbottomborder"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:layout_gravity="center_horizontal"
                 />
 
             <TextView
                 android:id="@+id/fragment_payment_transfer_category_name"
                 android:text="@string/transfer_category_name"
+                android:background="@drawable/thinbottomborder"
+                android:paddingLeft="5dp"
+                android:paddingRight="2dp"
+                android:layout_gravity="center_horizontal"
                 />
 
             <TextView
                 android:id="@+id/fragment_payment_transfer_category_cell"
                 android:text="@string/transfer_category_cell"
+                android:background="@drawable/thinbottomborder"
+                android:paddingLeft="12dp"
+                android:paddingRight="0dp"
+                android:layout_gravity="left"
                 />
 
+            <!-- Padding used for entire row is made in the number text view. -->
             <!-- Row 1. -->
             <TextView
                 android:text="1"
+                android:textColor="@color/niupiao_blue"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/abc_text_size_large_material"
+                android:paddingTop="2dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="5dp"
                 />
 
             <TextView
                 android:text="@string/transfer_type_general"
+                android:textStyle="bold"
+                android:textColor="@color/niupiao_blue"
                 />
 
             <CheckBox
                 android:id="@+id/fragment_payment_transfer_me_checkbox_one"
+                android:button="@drawable/payments_checkbox"
+                android:layout_gravity="center_horizontal"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_transfer_recipient_name_one"
                 android:hint="@string/transfer_recipient_name_hint"
+                android:background="@drawable/edit_text_rounded_grey"
+                android:minWidth="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_transfer_recipient_cell_one"
                 android:hint="@string/transfer_recipient_cell_hint"
+                android:background="@drawable/edit_text_rounded_grey"
+                android:minWidth="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 />
 
             <!-- Row 2. -->
             <TextView
                 android:text="2"
+                android:textColor="@color/niupiao_blue"
+                android:textSize="@dimen/abc_text_size_large_material"
+                android:paddingTop="2dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="5dp"
                 />
 
             <TextView
                 android:text="@string/transfer_type_general"
+                android:textStyle="bold"
+                android:textColor="@color/niupiao_blue"
                 />
 
             <CheckBox
                 android:id="@+id/fragment_payment_transfer_me_checkbox_two"
+                android:button="@drawable/payments_checkbox"
+                android:layout_gravity="center_horizontal"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_transfer_recipient_name_two"
                 android:hint="@string/transfer_recipient_name_hint"
+                android:background="@drawable/edit_text_rounded_grey"
+                android:minWidth="100dp"
+                android:layout_gravity="center_horizontal"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_transfer_recipient_cell_two"
                 android:hint="@string/transfer_recipient_cell_hint"
+                android:background="@drawable/edit_text_rounded_grey"
+                android:minWidth="100dp"
+                android:layout_gravity="center_horizontal"
                 />
 
             <!-- Row 3. -->
             <TextView
                 android:text="3"
+                android:textColor="@color/niupiao_blue"
+                android:textSize="@dimen/abc_text_size_large_material"
+                android:paddingTop="2dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="5dp"
                 />
 
             <TextView
                 android:text="@string/transfer_type_general"
+                android:textStyle="bold"
+                android:textColor="@color/niupiao_blue"
                 />
 
             <CheckBox
                 android:id="@+id/fragment_payment_transfer_me_checkbox_three"
+                android:button="@drawable/payments_checkbox"
+                android:layout_gravity="center_horizontal"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_transfer_recipient_name_three"
                 android:hint="@string/transfer_recipient_name_hint"
+                android:background="@drawable/edit_text_rounded_grey"
+                android:minWidth="100dp"
+                android:layout_gravity="center_horizontal"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_transfer_recipient_cell_three"
                 android:hint="@string/transfer_recipient_cell_hint"
+                android:background="@drawable/edit_text_rounded_grey"
+                android:minWidth="100dp"
+                android:layout_gravity="center_horizontal"
                 />
 
             <!-- Row 4. -->
             <TextView
                 android:text="4"
+                android:textColor="@color/niupiao_orange"
+                android:textSize="@dimen/abc_text_size_large_material"
+                android:paddingTop="2dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="5dp"
                 />
 
             <TextView
                 android:text="@string/transfer_type_vip"
+                android:textStyle="bold"
+                android:textColor="@color/niupiao_orange"
+                android:layout_gravity="center_horizontal"
                 />
 
             <CheckBox
                 android:id="@+id/fragment_payment_transfer_me_checkbox_four"
+                android:button="@drawable/payments_checkbox"
+                android:layout_gravity="center_horizontal"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_transfer_recipient_name_four"
                 android:hint="@string/transfer_recipient_name_hint"
+                android:background="@drawable/edit_text_rounded_grey"
+                android:minWidth="100dp"
+                android:layout_gravity="center_horizontal"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_transfer_recipient_cell_four"
                 android:hint="@string/transfer_recipient_cell_hint"
+                android:background="@drawable/edit_text_rounded_grey"
+                android:minWidth="100dp"
+                android:layout_gravity="center_horizontal"
                 />
 
             <!-- Row 5. -->
             <TextView
                 android:text="5"
+                android:textColor="@color/niupiao_orange"
+                android:textSize="@dimen/abc_text_size_large_material"
+                android:paddingTop="2dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="5dp"
                 />
 
             <TextView
                 android:text="@string/transfer_type_vip"
+                android:textStyle="bold"
+                android:textColor="@color/niupiao_orange"
+                android:layout_gravity="center_horizontal"
                 />
 
             <CheckBox
                 android:id="@+id/fragment_payment_transfer_me_checkbox_five"
+                android:button="@drawable/payments_checkbox"
+                android:layout_gravity="center_horizontal"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_transfer_recipient_name_five"
                 android:hint="@string/transfer_recipient_name_hint"
+                android:background="@drawable/edit_text_rounded_grey"
+                android:minWidth="100dp"
+                android:layout_gravity="center_horizontal"
                 />
 
             <EditText
                 android:id="@+id/fragment_payment_transfer_recipient_cell_five"
                 android:hint="@string/transfer_recipient_cell_hint"
+                android:background="@drawable/edit_text_rounded_grey"
+                android:minWidth="100dp"
+                android:layout_gravity="center_horizontal"
                 />
 
             </GridLayout>
@@ -195,8 +295,8 @@
             android:id="@+id/fragment_payment_option_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:text="@string/transfer_payment_option_title"
             android:textAllCaps="true"
             android:textSize="30sp"
@@ -223,7 +323,7 @@
             android:layout_alignBottom="@id/fragment_payment_option_saved_card_textview"
             android:text="@string/transfer_saved_credit_info_default"
             />
-        
+
         <CheckBox
             android:id="@+id/fragment_payment_option_saved_card_checkbox"
             android:layout_width="wrap_content"
@@ -455,6 +555,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$300"
+            android:textSize="30dp"
             android:textColor="@color/niupiao_blue"/>
+
+        <ImageButton
+            android:id="@+id/pay_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/paynow"
+            android:maxHeight="200dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_toRightOf="@id/fragment_payment_cost_of_tickets"
+            android:layout_alignBottom="@id/fragment_payment_cost_of_tickets"/>
         </RelativeLayout>
 </RelativeLayout>

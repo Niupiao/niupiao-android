@@ -1,6 +1,7 @@
 package com.niupiao.niupiao.activities;
 
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -10,6 +11,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.internal.widget.TintCheckedTextView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,15 +19,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.ImageButton;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.MyAccountFragment;
-import com.niupiao.niupiao.fragments.MyTicketsFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
 import com.niupiao.niupiao.fragments.SettingsFragment;
 import com.niupiao.niupiao.fragments.StarredFragment;
 import com.niupiao.niupiao.fragments.events.EventsFragment;
+import com.niupiao.niupiao.fragments.my_tickets.MyTicketsFragment;
 
 import java.util.ArrayList;
 
@@ -95,7 +101,6 @@ public class MainActivity extends ActionBarActivity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
-
     }
 
     @Override

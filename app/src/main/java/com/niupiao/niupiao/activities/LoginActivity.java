@@ -107,7 +107,7 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
 
         populateFieldsFromSharedPrefs();
 
-        Button mSignInButton = (Button) findViewById(R.id.sign_in_button);
+        Button mSignInButton = (Button) findViewById(R.id.login_button);
         mSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

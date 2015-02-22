@@ -27,11 +27,11 @@ import android.widget.ImageButton;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.MyAccountFragment;
-import com.niupiao.niupiao.fragments.MyTicketsFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
 import com.niupiao.niupiao.fragments.SettingsFragment;
 import com.niupiao.niupiao.fragments.StarredFragment;
 import com.niupiao.niupiao.fragments.events.EventsFragment;
+import com.niupiao.niupiao.fragments.my_tickets.MyTicketsFragment;
 
 import java.util.ArrayList;
 

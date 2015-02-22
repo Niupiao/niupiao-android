@@ -4,15 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/tabs"
+    <TextView
+        android:text="list view item"
         android:layout_width="match_parent"
-        android:layout_height="48dip" />
-
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

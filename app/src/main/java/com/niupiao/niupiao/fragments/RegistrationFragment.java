@@ -36,7 +36,7 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         Context context = getActivity();
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.fragment_registration_button:
                 System.out.println("Registration button pressed");
                 Intent goToMain = new Intent(context, MainActivity.class);

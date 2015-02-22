@@ -441,4 +441,20 @@
             </RelativeLayout>
         </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/fragment_payment_pay_now_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_payment_option_layout"
+        android:layout_alignParentBottom="true"
+        android:background="#434343"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/fragment_payment_cost_of_tickets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$300"
+            android:textColor="@color/niupiao_blue"/>
+        </RelativeLayout>
 </RelativeLayout>

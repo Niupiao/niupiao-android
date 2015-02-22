@@ -2,12 +2,20 @@ package com.niupiao.niupiao.fragments.events;
 
 import android.os.Bundle;
 
-import com.niupiao.niupiao.fragments.ViewPagerFragment;
+import com.niupiao.niupiao.activities.MainActivity;
+import com.niupiao.niupiao.managers.EventManager;
 
 /**
  * Created by kevinchen on 2/17/15.
  */
-public class OnSaleFragment extends ViewPagerFragment {
+public class OnSaleFragment extends EventsViewPagerFragment {
+
+    @Override
+    protected void requestEventsFromManager() {
+        EventManager eventManager = ((MainActivity) getActivity()).getEventManager();
+        eventManager.loadOnSaleEvents(this);
+    }
+
     @Override
     public String getTitle() {
         return "On Sale";

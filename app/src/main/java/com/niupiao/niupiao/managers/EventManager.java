@@ -5,50 +5,207 @@ import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.requesters.EventsRequester;
 import com.niupiao.niupiao.requesters.ResourceCallback;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
  * Created by kmchen1 on 2/21/15.
  */
-public class EventManager implements EventsRequester.OnEventsLoadedListener {
+public class EventManager implements EventsRequester.OnEventsRequestedListener {
+
+    private boolean LAZY_LOAD = false;
 
     private ResourceCallback callback;
 
+    private Set<Event> events;
     private Set<Event> onSale;
-    private Set<Event> comingSoong;
+    private Set<Event> comingSoon;
     private Set<Event> recommended;
     private Set<Event> past;
     private Set<Event> upcoming;
 
+    // listeners, i.e., fragments that will be called when stuff loads
+    private OnEventsLoadedListener eventsListener;
+    private OnEventsLoadedListener onSaleEventsListener;
+    private OnEventsLoadedListener comingSoonEventsListener;
+    private OnEventsLoadedListener recommendedEventsListener;
+    private OnEventsLoadedListener pastEventsListener;
+    private OnEventsLoadedListener upcomingEventsListener;
+
+    public interface OnEventsLoadedListener {
+        public void onEventsLoaded(Collection<Event> events);
+    }
+
+    public void loadEvents(final OnEventsLoadedListener listener) {
+        if (events != null) {
+            // we have events, so pass them to the UI
+            listener.onEventsLoaded(events);
+        } else {
+            // otherwise, we will call the UI when we load them
+            eventsListener = listener;
+            if (LAZY_LOAD) {
+                EventsRequester.loadEvents(this);
+            }
+        }
+    }
+
+    public void loadOnSaleEvents(final OnEventsLoadedListener listener) {
+        if (onSale != null) {
+            // we have events, so pass them to the UI
+            listener.onEventsLoaded(onSale);
+        } else {
+            // otherwise, we will call the UI when we load them
+            onSaleEventsListener = listener;
+            if (LAZY_LOAD) {
+                EventsRequester.loadOnSaleEvents(this);
+            }
+        }
+    }
+
+    public void loadComingSoonEvents(final OnEventsLoadedListener listener) {
+        if (comingSoon != null) {
+            // we have events, so pass them to the UI
+            listener.onEventsLoaded(comingSoon);
+        } else {
+            // otherwise, we will call the UI when we load them
+            comingSoonEventsListener = listener;
+            if (LAZY_LOAD) {
+                EventsRequester.loadComingSoonEvents(this);
+            }
+        }
+    }
+
+    public void loadRecommendedEvents(final OnEventsLoadedListener listener) {
+        if (recommended != null) {
+            // we have events, so pass them to the UI
+            listener.onEventsLoaded(recommended);
+        } else {
+            // otherwise, we will call the UI when we load them
+            recommendedEventsListener = listener;
+            if (LAZY_LOAD) {
+                EventsRequester.loadRecommendedEvents(this);
+            }
+        }
+    }
+
+    public void loadPastEvents(final OnEventsLoadedListener listener) {
+        if (past != null) {
+            // we have events, so pass them to the UI
+            listener.onEventsLoaded(past);
+        } else {
+            // otherwise, we will call the UI when we load them
+            pastEventsListener = listener;
+            if (LAZY_LOAD) {
+                EventsRequester.loadPastEvents(this);
+            }
+        }
+    }
+
+    public void loadUpcomingEvents(final OnEventsLoadedListener listener) {
+        if (upcoming != null) {
+            // we have events, so pass them to the UI
+            listener.onEventsLoaded(upcoming);
+        } else {
+            // otherwise, we will call the UI when we load them
+            upcomingEventsListener = listener;
+            if (LAZY_LOAD) {
+                EventsRequester.loadUpcomingEvents(this);
+            }
+        }
+    }
+
+
     public EventManager(ResourceCallback callback) {
         this.callback = callback;
-        // TODO load events, in fragment#onCreateView, have them access events from MainActivity's manager
+        if (!LAZY_LOAD) {
+            EventsRequester.loadComingSoonEvents(this);
+            EventsRequester.loadOnSaleEvents(this);
+            EventsRequester.loadRecommendedEvents(this);
+            EventsRequester.loadPastEvents(this);
+            EventsRequester.loadUpcomingEvents(this);
+        }
     }
 
     @Override
     public void onEventsLoaded(List<Event> events) {
+        if (events != null) {
+            if (this.events == null) {
+                this.events = new HashSet<>(events);
+            } else {
+                this.events.addAll(events);
+            }
+        }
 
+        if (eventsListener != null) eventsListener.onEventsLoaded(this.events);
     }
 
-    public Set<Event> getOnSale() {
-        return onSale;
+    @Override
+    public void onOnSaleEventsLoaded(List<Event> events) {
+        if (events != null) {
+            if (this.onSale == null) {
+                this.onSale = new HashSet<>(events);
+            } else {
+                this.onSale.addAll(events);
+            }
+        }
+
+        if (onSaleEventsListener != null) onSaleEventsListener.onEventsLoaded(this.onSale);
     }
 
-    public Set<Event> getComingSoong() {
-        return comingSoong;
+    @Override
+    public void onComingSoonEventsLoaded(List<Event> events) {
+        if (events != null) {
+            if (this.comingSoon == null) {
+                this.comingSoon = new HashSet<>(events);
+            } else {
+                this.comingSoon.addAll(events);
+            }
+        }
+
+        if (comingSoonEventsListener != null)
+            comingSoonEventsListener.onEventsLoaded(this.comingSoon);
     }
 
-    public Set<Event> getRecommended() {
-        return recommended;
+    @Override
+    public void onRecommendedEventsLoaded(List<Event> events) {
+        if (events != null) {
+            if (this.recommended == null) {
+                this.recommended = new HashSet<>(events);
+            } else {
+                this.recommended.addAll(events);
+            }
+        }
+
+        if (recommendedEventsListener != null)
+            recommendedEventsListener.onEventsLoaded(this.recommended);
     }
 
-    public Set<Event> getPast() {
-        return past;
+    @Override
+    public void onPastEventsLoaded(List<Event> events) {
+        if (events != null) {
+            if (this.past == null) {
+                this.past = new HashSet<>(events);
+            } else {
+                this.past.addAll(events);
+            }
+        }
+
+        if (pastEventsListener != null) pastEventsListener.onEventsLoaded(this.past);
     }
 
-    public Set<Event> getUpcoming() {
-        return upcoming;
+    @Override
+    public void onUpcomingEventsLoaded(List<Event> events) {
+        if (events != null) {
+            if (this.upcoming == null) {
+                this.upcoming = new HashSet<>(events);
+            } else {
+                this.upcoming.addAll(events);
+            }
+        }
+
+        if (upcomingEventsListener != null) upcomingEventsListener.onEventsLoaded(this.upcoming);
     }
 
     @Override

@@ -55,6 +55,10 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
 
     private EventManager eventManager;
 
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
     @Override
     public String getAccessToken() {
         return SharedPrefsUtils.getAccessToken(this);

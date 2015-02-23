@@ -19,6 +19,7 @@ public class Constants {
         public static final String BASE_URL = "http://localhost:3000";
         public static final String LOGIN_URL = BASE_URL + "/login.json";
         public static final String EVENTS_URL = BASE_URL + "/events.json";
+        public static final String TICKETS_URL = BASE_URL + "/me/tickets.json";
 
         /**
          * @param path must start with '/'

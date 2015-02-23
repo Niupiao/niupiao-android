@@ -13,4 +13,11 @@ public class Ticket {
     @SerializedName("user")
     private User user;
 
+    @SerializedName("price")
+    private int price;
+
+    @SerializedName("status")
+    private String status;
+
+
 }

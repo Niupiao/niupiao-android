@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e5e5e5">
+    
+    <TextView
+        android:id="@+id/fragment_registration_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="@string/registration_title"
+        android:textAllCaps="true"
+        android:textSize="35sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/niupiao_blue"
+        />
+
+    <RelativeLayout
+        android:id="@+id/fragment_registration_edit_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@id/fragment_registration_title"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:id="@+id/fragment_registration_legal_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/full_name_prompt"
+            android:maxLines="1"
+            android:background="@drawable/edit_text_top_rounded"
+            />
+
+        <EditText
+            android:id="@+id/fragment_registration_cell_phone"
+            android:layout_below="@id/fragment_registration_legal_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/cell_phone_prompt"
+            android:maxLines="1"
+            android:background="@drawable/edit_text_white"
+            />
+
+        <EditText
+            android:id="@+id/fragment_registration_email"
+            android:layout_below="@id/fragment_registration_cell_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/email_prompt"
+            android:maxLines="1"
+            android:background="@drawable/edit_text_white"
+            />
+
+        <EditText
+            android:id="@+id/fragment_registration_password"
+            android:layout_below="@id/fragment_registration_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/password_prompt"
+            android:maxLines="1"
+            android:background="@drawable/edit_text_white"
+            />
+
+        <EditText
+            android:id="@+id/fragment_registration_confirm_password"
+            android:layout_below="@id/fragment_registration_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="@string/confirm_password_prompt"
+            android:maxLines="1"
+            android:background="@drawable/edit_text_bottom_rounded"
+            />
+
+        </RelativeLayout>
+
+    <Button
+        android:id="@+id/fragment_registration_button"
+        android:background="@drawable/button_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/registration_button"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/fragment_registration_edit_text_layout"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        />
+</RelativeLayout>

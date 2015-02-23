@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -90,8 +91,8 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
         setContentView(R.layout.activity_login);
 
         // Set up the login form.
-        mUsernameView = (EditText) findViewById(R.id.username);
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mUsernameView = (EditText) findViewById(R.id.login_username);
+        mPasswordView = (EditText) findViewById(R.id.login_password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -105,7 +106,7 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
 
         populateFieldsFromSharedPrefs();
 
-        Button mSignInButton = (Button) findViewById(R.id.sign_in_button);
+        Button mSignInButton = (Button) findViewById(R.id.login_login_button);
         mSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +116,19 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        // FONTS
+        Typeface roboto_bold = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
+
+        // Setting fonts of various view objects
+        Button login_button = (Button) findViewById(R.id.login_login_button);
+        login_button.setTypeface(roboto_bold);
+
+        EditText username = (EditText) findViewById(R.id.login_username);
+        username.setTypeface(roboto_bold);
+
+        EditText password = (EditText) findViewById(R.id.login_password);
+        password.setTypeface(roboto_bold);
     }
 
     private void populateFieldsFromSharedPrefs() {
@@ -124,7 +138,7 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
             mUsernameView.setText(sp.getString(Constants.SharedPrefs.USERNAME, ""));
             mPasswordView.setText(sp.getString(Constants.SharedPrefs.PASSWORD, ""));
         }
-        CheckBox rememberMe = (CheckBox) findViewById(R.id.remember_me);
+        CheckBox rememberMe = (CheckBox) findViewById(R.id.login_remember_me);
         rememberMe.setChecked(remembered);
     }
 
@@ -136,7 +150,7 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
     }
 
     private void saveLoginCredentials(String username, String password) {
-        CheckBox rememberMe = (CheckBox) findViewById(R.id.remember_me);
+        CheckBox rememberMe = (CheckBox) findViewById(R.id.login_remember_me);
         if (rememberMe.isChecked()) {
             SharedPreferences.Editor editor = getSharedPreferences(Constants.SharedPrefs.LOGIN_CREDENTIALS, MODE_PRIVATE).edit();
             editor.putString(Constants.SharedPrefs.USERNAME, username);

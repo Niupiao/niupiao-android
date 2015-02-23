@@ -2,7 +2,6 @@ package com.niupiao.niupiao.activities;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,22 +17,25 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.fragments.AboutFragment;
-import com.niupiao.niupiao.fragments.FeedFragment;
-import com.niupiao.niupiao.fragments.MoreFragment;
+import com.niupiao.niupiao.fragments.MyAccountFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
-import com.niupiao.niupiao.fragments.ProgramFragment;
-import com.niupiao.niupiao.fragments.RateThisAppFragment;
-import com.niupiao.niupiao.fragments.concerts.ConcertsFragment;
-
-import java.util.ArrayList;
+import com.niupiao.niupiao.fragments.SettingsFragment;
+import com.niupiao.niupiao.fragments.StarredFragment;
+import com.niupiao.niupiao.fragments.events.EventsFragment;
+import com.niupiao.niupiao.fragments.my_tickets.MyTicketsFragment;
+import com.niupiao.niupiao.managers.EventManager;
+import com.niupiao.niupiao.managers.TicketManager;
+import com.niupiao.niupiao.requesters.ResourceCallback;
+import com.niupiao.niupiao.utils.SharedPrefsUtils;
 
 /**
  * Created by kmchen1 on 2/17/15.
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements ResourceCallback {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String INTENT_KEY_FOR_USER = "user";
@@ -44,10 +46,27 @@ public class MainActivity extends ActionBarActivity {
 
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-    private String[] mFragmenTitles;
+    private String[] mFragmentTitles;
 
-    public void saveParcelables(String key, ArrayList<Parcelable> parcelables) {
-        getIntent().putParcelableArrayListExtra(key, parcelables);
+    private EventManager eventManager;
+    private TicketManager ticketManager;
+
+    public TicketManager getTicketManager() {
+        return ticketManager;
+    }
+
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
+    @Override
+    public String getAccessToken() {
+        return SharedPrefsUtils.getAccessToken(this);
+    }
+
+    @Override
+    public void onVolleyError(VolleyError volleyError) {
+        Toast.makeText(this, "Oops: " + volleyError.getLocalizedMessage(), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -55,8 +74,12 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // TODO broadcast receiver should listen for connection and have EventManger go then
+        eventManager = new EventManager(this);
+        ticketManager = new TicketManager(this);
+
         mTitle = mDrawerTitle = getTitle();
-        mFragmenTitles = getResources().getStringArray(R.array.fragments_array);
+        mFragmentTitles = getResources().getStringArray(R.array.fragments_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -64,7 +87,7 @@ public class MainActivity extends ActionBarActivity {
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<>(this,
-                R.layout.drawer_list_item, mFragmenTitles));
+                R.layout.drawer_list_item, mFragmentTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
@@ -96,7 +119,6 @@ public class MainActivity extends ActionBarActivity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
-
     }
 
     @Override
@@ -124,17 +146,15 @@ public class MainActivity extends ActionBarActivity {
     private NiuNavigationDrawerFragment getSelectedFragment(int position) {
         switch (position) {
             case 0:
-                return new ProgramFragment();
+                return new EventsFragment();
             case 1:
-                return new FeedFragment();
+                return new MyTicketsFragment();
             case 2:
-                return new ConcertsFragment();
+                return new StarredFragment();
             case 3:
-                return new MoreFragment();
+                return new MyAccountFragment();
             case 4:
-                return new AboutFragment();
-            case 5:
-                return new RateThisAppFragment();
+                return new SettingsFragment();
             default:
                 Log.wtf(TAG, "unhandled fragment");
                 return null;
@@ -150,7 +170,7 @@ public class MainActivity extends ActionBarActivity {
 
         // update selected item and title, then close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(mFragmenTitles[position]);
+        setTitle(mFragmentTitles[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 

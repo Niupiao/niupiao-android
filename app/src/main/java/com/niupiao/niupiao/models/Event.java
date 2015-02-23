@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * Created by kmchen1 on 2/17/15.
  */
@@ -26,6 +29,7 @@ public class Event implements Parcelable {
         dest.writeString(imagePath);
         dest.writeInt(totalTickets);
         dest.writeInt(ticketsSold);
+        dest.writeParcelableArray(tickets.toArray(new Ticket[tickets.size()]), 0);
     }
 
     public Event(Parcel in) {
@@ -38,6 +42,12 @@ public class Event implements Parcelable {
         imagePath = in.readString();
         totalTickets = in.readInt();
         ticketsSold = in.readInt();
+        Parcelable[] parcelables = in.readParcelableArray(Ticket.class.getClassLoader());
+        Collection<Ticket> ticketCollection = new ArrayList<>(parcelables.length);
+        for (Parcelable parcelable : parcelables) {
+            ticketCollection.add((Ticket) parcelable);
+        }
+        tickets = ticketCollection;
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -52,6 +62,8 @@ public class Event implements Parcelable {
         }
     };
 
+    @SerializedName("id")
+    private int id;
 
     @SerializedName("name")
     private String name;
@@ -80,6 +92,13 @@ public class Event implements Parcelable {
     @SerializedName("tickets_sold")
     private int ticketsSold;
 
+    @SerializedName("tickets")
+    private Collection<Ticket> tickets;
+
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -100,6 +119,10 @@ public class Event implements Parcelable {
         return description;
     }
 
+    public String getLink() {
+        return link;
+    }
+
     public String getImagePath() {
         return imagePath;
     }
@@ -110,5 +133,18 @@ public class Event implements Parcelable {
 
     public int getTicketsSold() {
         return ticketsSold;
+    }
+
+    public Collection<Ticket> getTickets() {
+        return tickets;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Event) {
+            Event e = (Event) o;
+            return e.getId() == this.getId();
+        }
+        return false;
     }
 }

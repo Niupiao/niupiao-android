@@ -5,8 +5,14 @@
     android:orientation="vertical">
 
     <TextView
-        android:text="list view item"
+        android:id="@+id/price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>

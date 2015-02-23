@@ -90,41 +90,12 @@ public class EventManager implements EventsRequester.OnEventsRequestedListener {
         }
     }
 
-    public void loadPastEvents(final OnEventsLoadedListener listener) {
-        if (past != null) {
-            // we have events, so pass them to the UI
-            listener.onEventsLoaded(past);
-        } else {
-            // otherwise, we will call the UI when we load them
-            pastEventsListener = listener;
-            if (LAZY_LOAD) {
-                EventsRequester.loadPastEvents(this);
-            }
-        }
-    }
-
-    public void loadUpcomingEvents(final OnEventsLoadedListener listener) {
-        if (upcoming != null) {
-            // we have events, so pass them to the UI
-            listener.onEventsLoaded(upcoming);
-        } else {
-            // otherwise, we will call the UI when we load them
-            upcomingEventsListener = listener;
-            if (LAZY_LOAD) {
-                EventsRequester.loadUpcomingEvents(this);
-            }
-        }
-    }
-
-
     public EventManager(ResourceCallback callback) {
         this.callback = callback;
         if (!LAZY_LOAD) {
             EventsRequester.loadComingSoonEvents(this);
             EventsRequester.loadOnSaleEvents(this);
             EventsRequester.loadRecommendedEvents(this);
-            EventsRequester.loadPastEvents(this);
-            EventsRequester.loadUpcomingEvents(this);
         }
     }
 
@@ -180,32 +151,6 @@ public class EventManager implements EventsRequester.OnEventsRequestedListener {
 
         if (recommendedEventsListener != null)
             recommendedEventsListener.onEventsLoaded(this.recommended);
-    }
-
-    @Override
-    public void onPastEventsLoaded(List<Event> events) {
-        if (events != null) {
-            if (this.past == null) {
-                this.past = new HashSet<>(events);
-            } else {
-                this.past.addAll(events);
-            }
-        }
-
-        if (pastEventsListener != null) pastEventsListener.onEventsLoaded(this.past);
-    }
-
-    @Override
-    public void onUpcomingEventsLoaded(List<Event> events) {
-        if (events != null) {
-            if (this.upcoming == null) {
-                this.upcoming = new HashSet<>(events);
-            } else {
-                this.upcoming.addAll(events);
-            }
-        }
-
-        if (upcomingEventsListener != null) upcomingEventsListener.onEventsLoaded(this.upcoming);
     }
 
     @Override

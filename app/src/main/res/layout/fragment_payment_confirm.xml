@@ -5,7 +5,7 @@
     android:background="#e1e1e1">
 
     <TextView
-        android:id="@+id/fragment_payment_confirm_title"
+        android:id="@+id/tv_confirm_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -20,12 +20,12 @@
         />
 
     <RelativeLayout
-        android:id="@+id/fragment_payment_confirm_layout"
+        android:id="@+id/rl_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_below="@id/fragment_payment_confirm_title"
+        android:layout_below="@id/tv_confirm_title"
         android:layout_centerHorizontal="true">
 
         <GridLayout
@@ -45,7 +45,7 @@
 
             <!-- Column category names. -->
             <TextView
-                android:id="@+id/fragment_payment_confirm_category_type"
+                android:id="@+id/tv_confirm_type"
                 android:text="@string/transfer_category_type"
                 android:background="@drawable/thinbottomborder"
                 android:paddingLeft="8dp"
@@ -54,7 +54,7 @@
                 />
 
             <TextView
-                android:id="@+id/fragment_payment_confirm_category_me"
+                android:id="@+id/tv_confirm_me"
                 android:text="@string/transfer_category_me"
                 android:background="@drawable/thinbottomborder"
                 android:paddingLeft="5dp"
@@ -63,7 +63,7 @@
                 />
 
             <TextView
-                android:id="@+id/fragment_payment_confirm_category_name"
+                android:id="@+id/tv_confirm_name"
                 android:text="@string/transfer_category_name"
                 android:background="@drawable/thinbottomborder"
                 android:paddingLeft="5dp"
@@ -72,7 +72,7 @@
                 />
 
             <TextView
-                android:id="@+id/fragment_payment_confirm_category_cell"
+                android:id="@+id/tv_confirm_cell"
                 android:text="@string/transfer_category_cell"
                 android:background="@drawable/thinbottomborder"
                 android:paddingLeft="12dp"
@@ -99,13 +99,13 @@
                 />
 
             <CheckBox
-                android:id="@+id/fragment_payment_confirm_me_checkbox_one"
-                android:button="@drawable/payments_checkbox"
+                android:id="@+id/cb_confirm_me_one"
+                android:button="@drawable/payments_checkbox_background"
                 android:layout_gravity="center_horizontal"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_confirm_recipient_name_one"
+                android:id="@+id/et_confirm_recipient_name_one"
                 android:hint="@string/transfer_recipient_name_hint"
                 android:background="@drawable/edit_text_rounded_grey"
                 android:minWidth="100dp"
@@ -114,7 +114,7 @@
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_confirm_recipient_cell_one"
+                android:id="@+id/et_confirm_recipient_cell_one"
                 android:hint="@string/transfer_recipient_cell_hint"
                 android:background="@drawable/edit_text_rounded_grey"
                 android:minWidth="100dp"
@@ -140,13 +140,13 @@
                 />
 
             <CheckBox
-                android:id="@+id/fragment_payment_confirm_me_checkbox_two"
-                android:button="@drawable/payments_checkbox"
+                android:id="@+id/cb_confirm_me_two"
+                android:button="@drawable/payments_checkbox_background"
                 android:layout_gravity="center_horizontal"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_confirm_recipient_name_two"
+                android:id="@+id/et_confirm_recipient_name_two"
                 android:hint="@string/transfer_recipient_name_hint"
                 android:background="@drawable/edit_text_rounded_grey"
                 android:minWidth="100dp"
@@ -154,7 +154,7 @@
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_confirm_recipient_cell_two"
+                android:id="@+id/et_confirm_recipient_cell_two"
                 android:hint="@string/transfer_recipient_cell_hint"
                 android:background="@drawable/edit_text_rounded_grey"
                 android:minWidth="100dp"
@@ -178,13 +178,13 @@
                 />
 
             <CheckBox
-                android:id="@+id/fragment_payment_confirm_me_checkbox_three"
-                android:button="@drawable/payments_checkbox"
+                android:id="@+id/cb_confirm_me_three"
+                android:button="@drawable/payments_checkbox_background"
                 android:layout_gravity="center_horizontal"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_confirm_recipient_name_three"
+                android:id="@+id/et_confirm_recipient_name_three"
                 android:hint="@string/transfer_recipient_name_hint"
                 android:background="@drawable/edit_text_rounded_grey"
                 android:minWidth="100dp"
@@ -192,7 +192,7 @@
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_confirm_recipient_cell_three"
+                android:id="@+id/et_confirm_recipient_cell_three"
                 android:hint="@string/transfer_recipient_cell_hint"
                 android:background="@drawable/edit_text_rounded_grey"
                 android:minWidth="100dp"
@@ -217,13 +217,13 @@
                 />
 
             <CheckBox
-                android:id="@+id/fragment_payment_confirm_me_checkbox_four"
-                android:button="@drawable/payments_checkbox"
+                android:id="@+id/cb_confirm_me_four"
+                android:button="@drawable/payments_checkbox_background"
                 android:layout_gravity="center_horizontal"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_confirm_recipient_name_four"
+                android:id="@+id/et_confirm_recipient_name_four"
                 android:hint="@string/transfer_recipient_name_hint"
                 android:background="@drawable/edit_text_rounded_grey"
                 android:minWidth="100dp"
@@ -231,7 +231,7 @@
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_confirm_recipient_cell_four"
+                android:id="@+id/et_confirm_recipient_cell_four"
                 android:hint="@string/transfer_recipient_cell_hint"
                 android:background="@drawable/edit_text_rounded_grey"
                 android:minWidth="100dp"
@@ -256,13 +256,13 @@
                 />
 
             <CheckBox
-                android:id="@+id/fragment_payment_confirm_me_checkbox_five"
-                android:button="@drawable/payments_checkbox"
+                android:id="@+id/cb_confirm_me_five"
+                android:button="@drawable/payments_checkbox_background"
                 android:layout_gravity="center_horizontal"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_confirm_recipient_name_five"
+                android:id="@+id/et_confirm_recipient_name_five"
                 android:hint="@string/transfer_recipient_name_hint"
                 android:background="@drawable/edit_text_rounded_grey"
                 android:minWidth="100dp"
@@ -270,7 +270,7 @@
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_confirm_recipient_cell_five"
+                android:id="@+id/et_confirm_recipient_cell_five"
                 android:hint="@string/transfer_recipient_cell_hint"
                 android:background="@drawable/edit_text_rounded_grey"
                 android:minWidth="100dp"
@@ -283,16 +283,16 @@
 
     <!-- Payment Option layouts below. -->
     <RelativeLayout
-        android:id="@+id/fragment_payment_option_layout"
+        android:id="@+id/rl_confirm_payment_option"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_below="@id/fragment_payment_confirm_layout"
+        android:layout_below="@id/rl_confirm"
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:id="@+id/fragment_payment_option_title"
+            android:id="@+id/tv_confirm_payment_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -306,45 +306,45 @@
 
         <!-- Row 1, or Saved Card Row, below. -->
         <TextView
-            android:id="@+id/fragment_payment_option_saved_card_textview"
+            android:id="@+id/tv_confirm_saved_card"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="3dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fragment_payment_option_title"
+            android:layout_below="@id/tv_confirm_payment_title"
             android:text="@string/transfer_saved_credit"
             android:textStyle="bold"
             />
 
         <TextView
-            android:id="@+id/fragment_payment_option_saved_card_info"
+            android:id="@+id/tv_confirm_saved_card_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fragment_payment_option_title"
-            android:layout_toRightOf="@id/fragment_payment_option_saved_card_textview"
-            android:layout_alignBottom="@id/fragment_payment_option_saved_card_textview"
+            android:layout_below="@id/tv_confirm_payment_title"
+            android:layout_toRightOf="@id/tv_confirm_saved_card"
+            android:layout_alignBottom="@id/tv_confirm_saved_card"
             android:text="@string/transfer_saved_credit_info_default"
             />
 
         <CheckBox
-            android:id="@+id/fragment_payment_option_saved_card_checkbox"
-            android:button="@drawable/payments_checkbox"
+            android:id="@+id/cb_confirm_saved_card"
+            android:button="@drawable/payments_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/fragment_payment_option_title"
+            android:layout_below="@id/tv_confirm_payment_title"
             />
 
         <!-- Row 2, or Paypal Row, below. -->
         <ImageView
-            android:id="@+id/fragment_payment_option_paypal_logo"
+            android:id="@+id/iv_confirm_paypal"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fragment_payment_option_saved_card_textview"
+            android:layout_below="@id/tv_confirm_saved_card"
             android:maxWidth="80dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
@@ -352,48 +352,48 @@
             />
 
         <CheckBox
-            android:id="@+id/fragment_payment_option_paypal_checkbox"
-            android:button="@drawable/payments_checkbox"
+            android:id="@+id/cb_confirm_paypal"
+            android:button="@drawable/payments_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/fragment_payment_option_paypal_logo"
+            android:layout_alignBottom="@id/iv_confirm_paypal"
             />
 
         <!-- Row 3, or Paypal Row, below. -->
         <TextView
-            android:id="@+id/fragment_payment_option_add_card_text"
+            android:id="@+id/tv_confirm_add_card"
             android:paddingTop="0dp"
             android:paddingBottom="3dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fragment_payment_option_paypal_logo"
+            android:layout_below="@id/iv_confirm_paypal"
             android:text="@string/transfer_add_a_credit"
             />
 
         <CheckBox
-            android:id="@+id/fragment_payment_option_add_card_checkbox"
-            android:button="@drawable/payments_checkbox"
+            android:id="@+id/cb_confirm_add_card"
+            android:button="@drawable/payments_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/fragment_payment_option_add_card_text"
+            android:layout_alignBottom="@id/tv_confirm_add_card"
             />
 
         <RelativeLayout
-            android:id="@+id/fragment_payment_add_credit_card_layout"
+            android:id="@+id/rl_confirm_add_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_below="@id/fragment_payment_option_add_card_text"
+            android:layout_below="@id/tv_confirm_add_card"
             android:layout_centerHorizontal="true">
 
             <!-- Full on Card -->
             <TextView
-                android:id="@+id/fragment_payment_full_name_on_card_text"
+                android:id="@+id/tv_confirm_full_name_on_card"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
@@ -402,209 +402,209 @@
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_full_name_on_card_edittext"
+                android:id="@+id/et_confirm_full_name_on_card"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="150dp"
                 android:background="@drawable/edit_text_grey"
-                android:layout_toRightOf="@id/fragment_payment_full_name_on_card_text"
+                android:layout_toRightOf="@id/tv_confirm_full_name_on_card"
                 />
 
             <!-- Credit Card Number -->
             <TextView
-                android:id="@+id/fragment_payment_credit_card_number_text"
+                android:id="@+id/tv_confirm_credit_card_number"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fragment_payment_full_name_on_card_text"
+                android:layout_below="@id/tv_confirm_full_name_on_card"
                 android:text="@string/transfer_credit_card_number"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_credit_card_number_edittext"
+                android:id="@+id/et_confirm_credit_card_number"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="300dp"
                 android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/fragment_payment_full_name_on_card_text"
-                android:layout_toRightOf="@id/fragment_payment_credit_card_number_text"
+                android:layout_below="@id/tv_confirm_full_name_on_card"
+                android:layout_toRightOf="@id/tv_confirm_credit_card_number"
                 />
 
             <!-- Exp date -->
             <TextView
-                android:id="@+id/fragment_payment_exp_date_text"
+                android:id="@+id/tv_confirm_exp_date"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fragment_payment_credit_card_number_text"
+                android:layout_below="@id/tv_confirm_credit_card_number"
                 android:text="@string/transfer_exp_date"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_exp_date_month"
+                android:id="@+id/et_confirm_exp_date_month"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="50dp"
                 android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/fragment_payment_credit_card_number_text"
-                android:layout_toRightOf="@id/fragment_payment_exp_date_text"
+                android:layout_below="@id/tv_confirm_credit_card_number"
+                android:layout_toRightOf="@id/tv_confirm_exp_date"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_exp_date_day"
+                android:id="@+id/et_confirm_exp_date_day"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="50dp"
                 android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/fragment_payment_credit_card_number_text"
-                android:layout_toRightOf="@id/fragment_payment_exp_date_month"
+                android:layout_below="@id/tv_confirm_credit_card_number"
+                android:layout_toRightOf="@id/et_confirm_exp_date_month"
                 />
 
             <!-- CSV -->
             <TextView
-                android:id="@+id/fragment_payment_csv_text"
+                android:id="@+id/tv_confirm_csv"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/fragment_payment_exp_date_day"
-                android:layout_alignBottom="@id/fragment_payment_exp_date_text"
+                android:layout_toRightOf="@id/et_confirm_exp_date_day"
+                android:layout_alignBottom="@id/tv_confirm_exp_date"
                 android:text="@string/transfer_csv"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_csv_edittext"
+                android:id="@+id/et_confirm_csv"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="50dp"
                 android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/fragment_payment_credit_card_number_text"
-                android:layout_toRightOf="@id/fragment_payment_csv_text"
+                android:layout_below="@id/tv_confirm_credit_card_number"
+                android:layout_toRightOf="@id/tv_confirm_csv"
                 />
 
             <!-- Billing Address -->
             <TextView
-                android:id="@+id/fragmet_payment_billing_address_text"
+                android:id="@+id/tv_confirm_billing_address"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fragment_payment_exp_date_text"
+                android:layout_below="@id/tv_confirm_exp_date"
                 android:text="@string/transfer_billing_address"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_billing_address_edittext"
+                android:id="@+id/et_confirm_billing_address"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="100dp"
                 android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/fragment_payment_exp_date_text"
-                android:layout_toRightOf="@id/fragmet_payment_billing_address_text"
+                android:layout_below="@id/tv_confirm_exp_date"
+                android:layout_toRightOf="@id/tv_confirm_billing_address"
                 />
 
             <!-- City -->
             <TextView
-                android:id="@+id/fragment_payment_city_text"
+                android:id="@+id/tv_confirm_city"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/fragmet_payment_billing_address_text"
-                android:layout_toRightOf="@id/fragment_payment_billing_address_edittext"
+                android:layout_alignBottom="@id/tv_confirm_billing_address"
+                android:layout_toRightOf="@id/et_confirm_billing_address"
                 android:text="@string/transfer_city"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_city_edittext"
+                android:id="@+id/et_confirm_city"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="100dp"
                 android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/fragment_payment_exp_date_text"
-                android:layout_toRightOf="@id/fragment_payment_city_text"
+                android:layout_below="@id/tv_confirm_exp_date"
+                android:layout_toRightOf="@id/tv_confirm_city"
                 />
 
             <!-- State -->
             <TextView
-                android:id="@+id/fragment_payment_state_text"
+                android:id="@+id/tv_confirm_state"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fragmet_payment_billing_address_text"
+                android:layout_below="@id/tv_confirm_billing_address"
                 android:text="@string/transfer_state"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_state_edittext"
+                android:id="@+id/et_confirm_state"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="35dp"
                 android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/fragmet_payment_billing_address_text"
-                android:layout_toRightOf="@id/fragment_payment_state_text"
+                android:layout_below="@id/tv_confirm_billing_address"
+                android:layout_toRightOf="@id/tv_confirm_state"
                 />
 
             <!-- Zip -->
             <TextView
-                android:id="@+id/fragment_payment_zip_text"
+                android:id="@+id/tv_confirm_zip"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/fragment_payment_state_text"
-                android:layout_toRightOf="@id/fragment_payment_state_edittext"
+                android:layout_alignBottom="@id/tv_confirm_state"
+                android:layout_toRightOf="@id/et_confirm_state"
                 android:text="@string/transfer_zip"
                 />
 
             <EditText
-                android:id="@+id/fragment_payment_zip_edittext"
+                android:id="@+id/et_confirm_zip"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="0dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="80dp"
                 android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/fragmet_payment_billing_address_text"
-                android:layout_toRightOf="@id/fragment_payment_zip_text"
+                android:layout_below="@id/tv_confirm_billing_address"
+                android:layout_toRightOf="@id/tv_confirm_zip"
                 />
 
             <!-- Save This Card Checkbox -->
             <CheckBox
-                android:id="@+id/fragment_payment_save_this_card_checkbox"
+                android:id="@+id/cb_confirm_save_this_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/fragmet_payment_billing_address_text"
-                android:layout_toRightOf="@id/fragment_payment_zip_edittext"
+                android:layout_below="@id/tv_confirm_billing_address"
+                android:layout_toRightOf="@id/et_confirm_zip"
                 android:hint="@string/transfer_save_this_card"/>
 
         </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/fragment_payment_pay_now_tab"
+        android:id="@+id/rl_confirm_pay_now"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_payment_option_layout"
+        android:layout_below="@id/rl_confirm_payment_option"
         android:layout_alignParentBottom="true"
         android:background="#434343"
         android:layout_centerHorizontal="true">

@@ -28,6 +28,7 @@ import com.niupiao.niupiao.fragments.StarredFragment;
 import com.niupiao.niupiao.fragments.events.EventsFragment;
 import com.niupiao.niupiao.fragments.my_tickets.MyTicketsFragment;
 import com.niupiao.niupiao.managers.EventManager;
+import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.requesters.ResourceCallback;
 import com.niupiao.niupiao.utils.SharedPrefsUtils;
 
@@ -48,6 +49,11 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     private String[] mFragmentTitles;
 
     private EventManager eventManager;
+    private TicketManager ticketManager;
+
+    public TicketManager getTicketManager() {
+        return ticketManager;
+    }
 
     public EventManager getEventManager() {
         return eventManager;
@@ -70,6 +76,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
 
         // TODO broadcast receiver should listen for connection and have EventManger go then
         eventManager = new EventManager(this);
+        ticketManager = new TicketManager(this);
 
         mTitle = mDrawerTitle = getTitle();
         mFragmentTitles = getResources().getStringArray(R.array.fragments_array);

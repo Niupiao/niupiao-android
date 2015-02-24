@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Strings related to registration -->
+    <string name="from">from</string>
+    <string name="currency_symbol">$</string>
+
+</resources>

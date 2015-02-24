@@ -1,8 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="300px"
+    android:background="@drawable/girlsgeneration"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp">
 
-    <include layout="@layout/event_date"/>
+    <RelativeLayout
+        android:id="@+id/rl_date"
+        android:layout_width="114px"
+        android:layout_height="110px"
+        android:background="@drawable/datebg">
+
+        <TextView
+            android:id="@+id/tv_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:text="01"/>
+
+        <TextView
+            android:id="@+id/tv_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_day"
+            android:textColor="#ffffff"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:text="JANUARY"/>
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_marginTop="100px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/rl_date"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:background="#BC000000">
+
+        <TextView
+            android:id="@+id/tv_event_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Girls Generation"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/niupiao_orange"/>
+
+        <TextView
+            android:id="@+id/tv_event_time"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_event_name"
+            android:text="7:00 PM"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/niupiao_blue"/>
+
+        <TextView
+            android:id="@+id/tv_first_divider"
+            android:layout_below="@id/tv_event_name"
+            android:layout_toRightOf="@id/tv_event_time"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:textColor="#ffffff"/>
+
+        <TextView
+            android:id="@+id/tv_event_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_event_name"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_toRightOf="@id/tv_first_divider"
+            android:text="62 Center for Dance"
+            android:textSize="10dp"
+            android:textColor="#ffffff"/>
+
+        <TextView
+            android:id="@+id/tv_second_divider"
+            android:layout_below="@id/tv_event_name"
+            android:layout_toRightOf="@id/tv_event_location"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:textColor="#ffffff"/>
+
+        <TextView
+            android:id="@+id/tv_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_event_name"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_toRightOf="@id/tv_second_divider"
+            android:text="@string/from"
+            android:textSize="10dp"
+            android:textColor="#ffffff"/>
+
+        <TextView
+            android:id="@+id/tv_currency_symbol"
+            android:layout_marginLeft="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_event_name"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_toRightOf="@id/tv_from"
+            android:text="@string/currency_symbol"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"/>
+
+        <TextView
+            android:id="@+id/tv_starting_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_event_name"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_toRightOf="@id/tv_currency_symbol"
+            android:text="200"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"/>
+        </RelativeLayout>
 
 </RelativeLayout>

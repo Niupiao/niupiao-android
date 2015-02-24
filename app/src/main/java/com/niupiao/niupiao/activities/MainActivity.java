@@ -29,6 +29,7 @@ import com.niupiao.niupiao.fragments.events.EventsFragment;
 import com.niupiao.niupiao.fragments.my_tickets.MyTicketsFragment;
 import com.niupiao.niupiao.managers.EventManager;
 import com.niupiao.niupiao.managers.TicketManager;
+import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.ResourceCallback;
 import com.niupiao.niupiao.utils.SharedPrefsUtils;
 
@@ -67,6 +68,11 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     @Override
     public void onVolleyError(VolleyError volleyError) {
         Toast.makeText(this, "Oops: " + volleyError.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    public User getUser() {
+        User user = getIntent().getParcelableExtra(INTENT_KEY_FOR_USER);
+        return user;
     }
 
     @Override

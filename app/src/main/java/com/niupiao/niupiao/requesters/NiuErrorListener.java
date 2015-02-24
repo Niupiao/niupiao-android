@@ -8,9 +8,9 @@ import com.android.volley.VolleyError;
  */
 public class NiuErrorListener implements Response.ErrorListener {
 
-    private ResourceCallback callback;
+    private VolleyCallback callback;
 
-    public NiuErrorListener(ResourceCallback callback) {
+    public NiuErrorListener(VolleyCallback callback) {
         super();
         this.callback = callback;
     }

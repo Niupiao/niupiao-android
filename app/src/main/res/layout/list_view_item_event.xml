@@ -20,13 +20,13 @@
 
         <TextView
             android:id="@+id/tv_day"
-            style="@style/Events.TextView.Time.Day"
+            style="@style/Events.TextView.Day"
             android:layout_centerHorizontal="true"
             android:text="23" />
 
         <TextView
             android:id="@+id/tv_month"
-            style="@style/Events.TextView.Time"
+            style="@style/Events.TextView.Month"
             android:layout_below="@id/tv_day"
             android:layout_centerHorizontal="true"
             android:text="FEBRUARY" />

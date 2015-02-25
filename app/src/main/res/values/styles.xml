@@ -42,8 +42,16 @@
         <item name="android:textColor">@color/niupiao_blue</item>
     </style>
 
-    <style name="Events.TextView.Time.Day">
+    <style name="Events.TextView.Day">
         <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/niupiao_white</item>
+    </style>
+
+    <style name="Events.TextView.Month">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/niupiao_white</item>
     </style>
 
     <style name="Events.TextView.General">

@@ -618,8 +618,8 @@
             android:layout_centerVertical="true"
             android:text="Congratulations! You have bought 0 tickets for $0."
             android:textSize="20dp"
-            android:layout_toStartOf="@id/ib_viewtickets"
-            android:layout_toLeftOf="@id/ib_viewtickets"
+            android:layout_toStartOf="@+id/ib_viewtickets"
+            android:layout_toLeftOf="@+id/ib_viewtickets"
             android:textColor="@color/niupiao_blue"/>
 
         <ImageButton

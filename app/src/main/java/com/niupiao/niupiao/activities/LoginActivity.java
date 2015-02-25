@@ -64,7 +64,6 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(MainActivity.INTENT_KEY_FOR_USER, user);
         startActivity(intent);
-        finish();
 
     }
 

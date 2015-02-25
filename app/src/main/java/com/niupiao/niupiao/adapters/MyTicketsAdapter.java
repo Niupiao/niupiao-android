@@ -28,6 +28,10 @@ public class MyTicketsAdapter extends ParcelableArrayAdapter<Ticket> {
         TextView buyerName;
         TextView date;
         TextView time;
+
+        TextView location;
+        TextView street;
+        TextView quantity;
     }
 
     @Override
@@ -36,12 +40,12 @@ public class MyTicketsAdapter extends ParcelableArrayAdapter<Ticket> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(resource, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.price = (TextView) convertView.findViewById(R.id.price);
-            viewHolder.status = (TextView) convertView.findViewById(R.id.status);
-            viewHolder.eventName = (TextView) convertView.findViewById(R.id.event_name);
-            viewHolder.buyerName = (TextView) convertView.findViewById(R.id.buyer_name);
-            viewHolder.date = (TextView) convertView.findViewById(R.id.date);
-            viewHolder.time = (TextView) convertView.findViewById(R.id.time);
+            viewHolder.price = (TextView) convertView.findViewById(R.id.tv_ticket_price);
+            viewHolder.status = (TextView) convertView.findViewById(R.id.tv_ticket_admit_status);
+            viewHolder.eventName = (TextView) convertView.findViewById(R.id.tv_event_title);
+            viewHolder.buyerName = (TextView) convertView.findViewById(R.id.tv_buyer_name);
+            viewHolder.date = (TextView) convertView.findViewById(R.id.tv_event_date);
+            viewHolder.time = (TextView) convertView.findViewById(R.id.tv_event_time);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

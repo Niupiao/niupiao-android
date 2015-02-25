@@ -1,86 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="130dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/my_ticket">
 
-    <LinearLayout
-        android:id="@+id/top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/event_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_margin="2dp"
-            android:textSize="35sp" />
-
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="2dp"
-            android:textSize="25sp" />
-
-    </LinearLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_event_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/top">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="8dp"
+        android:text="Jay Chou in Concert"
+        android:textSize="18sp" />
 
-        <View
-            android:id="@+id/fakeView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_centerInParent="true" />
+    <TextView
+        android:id="@+id/tv_ticket_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="8dp"
+        android:text="$50"
+        android:textColor="@color/niupiao_orange"
+        android:textSize="18sp" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignRight="@id/fakeView">
+    <TextView
+        android:id="@+id/tv_event_date"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tv_event_title"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:text="May 15, 2015"
+        android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp" />
+    <TextView
+        android:id="@+id/tv_event_time"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tv_event_date"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="2dp"
+        android:text="Wednesday, 7-8pm"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/date"
-                android:textSize="20sp" />
+    <TextView
+        android:id="@+id/tv_event_location"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_below="@id/tv_event_time"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="2dp"
+        android:layout_toLeftOf="@+id/list_item_my_ticket_divider"
+        android:layout_toStartOf="@+id/list_item_my_ticket_divider"
+        android:text="Cheung Kong Center"
+        android:textSize="12sp" />
 
-        </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_event_street"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tv_event_location"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="2dp"
+        android:layout_toLeftOf="@+id/list_item_my_ticket_divider"
+        android:layout_toStartOf="@+id/list_item_my_ticket_divider"
+        android:text="2 Queens Road, Hong Kong"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12sp" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/fakeView"
-            android:layout_alignParentRight="true">
+    <View
+        android:id="@+id/list_item_my_ticket_divider"
+        android:layout_width="1dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="38dp"
+        android:background="@android:color/darker_gray" />
 
-            <TextView
-                android:id="@+id/status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_ticket_admit_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@id/list_item_my_ticket_divider"
+        android:text="General Admit"
+        android:textAllCaps="true"
+        android:textColor="@color/niupiao_orange"
+        android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/buyer_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/status" />
-        </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_buyer_name"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_ticket_admit_status"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_toLeftOf="@+id/tv_ticket_price"
+        android:layout_toRightOf="@id/list_item_my_ticket_divider"
+        android:layout_toStartOf="@+id/tv_ticket_price"
+        android:text="Shannon Hsu"
+        android:textSize="13sp" />
 
+    <TextView
+        android:id="@+id/tv_ticket_quantity_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_buyer_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@id/list_item_my_ticket_divider"
+        android:text="Quantity:"
+        android:textSize="13sp" />
 
-    </RelativeLayout>
-
+    <TextView
+        android:id="@+id/tv_ticket_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_buyer_name"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@id/tv_ticket_quantity_label"
+        android:text="3"
+        android:textSize="13sp" />
 
 </RelativeLayout>

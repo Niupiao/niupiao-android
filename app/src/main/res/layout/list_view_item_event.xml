@@ -10,7 +10,7 @@
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/image"
-        style="@style/Event.Image" />
+        style="@style/Events.Image" />
 
     <RelativeLayout
         android:id="@+id/rl_date"
@@ -20,8 +20,7 @@
 
         <TextView
             android:id="@+id/tv_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Events.TextView"
             android:layout_centerHorizontal="true"
             android:textColor="#ffffff"
             android:textSize="30sp"
@@ -29,8 +28,7 @@
 
         <TextView
             android:id="@+id/tv_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Events.TextView"
             android:layout_below="@id/tv_day"
             android:layout_centerHorizontal="true"
             android:textColor="#ffffff"
@@ -50,16 +48,14 @@
 
         <TextView
             android:id="@+id/tv_event_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Events.TextView"
             android:textColor="@color/niupiao_orange"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_event_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Events.TextView"
             android:layout_below="@id/tv_event_name"
             android:layout_marginTop="5dp"
             android:textColor="@color/niupiao_blue"
@@ -68,71 +64,65 @@
 
         <TextView
             android:id="@+id/tv_first_divider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Events.TextView"
             android:layout_alignBaseline="@id/tv_event_time"
             android:layout_below="@id/tv_event_name"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
             android:layout_toRightOf="@id/tv_event_time"
-            android:text="@string/event_field_separator"
-            android:textColor="#ffffff" />
+            android:textColor="@color/niupiao_white"
+            android:text="@string/event_field_separator" />
 
         <TextView
             android:id="@+id/tv_event_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Events.TextView"
             android:layout_alignBaseline="@id/tv_event_time"
             android:layout_below="@id/tv_event_name"
             android:layout_toRightOf="@id/tv_first_divider"
-            android:textColor="#ffffff"
+            android:textColor="@color/niupiao_white"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_second_divider"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Events.TextView"
             android:layout_alignBaseline="@id/tv_event_time"
             android:layout_below="@id/tv_event_name"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
             android:layout_toRightOf="@id/tv_event_location"
             android:text="@string/event_field_separator"
-            android:textColor="#ffffff" />
+            android:textColor="@color/niupiao_white" />
 
         <TextView
             android:id="@+id/tv_from"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Events.TextView"
             android:layout_alignBaseline="@id/tv_event_time"
             android:layout_below="@id/tv_event_name"
             android:layout_toRightOf="@id/tv_second_divider"
             android:text="@string/from"
-            android:textColor="#ffffff"
+            android:textColor="@color/niupiao_white"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_currency_symbol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Events.TextView"
             android:layout_alignBaseline="@id/tv_event_time"
             android:layout_below="@id/tv_event_name"
             android:layout_marginLeft="3dp"
             android:layout_toRightOf="@id/tv_from"
             android:text="@string/currency_symbol"
-            android:textColor="#ffffff"
+            android:textColor="@color/niupiao_white"
             android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_starting_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Events.TextView"
             android:layout_alignBaseline="@id/tv_event_time"
             android:layout_below="@id/tv_event_name"
             android:layout_toRightOf="@id/tv_currency_symbol"
             android:text="200"
-            android:textColor="#ffffff"
+            android:textColor="@color/niupiao_white"
             android:textSize="12sp"
             android:textStyle="bold" />
     </RelativeLayout>

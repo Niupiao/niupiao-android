@@ -6,31 +6,62 @@
     </style>
 
 
-    <style name="Event">
-        <item name="android:layout_width">match_parent</item>
+    <style name="Events"></style>
+
+    <style name="Events.Image">
         <item name="android:visibility">visible</item>
-    </style>
-
-    <style name="Event.TextViewItem">
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:background">@color/story_title_background</item>
-    </style>
-
-    <style name="Event.TextViewItem.Date">
-        <item name="android:textSize">16sp</item>
-        <item name="android:layout_width">wrap_content</item>
-    </style>
-
-    <style name="Event.Image">
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
         <item name="android:scaleType">centerCrop</item>
         <item name="android:layout_alignParentLeft">true</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:contentDescription">Holds the image of each event</item>
     </style>
+
+    <style name="Events.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Events.TextView.Divider">
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:text">|</item>
+        <item name="android:textColor">@color/niupiao_white</item>
+    </style>
+
+    <style name="Events.TextView.Name">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/niupiao_orange</item>
+    </style>
+
+    <style name="Events.TextView.Time">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/niupiao_blue</item>
+    </style>
+
+    <style name="Events.TextView.Day">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/niupiao_white</item>
+    </style>
+
+    <style name="Events.TextView.Month">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/niupiao_white</item>
+    </style>
+
+    <style name="Events.TextView.General">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/niupiao_white</item>
+    </style>
+
+
+
+
 
 </resources>

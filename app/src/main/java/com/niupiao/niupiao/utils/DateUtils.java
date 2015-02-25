@@ -37,6 +37,16 @@ public class DateUtils {
     public static final String FORMAT_DAY = "EEEEE";
 
     /**
+     * Example: 01
+     */
+    public static final String FORMAT_DAY_OF_MONTH = "d";
+
+    /**
+     * Example: February
+     */
+    public static final String FORMAT_MONTH = "MMMMM";
+
+    /**
      *
      * @param isShort If true, "Feb". If false, "February".
      */

@@ -10,6 +10,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.utils.DateUtils;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;
 
 /**
@@ -23,9 +24,12 @@ public class EventsAdapter extends ParcelableArrayAdapter<Event> {
 
     class ViewHolder {
         NetworkImageView image;
-        TextView date;
+        TextView day;
+        TextView month;
+
         TextView name;
-        TextView ticketInfo;
+        TextView time;
+        TextView location;
     }
 
     @Override
@@ -35,22 +39,27 @@ public class EventsAdapter extends ParcelableArrayAdapter<Event> {
             convertView = LayoutInflater.from(getContext()).inflate(resource, parent, false);
             viewHolder = new ViewHolder();
             viewHolder.image = (NetworkImageView) convertView.findViewById(R.id.image);
-            viewHolder.date = (TextView) convertView.findViewById(R.id.date);
-            viewHolder.name = (TextView) convertView.findViewById(R.id.name);
-            viewHolder.ticketInfo = (TextView) convertView.findViewById(R.id.ticket_info);
+            viewHolder.day = (TextView) convertView.findViewById(R.id.tv_day);
+            viewHolder.month = (TextView) convertView.findViewById(R.id.tv_month);
+            viewHolder.name = (TextView) convertView.findViewById(R.id.tv_event_name);
+            viewHolder.time = (TextView) convertView.findViewById(R.id.tv_event_time);
+            viewHolder.location = (TextView) convertView.findViewById(R.id.tv_event_location);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         Event event = getItem(position);
+        String dateTime = event.getDate();
 
         NetworkImageView image = viewHolder.image;
         image.setImageUrl(Constants.Url.fullUrl(event.getImagePath()), ImageLoaderHelper.getInstance().getImageLoader());
 
-        viewHolder.date.setText(event.getDate());
+        viewHolder.month.setText(DateUtils.format(dateTime, DateUtils.FORMAT_MONTH).toUpperCase());
+        viewHolder.day.setText(DateUtils.format(dateTime, DateUtils.FORMAT_DAY_OF_MONTH));
         viewHolder.name.setText(event.getName());
-        viewHolder.ticketInfo.setText(String.format("%d out of %d tickets sold", event.getTicketsSold(), event.getTotalTickets()));
+        viewHolder.time.setText(DateUtils.format(dateTime, DateUtils.FORMAT_TIME));
+        viewHolder.location.setText(event.getLocation());
         return convertView;
     }
 

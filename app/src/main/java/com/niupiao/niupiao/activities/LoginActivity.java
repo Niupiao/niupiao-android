@@ -47,11 +47,6 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
     }
 
     @Override
-    public String getAccessToken() {
-        return null;
-    }
-
-    @Override
     public void onLogin(ApiKey apiKey, User user) {
         stopProgress();
         saveApiKey(apiKey);

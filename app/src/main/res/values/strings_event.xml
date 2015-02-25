@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--Strings related to registration -->
+    <!--Strings related to list_view_item_event -->
     <string name="from">from</string>
     <string name="currency_symbol">$</string>
+
+    <!--Strings related to fragment_event_info -->
+    <string name="get_tickets">GET TICKETS</string>
+    <string name="ticket_type_general">GENERAL</string>
+    <string name="ticket_type_vip">VIP</string>
+    <string name="ticketing_guidelines">Ticketing Guidelines</string>
+    <string name="announcements">Announcements</string>
+    <string name="event_description">Event Description</string>
 
 </resources>

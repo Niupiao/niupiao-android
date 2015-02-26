@@ -54,8 +54,14 @@ public class PayActivity extends ActionBarActivity {
         Fragment fragment = null;
         switch (paymentPhase) {
             case INFO:
-                fragment = EventInfoFragment.newInstance();
-                break;
+                //TODO Fix issues with EventInfo before Final Demo.
+                //fragment = EventInfoFragment.newInstance();
+
+                //Temp code to have transfer + confirm to ensure that the correct
+                // order of the screens are maintained.
+                //fragment = PayFragment.newInstance();
+                //nextPaymentPhase();
+                //break;
             case PAY:
                 fragment = PayFragment.newInstance();
                 break;

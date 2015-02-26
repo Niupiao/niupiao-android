@@ -635,7 +635,7 @@
             android:textColor="@color/niupiao_blue"/>
 
         <ImageButton
-            android:id="@+id/pay_now"
+            android:id="@+id/ib_pay_now"
             android:layout_marginBottom="3dp"
             android:layout_marginRight="5dp"
             android:layout_width="wrap_content"

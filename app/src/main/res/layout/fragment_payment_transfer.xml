@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#e1e1e1">
-    <ScrollView
+    android:layout_height="match_parent">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#e1e1e1">
 
         <TextView
             android:id="@+id/tv_transfer_title"
@@ -605,6 +606,10 @@
 
         <RelativeLayout
             android:id="@+id/rl_pay_now"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/rl_payment_option"
@@ -619,20 +624,23 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="$0"
-                android:textSize="40dp"
+                android:textSize="45dp"
                 android:textColor="@color/niupiao_blue"/>
 
             <ImageButton
                 android:id="@+id/pay_now"
+                android:layout_marginBottom="3dp"
+                android:layout_marginRight="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/paynow"
                 android:background="@android:color/transparent"
-                android:maxHeight="200dp"
+                android:maxHeight="80dp"
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
+                android:scaleType="fitEnd"
                 android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/tv_cost_of_tickets"
                 android:layout_alignBottom="@id/tv_cost_of_tickets"/>
         </RelativeLayout>
-        </ScrollView>
-</RelativeLayout>
+    </RelativeLayout>
+    </ScrollView>

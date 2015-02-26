@@ -619,6 +619,7 @@
 
             <TextView
                 android:id="@+id/tv_confirm_price"
+                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxWidth="100dp"
@@ -632,12 +633,13 @@
 
             <ImageButton
                 android:id="@+id/ib_confirm"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="0dp"
                 android:layout_marginBottom="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/confirm"
                 android:background="@android:color/transparent"
-                android:minHeight="60dp"
                 android:maxHeight="80dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"

@@ -1,5 +1,6 @@
 package com.niupiao.niupiao.fragments.events;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.adapters.EventsAdapter;
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
 import com.niupiao.niupiao.managers.EventManager;
@@ -41,7 +43,11 @@ public abstract class EventsViewPagerFragment extends ViewPagerFragment implemen
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
+                EventsAdapter adapter = ((EventsAdapter) listView.getAdapter());
+                Event event = adapter.getItem(position);
+                Intent intent = new Intent(getActivity(), PayActivity.class);
+                intent.putExtra(PayActivity.INTENT_KEY_FOR_EVENT, event);
+                startActivity(intent);
             }
         });
         requestEventsFromManager();

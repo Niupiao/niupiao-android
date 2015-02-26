@@ -30,21 +30,39 @@ public class PayActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
         Event event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
-        show(PaymentPhase.INFO);
+        show(PaymentPhase.PAY);
     }
 
     public void nextPaymentPhase() {
         switch (paymentPhase) {
             case INFO:
+                changeInternalPaymentPhase();
                 show(PaymentPhase.PAY);
+                break;
             case PAY:
+                changeInternalPaymentPhase();
                 show(PaymentPhase.CONFIRM);
                 break;
             case CONFIRM:
+                changeInternalPaymentPhase();
                 show(PaymentPhase.CONGRATS);
                 break;
             case CONGRATS:
                 finish();
+                break;
+        }
+    }
+
+    public void changeInternalPaymentPhase(){
+        switch (paymentPhase) {
+            case INFO:
+                paymentPhase = PaymentPhase.PAY;
+                break;
+            case PAY:
+                paymentPhase = PaymentPhase.CONFIRM;
+                break;
+            case CONFIRM:
+                paymentPhase = PaymentPhase.CONGRATS;
                 break;
         }
     }
@@ -54,8 +72,14 @@ public class PayActivity extends ActionBarActivity {
         Fragment fragment = null;
         switch (paymentPhase) {
             case INFO:
-                fragment = EventInfoFragment.newInstance();
-                break;
+                //TODO Fix issues with EventInfo before Final Demo.
+                //fragment = EventInfoFragment.newInstance();
+
+                //Temp code to have transfer + confirm to ensure that the correct
+                // order of the screens are maintained.
+                //fragment = PayFragment.newInstance();
+                //nextPaymentPhase();
+                //break;
             case PAY:
                 fragment = PayFragment.newInstance();
                 break;

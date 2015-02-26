@@ -103,7 +103,7 @@
         android:id="@+id/rl_checkout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rl_confirm_payment_option"
+        android:layout_below="@id/sv_eventscroll"
         android:layout_alignParentBottom="true"
         android:background="#000000"
         android:backgroundTint="#EE000000"
@@ -119,8 +119,8 @@
             android:text="$0"
             android:textSize="40dp"
             android:textColor="@color/niupiao_blue"
-            android:layout_toLeftOf="@+id/ib_confirm"
-            android:layout_toStartOf="@+id/ib_confirm" />
+            android:layout_toLeftOf="@+id/ib_checkout"
+            android:layout_toStartOf="@+id/ib_checkout" />
 
         <ImageButton
             android:id="@+id/ib_checkout"
@@ -134,7 +134,7 @@
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/tv_confirm_price"/>
+            android:layout_alignBottom="@id/tv_checkout_cost"/>
     </RelativeLayout>
 
 </RelativeLayout>

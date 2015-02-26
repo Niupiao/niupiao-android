@@ -21,7 +21,7 @@ public class LoginRequester {
 
     public static final String TAG = LoginRequester.class.getSimpleName();
 
-    public interface OnLoginListener extends ResourceCallback {
+    public interface OnLoginListener extends VolleyCallback {
         public void onLogin(ApiKey apiKey, User user);
 
         public void onLoginFailure(String message);

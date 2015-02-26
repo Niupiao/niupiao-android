@@ -29,7 +29,20 @@ public class Event implements Parcelable {
         dest.writeString(imagePath);
         dest.writeInt(totalTickets);
         dest.writeInt(ticketsSold);
+//        writeTicketsToParcel(dest);
+    }
+
+    private void writeTicketsToParcel(Parcel dest) {
         dest.writeParcelableArray(tickets.toArray(new Ticket[tickets.size()]), 0);
+    }
+
+    private void readTicketsFromParcel(Parcel in) {
+        Parcelable[] parcelables = in.readParcelableArray(Ticket.class.getClassLoader());
+        Collection<Ticket> ticketCollection = new ArrayList<>(parcelables.length);
+        for (Parcelable parcelable : parcelables) {
+            ticketCollection.add((Ticket) parcelable);
+        }
+        tickets = ticketCollection;
     }
 
     public Event(Parcel in) {
@@ -42,12 +55,7 @@ public class Event implements Parcelable {
         imagePath = in.readString();
         totalTickets = in.readInt();
         ticketsSold = in.readInt();
-        Parcelable[] parcelables = in.readParcelableArray(Ticket.class.getClassLoader());
-        Collection<Ticket> ticketCollection = new ArrayList<>(parcelables.length);
-        for (Parcelable parcelable : parcelables) {
-            ticketCollection.add((Ticket) parcelable);
-        }
-        tickets = ticketCollection;
+//        readTicketsFromParcel(in);
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {

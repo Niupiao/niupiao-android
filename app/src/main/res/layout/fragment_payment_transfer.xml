@@ -1,635 +1,647 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#e1e1e1">
-
-    <TextView
-        android:id="@+id/tv_transfer_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:text="@string/transfer_title"
-        android:textAllCaps="true"
-        android:textSize="30sp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/niupiao_blue"
-        />
-
+    android:layout_height="match_parent">
     <RelativeLayout
-        android:id="@+id/rl_transfer_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_below="@id/tv_transfer_title"
-        android:layout_centerHorizontal="true">
-
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rowCount="6"
-            android:columnCount="5"
-            android:orientation="horizontal">
-
-            <!-- This is filler for the "Numbers" column. -->
-            <View
-                android:layout_gravity="bottom"
-                android:layout_height="1dp"
-                android:layout_width="1dp"
-                android:background="@android:color/transparent">
-            </View>
-
-            <!-- Column category names. -->
-            <TextView
-                android:id="@+id/tv_transfer_type"
-                android:text="@string/transfer_category_type"
-                android:background="@drawable/thinbottomborder"
-                android:paddingLeft="8dp"
-                android:paddingRight="12dp"
-                android:layout_gravity="right"
-                />
-
-            <TextView
-                android:id="@+id/tv_transfer_me"
-                android:text="@string/transfer_category_me"
-                android:background="@drawable/thinbottomborder"
-                android:paddingLeft="5dp"
-                android:paddingRight="10dp"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <TextView
-                android:id="@+id/tv_transfer_name"
-                android:text="@string/transfer_category_name"
-                android:background="@drawable/thinbottomborder"
-                android:paddingLeft="5dp"
-                android:paddingRight="2dp"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <TextView
-                android:id="@+id/tv_transfer_cell"
-                android:text="@string/transfer_category_cell"
-                android:background="@drawable/thinbottomborder"
-                android:paddingLeft="12dp"
-                android:paddingRight="0dp"
-                android:layout_gravity="left"
-                />
-
-            <!-- Padding used for entire row is made in the number text view. -->
-            <!-- Row 1. -->
-            <TextView
-                android:text="1"
-                android:textColor="@color/niupiao_blue"
-                android:layout_width="wrap_content"
-                android:textSize="@dimen/abc_text_size_large_material"
-                android:paddingTop="2dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="5dp"
-                />
-
-            <TextView
-                android:text="@string/transfer_type_general"
-                android:textStyle="bold"
-                android:textColor="@color/niupiao_blue"
-                />
-
-            <CheckBox
-                android:id="@+id/cb_transfer_me_one"
-                android:button="@drawable/payments_checkbox_background"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_recipient_name_one"
-                android:hint="@string/transfer_recipient_name_hint"
-                android:background="@drawable/edit_text_rounded_grey"
-                android:minWidth="100dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_recipient_cell_one"
-                android:hint="@string/transfer_recipient_cell_hint"
-                android:background="@drawable/edit_text_rounded_grey"
-                android:minWidth="100dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                />
-
-            <!-- Row 2. -->
-            <TextView
-                android:text="2"
-                android:textColor="@color/niupiao_blue"
-                android:textSize="@dimen/abc_text_size_large_material"
-                android:paddingTop="2dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="5dp"
-                />
-
-            <TextView
-                android:text="@string/transfer_type_general"
-                android:textStyle="bold"
-                android:textColor="@color/niupiao_blue"
-                />
-
-            <CheckBox
-                android:id="@+id/cb_transfer_me_two"
-                android:button="@drawable/payments_checkbox_background"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_recipient_name_two"
-                android:hint="@string/transfer_recipient_name_hint"
-                android:background="@drawable/edit_text_rounded_grey"
-                android:minWidth="100dp"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_recipient_cell_two"
-                android:hint="@string/transfer_recipient_cell_hint"
-                android:background="@drawable/edit_text_rounded_grey"
-                android:minWidth="100dp"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <!-- Row 3. -->
-            <TextView
-                android:text="3"
-                android:textColor="@color/niupiao_blue"
-                android:textSize="@dimen/abc_text_size_large_material"
-                android:paddingTop="2dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="5dp"
-                />
-
-            <TextView
-                android:text="@string/transfer_type_general"
-                android:textStyle="bold"
-                android:textColor="@color/niupiao_blue"
-                />
-
-            <CheckBox
-                android:id="@+id/cb_transfer_me_three"
-                android:button="@drawable/payments_checkbox_background"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_recipient_name_three"
-                android:hint="@string/transfer_recipient_name_hint"
-                android:background="@drawable/edit_text_rounded_grey"
-                android:minWidth="100dp"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_recipient_cell_three"
-                android:hint="@string/transfer_recipient_cell_hint"
-                android:background="@drawable/edit_text_rounded_grey"
-                android:minWidth="100dp"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <!-- Row 4. -->
-            <TextView
-                android:text="4"
-                android:textColor="@color/niupiao_orange"
-                android:textSize="@dimen/abc_text_size_large_material"
-                android:paddingTop="2dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="5dp"
-                />
-
-            <TextView
-                android:text="@string/transfer_type_vip"
-                android:textStyle="bold"
-                android:textColor="@color/niupiao_orange"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <CheckBox
-                android:id="@+id/cb_transfer_me_four"
-                android:button="@drawable/payments_checkbox_background"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_recipient_name_four"
-                android:hint="@string/transfer_recipient_name_hint"
-                android:background="@drawable/edit_text_rounded_grey"
-                android:minWidth="100dp"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_recipient_cell_four"
-                android:hint="@string/transfer_recipient_cell_hint"
-                android:background="@drawable/edit_text_rounded_grey"
-                android:minWidth="100dp"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <!-- Row 5. -->
-            <TextView
-                android:text="5"
-                android:textColor="@color/niupiao_orange"
-                android:textSize="@dimen/abc_text_size_large_material"
-                android:paddingTop="2dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="5dp"
-                />
-
-            <TextView
-                android:text="@string/transfer_type_vip"
-                android:textStyle="bold"
-                android:textColor="@color/niupiao_orange"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <CheckBox
-                android:id="@+id/cb_transfer_me_five"
-                android:button="@drawable/payments_checkbox_background"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_recipient_name_five"
-                android:hint="@string/transfer_recipient_name_hint"
-                android:background="@drawable/edit_text_rounded_grey"
-                android:minWidth="100dp"
-                android:layout_gravity="center_horizontal"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_recipient_cell_five"
-                android:hint="@string/transfer_recipient_cell_hint"
-                android:background="@drawable/edit_text_rounded_grey"
-                android:minWidth="100dp"
-                android:layout_gravity="center_horizontal"
-                />
-
-            </GridLayout>
-
-    </RelativeLayout>
-
-    <!-- Payment Option layouts below. -->
-    <RelativeLayout
-        android:id="@+id/rl_payment_option"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_below="@id/rl_transfer_layout"
-        android:layout_centerHorizontal="true">
+        android:layout_height="match_parent"
+        android:background="#e1e1e1">
 
         <TextView
-            android:id="@+id/tv_payment_option_title"
+            android:id="@+id/tv_transfer_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/transfer_payment_option_title"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="@string/transfer_title"
             android:textAllCaps="true"
             android:textSize="30sp"
             android:layout_centerHorizontal="true"
             android:textColor="@color/niupiao_blue"
             />
 
-        <!-- Row 1, or Saved Card Row, below. -->
-        <TextView
-            android:id="@+id/tv_transfer_saved_card"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_payment_option_title"
-            android:text="@string/transfer_saved_credit"
-            android:textStyle="bold"
-            />
-
-        <TextView
-            android:id="@+id/tv_transfer_saved_card_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_payment_option_title"
-            android:layout_toRightOf="@id/tv_transfer_saved_card"
-            android:layout_alignBottom="@id/tv_transfer_saved_card"
-            android:text="@string/transfer_saved_credit_info_default"
-            />
-
-        <CheckBox
-            android:id="@+id/cb_transfer_saved_card"
-            android:button="@drawable/payments_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_payment_option_title"
-            />
-
-        <!-- Row 2, or Paypal Row, below. -->
-        <ImageView
-            android:id="@+id/iv_transfer_paypal"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_transfer_saved_card"
-            android:maxWidth="80dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:src="@drawable/payment_option_paypal"
-            />
-
-        <CheckBox
-            android:id="@+id/cb_transfer_paypal"
-            android:button="@drawable/payments_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/iv_transfer_paypal"
-            />
-
-        <!-- Row 3, or Paypal Row, below. -->
-        <TextView
-            android:id="@+id/tv_transfer_add_card"
-            android:paddingTop="0dp"
-            android:paddingBottom="3dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/iv_transfer_paypal"
-            android:text="@string/transfer_add_a_credit"
-            />
-
-        <CheckBox
-            android:id="@+id/cb_transfer_add_card"
-            android:button="@drawable/payments_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/tv_transfer_add_card"
-            />
-
         <RelativeLayout
-            android:id="@+id/rl_transfer_add_credit_card"
+            android:id="@+id/rl_transfer_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_below="@id/tv_transfer_add_card"
+            android:layout_below="@id/tv_transfer_title"
             android:layout_centerHorizontal="true">
 
-            <!-- Full on Card -->
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:rowCount="6"
+                android:columnCount="5"
+                android:orientation="horizontal">
+
+                <!-- This is filler for the "Numbers" column. -->
+                <View
+                    android:layout_gravity="bottom"
+                    android:layout_height="1dp"
+                    android:layout_width="1dp"
+                    android:background="@android:color/transparent">
+                </View>
+
+                <!-- Column category names. -->
+                <TextView
+                    android:id="@+id/tv_transfer_type"
+                    android:text="@string/transfer_category_type"
+                    android:background="@drawable/thinbottomborder"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="12dp"
+                    android:layout_gravity="right"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_transfer_me"
+                    android:text="@string/transfer_category_me"
+                    android:background="@drawable/thinbottomborder"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="10dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_transfer_name"
+                    android:text="@string/transfer_category_name"
+                    android:background="@drawable/thinbottomborder"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="2dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_transfer_cell"
+                    android:text="@string/transfer_category_cell"
+                    android:background="@drawable/thinbottomborder"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="0dp"
+                    android:layout_gravity="left"
+                    />
+
+                <!-- Padding used for entire row is made in the number text view. -->
+                <!-- Row 1. -->
+                <TextView
+                    android:text="1"
+                    android:textColor="@color/niupiao_blue"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/abc_text_size_large_material"
+                    android:paddingTop="2dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="5dp"
+                    />
+
+                <TextView
+                    android:text="@string/transfer_type_general"
+                    android:textStyle="bold"
+                    android:textColor="@color/niupiao_blue"
+                    />
+
+                <CheckBox
+                    android:id="@+id/cb_transfer_me_one"
+                    android:button="@drawable/payments_checkbox_background"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_recipient_name_one"
+                    android:hint="@string/transfer_recipient_name_hint"
+                    android:background="@drawable/edit_text_rounded_grey"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_recipient_cell_one"
+                    android:hint="@string/transfer_recipient_cell_hint"
+                    android:background="@drawable/edit_text_rounded_grey"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    />
+
+                <!-- Row 2. -->
+                <TextView
+                    android:text="2"
+                    android:textColor="@color/niupiao_blue"
+                    android:textSize="@dimen/abc_text_size_large_material"
+                    android:paddingTop="2dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="5dp"
+                    />
+
+                <TextView
+                    android:text="@string/transfer_type_general"
+                    android:textStyle="bold"
+                    android:textColor="@color/niupiao_blue"
+                    />
+
+                <CheckBox
+                    android:id="@+id/cb_transfer_me_two"
+                    android:button="@drawable/payments_checkbox_background"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_recipient_name_two"
+                    android:hint="@string/transfer_recipient_name_hint"
+                    android:background="@drawable/edit_text_rounded_grey"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_recipient_cell_two"
+                    android:hint="@string/transfer_recipient_cell_hint"
+                    android:background="@drawable/edit_text_rounded_grey"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <!-- Row 3. -->
+                <TextView
+                    android:text="3"
+                    android:textColor="@color/niupiao_blue"
+                    android:textSize="@dimen/abc_text_size_large_material"
+                    android:paddingTop="2dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="5dp"
+                    />
+
+                <TextView
+                    android:text="@string/transfer_type_general"
+                    android:textStyle="bold"
+                    android:textColor="@color/niupiao_blue"
+                    />
+
+                <CheckBox
+                    android:id="@+id/cb_transfer_me_three"
+                    android:button="@drawable/payments_checkbox_background"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_recipient_name_three"
+                    android:hint="@string/transfer_recipient_name_hint"
+                    android:background="@drawable/edit_text_rounded_grey"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_recipient_cell_three"
+                    android:hint="@string/transfer_recipient_cell_hint"
+                    android:background="@drawable/edit_text_rounded_grey"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <!-- Row 4. -->
+                <TextView
+                    android:text="4"
+                    android:textColor="@color/niupiao_orange"
+                    android:textSize="@dimen/abc_text_size_large_material"
+                    android:paddingTop="2dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="5dp"
+                    />
+
+                <TextView
+                    android:text="@string/transfer_type_vip"
+                    android:textStyle="bold"
+                    android:textColor="@color/niupiao_orange"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <CheckBox
+                    android:id="@+id/cb_transfer_me_four"
+                    android:button="@drawable/payments_checkbox_background"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_recipient_name_four"
+                    android:hint="@string/transfer_recipient_name_hint"
+                    android:background="@drawable/edit_text_rounded_grey"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_recipient_cell_four"
+                    android:hint="@string/transfer_recipient_cell_hint"
+                    android:background="@drawable/edit_text_rounded_grey"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <!-- Row 5. -->
+                <TextView
+                    android:text="5"
+                    android:textColor="@color/niupiao_orange"
+                    android:textSize="@dimen/abc_text_size_large_material"
+                    android:paddingTop="2dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="5dp"
+                    />
+
+                <TextView
+                    android:text="@string/transfer_type_vip"
+                    android:textStyle="bold"
+                    android:textColor="@color/niupiao_orange"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <CheckBox
+                    android:id="@+id/cb_transfer_me_five"
+                    android:button="@drawable/payments_checkbox_background"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_recipient_name_five"
+                    android:hint="@string/transfer_recipient_name_hint"
+                    android:background="@drawable/edit_text_rounded_grey"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_recipient_cell_five"
+                    android:hint="@string/transfer_recipient_cell_hint"
+                    android:background="@drawable/edit_text_rounded_grey"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+            </GridLayout>
+
+        </RelativeLayout>
+
+        <!-- Payment Option layouts below. -->
+        <RelativeLayout
+            android:id="@+id/rl_payment_option"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_below="@id/rl_transfer_layout"
+            android:layout_centerHorizontal="true">
+
             <TextView
-                android:id="@+id/tv_transfer_full_name_on_card"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:id="@+id/tv_payment_option_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/transfer_full_name_on_card"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/transfer_payment_option_title"
+                android:textAllCaps="true"
+                android:textSize="30sp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/niupiao_blue"
                 />
 
-            <EditText
-                android:id="@+id/et_transfer_full_name_on_card"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="150dp"
-                android:background="@drawable/edit_text_grey"
-                android:layout_toRightOf="@id/tv_transfer_full_name_on_card"
-                />
-
-            <!-- Credit Card Number -->
+            <!-- Row 1, or Saved Card Row, below. -->
             <TextView
-                android:id="@+id/tv_transfer_credit_card_number"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:id="@+id/tv_transfer_saved_card"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="3dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_transfer_full_name_on_card"
-                android:text="@string/transfer_credit_card_number"
+                android:layout_below="@id/tv_payment_option_title"
+                android:text="@string/transfer_saved_credit"
+                android:textStyle="bold"
                 />
 
-            <EditText
-                android:id="@+id/et_transfer_credit_card_number"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="300dp"
-                android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/tv_transfer_full_name_on_card"
-                android:layout_toRightOf="@id/tv_transfer_credit_card_number"
-                />
-
-            <!-- Exp date -->
             <TextView
-                android:id="@+id/tv_transfer_exp_date"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:id="@+id/tv_transfer_saved_card_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_transfer_credit_card_number"
-                android:text="@string/transfer_exp_date"
+                android:layout_below="@id/tv_payment_option_title"
+                android:layout_toRightOf="@id/tv_transfer_saved_card"
+                android:layout_alignBottom="@id/tv_transfer_saved_card"
+                android:text="@string/transfer_saved_credit_info_default"
                 />
 
-            <EditText
-                android:id="@+id/et_transfer_exp_date_month"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="50dp"
-                android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/tv_transfer_credit_card_number"
-                android:layout_toRightOf="@id/tv_transfer_exp_date"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_exp_date_day"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="50dp"
-                android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/tv_transfer_credit_card_number"
-                android:layout_toRightOf="@id/et_transfer_exp_date_month"
-                />
-
-            <!-- CSV -->
-            <TextView
-                android:id="@+id/tv_transfer_csv"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/et_transfer_exp_date_day"
-                android:layout_alignBottom="@id/tv_transfer_exp_date"
-                android:text="@string/transfer_csv"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_csv"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="50dp"
-                android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/tv_transfer_credit_card_number"
-                android:layout_toRightOf="@id/tv_transfer_csv"
-                />
-
-            <!-- Billing Address -->
-            <TextView
-                android:id="@+id/tv_transfer_billing_address"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_transfer_exp_date"
-                android:text="@string/transfer_billing_address"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_billing_address"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="100dp"
-                android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/tv_transfer_exp_date"
-                android:layout_toRightOf="@id/tv_transfer_billing_address"
-                />
-
-            <!-- City -->
-            <TextView
-                android:id="@+id/tv_transfer_city"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/tv_transfer_billing_address"
-                android:layout_toRightOf="@id/et_transfer_billing_address"
-                android:text="@string/transfer_city"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_city"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="100dp"
-                android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/tv_transfer_exp_date"
-                android:layout_toRightOf="@id/tv_transfer_city"
-                />
-
-            <!-- State -->
-            <TextView
-                android:id="@+id/tv_transfer_state"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_transfer_billing_address"
-                android:text="@string/transfer_state"
-                />
-
-            <EditText
-                android:id="@+id/et_transfer_state"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="35dp"
-                android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/tv_transfer_billing_address"
-                android:layout_toRightOf="@id/tv_transfer_state"
-                />
-
-            <!-- Zip -->
-            <TextView
-                android:id="@+id/tv_transfer_zip"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/tv_transfer_state"
-                android:layout_toRightOf="@id/et_transfer_state"
-                android:text="@string/transfer_zip"
-                />
-
-            <EditText
-                android:id="@+id/ev_transfer_zip"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="80dp"
-                android:background="@drawable/edit_text_grey"
-                android:layout_below="@id/tv_transfer_billing_address"
-                android:layout_toRightOf="@id/tv_transfer_zip"
-                />
-
-            <!-- Save This Card Checkbox -->
             <CheckBox
-                android:id="@+id/cb_transfer_save_card"
+                android:id="@+id/cb_transfer_saved_card"
+                android:button="@drawable/payments_radio_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_transfer_billing_address"
-                android:layout_toRightOf="@id/ev_transfer_zip"
-                android:hint="@string/transfer_save_this_card"/>
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_payment_option_title"
+                />
+
+            <!-- Row 2, or Paypal Row, below. -->
+            <ImageView
+                android:id="@+id/iv_transfer_paypal"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_transfer_saved_card"
+                android:maxWidth="80dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:src="@drawable/payment_option_paypal"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_transfer_paypal"
+                android:button="@drawable/payments_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@id/iv_transfer_paypal"
+                />
+
+            <!-- Row 3, or Paypal Row, below. -->
+            <TextView
+                android:id="@+id/tv_transfer_add_card"
+                android:paddingTop="0dp"
+                android:paddingBottom="3dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_transfer_paypal"
+                android:text="@string/transfer_add_a_credit"
+                />
+
+            <CheckBox
+                android:id="@+id/cb_transfer_add_card"
+                android:button="@drawable/payments_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@id/tv_transfer_add_card"
+                />
+
+            <RelativeLayout
+                android:id="@+id/rl_transfer_add_credit_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_below="@id/tv_transfer_add_card"
+                android:layout_centerHorizontal="true">
+
+                <!-- Full on Card -->
+                <TextView
+                    android:id="@+id/tv_transfer_full_name_on_card"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/transfer_full_name_on_card"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_full_name_on_card"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="150dp"
+                    android:background="@drawable/edit_text_grey"
+                    android:layout_toRightOf="@id/tv_transfer_full_name_on_card"
+                    />
+
+                <!-- Credit Card Number -->
+                <TextView
+                    android:id="@+id/tv_transfer_credit_card_number"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_transfer_full_name_on_card"
+                    android:text="@string/transfer_credit_card_number"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_credit_card_number"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="300dp"
+                    android:background="@drawable/edit_text_grey"
+                    android:layout_below="@id/tv_transfer_full_name_on_card"
+                    android:layout_toRightOf="@id/tv_transfer_credit_card_number"
+                    />
+
+                <!-- Exp date -->
+                <TextView
+                    android:id="@+id/tv_transfer_exp_date"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_transfer_credit_card_number"
+                    android:text="@string/transfer_exp_date"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_exp_date_month"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="50dp"
+                    android:background="@drawable/edit_text_grey"
+                    android:layout_below="@id/tv_transfer_credit_card_number"
+                    android:layout_toRightOf="@id/tv_transfer_exp_date"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_exp_date_day"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="50dp"
+                    android:background="@drawable/edit_text_grey"
+                    android:layout_below="@id/tv_transfer_credit_card_number"
+                    android:layout_toRightOf="@id/et_transfer_exp_date_month"
+                    />
+
+                <!-- CSV -->
+                <TextView
+                    android:id="@+id/tv_transfer_csv"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/et_transfer_exp_date_day"
+                    android:layout_alignBottom="@id/tv_transfer_exp_date"
+                    android:text="@string/transfer_csv"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_csv"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="50dp"
+                    android:background="@drawable/edit_text_grey"
+                    android:layout_below="@id/tv_transfer_credit_card_number"
+                    android:layout_toRightOf="@id/tv_transfer_csv"
+                    />
+
+                <!-- Billing Address -->
+                <TextView
+                    android:id="@+id/tv_transfer_billing_address"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_transfer_exp_date"
+                    android:text="@string/transfer_billing_address"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_billing_address"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dp"
+                    android:background="@drawable/edit_text_grey"
+                    android:layout_below="@id/tv_transfer_exp_date"
+                    android:layout_toRightOf="@id/tv_transfer_billing_address"
+                    />
+
+                <!-- City -->
+                <TextView
+                    android:id="@+id/tv_transfer_city"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_transfer_billing_address"
+                    android:layout_toRightOf="@id/et_transfer_billing_address"
+                    android:text="@string/transfer_city"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_city"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="100dp"
+                    android:background="@drawable/edit_text_grey"
+                    android:layout_below="@id/tv_transfer_exp_date"
+                    android:layout_toRightOf="@id/tv_transfer_city"
+                    />
+
+                <!-- State -->
+                <TextView
+                    android:id="@+id/tv_transfer_state"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_transfer_billing_address"
+                    android:text="@string/transfer_state"
+                    />
+
+                <EditText
+                    android:id="@+id/et_transfer_state"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="35dp"
+                    android:background="@drawable/edit_text_grey"
+                    android:layout_below="@id/tv_transfer_billing_address"
+                    android:layout_toRightOf="@id/tv_transfer_state"
+                    />
+
+                <!-- Zip -->
+                <TextView
+                    android:id="@+id/tv_transfer_zip"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tv_transfer_state"
+                    android:layout_toRightOf="@id/et_transfer_state"
+                    android:text="@string/transfer_zip"
+                    />
+
+                <EditText
+                    android:id="@+id/ev_transfer_zip"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="80dp"
+                    android:background="@drawable/edit_text_grey"
+                    android:layout_below="@id/tv_transfer_billing_address"
+                    android:layout_toRightOf="@id/tv_transfer_zip"
+                    />
+
+                <!-- Save This Card Checkbox -->
+                <CheckBox
+                    android:id="@+id/cb_transfer_save_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_transfer_billing_address"
+                    android:layout_toRightOf="@id/ev_transfer_zip"
+                    android:hint="@string/transfer_save_this_card"/>
 
             </RelativeLayout>
         </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_pay_now"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rl_payment_option"
-        android:layout_alignParentBottom="true"
-        android:background="#434343"
-        android:layout_centerHorizontal="true">
-
-        <TextView
-            android:id="@+id/tv_cost_of_tickets"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="0dp"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_pay_now"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="$0"
-            android:textSize="40dp"
-            android:textColor="@color/niupiao_blue"/>
+            android:layout_below="@id/rl_payment_option"
+            android:background="#434343"
+            android:layout_centerHorizontal="true">
 
-        <ImageButton
-            android:id="@+id/pay_now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/paynow"
-            android:background="@android:color/transparent"
-            android:maxHeight="200dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:layout_alignParentRight="true"
-            android:layout_alignBottom="@id/tv_cost_of_tickets"/>
+            <TextView
+                android:id="@+id/tv_cost_of_tickets"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="$0"
+                android:textSize="45dp"
+                android:textColor="@color/niupiao_blue"/>
+
+            <ImageButton
+                android:id="@+id/pay_now"
+                android:layout_marginBottom="3dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/paynow"
+                android:background="@android:color/transparent"
+                android:maxHeight="80dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitEnd"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/tv_cost_of_tickets"
+                android:layout_alignBottom="@id/tv_cost_of_tickets"/>
         </RelativeLayout>
-</RelativeLayout>
+    </RelativeLayout>
+    </ScrollView>

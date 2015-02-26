@@ -99,4 +99,42 @@
 
     </ScrollView>
 
+    <RelativeLayout
+        android:id="@+id/rl_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_confirm_payment_option"
+        android:layout_alignParentBottom="true"
+        android:background="#000000"
+        android:backgroundTint="#EE000000"
+        android:backgroundTintMode="src_over"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/tv_checkout_cost"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="$0"
+            android:textSize="40dp"
+            android:textColor="@color/niupiao_blue"
+            android:layout_toLeftOf="@+id/ib_confirm"
+            android:layout_toStartOf="@+id/ib_confirm" />
+
+        <ImageButton
+            android:id="@+id/ib_checkout"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/checkout"
+            android:background="@android:color/transparent"
+            android:maxHeight="40dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/tv_confirm_price"/>
+    </RelativeLayout>
+
 </RelativeLayout>

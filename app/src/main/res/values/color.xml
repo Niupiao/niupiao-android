@@ -3,4 +3,5 @@
     <color name="story_title_background">#dd222222</color>
     <color name="niupiao_blue">#67c0b9</color>
     <color name="niupiao_orange">#fa945c</color>
+    <color name="niupiao_white">#ffffff</color>
 </resources>

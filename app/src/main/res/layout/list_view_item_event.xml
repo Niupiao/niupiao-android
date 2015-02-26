@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_event"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_marginBottom="6dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginTop="6dp">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/image"
+        style="@style/Events.Image" />
+
+    <RelativeLayout
+        android:id="@+id/rl_date"
+        android:layout_width="114dp"
+        android:layout_height="110dp"
+        android:background="@drawable/datebg">
+
+        <TextView
+            android:id="@+id/tv_day"
+            style="@style/Events.TextView.Day"
+            android:layout_centerHorizontal="true"
+            android:text="23" />
+
+        <TextView
+            android:id="@+id/tv_month"
+            style="@style/Events.TextView.Month"
+            android:layout_below="@id/tv_day"
+            android:layout_centerHorizontal="true"
+            android:text="FEBRUARY" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/rl_date"
+        android:layout_marginTop="100dp"
+        android:background="#BC000000"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
+
+        <TextView
+            android:id="@+id/tv_event_name"
+            style="@style/Events.TextView.Name"
+            android:text="Event Name" />
+
+        <TextView
+            android:id="@+id/tv_event_time"
+            style="@style/Events.TextView.Time"
+            android:layout_below="@id/tv_event_name"
+            android:layout_marginTop="5dp"
+            android:text="Event Time" />
+
+        <TextView
+            android:id="@+id/tv_first_divider"
+            style="@style/Events.TextView.Divider"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_below="@id/tv_event_name"
+            android:layout_toRightOf="@id/tv_event_time" />
+
+        <TextView
+            android:id="@+id/tv_event_location"
+            style="@style/Events.TextView.General"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_below="@id/tv_event_name"
+            android:layout_toRightOf="@id/tv_first_divider"
+            android:text="Location" />
+
+        <TextView
+            android:id="@+id/tv_second_divider"
+            style="@style/Events.TextView.Divider"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_below="@id/tv_event_name"
+            android:layout_toRightOf="@id/tv_event_location" />
+
+        <TextView
+            android:id="@+id/tv_from"
+            style="@style/Events.TextView.General"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_below="@id/tv_event_name"
+            android:layout_toRightOf="@id/tv_second_divider"
+            android:text="@string/from"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_currency_symbol"
+            style="@style/Events.TextView.General"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_below="@id/tv_event_name"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/tv_from"
+            android:text="@string/currency_symbol" />
+
+        <TextView
+            android:id="@+id/tv_starting_price"
+            style="@style/Events.TextView.General"
+            android:layout_alignBaseline="@id/tv_event_time"
+            android:layout_below="@id/tv_event_name"
+            android:layout_toRightOf="@id/tv_currency_symbol"
+            android:text="200" />
+    </RelativeLayout>
+
+</RelativeLayout>

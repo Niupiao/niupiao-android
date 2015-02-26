@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import com.niupiao.niupiao.models.Event;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -19,10 +18,6 @@ public class EventsDeserializer {
         Type type = new TypeToken<List<Event>>() {
         }.getType();
         return new Gson().fromJson(jsonArray.toString(), type);
-    }
-
-    public static Event fromJsonObject(JSONObject jsonObject) {
-        return new Gson().fromJson(jsonObject.toString(), Event.class);
     }
 
 }

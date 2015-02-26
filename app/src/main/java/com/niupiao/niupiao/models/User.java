@@ -39,4 +39,7 @@ public class User implements Parcelable {
     @SerializedName("name")
     private String name;
 
+    public String getName() {
+        return name;
+    }
 }

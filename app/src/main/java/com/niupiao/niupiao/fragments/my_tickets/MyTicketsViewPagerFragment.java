@@ -2,6 +2,7 @@ package com.niupiao.niupiao.fragments.my_tickets;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +11,19 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.adapters.EventsAdapter;
 import com.niupiao.niupiao.adapters.MyTicketsAdapter;
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
-import com.niupiao.niupiao.managers.EventManager;
+import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.models.Ticket;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Created by kmchen1 on 2/21/15.
  */
-public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment implements EventManager.OnEventsLoadedListener {
+public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment implements TicketManager.OnEventsLoadedListener {
 
     protected ListView listView;
 
@@ -29,8 +31,23 @@ public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment imple
 
     @Override
     public void onEventsLoaded(Collection<Event> events) {
-        EventsAdapter adapter = ((EventsAdapter) listView.getAdapter());
-        adapter.setObjects(events);
+
+        // get the adapter
+        MyTicketsAdapter adapter = ((MyTicketsAdapter) listView.getAdapter());
+
+        // pour tickets from each event into one giant collection
+        Collection<Ticket> tickets = new ArrayList<>();
+        for (Event event : events) {
+            Collection<Ticket> eventTickets = event.getTickets();
+            if (eventTickets != null) {
+                tickets.addAll(eventTickets);
+            }
+        }
+
+        Log.d(MyTicketsViewPagerFragment.class.getSimpleName(), "FIRST TICKET: " + events.iterator().next().getTickets().toString());
+
+        // update the adapter
+        adapter.setObjects(tickets);
         adapter.notifyDataSetChanged();
     }
 

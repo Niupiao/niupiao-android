@@ -100,11 +100,20 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
 
         populateFieldsFromSharedPrefs();
 
-        Button mSignInButton = (Button) findViewById(R.id.login_login_button);
-        mSignInButton.setOnClickListener(new OnClickListener() {
+        Button loginButton = (Button) findViewById(R.id.login_login_button);
+        loginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        Button registerButton = (Button) findViewById(R.id.login_register_button);
+        registerButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -112,17 +121,10 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
         mProgressView = findViewById(R.id.login_progress);
 
         // FONTS
-        Typeface roboto_bold = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
-
-        // Setting fonts of various view objects
-        Button login_button = (Button) findViewById(R.id.login_login_button);
-        login_button.setTypeface(roboto_bold);
-
-        EditText username = (EditText) findViewById(R.id.login_username);
-        username.setTypeface(roboto_bold);
-
-        EditText password = (EditText) findViewById(R.id.login_password);
-        password.setTypeface(roboto_bold);
+        Typeface robotoBold = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
+        loginButton.setTypeface(robotoBold);
+        mUsernameView.setTypeface(robotoBold);
+        mPasswordView.setTypeface(robotoBold);
     }
 
     private void populateFieldsFromSharedPrefs() {

@@ -30,21 +30,39 @@ public class PayActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
         Event event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
-        show(PaymentPhase.INFO);
+        show(PaymentPhase.PAY);
     }
 
     public void nextPaymentPhase() {
         switch (paymentPhase) {
             case INFO:
+                changeInternalPaymentPhase();
                 show(PaymentPhase.PAY);
+                break;
             case PAY:
+                changeInternalPaymentPhase();
                 show(PaymentPhase.CONFIRM);
                 break;
             case CONFIRM:
+                changeInternalPaymentPhase();
                 show(PaymentPhase.CONGRATS);
                 break;
             case CONGRATS:
                 finish();
+                break;
+        }
+    }
+
+    public void changeInternalPaymentPhase(){
+        switch (paymentPhase) {
+            case INFO:
+                paymentPhase = PaymentPhase.PAY;
+                break;
+            case PAY:
+                paymentPhase = PaymentPhase.CONFIRM;
+                break;
+            case CONFIRM:
+                paymentPhase = PaymentPhase.CONGRATS;
                 break;
         }
     }

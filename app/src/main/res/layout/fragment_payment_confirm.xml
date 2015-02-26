@@ -647,7 +647,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/confirm"
             android:background="@android:color/transparent"
-            android:maxHeight="80dp"
+            android:maxHeight="45dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:layout_alignParentRight="true"

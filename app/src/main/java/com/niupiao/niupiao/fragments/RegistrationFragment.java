@@ -22,12 +22,12 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_registration, container, false);
-        TextView txt = (TextView) root.findViewById(R.id.fragment_registration_title);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.activity_registration, container, false);
+        TextView txt = (TextView) root.findViewById(R.id.tv_title);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
         txt.setTypeface(font);
 
-        Button register = (Button) root.findViewById(R.id.fragment_registration_button);
+        Button register = (Button) root.findViewById(R.id.btn_register);
         register.setOnClickListener(this);
 
         return root;
@@ -37,7 +37,7 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         Context context = getActivity();
         switch (v.getId()) {
-            case R.id.fragment_registration_button:
+            case R.id.btn_register:
                 System.out.println("Registration button pressed");
                 Intent goToMain = new Intent(context, MainActivity.class);
                 startActivity(goToMain);

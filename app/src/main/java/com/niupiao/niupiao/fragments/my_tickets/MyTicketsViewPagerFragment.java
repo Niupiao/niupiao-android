@@ -1,5 +1,6 @@
 package com.niupiao.niupiao.fragments.my_tickets;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -11,7 +12,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.activities.TicketActivity;
 import com.niupiao.niupiao.adapters.MyTicketsAdapter;
+import com.niupiao.niupiao.fragments.TicketFragment;
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
 import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Event;
@@ -59,7 +62,11 @@ public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment imple
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
+                //MyTicketsAdapter adapter = ((MyTicketsAdapter) listView.getAdapter());
+                //Ticket ticket = adapter.getItem(position);
+                Intent intent = new Intent(getActivity(), TicketActivity.class);
+                startActivity(intent);
             }
         });
         requestEventsFromManager();

@@ -6,7 +6,7 @@
     <string name="general_type">General Admit</string>
     <string name="vip_type">VIP Admit</string>
     <string name="ticket_name">Kevin Chen</string>
-    <string name="allows_for_entry_default">Allows 2 for Entry</string>
+    <string name="allows_for_entry_default">Allows 3 for Entry</string>
     <string name="allows">Allows</string>
     <string name="for_entry">for Entry</string>
 </resources>

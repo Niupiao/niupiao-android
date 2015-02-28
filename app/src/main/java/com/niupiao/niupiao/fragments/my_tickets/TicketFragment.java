@@ -1,4 +1,4 @@
-package com.niupiao.niupiao.fragments;
+package com.niupiao.niupiao.fragments.my_tickets;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,10 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.activities.PayActivity;
 
 /**
  * Created by Inanity on 2/27/15.

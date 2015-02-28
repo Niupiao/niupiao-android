@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
@@ -20,6 +22,13 @@ public class PayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_transfer, container, false);
+        int price = TempPayInformation.PayInfo.getPrice();
+
+        TextView price_declaration = (TextView) root.findViewById(R.id.tv_cost_of_tickets);
+        System.out.println(price_declaration.getText().toString().split("\\$")[0]);
+        String price_text = price_declaration.getText().toString().split("\\$")[0];
+        price_declaration.setText(price_text + "$" + price);
+
         ImageButton paynowButton = (ImageButton) root.findViewById(R.id.ib_pay_now);
 
         paynowButton.setOnClickListener(new View.OnClickListener() {

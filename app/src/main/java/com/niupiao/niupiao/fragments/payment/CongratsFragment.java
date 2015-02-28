@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.MainActivity;
@@ -27,6 +28,7 @@ public class CongratsFragment extends Fragment {
         String[] names = TempPayInformation.PayInfo.getNames();
         String[] cells = TempPayInformation.PayInfo.getCells();
         Boolean[] mes = TempPayInformation.PayInfo.getMe();
+        int price = TempPayInformation.PayInfo.getPrice();
 
         EditText etn1 = (EditText) root.findViewById(R.id.et_congrats_recipient_name_one);
         EditText etn2 = (EditText) root.findViewById(R.id.et_congrats_recipient_name_two);
@@ -63,6 +65,10 @@ public class CongratsFragment extends Fragment {
         cb3.setChecked(mes[2]);
         cb4.setChecked(mes[3]);
         cb5.setChecked(mes[4]);
+
+        TextView price_declaration = (TextView) root.findViewById(R.id.tv_congrats_price);
+        String price_text = price_declaration.getText().toString().split("\\$")[0];
+        price_declaration.setText(price_text + "$" + price);
 
         myTicketsButton.setOnClickListener(new View.OnClickListener() {
             @Override

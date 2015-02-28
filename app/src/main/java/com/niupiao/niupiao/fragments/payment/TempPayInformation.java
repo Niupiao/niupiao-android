@@ -24,6 +24,8 @@ public class TempPayInformation {
         private static Boolean me4 = false;
         private static Boolean me5 = false;
 
+        private static int price = 0;
+
         public static String[] getNames(){
             String[] output = new String[5];
             output[0] = name1;
@@ -58,6 +60,10 @@ public class TempPayInformation {
             return output;
         }
 
+        public static int getPrice(){
+            return price;
+        }
+
         public static void setNames(String n1, String n2, String n3, String n4, String n5){
             name1 = n1;
             name2 = n2;
@@ -80,6 +86,10 @@ public class TempPayInformation {
             me3 = m3;
             me4 = m4;
             me5 = m5;
+        }
+
+        public static void setPrice(int newPrice){
+            price = newPrice;
         }
     }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
@@ -66,10 +67,51 @@ public class EventInfoFragment extends Fragment {
                 activity.nextPaymentPhase();
             }
         });
+        
         Typeface robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Bold.ttf");
+        
         TextView getTickets = (TextView) root.findViewById( R.id.event_info_get_info_tv );
         getTickets.setTypeface( robotoBold );
-        
+
+        LinearLayout ticketGuidelines = (LinearLayout) root.findViewById(R.id.event_info_ticketing_guidelines);
+        final TextView showGuidelines = (TextView) root.findViewById(R.id.event_info_ticketing_guidelines_show );
+        showGuidelines.setVisibility(View.GONE);
+        ticketGuidelines.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showGuidelines.isShown())
+                    showGuidelines.setVisibility(View.GONE);
+                else
+                    showGuidelines.setVisibility(View.VISIBLE);
+            }
+        });
+
+        LinearLayout announcements = (LinearLayout) root.findViewById(R.id.event_info_announcements);
+        final TextView showAnnouncements = (TextView) root.findViewById(R.id.event_info_announcements_show );
+        showGuidelines.setVisibility(View.GONE);
+        announcements.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showAnnouncements.isShown())
+                    showAnnouncements.setVisibility(View.GONE);
+                else
+                    showAnnouncements.setVisibility(View.VISIBLE);
+            }
+        });
+
+        LinearLayout eventDescription = (LinearLayout) root.findViewById(R.id.event_info_event_description);
+        final TextView showDescription = (TextView) root.findViewById(R.id.event_info_description_show );
+        showDescription.setVisibility(View.GONE);
+        eventDescription.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showDescription.isShown())
+                    showDescription.setVisibility(View.GONE);
+                else
+                    showDescription.setVisibility(View.VISIBLE);
+            }
+        });
+
         return root;
     }
 

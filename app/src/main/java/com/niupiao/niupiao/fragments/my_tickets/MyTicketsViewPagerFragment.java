@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.TicketActivity;
 import com.niupiao.niupiao.adapters.MyTicketsAdapter;
-import com.niupiao.niupiao.fragments.TicketFragment;
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
 import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Event;

@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.fragments.TicketFragment;
+import com.niupiao.niupiao.fragments.my_tickets.TicketFragment;
 
 /**
  * Created by Ryan on 2/27/15.

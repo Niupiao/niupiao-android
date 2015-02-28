@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,10 +23,45 @@ public class EventInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_event_info, container, false);
+
+        Button blueplus = (Button) root.findViewById(R.id.asdasd);
+        blueplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        Button blueminus = (Button) root.findViewById(R.id.asdasd);
+        blueminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        Button orangeplus = (Button) root.findViewById(R.id.asdasd);
+        blueplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        Button orangeminus = (Button) root.findViewById(R.id.asdasd);
+        blueplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         ImageButton checkoutButton = (ImageButton) root.findViewById(R.id.ib_checkout);
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TempPayInformation.PayInfo.setPrice(2);
+
                 PayActivity activity = (PayActivity) getActivity();
                 activity.nextPaymentPhase();
             }

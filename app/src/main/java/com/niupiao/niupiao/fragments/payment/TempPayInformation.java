@@ -6,17 +6,23 @@ package com.niupiao.niupiao.fragments.payment;
 public class TempPayInformation {
 
     public final static class PayInfo {
-        public static String name1 = "";
-        public static String name2 = "";
-        public static String name3 = "";
-        public static String name4 = "";
-        public static String name5 = "";
+        private static String name1 = "";
+        private static String name2 = "";
+        private static String name3 = "";
+        private static String name4 = "";
+        private static String name5 = "";
 
-        public static String cell1 = "";
-        public static String cell2 = "";
-        public static String cell3 = "";
-        public static String cell4 = "";
-        public static String cell5 = "";
+        private static String cell1 = "";
+        private static String cell2 = "";
+        private static String cell3 = "";
+        private static String cell4 = "";
+        private static String cell5 = "";
+
+        private static Boolean me1 = false;
+        private static Boolean me2 = false;
+        private static Boolean me3 = false;
+        private static Boolean me4 = false;
+        private static Boolean me5 = false;
 
         public static String[] getNames(){
             String[] output = new String[5];
@@ -40,6 +46,18 @@ public class TempPayInformation {
             return output;
         }
 
+        public static Boolean[] getMe(){
+            Boolean[] output = new Boolean[5];
+
+            output[0] = me1;
+            output[1] = me2;
+            output[2] = me3;
+            output[3] = me4;
+            output[4] = me5;
+
+            return output;
+        }
+
         public static void setNames(String n1, String n2, String n3, String n4, String n5){
             name1 = n1;
             name2 = n2;
@@ -54,6 +72,14 @@ public class TempPayInformation {
             cell3 = c3;
             cell4 = c4;
             cell5 = c5;
+        }
+
+        public static void setMe(Boolean m1, Boolean m2, Boolean m3, Boolean m4, Boolean m5){
+            me1 = m1;
+            me2 = m2;
+            me3 = m3;
+            me4 = m4;
+            me5 = m5;
         }
     }
 }

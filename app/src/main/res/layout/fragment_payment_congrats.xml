@@ -112,6 +112,8 @@
 
                     <CheckBox
                         android:id="@+id/cb_congrats_me_one"
+                        android:focusable="false"
+                        android:clickable="false"
                         android:button="@drawable/payments_checkbox_background"
                         android:layout_gravity="center_horizontal"
                         />
@@ -155,6 +157,8 @@
 
                     <CheckBox
                         android:id="@+id/cb_congrats_me_two"
+                        android:focusable="false"
+                        android:clickable="false"
                         android:button="@drawable/payments_checkbox_background"
                         android:layout_gravity="center_horizontal"
                         />
@@ -195,6 +199,8 @@
 
                     <CheckBox
                         android:id="@+id/cb_congrats_me_three"
+                        android:focusable="false"
+                        android:clickable="false"
                         android:button="@drawable/payments_checkbox_background"
                         android:layout_gravity="center_horizontal"
                         />
@@ -236,6 +242,8 @@
 
                     <CheckBox
                         android:id="@+id/cb_congrats_me_four"
+                        android:focusable="false"
+                        android:clickable="false"
                         android:button="@drawable/payments_checkbox_background"
                         android:layout_gravity="center_horizontal"
                         />
@@ -277,6 +285,8 @@
 
                     <CheckBox
                         android:id="@+id/cb_congrats_me_five"
+                        android:focusable="false"
+                        android:clickable="false"
                         android:button="@drawable/payments_checkbox_background"
                         android:layout_gravity="center_horizontal"
                         />

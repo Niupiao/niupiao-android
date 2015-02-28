@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -23,6 +24,7 @@ public class ConfirmFragment extends Fragment {
 
         String[] names = TempPayInformation.PayInfo.getNames();
         String[] cells = TempPayInformation.PayInfo.getCells();
+        Boolean[] mes = TempPayInformation.PayInfo.getMe();
 
         EditText etn1 = (EditText) root.findViewById(R.id.et_confirm_recipient_name_one);
         EditText etn2 = (EditText) root.findViewById(R.id.et_confirm_recipient_name_two);
@@ -47,6 +49,18 @@ public class ConfirmFragment extends Fragment {
         etc3.setText(cells[2]);
         etc4.setText(cells[3]);
         etc5.setText(cells[4]);
+
+        CheckBox cb1 = (CheckBox) root.findViewById(R.id.cb_confirm_me_one);
+        CheckBox cb2 = (CheckBox) root.findViewById(R.id.cb_confirm_me_two);
+        CheckBox cb3 = (CheckBox) root.findViewById(R.id.cb_confirm_me_three);
+        CheckBox cb4 = (CheckBox) root.findViewById(R.id.cb_confirm_me_four);
+        CheckBox cb5 = (CheckBox) root.findViewById(R.id.cb_confirm_me_five);
+
+        cb1.setChecked(mes[0]);
+        cb2.setChecked(mes[1]);
+        cb3.setChecked(mes[2]);
+        cb4.setChecked(mes[3]);
+        cb5.setChecked(mes[4]);
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

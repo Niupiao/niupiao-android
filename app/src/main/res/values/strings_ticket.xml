@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Strings related to an individual ticket -->
+    <string name="this_is_your_ticket">This is your ticket. Scan at the door.</string>
+    <string name="general_type">General Admit</string>
+    <string name="vip_type">VIP Admit</string>
+    <string name="ticket_name">Kevin Chen</string>
+    <string name="allows_for_entry_default">Allows 3 for Entry</string>
+    <string name="allows">Allows</string>
+    <string name="for_entry">for Entry</string>
+</resources>

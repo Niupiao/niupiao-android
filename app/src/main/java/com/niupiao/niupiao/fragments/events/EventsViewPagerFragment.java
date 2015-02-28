@@ -3,9 +3,11 @@ package com.niupiao.niupiao.fragments.events;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ import java.util.Collection;
 public abstract class EventsViewPagerFragment extends ViewPagerFragment implements EventManager.OnEventsLoadedListener {
 
     protected ListView listView;
+    private SwipeRefreshLayout swipeContainer;
 
     protected abstract void requestEventsFromManager();
 
@@ -50,8 +53,34 @@ public abstract class EventsViewPagerFragment extends ViewPagerFragment implemen
                 startActivity(intent);
             }
         });
+
+        // http://nlopez.io/swiperefreshlayout-with-listview-done-right/
+        swipeContainer = (SwipeRefreshLayout) root.findViewById(R.id.swipe_container);
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int topRowVerticalPosition =
+                        (listView == null || listView.getChildCount() == 0) ?
+                                0 : listView.getChildAt(0).getTop();
+                swipeContainer.setEnabled(firstVisibleItem == 0 && topRowVerticalPosition >= 0);
+            }
+        });
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requestEventsFromManager();
+            }
+        });
+
         requestEventsFromManager();
         return root;
     }
+
+
 
 }

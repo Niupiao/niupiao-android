@@ -15,27 +15,38 @@ import java.util.Set;
  */
 public class EventManager implements EventsRequester.OnEventsRequestedListener {
 
+    // whether we load everything on activity creation or lazily when fragments show up
     private boolean LAZY_LOAD = false;
 
+    // used to provide access token and handle volley errors
     private ResourceCallback callback;
 
+    /** Use Set to avoid duplication, see {@link Event#equals(Object)}. */
     private Set<Event> events;
     private Set<Event> onSale;
     private Set<Event> comingSoon;
     private Set<Event> recommended;
-    private Set<Event> past;
-    private Set<Event> upcoming;
 
     // listeners, i.e., fragments that will be called when stuff loads
     private OnEventsLoadedListener eventsListener;
     private OnEventsLoadedListener onSaleEventsListener;
     private OnEventsLoadedListener comingSoonEventsListener;
     private OnEventsLoadedListener recommendedEventsListener;
-    private OnEventsLoadedListener pastEventsListener;
-    private OnEventsLoadedListener upcomingEventsListener;
 
+    /**
+     * The UI typically implements this to be notified when events have been loaded.
+     */
     public interface OnEventsLoadedListener {
         public void onEventsLoaded(Collection<Event> events);
+    }
+
+    public EventManager(ResourceCallback callback) {
+        this.callback = callback;
+        if (!LAZY_LOAD) {
+            EventsRequester.loadComingSoonEvents(this);
+            EventsRequester.loadOnSaleEvents(this);
+            EventsRequester.loadRecommendedEvents(this);
+        }
     }
 
     public void loadEvents(final OnEventsLoadedListener listener) {
@@ -87,15 +98,6 @@ public class EventManager implements EventsRequester.OnEventsRequestedListener {
             if (LAZY_LOAD) {
                 EventsRequester.loadRecommendedEvents(this);
             }
-        }
-    }
-
-    public EventManager(ResourceCallback callback) {
-        this.callback = callback;
-        if (!LAZY_LOAD) {
-            EventsRequester.loadComingSoonEvents(this);
-            EventsRequester.loadOnSaleEvents(this);
-            EventsRequester.loadRecommendedEvents(this);
         }
     }
 

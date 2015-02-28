@@ -40,7 +40,6 @@ public class EventInfoFragment extends Fragment {
 
         LinearLayout ticketGuidelines = (LinearLayout) root.findViewById(R.id.event_info_ticketing_guidelines);
         final TextView showGuidelines = (TextView) root.findViewById(R.id.event_info_ticketing_guidelines_show );
-        showGuidelines.setVisibility(View.GONE);
         ticketGuidelines.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +52,6 @@ public class EventInfoFragment extends Fragment {
 
         LinearLayout announcements = (LinearLayout) root.findViewById(R.id.event_info_announcements);
         final TextView showAnnouncements = (TextView) root.findViewById(R.id.event_info_announcements_show );
-        showGuidelines.setVisibility(View.GONE);
         announcements.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +64,6 @@ public class EventInfoFragment extends Fragment {
 
         LinearLayout eventDescription = (LinearLayout) root.findViewById(R.id.event_info_event_description);
         final TextView showDescription = (TextView) root.findViewById(R.id.event_info_description_show );
-        showDescription.setVisibility(View.GONE);
         eventDescription.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {

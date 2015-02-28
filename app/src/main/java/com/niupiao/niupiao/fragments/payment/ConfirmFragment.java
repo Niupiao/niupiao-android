@@ -72,7 +72,6 @@ public class ConfirmFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 PayActivity activity = (PayActivity) getActivity();
-                System.out.println("Confirm");
                 activity.nextPaymentPhase();
             }
         });

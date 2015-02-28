@@ -31,7 +31,7 @@ public class PayActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
         Event event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
-        show(PaymentPhase.PAY);
+        show(PaymentPhase.INFO);
     }
 
     public void nextPaymentPhase() {
@@ -73,14 +73,8 @@ public class PayActivity extends ActionBarActivity {
         Fragment fragment = null;
         switch (paymentPhase) {
             case INFO:
-                //TODO Fix issues with EventInfo before Final Demo.
-                //fragment = EventInfoFragment.newInstance();
-
-                //Temp code to have transfer + confirm to ensure that the correct
-                // order of the screens are maintained.
-                //fragment = PayFragment.newInstance();
-                //nextPaymentPhase();
-                //break;
+                fragment = EventInfoFragment.newInstance();
+                break;
             case PAY:
                 fragment = PayFragment.newInstance();
                 break;

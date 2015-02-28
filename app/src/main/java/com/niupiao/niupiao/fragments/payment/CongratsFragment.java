@@ -29,6 +29,7 @@ public class CongratsFragment extends Fragment {
         String[] cells = TempPayInformation.PayInfo.getCells();
         Boolean[] mes = TempPayInformation.PayInfo.getMe();
         int price = TempPayInformation.PayInfo.getPrice();
+        int tickets = TempPayInformation.PayInfo.getTotalticket();
 
         EditText etn1 = (EditText) root.findViewById(R.id.et_congrats_recipient_name_one);
         EditText etn2 = (EditText) root.findViewById(R.id.et_congrats_recipient_name_two);
@@ -68,7 +69,8 @@ public class CongratsFragment extends Fragment {
 
         TextView price_declaration = (TextView) root.findViewById(R.id.tv_congrats_price);
         String price_text = price_declaration.getText().toString().split("\\$")[0];
-        price_declaration.setText(price_text + "$" + price);
+        String[] ticket_text = price_text.split("0");
+        price_declaration.setText(ticket_text[0] + tickets + ticket_text[1] + "$" + price);
 
         myTicketsButton.setOnClickListener(new View.OnClickListener() {
             @Override

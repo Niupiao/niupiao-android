@@ -25,6 +25,7 @@ public class TempPayInformation {
         private static Boolean me5 = false;
 
         private static int price = 0;
+        private static int totalticket = 0;
 
         public static String[] getNames(){
             String[] output = new String[5];
@@ -64,6 +65,10 @@ public class TempPayInformation {
             return price;
         }
 
+        public static int getTotalticket(){
+            return totalticket;
+        }
+
         public static void setNames(String n1, String n2, String n3, String n4, String n5){
             name1 = n1;
             name2 = n2;
@@ -90,6 +95,10 @@ public class TempPayInformation {
 
         public static void setPrice(int newPrice){
             price = newPrice;
+        }
+
+        public static void setTotalticket(int tickets){
+            totalticket = tickets;
         }
     }
 }

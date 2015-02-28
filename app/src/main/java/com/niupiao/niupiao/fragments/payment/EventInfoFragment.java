@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
@@ -25,35 +26,86 @@ public class EventInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_event_info, container, false);
 
-        Button blueplus = (Button) root.findViewById(R.id.asdasd);
+        ImageButton blueplus = (ImageButton) root.findViewById(R.id.event_info_general_plus_button);
         blueplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView general_number = (TextView) getActivity().findViewById(R.id.event_info_general_number_tickets);
+                int generalTickets = Integer.parseInt(general_number.getText().toString());
 
+                if(generalTickets < 3){
+                    general_number.setText("" + (generalTickets + 1));
+                    TextView raw_general_price = (TextView) getActivity().findViewById(R.id.tv_general_price);
+                    int ticket_price = Integer.parseInt(raw_general_price.getText().toString().split("\\$")[1]);
+
+                    TextView checkout_cost = (TextView) getActivity().findViewById(R.id.tv_checkout_cost);
+                    int checkout_price = Integer.parseInt(checkout_cost.getText().toString().split("\\$")[1]);
+
+                    checkout_price += ticket_price;
+                    checkout_cost.setText("$" + checkout_price);
+                }
             }
         });
 
-        Button blueminus = (Button) root.findViewById(R.id.asdasd);
+        ImageButton blueminus = (ImageButton) root.findViewById(R.id.event_info_general_minus_button);
         blueminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView general_number = (TextView) getActivity().findViewById(R.id.event_info_general_number_tickets);
+                int generalTickets = Integer.parseInt(general_number.getText().toString());
 
+                if(generalTickets > 0) {
+                    TextView raw_general_price = (TextView) getActivity().findViewById(R.id.tv_general_price);
+                    int ticket_price = Integer.parseInt(raw_general_price.getText().toString().split("\\$")[1]);
+
+                    TextView checkout_cost = (TextView) getActivity().findViewById(R.id.tv_checkout_cost);
+                    int checkout_price = Integer.parseInt(checkout_cost.getText().toString().split("\\$")[1]);
+                    checkout_price -= ticket_price;
+                    checkout_cost.setText("$" + checkout_price);
+                    general_number.setText("" + (generalTickets - 1));
+                }
             }
         });
 
-        Button orangeplus = (Button) root.findViewById(R.id.asdasd);
-        blueplus.setOnClickListener(new View.OnClickListener() {
+        ImageButton orangeplus = (ImageButton) root.findViewById(R.id.event_info_vip_plus_button);
+        orangeplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView vip_number = (TextView) getActivity().findViewById(R.id.event_info_vip_number_tickets);
+                int vipTickets = Integer.parseInt(vip_number.getText().toString());
 
+                if(vipTickets < 2) {
+                    TextView raw_vip_price = (TextView) getActivity().findViewById(R.id.tv_vip_price);
+                    int ticket_price = Integer.parseInt(raw_vip_price.getText().toString().split("\\$")[1]);
+
+                    TextView checkout_cost = (TextView) getActivity().findViewById(R.id.tv_checkout_cost);
+                    int checkout_price = Integer.parseInt(checkout_cost.getText().toString().split("\\$")[1]);
+
+                    checkout_price += ticket_price;
+                    checkout_cost.setText("$" + checkout_price);
+                    vip_number.setText("" + (vipTickets + 1));
+                }
             }
         });
 
-        Button orangeminus = (Button) root.findViewById(R.id.asdasd);
-        blueplus.setOnClickListener(new View.OnClickListener() {
+        ImageButton orangeminus = (ImageButton) root.findViewById(R.id.event_info_vip_minus_button);
+        orangeminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView vip_number = (TextView) getActivity().findViewById(R.id.event_info_vip_number_tickets);
+                int vipTickets = Integer.parseInt(vip_number.getText().toString());
 
+                if(vipTickets > 0) {
+                    TextView raw_vip_price = (TextView) getActivity().findViewById(R.id.tv_vip_price);
+                    int ticket_price = Integer.parseInt(raw_vip_price.getText().toString().split("\\$")[1]);
+
+                    TextView checkout_cost = (TextView) getActivity().findViewById(R.id.tv_checkout_cost);
+                    int checkout_price = Integer.parseInt(checkout_cost.getText().toString().split("\\$")[1]);
+
+                    checkout_price -= ticket_price;
+                    checkout_cost.setText("$" + checkout_price);
+                    vip_number.setText("" + (vipTickets - 1));
+                }
             }
         });
 
@@ -61,7 +113,16 @@ public class EventInfoFragment extends Fragment {
         checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TempPayInformation.PayInfo.setPrice(2);
+                TextView general_number = (TextView) getActivity().findViewById(R.id.event_info_general_number_tickets);
+                int generalTickets = Integer.parseInt(general_number.getText().toString());
+                TextView vip_number = (TextView) getActivity().findViewById(R.id.event_info_vip_number_tickets);
+                int vipTickets = Integer.parseInt(vip_number.getText().toString());
+                TempPayInformation.PayInfo.setTotalticket(generalTickets + vipTickets);
+
+                TextView checkout_cost = (TextView) getActivity().findViewById(R.id.tv_checkout_cost);
+                int ticket_price = Integer.parseInt(checkout_cost.getText().toString().split("\\$")[1]);
+                TempPayInformation.PayInfo.setPrice(ticket_price);
+
 
                 PayActivity activity = (PayActivity) getActivity();
                 activity.nextPaymentPhase();

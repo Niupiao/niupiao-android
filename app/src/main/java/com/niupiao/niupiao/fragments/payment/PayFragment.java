@@ -25,7 +25,6 @@ public class PayFragment extends Fragment {
         int price = TempPayInformation.PayInfo.getPrice();
 
         TextView price_declaration = (TextView) root.findViewById(R.id.tv_cost_of_tickets);
-        System.out.println(price_declaration.getText().toString().split("\\$")[0]);
         String price_text = price_declaration.getText().toString().split("\\$")[0];
         price_declaration.setText(price_text + "$" + price);
 

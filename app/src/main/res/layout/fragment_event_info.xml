@@ -4,15 +4,21 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/rl_event_image"
+        android:id="@+id/rl_event_details"
         android:layout_width="match_parent"
         android:layout_height="160dp"
+        android:background="@drawable/girlsgeneration"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/girlsgeneration"
-        android:backgroundTint="#EE000000"
-        android:backgroundTintMode="src_over">
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/iv_event_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:color/black"
+            android:alpha=".9"
+            />
 
         <TextView
             android:id="@+id/tv_event_title"
@@ -75,7 +81,7 @@
 
     <ScrollView
         android:id="@+id/sv_eventscroll"
-        android:layout_below="@id/rl_event_image"
+        android:layout_below="@id/rl_event_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         
@@ -122,6 +128,7 @@
                     android:layout_height="wrap_content"/>
                 
                 <TextView
+                    android:id="@+id/tv_general_price"
                     android:layout_marginTop="5dp"
                     android:text="$50"
                     android:textColor="@android:color/white"
@@ -149,7 +156,7 @@
                 android:layout_below="@id/event_info_get_info_tv"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                android:text="3"
+                android:text="0"
                 android:textSize="60sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -197,6 +204,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/tv_vip_price"
                     android:layout_marginTop="5dp"
                     android:text="$150"
                     android:textColor="@android:color/white"
@@ -224,7 +232,7 @@
                 android:layout_below="@id/event_info_divider_line"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
-                android:text="2"
+                android:text="0"
                 android:textSize="60sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

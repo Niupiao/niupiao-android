@@ -10,6 +10,7 @@ import com.niupiao.niupiao.fragments.payment.EventInfoFragment;
 import com.niupiao.niupiao.fragments.payment.ConfirmFragment;
 import com.niupiao.niupiao.fragments.payment.CongratsFragment;
 import com.niupiao.niupiao.fragments.payment.PayFragment;
+import com.niupiao.niupiao.fragments.payment.TempPayInformation;
 import com.niupiao.niupiao.models.Event;
 
 /**

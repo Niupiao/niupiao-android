@@ -1,13 +1,14 @@
 package com.niupiao.niupiao.fragments.payment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
@@ -29,6 +30,10 @@ public class EventInfoFragment extends Fragment {
                 activity.nextPaymentPhase();
             }
         });
+        Typeface robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Bold.ttf");
+        TextView getTickets = (TextView) root.findViewById( R.id.event_info_get_info_tv );
+        getTickets.setTypeface( robotoBold );
+        
         return root;
     }
 

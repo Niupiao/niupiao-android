@@ -32,6 +32,7 @@ public class CongratsFragment extends Fragment {
         int tickets = TempPayInformation.PayInfo.getTotalticket();
 
         EditText etn1 = (EditText) root.findViewById(R.id.et_congrats_recipient_name_one);
+
         EditText etn2 = (EditText) root.findViewById(R.id.et_congrats_recipient_name_two);
         EditText etn3 = (EditText) root.findViewById(R.id.et_congrats_recipient_name_three);
         EditText etn4 = (EditText) root.findViewById(R.id.et_congrats_recipient_name_four);

@@ -14,8 +14,9 @@
 
     <RelativeLayout
         android:id="@+id/rl_date"
-        android:layout_width="114dp"
-        android:layout_height="110dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:background="@drawable/datebg">
 
         <TextView
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@id/rl_date"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="130dp"
         android:background="#BC000000"
         android:paddingLeft="4dp"
         android:paddingRight="4dp">

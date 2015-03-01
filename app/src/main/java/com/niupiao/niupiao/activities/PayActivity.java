@@ -20,7 +20,7 @@ public class PayActivity extends ActionBarActivity {
 
     public static final String INTENT_KEY_FOR_EVENT = "event";
 
-    private PaymentPhase paymentPhase = PaymentPhase.PAY;
+    private PaymentPhase paymentPhase = PaymentPhase.INFO;
 
     public enum PaymentPhase {
         INFO, PAY, CONFIRM, CONGRATS;
@@ -37,16 +37,16 @@ public class PayActivity extends ActionBarActivity {
     public void nextPaymentPhase() {
         switch (paymentPhase) {
             case INFO:
-                changeInternalPaymentPhase();
                 show(PaymentPhase.PAY);
+                changeInternalPaymentPhase();
                 break;
             case PAY:
-                changeInternalPaymentPhase();
                 show(PaymentPhase.CONFIRM);
+                changeInternalPaymentPhase();
                 break;
             case CONFIRM:
-                changeInternalPaymentPhase();
                 show(PaymentPhase.CONGRATS);
+                changeInternalPaymentPhase();
                 break;
             case CONGRATS:
                 finish();

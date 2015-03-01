@@ -31,6 +31,12 @@ public class PayActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
         Event event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
+
+        TempPayInformation.EventInfo.setName(event.getName());
+        TempPayInformation.EventInfo.setDate(event.getDate());
+        TempPayInformation.EventInfo.setLoc(event.getLocation());
+        TempPayInformation.EventInfo.setImagepath(event.getImagePath());
+
         show(PaymentPhase.INFO);
     }
 

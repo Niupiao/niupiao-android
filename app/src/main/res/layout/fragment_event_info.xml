@@ -7,17 +7,26 @@
         android:id="@+id/rl_event_details"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="@drawable/girlsgeneration"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/event_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:scaleType="centerCrop"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            />
 
         <ImageView
             android:id="@+id/iv_event_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@android:color/black"
-            android:alpha=".9"
+            android:alpha=".8"
             />
 
         <TextView

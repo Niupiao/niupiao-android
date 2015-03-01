@@ -13,8 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
+import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
+import com.niupiao.niupiao.utils.ImageLoaderHelper;
 
 /**
  * Created by kevinchen on 2/18/15.
@@ -25,6 +28,19 @@ public class EventInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_event_info, container, false);
+
+        NetworkImageView image = (NetworkImageView) root.findViewById(R.id.event_image);
+        image.setImageUrl(Constants.Url.fullUrl(TempPayInformation.EventInfo.getImagepath()),
+                ImageLoaderHelper.getInstance().getImageLoader());
+        TextView name = (TextView) root.findViewById(R.id.tv_event_title);
+        TextView subtitle = (TextView) root.findViewById(R.id.tv_event_subtitle);
+        TextView date = (TextView) root.findViewById(R.id.tv_event_date);
+        TextView location = (TextView) root.findViewById(R.id.tv_event_where);
+
+        name.setText(TempPayInformation.EventInfo.getName());
+        subtitle.setText(TempPayInformation.EventInfo.getSubtitle());
+        date.setText(TempPayInformation.EventInfo.getDate());
+        location.setText(TempPayInformation.EventInfo.getLoc());
 
         ImageButton blueplus = (ImageButton) root.findViewById(R.id.event_info_general_plus_button);
         blueplus.setOnClickListener(new View.OnClickListener() {

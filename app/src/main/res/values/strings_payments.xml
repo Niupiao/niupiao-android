@@ -9,7 +9,7 @@
     <string name="transfer_type_general">GENERAL</string>
     <string name="transfer_type_vip">VIP</string>
     <string name="transfer_recipient_name_hint">FIRST, LAST</string>
-    <string name="transfer_recipient_cell_hint">(xxx) xxx-xxxx</string>
+    <string name="transfer_recipient_cell_hint">(xxx)xxx-xxxx</string>
     <string name="transfer_payment_option_title">PAYMENT OPTION</string>
     <string name="transfer_saved_credit">Saved</string>
     <string name="transfer_saved_credit_info_default">None</string>

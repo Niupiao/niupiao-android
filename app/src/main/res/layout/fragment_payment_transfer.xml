@@ -119,6 +119,7 @@
                         android:id="@+id/et_transfer_recipient_name_one"
                         android:hint="@string/transfer_recipient_name_hint"
                         android:background="@drawable/edit_text_rounded_grey"
+                        android:maxLength="10"
                         android:minWidth="100dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="wrap_content"
@@ -128,6 +129,8 @@
                         android:id="@+id/et_transfer_recipient_cell_one"
                         android:hint="@string/transfer_recipient_cell_hint"
                         android:background="@drawable/edit_text_rounded_grey"
+                        android:inputType="number"
+                        android:maxLength="10"
                         android:minWidth="100dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="wrap_content"
@@ -159,6 +162,7 @@
                     <EditText
                         android:id="@+id/et_transfer_recipient_name_two"
                         android:hint="@string/transfer_recipient_name_hint"
+                        android:maxLength="10"
                         android:background="@drawable/edit_text_rounded_grey"
                         android:minWidth="100dp"
                         android:layout_gravity="center_horizontal"
@@ -167,6 +171,8 @@
                     <EditText
                         android:id="@+id/et_transfer_recipient_cell_two"
                         android:hint="@string/transfer_recipient_cell_hint"
+                        android:inputType="number"
+                        android:maxLength="10"
                         android:background="@drawable/edit_text_rounded_grey"
                         android:minWidth="100dp"
                         android:layout_gravity="center_horizontal"
@@ -197,6 +203,7 @@
                     <EditText
                         android:id="@+id/et_transfer_recipient_name_three"
                         android:hint="@string/transfer_recipient_name_hint"
+                        android:maxLength="10"
                         android:background="@drawable/edit_text_rounded_grey"
                         android:minWidth="100dp"
                         android:layout_gravity="center_horizontal"
@@ -205,6 +212,8 @@
                     <EditText
                         android:id="@+id/et_transfer_recipient_cell_three"
                         android:hint="@string/transfer_recipient_cell_hint"
+                        android:inputType="number"
+                        android:maxLength="10"
                         android:background="@drawable/edit_text_rounded_grey"
                         android:minWidth="100dp"
                         android:layout_gravity="center_horizontal"
@@ -236,6 +245,7 @@
                     <EditText
                         android:id="@+id/et_transfer_recipient_name_four"
                         android:hint="@string/transfer_recipient_name_hint"
+                        android:maxLength="10"
                         android:background="@drawable/edit_text_rounded_grey"
                         android:minWidth="100dp"
                         android:layout_gravity="center_horizontal"
@@ -244,6 +254,8 @@
                     <EditText
                         android:id="@+id/et_transfer_recipient_cell_four"
                         android:hint="@string/transfer_recipient_cell_hint"
+                        android:inputType="number"
+                        android:maxLength="10"
                         android:background="@drawable/edit_text_rounded_grey"
                         android:minWidth="100dp"
                         android:layout_gravity="center_horizontal"
@@ -275,6 +287,7 @@
                     <EditText
                         android:id="@+id/et_transfer_recipient_name_five"
                         android:hint="@string/transfer_recipient_name_hint"
+                        android:maxLength="10"
                         android:background="@drawable/edit_text_rounded_grey"
                         android:minWidth="100dp"
                         android:layout_gravity="center_horizontal"
@@ -283,6 +296,8 @@
                     <EditText
                         android:id="@+id/et_transfer_recipient_cell_five"
                         android:hint="@string/transfer_recipient_cell_hint"
+                        android:inputType="number"
+                        android:maxLength="10"
                         android:background="@drawable/edit_text_rounded_grey"
                         android:minWidth="100dp"
                         android:layout_gravity="center_horizontal"

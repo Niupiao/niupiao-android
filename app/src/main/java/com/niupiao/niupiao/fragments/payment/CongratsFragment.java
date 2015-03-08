@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.activities.MainActivity;
 import com.niupiao.niupiao.activities.PayActivity;
 
 /**

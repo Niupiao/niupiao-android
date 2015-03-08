@@ -31,6 +31,7 @@ public class RegistrationRequester {
 
     public interface OnRegistrationListener extends VolleyCallback {
         public void onRegistration(User user, ApiKey apiKey);
+
         public void onRegistrationFailure(String errorMessage);
     }
 

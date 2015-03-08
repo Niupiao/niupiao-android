@@ -16,16 +16,26 @@ public class Payment implements Parcelable {
     }
 
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(number);
+        dest.writeString(type);
         dest.writeString(name);
         dest.writeString(cell);
-        dest.writeByte((byte) (with_me ? 1 : 0));
+        dest.writeByte((byte) (withMe ? 1 : 0));
     }
 
     public Payment(Parcel in) {
+        number = in.readInt();
+        type = in.readString();
         name = in.readString();
         cell = in.readString();
-        with_me = in.readByte() != 0;
+        withMe= in.readByte() != 0;
     }
+
+    @SerializedName("number")
+    private int number;
+
+    @SerializedName("type")
+    private String type;
 
     @SerializedName("name")
     private String name;
@@ -33,14 +43,14 @@ public class Payment implements Parcelable {
     @SerializedName("cell")
     private String cell;
 
-    @SerializedName("with_me")
-    private Boolean with_me;
+    @SerializedName("withMe")
+    private boolean withMe;
 
     public String getName(){ return name; }
 
     public String getCell(){ return cell; }
 
-    public Boolean getWithMe(){ return with_me; }
+    public boolean getWithMe(){ return withMe; }
 
     @Override
     public boolean equals(Object o) {

@@ -21,7 +21,9 @@ public class EventManager implements EventsRequester.OnEventsRequestedListener {
     // used to provide access token and handle volley errors
     private ResourceCallback callback;
 
-    /** Use Set to avoid duplication, see {@link Event#equals(Object)}. */
+    /**
+     * Use Set to avoid duplication, see {@link Event#equals(Object)}.
+     */
     private Set<Event> events;
     private Set<Event> onSale;
     private Set<Event> comingSoon;

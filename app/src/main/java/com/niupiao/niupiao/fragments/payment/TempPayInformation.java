@@ -5,7 +5,7 @@ package com.niupiao.niupiao.fragments.payment;
  */
 public class TempPayInformation {
 
-    public final static class EventInfo{
+    public final static class EventInfo {
         private static String imagepath = "";
         private static String name = "";
         private static String subtitle = "";
@@ -14,54 +14,55 @@ public class TempPayInformation {
         private static String loc = "";
         private static String address = "";
 
-        public static String getImagepath(){
+        public static String getImagepath() {
             return imagepath;
         }
 
-        public static String getName(){
+        public static String getName() {
             return name;
         }
 
-        public static String getSubtitle(){
+        public static String getSubtitle() {
             return subtitle;
         }
 
-        public static String getDate(){
+        public static String getDate() {
             return date;
         }
 
-        public static String getDaytime(){
+        public static String getDaytime() {
             return daytime;
         }
 
-        public static String getLoc(){
+        public static String getLoc() {
             return loc;
         }
 
-        public static String getAddress(){
+        public static String getAddress() {
             return address;
         }
 
-        public static void setImagepath(String path){
+        public static void setImagepath(String path) {
             imagepath = path;
         }
-        public static void setName(String namevar){
+
+        public static void setName(String namevar) {
             name = namevar;
         }
 
-        public static void setDate(String dat){
+        public static void setDate(String dat) {
             date = dat;
         }
 
-        public static void setDaytime(String dtime){
+        public static void setDaytime(String dtime) {
             daytime = dtime;
         }
 
-        public static void setLoc(String locvar){
+        public static void setLoc(String locvar) {
             loc = locvar;
         }
 
-        public static void setAddress(String addr){
+        public static void setAddress(String addr) {
             address = addr;
         }
     }
@@ -88,7 +89,7 @@ public class TempPayInformation {
         private static int price = 0;
         private static int totalticket = 0;
 
-        public static String[] getNames(){
+        public static String[] getNames() {
             String[] output = new String[5];
             output[0] = name1;
             output[1] = name2;
@@ -99,7 +100,7 @@ public class TempPayInformation {
             return output;
         }
 
-        public static String[] getCells(){
+        public static String[] getCells() {
             String[] output = new String[5];
             output[0] = cell1;
             output[1] = cell2;
@@ -110,7 +111,7 @@ public class TempPayInformation {
             return output;
         }
 
-        public static Boolean[] getMe(){
+        public static Boolean[] getMe() {
             Boolean[] output = new Boolean[5];
 
             output[0] = me1;
@@ -122,15 +123,15 @@ public class TempPayInformation {
             return output;
         }
 
-        public static int getPrice(){
+        public static int getPrice() {
             return price;
         }
 
-        public static int getTotalticket(){
+        public static int getTotalticket() {
             return totalticket;
         }
 
-        public static void setNames(String n1, String n2, String n3, String n4, String n5){
+        public static void setNames(String n1, String n2, String n3, String n4, String n5) {
             name1 = n1;
             name2 = n2;
             name3 = n3;
@@ -138,7 +139,7 @@ public class TempPayInformation {
             name5 = n5;
         }
 
-        public static void setCells(String c1, String c2, String c3, String c4, String c5){
+        public static void setCells(String c1, String c2, String c3, String c4, String c5) {
             cell1 = c1;
             cell2 = c2;
             cell3 = c3;
@@ -146,7 +147,7 @@ public class TempPayInformation {
             cell5 = c5;
         }
 
-        public static void setMe(Boolean m1, Boolean m2, Boolean m3, Boolean m4, Boolean m5){
+        public static void setMe(Boolean m1, Boolean m2, Boolean m3, Boolean m4, Boolean m5) {
             me1 = m1;
             me2 = m2;
             me3 = m3;
@@ -154,11 +155,11 @@ public class TempPayInformation {
             me5 = m5;
         }
 
-        public static void setPrice(int newPrice){
+        public static void setPrice(int newPrice) {
             price = newPrice;
         }
 
-        public static void setTotalticket(int tickets){
+        public static void setTotalticket(int tickets) {
             totalticket = tickets;
         }
     }

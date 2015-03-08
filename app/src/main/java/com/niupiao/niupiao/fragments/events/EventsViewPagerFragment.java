@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
@@ -80,7 +79,6 @@ public abstract class EventsViewPagerFragment extends ViewPagerFragment implemen
         requestEventsFromManager();
         return root;
     }
-
 
 
 }

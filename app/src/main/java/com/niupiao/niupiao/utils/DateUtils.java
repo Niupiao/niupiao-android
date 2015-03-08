@@ -47,7 +47,6 @@ public class DateUtils {
     public static final String FORMAT_MONTH = "MMMMM";
 
     /**
-     *
      * @param isShort If true, "Feb". If false, "February".
      */
     public static String getMonth(DateTime dateTime, boolean isShort) {

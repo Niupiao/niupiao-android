@@ -46,6 +46,10 @@ public class Payment implements Parcelable {
     @SerializedName("withMe")
     private boolean withMe;
 
+    public int getNumber(){ return number; }
+
+    public String getType(){ return type; }
+
     public String getName(){ return name; }
 
     public String getCell(){ return cell; }

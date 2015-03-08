@@ -15,19 +15,17 @@
             android:id="@+id/event_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible"
-            android:scaleType="centerCrop"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            />
+            android:scaleType="centerCrop"
+            android:visibility="visible" />
 
         <ImageView
             android:id="@+id/iv_event_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@android:color/black"
             android:alpha=".8"
-            />
+            android:src="@android:color/black" />
 
         <TextView
             android:id="@+id/tv_event_title"
@@ -90,293 +88,281 @@
 
     <ScrollView
         android:id="@+id/sv_eventscroll"
-        android:layout_below="@id/rl_event_details"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_event_details">
+
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            
-        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:background="#d3d3d3">
-            
-            <TextView
-                android:id="@+id/event_info_get_info_tv"
-                android:text="Get Tickets"
-                android:textAllCaps="true"
-                android:textSize="30sp"
-                android:textColor="@color/niupiao_blue"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            
-            <LinearLayout
-                android:id="@+id/event_info_general_price_button"
-                android:layout_below="@id/event_info_get_info_tv"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/niupiao_blue">
-                
-                <TextView
-                    android:text="General"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/white"
-                    android:textAllCaps="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                
-                <TextView
-                    android:id="@+id/tv_general_price"
-                    android:layout_marginTop="5dp"
-                    android:text="$50"
-                    android:textColor="@android:color/white"
-                    android:textSize="30sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                
-                </LinearLayout>
-            
-            <ImageButton
-                android:id="@+id/event_info_general_minus_button"
-                android:layout_below="@id/event_info_get_info_tv"
-                android:layout_toRightOf="@id/event_info_general_price_button"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/blueminus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
-            
-            <TextView
-                android:id="@+id/event_info_general_number_tickets"
-                android:layout_toRightOf="@id/event_info_general_minus_button"
-                android:layout_below="@id/event_info_get_info_tv"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
-                android:text="0"
-                android:textSize="60sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/event_info_general_plus_button"
-                android:layout_below="@id/event_info_get_info_tv"
-                android:layout_toRightOf="@id/event_info_general_number_tickets"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/blueplus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
-            
-            <View
-                android:id="@+id/event_info_divider_line"
-                android:layout_below="@id/event_info_general_price_button"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:background="@android:color/darker_gray"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"/>
-
-            <LinearLayout
-                android:id="@+id/event_info_vip_price_button"
-                android:layout_below="@id/event_info_divider_line"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="50dp"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/niupiao_orange">
+                android:background="#d3d3d3"
+                android:paddingBottom="20dp">
 
                 <TextView
-                    android:text="VIP"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/white"
+                    android:id="@+id/event_info_get_info_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="Get Tickets"
                     android:textAllCaps="true"
+                    android:textColor="@color/niupiao_blue"
+                    android:textSize="30sp" />
+
+                <LinearLayout
+                    android:id="@+id/event_info_general_price_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/event_info_get_info_tv"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/niupiao_blue"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="General"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_general_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="$50"
+                        android:textColor="@android:color/white"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/event_info_general_minus_button"
+                    style="@style/EventInfo.TicketCounterButton"
+                    android:layout_below="@id/event_info_get_info_tv"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_toRightOf="@id/event_info_general_price_button"
+                    android:background="@drawable/blueminus" />
 
                 <TextView
-                    android:id="@+id/tv_vip_price"
-                    android:layout_marginTop="5dp"
-                    android:text="$150"
-                    android:textColor="@android:color/white"
-                    android:textSize="30sp"
+                    android:id="@+id/event_info_general_number_tickets"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/event_info_get_info_tv"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@id/event_info_general_minus_button"
+                    android:text="0"
+                    android:textSize="60sp" />
 
-            </LinearLayout>
+                <ImageButton
+                    android:id="@+id/event_info_general_plus_button"
+                    style="@style/EventInfo.TicketCounterButton"
+                    android:layout_below="@id/event_info_get_info_tv"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_toRightOf="@id/event_info_general_number_tickets"
+                    android:background="@drawable/blueplus" />
 
-            <ImageButton
-                android:id="@+id/event_info_vip_minus_button"
-                android:layout_below="@id/event_info_divider_line"
-                android:layout_toRightOf="@id/event_info_vip_price_button"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/orangeminus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
+                <View
+                    android:id="@+id/event_info_divider_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/event_info_general_price_button"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/darker_gray" />
 
-            <TextView
-                android:id="@+id/event_info_vip_number_tickets"
-                android:layout_toRightOf="@id/event_info_vip_minus_button"
-                android:layout_below="@id/event_info_divider_line"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
-                android:text="0"
-                android:textSize="60sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:id="@+id/event_info_vip_price_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/event_info_divider_line"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/niupiao_orange"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
-            <ImageButton
-                android:id="@+id/event_info_vip_plus_button"
-                android:layout_below="@id/event_info_divider_line"
-                android:layout_toRightOf="@id/event_info_vip_number_tickets"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/orangeplus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VIP"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_vip_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="$150"
+                        android:textColor="@android:color/white"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/event_info_vip_minus_button"
+                    style="@style/EventInfo.TicketCounterButton"
+                    android:layout_below="@id/event_info_divider_line"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_toRightOf="@id/event_info_vip_price_button"
+                    android:background="@drawable/orangeminus" />
+
+                <TextView
+                    android:id="@+id/event_info_vip_number_tickets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/event_info_divider_line"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@id/event_info_vip_minus_button"
+                    android:text="0"
+                    android:textSize="60sp" />
+
+                <ImageButton
+                    android:id="@+id/event_info_vip_plus_button"
+                    style="@style/EventInfo.TicketCounterButton"
+                    android:layout_below="@id/event_info_divider_line"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_toRightOf="@id/event_info_vip_number_tickets"
+                    android:background="@drawable/orangeplus" />
 
             </RelativeLayout>
-            
+
             <LinearLayout
-                android:orientation="vertical"
-                android:background="#e0e0e0"
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="fill_parent"
+                android:background="#e0e0e0"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/event_info_ticketing_guidelines"
-                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="toggle_contents"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:text="Ticketing Guidelines"
-                        android:textSize="14sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Ticketing Guidelines"
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:id="@+id/event_info_guidelines_arrow"
-                        android:layout_gravity="right"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right" />
 
                 </LinearLayout>
-                
+
                 <TextView
                     android:id="@+id/event_info_ticketing_guidelines_show"
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
                 <View
-                    android:background="@android:color/darker_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
-               
+                    android:background="@android:color/darker_gray" />
+
                 <LinearLayout
                     android:id="@+id/event_info_announcements"
-                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="toggle_contents"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:text="Announcements"
-                        android:textSize="14sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Announcements"
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:id="@+id/event_info_announcements_arrow"
-                        android:layout_gravity="right"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/event_info_announcements_show"
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
                 <View
-                    android:background="@android:color/darker_gray"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"/>
+                    android:background="@android:color/darker_gray" />
 
                 <LinearLayout
                     android:id="@+id/event_info_event_description"
-                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@android:color/transparent"
                     android:clickable="true"
                     android:onClick="toggle_contents"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:text="Ticketing Guidelines"
-                        android:textSize="14sp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Ticketing Guidelines"
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:id="@+id/event_info_description_arrow"
-                        android:layout_gravity="right"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/event_info_description_show"
-                    android:visibility="gone"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.niupiao.niupiao.Constants;
@@ -80,20 +81,20 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         location.setText(TempPayInformation.EventInfo.getLoc());
 
         // Set button listeners
-        ImageButton generalPlus = (ImageButton) root.findViewById(R.id.event_info_general_plus_button);
-        generalPlus.setOnClickListener(this);
+        ImageButton imageButton = (ImageButton) root.findViewById(R.id.event_info_general_plus_button);
+        imageButton.setOnClickListener(this);
 
-        ImageButton generalMinus = (ImageButton) root.findViewById(R.id.event_info_general_minus_button);
-        generalMinus.setOnClickListener(this);
+        imageButton = (ImageButton) root.findViewById(R.id.event_info_general_minus_button);
+        imageButton.setOnClickListener(this);
 
-        ImageButton vipPlus = (ImageButton) root.findViewById(R.id.event_info_vip_plus_button);
-        vipPlus.setOnClickListener(this);
+        imageButton = (ImageButton) root.findViewById(R.id.event_info_vip_plus_button);
+        imageButton.setOnClickListener(this);
 
-        ImageButton vipMinus = (ImageButton) root.findViewById(R.id.event_info_vip_minus_button);
-        vipMinus.setOnClickListener(this);
+        imageButton = (ImageButton) root.findViewById(R.id.event_info_vip_minus_button);
+        imageButton.setOnClickListener(this);
 
-        ImageButton checkoutButton = (ImageButton) root.findViewById(R.id.ib_checkout);
-        checkoutButton.setOnClickListener(this);
+        imageButton = (ImageButton) root.findViewById(R.id.ib_checkout);
+        imageButton.setOnClickListener(this);
 
         // Set fonts
         Typeface robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Bold.ttf");
@@ -183,6 +184,8 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         if (numberGeneralTickets < MAX_NUMBER_OF_GENERAL_TICKETS) {
             generalTicketsTextView.setText("" + (++numberGeneralTickets));
             updateCheckoutCost();
+        } else {
+            Toast.makeText(getActivity(), String.format("Can buy up to %d GENERAL tickets", MAX_NUMBER_OF_GENERAL_TICKETS), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -197,6 +200,8 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         if (numberVipTickets < MAX_NUMBER_OF_VIP_TICKETS) {
             vipTicketsTextView.setText("" + (++numberVipTickets));
             updateCheckoutCost();
+        } else {
+            Toast.makeText(getActivity(), String.format("Can buy up to %d VIP tickets", MAX_NUMBER_OF_VIP_TICKETS), Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -3,6 +3,7 @@
     <!--Strings related to registration -->
     <string name="registration_title">Registration</string>
     <string name="full_name_prompt">FULL LEGAL NAME</string>
+    <string name="username_prompt">USERNAME</string>
     <string name="cell_phone_prompt">CELL PHONE</string>
     <string name="email_prompt">EMAIL</string>
     <string name="password_prompt">PASSWORD</string>

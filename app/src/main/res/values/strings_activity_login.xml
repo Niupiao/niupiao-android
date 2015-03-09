@@ -10,6 +10,8 @@
     <string name="register">REGISTER</string>
     <string name="forgot_password">FORGOT PASSWORD</string>
 
+    <string name="content_description_logo">App logo</string>
+
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>

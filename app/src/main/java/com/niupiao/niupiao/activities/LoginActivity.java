@@ -21,17 +21,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.UiLifecycleHelper;
+import com.facebook.widget.LoginButton;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.models.ApiKey;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.LoginRequester;
 
+import java.util.Arrays;
+
 
 /**
  * A login screen that offers login via username/password.
  */
-public class LoginActivity extends Activity implements LoginRequester.OnLoginListener {
+public class LoginActivity extends Activity implements
+        LoginRequester.OnLoginListener,
+        Session.StatusCallback {
+
+    public static final String[] FACEBOOK_PERMISSIONS = new String[]{"public_profile"};
 
     // UI references.
     private EditText mUsernameView;
@@ -39,11 +49,18 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
     private View mProgressView;
     private View mLoginFormView;
 
+    private UiLifecycleHelper uiHelper;
+
     private boolean isAttemptingLogin = false;
 
     private void stopProgress() {
         isAttemptingLogin = false;
         showProgress(false);
+    }
+
+    @Override
+    public void call(Session session, SessionState sessionState, Exception e) {
+
     }
 
     @Override
@@ -60,11 +77,15 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
         // Save login credentials to SharedPrefs
         saveLoginCredentials(username, password);
 
+        login(user);
+
+    }
+
+    private void login(User user) {
         // Show the main activity
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(MainActivity.INTENT_KEY_FOR_USER, user);
         startActivity(intent);
-
     }
 
     @Override
@@ -84,9 +105,10 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        uiHelper = new UiLifecycleHelper(this, this);
         // Set up the login form.
-        mUsernameView = (EditText) findViewById(R.id.login_username);
-        mPasswordView = (EditText) findViewById(R.id.login_password);
+        mUsernameView = (EditText) findViewById(R.id.et_username);
+        mPasswordView = (EditText) findViewById(R.id.et_password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -100,7 +122,7 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
 
         populateFieldsFromSharedPrefs();
 
-        Button loginButton = (Button) findViewById(R.id.login_login_button);
+        Button loginButton = (Button) findViewById(R.id.btn_login);
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +130,7 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
             }
         });
 
-        Button registerButton = (Button) findViewById(R.id.login_register_button);
+        Button registerButton = (Button) findViewById(R.id.btn_register);
         registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,6 +138,9 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
                 startActivity(intent);
             }
         });
+
+        LoginButton authButton = (LoginButton) findViewById(R.id.btn_facebook_login);
+        authButton.setReadPermissions(Arrays.asList(FACEBOOK_PERMISSIONS));
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -134,7 +159,7 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
             mUsernameView.setText(sp.getString(Constants.SharedPrefs.USERNAME, ""));
             mPasswordView.setText(sp.getString(Constants.SharedPrefs.PASSWORD, ""));
         }
-        CheckBox rememberMe = (CheckBox) findViewById(R.id.login_remember_me);
+        CheckBox rememberMe = (CheckBox) findViewById(R.id.cb_remember_me);
         rememberMe.setChecked(remembered);
     }
 
@@ -146,7 +171,7 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
     }
 
     private void saveLoginCredentials(String username, String password) {
-        CheckBox rememberMe = (CheckBox) findViewById(R.id.login_remember_me);
+        CheckBox rememberMe = (CheckBox) findViewById(R.id.cb_remember_me);
         if (rememberMe.isChecked()) {
             SharedPreferences.Editor editor = getSharedPreferences(Constants.SharedPrefs.LOGIN_CREDENTIALS, MODE_PRIVATE).edit();
             editor.putString(Constants.SharedPrefs.USERNAME, username);
@@ -247,6 +272,37 @@ public class LoginActivity extends Activity implements LoginRequester.OnLoginLis
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        uiHelper.onResume();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        uiHelper.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        uiHelper.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        uiHelper.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        uiHelper.onSaveInstanceState(outState);
     }
 
 }

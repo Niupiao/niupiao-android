@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Niupiao</string>
 
+    <string name="facebook_app_id">1612105689027286</string>
+
     <string-array name="fragments_array">
         <item>Browse Events</item>
         <item>My Tickets</item>

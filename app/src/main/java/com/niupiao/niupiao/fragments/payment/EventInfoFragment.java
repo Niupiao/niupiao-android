@@ -173,9 +173,9 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
     }
 
     private void checkout() {
-        TempPayInformation.PayInfo.setTotalticket(numberGeneralTickets + numberVipTickets);
-        TempPayInformation.PayInfo.setPrice(getTotalCostSoFar());
         PayActivity activity = (PayActivity) getActivity();
+        activity.setTotalPrice(getTotalCostSoFar());
+        activity.setTotalTicketCount(numberGeneralTickets + numberVipTickets);
         activity.nextPaymentPhase();
     }
 

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
 
+import java.util.List;
+
 /**
  * Created by kevinchen on 2/25/15.
  */
@@ -23,10 +25,8 @@ public class ConfirmFragment extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_confirm, container, false);
         ImageButton confirmButton = (ImageButton) root.findViewById(R.id.ib_confirm);
 
-        String[] names = TempPayInformation.PayInfo.getNames();
-        String[] cells = TempPayInformation.PayInfo.getCells();
-        Boolean[] mes = TempPayInformation.PayInfo.getMe();
-        int price = TempPayInformation.PayInfo.getPrice();
+        PayActivity activity = (PayActivity) getActivity();
+        List<PayActivity.Person> recipients = activity.getRecipients();
 
         EditText etn1 = (EditText) root.findViewById(R.id.et_confirm_recipient_name_one);
         EditText etn2 = (EditText) root.findViewById(R.id.et_confirm_recipient_name_two);
@@ -34,23 +34,11 @@ public class ConfirmFragment extends Fragment {
         EditText etn4 = (EditText) root.findViewById(R.id.et_confirm_recipient_name_four);
         EditText etn5 = (EditText) root.findViewById(R.id.et_confirm_recipient_name_five);
 
-        etn1.setText(names[0]);
-        etn2.setText(names[1]);
-        etn3.setText(names[2]);
-        etn4.setText(names[3]);
-        etn5.setText(names[4]);
-
         EditText etc1 = (EditText) root.findViewById(R.id.et_confirm_recipient_cell_one);
         EditText etc2 = (EditText) root.findViewById(R.id.et_confirm_recipient_cell_two);
         EditText etc3 = (EditText) root.findViewById(R.id.et_confirm_recipient_cell_three);
         EditText etc4 = (EditText) root.findViewById(R.id.et_confirm_recipient_cell_four);
         EditText etc5 = (EditText) root.findViewById(R.id.et_confirm_recipient_cell_five);
-
-        etc1.setText(cells[0]);
-        etc2.setText(cells[1]);
-        etc3.setText(cells[2]);
-        etc4.setText(cells[3]);
-        etc5.setText(cells[4]);
 
         CheckBox cb1 = (CheckBox) root.findViewById(R.id.cb_confirm_me_one);
         CheckBox cb2 = (CheckBox) root.findViewById(R.id.cb_confirm_me_two);
@@ -58,15 +46,27 @@ public class ConfirmFragment extends Fragment {
         CheckBox cb4 = (CheckBox) root.findViewById(R.id.cb_confirm_me_four);
         CheckBox cb5 = (CheckBox) root.findViewById(R.id.cb_confirm_me_five);
 
-        cb1.setChecked(mes[0]);
-        cb2.setChecked(mes[1]);
-        cb3.setChecked(mes[2]);
-        cb4.setChecked(mes[3]);
-        cb5.setChecked(mes[4]);
+        etn1.setText(recipients.get(0).getName());
+        etn2.setText(recipients.get(1).getName());
+        etn3.setText(recipients.get(2).getName());
+        etn4.setText(recipients.get(3).getName());
+        etn5.setText(recipients.get(4).getName());
 
-        TextView price_declaration = (TextView) root.findViewById(R.id.tv_confirm_price);
-        String price_text = price_declaration.getText().toString().split("\\$")[0];
-        price_declaration.setText(price_text + "$" + price);
+        etc1.setText(recipients.get(0).getCell());
+        etc2.setText(recipients.get(1).getCell());
+        etc3.setText(recipients.get(2).getCell());
+        etc4.setText(recipients.get(3).getCell());
+        etc5.setText(recipients.get(4).getCell());
+
+        cb1.setChecked(recipients.get(0).isMe());
+        cb2.setChecked(recipients.get(1).isMe());
+        cb3.setChecked(recipients.get(2).isMe());
+        cb4.setChecked(recipients.get(3).isMe());
+        cb5.setChecked(recipients.get(4).isMe());
+
+        TextView priceDeclaration = (TextView) root.findViewById(R.id.tv_confirm_price);
+        String priceText = priceDeclaration.getText().toString().split("\\$")[0];
+        priceDeclaration.setText(priceText + "$" + activity.getTotalPrice());
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

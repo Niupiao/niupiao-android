@@ -26,17 +26,17 @@ public class PayActivity extends ActionBarActivity {
         INFO, PAY, CONFIRM, CONGRATS;
     }
 
+    private Event event;
+
+    public Event getEvent() {
+        return event;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
-        Event event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
-
-        TempPayInformation.EventInfo.setName(event.getName());
-        TempPayInformation.EventInfo.setDate(event.getDate());
-        TempPayInformation.EventInfo.setLoc(event.getLocation());
-        TempPayInformation.EventInfo.setImagepath(event.getImagePath());
-
+        event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
         show(PaymentPhase.INFO);
     }
 

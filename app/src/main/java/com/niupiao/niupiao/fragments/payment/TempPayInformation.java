@@ -5,68 +5,6 @@ package com.niupiao.niupiao.fragments.payment;
  */
 public class TempPayInformation {
 
-    public final static class EventInfo {
-        private static String imagepath = "";
-        private static String name = "";
-        private static String subtitle = "";
-        private static String date = "";
-        private static String daytime = "";
-        private static String loc = "";
-        private static String address = "";
-
-        public static String getImagepath() {
-            return imagepath;
-        }
-
-        public static String getName() {
-            return name;
-        }
-
-        public static String getSubtitle() {
-            return subtitle;
-        }
-
-        public static String getDate() {
-            return date;
-        }
-
-        public static String getDaytime() {
-            return daytime;
-        }
-
-        public static String getLoc() {
-            return loc;
-        }
-
-        public static String getAddress() {
-            return address;
-        }
-
-        public static void setImagepath(String path) {
-            imagepath = path;
-        }
-
-        public static void setName(String namevar) {
-            name = namevar;
-        }
-
-        public static void setDate(String dat) {
-            date = dat;
-        }
-
-        public static void setDaytime(String dtime) {
-            daytime = dtime;
-        }
-
-        public static void setLoc(String locvar) {
-            loc = locvar;
-        }
-
-        public static void setAddress(String addr) {
-            address = addr;
-        }
-    }
-
     public final static class PayInfo {
         private static String name1 = "";
         private static String name2 = "";

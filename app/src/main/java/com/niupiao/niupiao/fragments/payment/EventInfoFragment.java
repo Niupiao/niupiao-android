@@ -17,6 +17,8 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
+import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.utils.DateUtils;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;
 
 /**
@@ -59,26 +61,29 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         numberVipTickets = 0;
         numberGeneralTickets = 0;
 
-        // TODO don't hardcode these
+        // TODO don't hardcode these, call PayActivity#getEvent
         vipTicketPrice = 150;
         generalTicketPrice = 50;
 
         vipTicketsTextView = (TextView) root.findViewById(R.id.event_info_vip_number_tickets);
         generalTicketsTextView = (TextView) root.findViewById(R.id.event_info_general_number_tickets);
 
+        // Get event for this activity
+        PayActivity payActivity = (PayActivity) getActivity();
+        Event event = payActivity.getEvent();
+
         // Set labels and images
         NetworkImageView image = (NetworkImageView) root.findViewById(R.id.event_image);
-        image.setImageUrl(Constants.Url.fullUrl(TempPayInformation.EventInfo.getImagepath()),
-                ImageLoaderHelper.getInstance().getImageLoader());
+        image.setImageUrl(Constants.Url.fullUrl(event.getImagePath()), ImageLoaderHelper.getInstance().getImageLoader());
         TextView name = (TextView) root.findViewById(R.id.tv_event_title);
+        // TODO do something with subtitle
         TextView subtitle = (TextView) root.findViewById(R.id.tv_event_subtitle);
         TextView date = (TextView) root.findViewById(R.id.tv_event_date);
         TextView location = (TextView) root.findViewById(R.id.tv_event_where);
 
-        name.setText(TempPayInformation.EventInfo.getName());
-        subtitle.setText(TempPayInformation.EventInfo.getSubtitle());
-        date.setText(TempPayInformation.EventInfo.getDate());
-        location.setText(TempPayInformation.EventInfo.getLoc());
+        name.setText(event.getName());
+        date.setText(DateUtils.format(event.getDate(), DateUtils.FORMAT_DATE));
+        location.setText(event.getLocation());
 
         // Set button listeners
         ImageButton imageButton = (ImageButton) root.findViewById(R.id.event_info_general_plus_button);

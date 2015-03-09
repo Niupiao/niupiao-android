@@ -21,15 +21,16 @@ public class PayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_transfer, container, false);
-        int price = TempPayInformation.PayInfo.getPrice();
 
-        TextView price_declaration = (TextView) root.findViewById(R.id.tv_cost_of_tickets);
-        String price_text = price_declaration.getText().toString().split("\\$")[0];
-        price_declaration.setText(price_text + "$" + price);
+        PayActivity activity = (PayActivity) getActivity();
 
-        ImageButton paynowButton = (ImageButton) root.findViewById(R.id.ib_pay_now);
+        TextView priceDeclaration = (TextView) root.findViewById(R.id.tv_cost_of_tickets);
+        String priceText = priceDeclaration.getText().toString().split("\\$")[0];
+        priceDeclaration.setText(priceText + "$" + activity.getTotalPrice());
 
-        paynowButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton payNowButton = (ImageButton) root.findViewById(R.id.ib_pay_now);
+
+        payNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText etn1 = (EditText) getActivity().findViewById(R.id.et_transfer_recipient_name_one);
@@ -68,11 +69,14 @@ public class PayFragment extends Fragment {
                 Boolean me4 = cb4.isChecked();
                 Boolean me5 = cb5.isChecked();
 
-                TempPayInformation.PayInfo.setNames(n1, n2, n3, n4, n5);
-                TempPayInformation.PayInfo.setCells(c1, c2, c3, c4, c5);
-                TempPayInformation.PayInfo.setMe(me1, me2, me3, me4, me5);
-
                 PayActivity activity = (PayActivity) getActivity();
+                activity.addRecipients(
+                        new PayActivity.Person(n1, c1, me1),
+                        new PayActivity.Person(n2, c2, me2),
+                        new PayActivity.Person(n3, c3, me3),
+                        new PayActivity.Person(n4, c4, me4),
+                        new PayActivity.Person(n5, c5, me5)
+                );
                 activity.nextPaymentPhase();
             }
         });

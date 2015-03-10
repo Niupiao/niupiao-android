@@ -4,12 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.fragments.payment.ConfirmFragment;
-import com.niupiao.niupiao.fragments.payment.CongratsFragment;
+import com.niupiao.niupiao.fragments.payment.CheckoutFragment;
 import com.niupiao.niupiao.fragments.payment.EventInfoFragment;
-import com.niupiao.niupiao.fragments.payment.PayFragment;
 import com.niupiao.niupiao.models.Event;
 
 import java.util.ArrayList;
@@ -21,12 +20,21 @@ import java.util.List;
  */
 public class PayActivity extends ActionBarActivity {
 
+    private static final String TAG = PayActivity.class.getSimpleName();
+
     public static final String INTENT_KEY_FOR_EVENT = "event";
+
+    private List<Person> recipients;
+
+    private final static int MAX_NUMBER_OF_RECIPIENTS = 5;
+
+    private int totalTicketCount;
+    private int totalPrice;
 
     /**
      * The phase of ticket purchasing in which the user starts.
      */
-    private PaymentPhase paymentPhase = PaymentPhase.INFO;
+    private PaymentPhase paymentPhase;
 
     /**
      * The event for which the user is purchasing tickets.
@@ -37,14 +45,9 @@ public class PayActivity extends ActionBarActivity {
      * The phases of ticket purchasing.
      */
     public enum PaymentPhase {
-        INFO, PAY, CONFIRM, CONGRATS;
+        PURCHASE_TICKETS,
+        CHECKOUT
     }
-
-    private final static int MAX_NUMBER_OF_RECIPIENTS = 5;
-
-    private List<Person> recipients;
-    private int totalTicketCount;
-    private int totalPrice;
 
     /**
      * Used for storing recipients of tickets.
@@ -72,6 +75,10 @@ public class PayActivity extends ActionBarActivity {
         public boolean isMe() {
             return me;
         }
+    }
+
+    public PaymentPhase getPaymentPhase() {
+        return paymentPhase;
     }
 
     public Event getEvent() {
@@ -105,61 +112,33 @@ public class PayActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        recipients = new ArrayList<>(MAX_NUMBER_OF_RECIPIENTS);
         setContentView(R.layout.activity_pay);
+        recipients = new ArrayList<>(MAX_NUMBER_OF_RECIPIENTS);
         event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
-        show(PaymentPhase.INFO);
+        show(PaymentPhase.PURCHASE_TICKETS);
     }
 
     public void nextPaymentPhase() {
         switch (paymentPhase) {
-            case INFO:
-                show(PaymentPhase.PAY);
-                changeInternalPaymentPhase();
+            case PURCHASE_TICKETS:
+                show(PaymentPhase.CHECKOUT);
                 break;
-            case PAY:
-                show(PaymentPhase.CONFIRM);
-                changeInternalPaymentPhase();
-                break;
-            case CONFIRM:
-                show(PaymentPhase.CONGRATS);
-                changeInternalPaymentPhase();
-                break;
-            case CONGRATS:
-                finish();
-                break;
-        }
-    }
-
-    public void changeInternalPaymentPhase() {
-        switch (paymentPhase) {
-            case INFO:
-                paymentPhase = PaymentPhase.PAY;
-                break;
-            case PAY:
-                paymentPhase = PaymentPhase.CONFIRM;
-                break;
-            case CONFIRM:
-                paymentPhase = PaymentPhase.CONGRATS;
-                break;
+            default:
+                Log.wtf(TAG, "what other phase?");
         }
     }
 
     private void show(PaymentPhase paymentPhase) {
+        this.paymentPhase = paymentPhase;
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = null;
         switch (paymentPhase) {
-            case INFO:
+            case PURCHASE_TICKETS:
                 fragment = EventInfoFragment.newInstance();
                 break;
-            case PAY:
-                fragment = PayFragment.newInstance();
-                break;
-            case CONFIRM:
-                fragment = ConfirmFragment.newInstance();
-                break;
-            case CONGRATS:
-                fragment = CongratsFragment.newInstance();
+            case CHECKOUT:
+                Log.d(TAG, "showing checkout fragment");
+                fragment = CheckoutFragment.newInstance();
                 break;
             default:
                 throw new IllegalArgumentException("Bad enum for " +

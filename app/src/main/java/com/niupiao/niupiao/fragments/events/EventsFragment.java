@@ -32,7 +32,7 @@ public class EventsFragment extends NiuNavigationDrawerFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_events, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_sliding_view_pager, container, false);
 
         // Initialize fragments
         List<Fragment> fragments = new ArrayList<>(3);

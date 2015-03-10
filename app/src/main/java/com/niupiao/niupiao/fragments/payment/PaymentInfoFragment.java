@@ -16,7 +16,7 @@ public class PaymentInfoFragment extends ViewPagerFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.linear_layout_with_list_view, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_info, container, false);
         return root;
     }
 

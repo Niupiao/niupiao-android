@@ -50,21 +50,23 @@
     <style name="Login.Button.LoginFacebook">
         <item name="android:background">@drawable/facebook</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:adjustViewBounds">true</item>
     </style>
 
     <style name="Login.Button.Register">
-        <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:layout_marginRight">18dp</item>
-        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:background">@drawable/button_transparent_right_border</item>
         <item name="android:text">@string/register</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Login.Button.ForgotPassword">
-        <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:layout_marginRight">18dp</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:text">@string/forgot_password</item>
         <item name="android:textSize">18sp</item>

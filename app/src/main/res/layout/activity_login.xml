@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fb="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
@@ -11,6 +12,8 @@
 
     <RelativeLayout
         android:id="@+id/login_form"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -42,21 +45,29 @@
 
         <com.facebook.widget.LoginButton
             android:id="@+id/btn_facebook_login"
+            fb:login_text=""
             android:layout_centerHorizontal="true"
             style="@style/Login.Button.LoginFacebook"
             android:layout_below="@id/btn_login" />
 
+        <View
+            android:id="@+id/dummyloginview"
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:layout_centerInParent="true"/>
+
         <Button
             android:id="@+id/btn_register"
             style="@style/Login.Button.Register"
-            android:layout_below="@id/btn_facebook_login" />
+            android:layout_below="@id/btn_facebook_login"
+            android:layout_toLeftOf="@id/dummyloginview"/>
 
         <Button
             android:id="@+id/btn_forgot_password"
             style="@style/Login.Button.ForgotPassword"
             android:layout_below="@id/btn_facebook_login"
-            android:layout_toEndOf="@+id/btn_register"
-            android:layout_toRightOf="@+id/btn_register" />
+            android:layout_toRightOf="@+id/btn_register"
+            android:layout_alignTop="@+id/btn_register" />
     </RelativeLayout>
 
 </RelativeLayout>

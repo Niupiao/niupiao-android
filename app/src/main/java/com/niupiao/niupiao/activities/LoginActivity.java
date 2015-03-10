@@ -58,6 +58,18 @@ public class LoginActivity extends Activity implements
         showProgress(false);
     }
 
+    private void onClickLogin() {
+        Session.StatusCallback statusCallback = this;
+        Session session = Session.getActiveSession();
+        if (!session.isOpened() && !session.isClosed()) {
+            session.openForRead(new Session.OpenRequest(this)
+                    .setPermissions(Arrays.asList("public_profile"))
+                    .setCallback(statusCallback));
+        } else {
+            Session.openActiveSession(this, true, statusCallback);
+        }
+    }
+
     @Override
     public void call(Session session, SessionState sessionState, Exception e) {
 
@@ -138,6 +150,7 @@ public class LoginActivity extends Activity implements
                 startActivity(intent);
             }
         });
+
 
         LoginButton authButton = (LoginButton) findViewById(R.id.btn_facebook_login);
         authButton.setReadPermissions(Arrays.asList(FACEBOOK_PERMISSIONS));

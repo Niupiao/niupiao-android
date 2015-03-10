@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.facebook.model.GraphUser;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.NiupiaoApplication;
 import com.niupiao.niupiao.deserializers.ApiKeyDeserializer;
@@ -15,37 +16,40 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by kevinchen on 3/8/15.
+ * Created by kevinchen on 3/10/15.
  */
-public class RegistrationRequester {
+public class LoginWithFacebookRequester {
 
-    private static final String TAG = RegistrationRequester.class.getSimpleName();
+    private static final String TAG = LoginWithFacebookRequester.class.getSimpleName();
 
-    public interface OnRegistrationListener extends VolleyCallback {
-        public void onRegistration(User user, ApiKey apiKey);
-
-        public void onRegistrationFailure(String errorMessage);
+    public interface OnLoginWithFacebookListener extends VolleyCallback {
+        public void onLoginWithFacebook();
     }
 
-    public static void register(final OnRegistrationListener listener, String legalName, String username, String cellPhone, String email, String password, String passwordConfirm) {
+    public static void login(final OnLoginWithFacebookListener listener, GraphUser user) {
         // we provide our login credentials so server knows who's requesting an access token
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject();
-            jsonObject.put(Constants.JsonApi.Register.LEGAL_NAME, legalName);
-            jsonObject.put(Constants.JsonApi.Register.USERNAME, username);
-            jsonObject.put(Constants.JsonApi.Register.CELL_PHONE, cellPhone);
-            jsonObject.put(Constants.JsonApi.Register.EMAIL, email);
-            jsonObject.put(Constants.JsonApi.Register.PASSWORD, password);
-            jsonObject.put(Constants.JsonApi.Register.PASSWORD_CONFIRM, passwordConfirm);
+            jsonObject.put(Constants.JsonApi.Facebook.User.BIRTHDAY, user.getBirthday());
+            jsonObject.put(Constants.JsonApi.Facebook.User.FIRST_NAME, user.getFirstName());
+            jsonObject.put(Constants.JsonApi.Facebook.User.MIDDLE_NAME, user.getMiddleName());
+            jsonObject.put(Constants.JsonApi.Facebook.User.LAST_NAME, user.getLastName());
+            jsonObject.put(Constants.JsonApi.Facebook.User.NAME, user.getName());
+            jsonObject.put(Constants.JsonApi.Facebook.User.USERNAME, user.getUsername());
+            jsonObject.put(Constants.JsonApi.Facebook.User.LOCATION, user.getLocation());
+            jsonObject.put(Constants.JsonApi.Facebook.User.LINK, user.getLink());
+            jsonObject.put(Constants.JsonApi.Facebook.User.ID, user.getId());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        Log.d(TAG, "SENDING JSON TO OUR SERVER: " + jsonObject.toString());
+
         ResourceRequest request = new ResourceRequest(
                 listener,
                 Request.Method.POST,
-                Constants.Url.SIGNUP_URL,
+                Constants.Url.FACEBOOK_LOGIN_URL,
                 jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -54,11 +58,8 @@ public class RegistrationRequester {
                         try {
                             boolean success = jsonObject.getBoolean(Constants.JsonApi.Response.SUCCESS);
                             if (success) {
-                                ApiKey apiKey = ApiKeyDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.API_KEY));
-                                User user = UserDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.USER));
-                                listener.onRegistration(user, apiKey);
-                            } else {
-                                listener.onRegistrationFailure(jsonObject.getString(Constants.JsonApi.Response.MESSAGE));
+                                // TODO serialize stuff
+                                listener.onLoginWithFacebook();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -69,5 +70,4 @@ public class RegistrationRequester {
 
         NiupiaoApplication.getRequestQueue().add(request);
     }
-
 }

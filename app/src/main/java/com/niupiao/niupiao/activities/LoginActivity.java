@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,15 +22,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.facebook.Request;
+import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
+import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.models.ApiKey;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.LoginRequester;
+import com.niupiao.niupiao.requesters.LoginWithFacebookRequester;
 
 import java.util.Arrays;
 
@@ -39,6 +44,7 @@ import java.util.Arrays;
  */
 public class LoginActivity extends Activity implements
         LoginRequester.OnLoginListener,
+        LoginWithFacebookRequester.OnLoginWithFacebookListener,
         Session.StatusCallback {
 
     public static final String[] FACEBOOK_PERMISSIONS = new String[]{"public_profile"};
@@ -71,8 +77,37 @@ public class LoginActivity extends Activity implements
     }
 
     @Override
-    public void call(Session session, SessionState sessionState, Exception e) {
+    public void onLoginWithFacebook() {
 
+    }
+
+    @Override
+    public void call(Session session, SessionState sessionState, Exception e) {
+        if (session != null && session.isOpened()) {
+            Log.d("LoginActivity", "Facebook called back!!!!!");
+            makeMeRequest(session);
+        }
+    }
+
+    private void makeMeRequest(final Session session) {
+        // Make an API call to get user data and define a
+        // new callback to handle the response.
+        Request request = Request.newMeRequest(session,
+                new Request.GraphUserCallback() {
+                    @Override
+                    public void onCompleted(GraphUser user, Response response) {
+                        // If the response is successful
+                        if (session == Session.getActiveSession()) {
+                            if (user != null) {
+                                LoginWithFacebookRequester.login(LoginActivity.this, user);
+                            }
+                        }
+                        if (response.getError() != null) {
+                            // Handle errors, will do so later.
+                        }
+                    }
+                });
+        request.executeAsync();
     }
 
     @Override
@@ -118,6 +153,8 @@ public class LoginActivity extends Activity implements
         setContentView(R.layout.activity_login);
 
         uiHelper = new UiLifecycleHelper(this, this);
+        uiHelper.onCreate(savedInstanceState);
+
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.et_username);
         mPasswordView = (EditText) findViewById(R.id.et_password);

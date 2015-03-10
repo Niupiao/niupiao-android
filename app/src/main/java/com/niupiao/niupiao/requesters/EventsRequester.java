@@ -19,27 +19,6 @@ import java.util.Map;
  */
 public class EventsRequester {
 
-    /**
-     * Rails controller will check for this key in params, to see what is being requested.
-     */
-    public static final String REQUEST_TYPE_HEADER = "request_type";
-
-    /**
-     * A value for the request type.
-     */
-    public static final String ON_SALE = "on_sale";
-
-    /**
-     * A value for the request type.
-     */
-    public static final String COMING_SOON = "coming_soon";
-
-    /**
-     * A value for the request type.
-     */
-    public static final String RECOMMENDED = "recommended";
-
-
     public interface OnEventsRequestedListener extends ResourceCallback {
         public void onEventsLoaded(List<Event> events);
 
@@ -51,9 +30,9 @@ public class EventsRequester {
 
     }
 
-    private static Map<String, String> specialRequest(String value) {
+    private static Map<String, String> getHeadersWithRequestType(String requestType) {
         Map<String, String> map = new HashMap<>(1);
-        map.put(REQUEST_TYPE_HEADER, value);
+        map.put(Constants.JsonApi.Event.HEADER_KEY_REQUEST_TYPE, requestType);
         return map;
     }
 
@@ -87,7 +66,7 @@ public class EventsRequester {
                         listener.onOnSaleEventsLoaded(events);
                     }
                 },
-                specialRequest(ON_SALE)
+                getHeadersWithRequestType(Constants.JsonApi.Event.HEADER_VALUE_EVENT_ON_SALE)
         );
         NiupiaoApplication.getRequestQueue().add(request);
     }
@@ -105,7 +84,7 @@ public class EventsRequester {
                         listener.onComingSoonEventsLoaded(events);
                     }
                 },
-                specialRequest(COMING_SOON)
+                getHeadersWithRequestType(Constants.JsonApi.Event.HEADER_VALUE_EVENT_COMING_SOON)
         );
         NiupiaoApplication.getRequestQueue().add(request);
     }
@@ -123,7 +102,7 @@ public class EventsRequester {
                         listener.onRecommendedEventsLoaded(events);
                     }
                 },
-                specialRequest(RECOMMENDED)
+                getHeadersWithRequestType(Constants.JsonApi.Event.HEADER_VALUE_EVENT_RECOMMENDED)
         );
         NiupiaoApplication.getRequestQueue().add(request);
     }

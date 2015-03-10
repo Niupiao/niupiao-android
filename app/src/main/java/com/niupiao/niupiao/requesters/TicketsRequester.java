@@ -21,22 +21,6 @@ public class TicketsRequester {
 
     public static final String TAG = TicketsRequester.class.getSimpleName();
 
-    /**
-     * Rails controller will check for this key in params, to see what is being requested.
-     */
-    public static final String REQUEST_TYPE_HEADER = "request_type";
-
-    /**
-     * A value for the request type.
-     */
-    public static final String PAST = "past";
-
-    /**
-     * A value for the request type.
-     */
-    public static final String UPCOMING = "upcoming";
-
-
     public interface OnTicketsLoadedListener extends ResourceCallback {
         public void onTicketsLoaded(List<Event> tickets);
 
@@ -75,7 +59,7 @@ public class TicketsRequester {
                         listener.onUpcomingTicketsLoaded(tickets);
                     }
                 },
-                specialRequest(UPCOMING)
+                getHeadersWithRequestType(Constants.JsonApi.Ticket.HEADER_VALUE_TICKET_UPCOMING)
         );
         NiupiaoApplication.getRequestQueue().add(request);
     }
@@ -93,14 +77,14 @@ public class TicketsRequester {
                         listener.onPastTicketsLoaded(tickets);
                     }
                 },
-                specialRequest(PAST)
+                getHeadersWithRequestType(Constants.JsonApi.Ticket.HEADER_VALUE_TICKET_PAST)
         );
         NiupiaoApplication.getRequestQueue().add(request);
     }
 
-    private static Map<String, String> specialRequest(String value) {
+    private static Map<String, String> getHeadersWithRequestType(String requestType) {
         Map<String, String> map = new HashMap<>(1);
-        map.put(REQUEST_TYPE_HEADER, value);
+        map.put(Constants.JsonApi.Ticket.HEADER_KEY_REQUEST_TYPE, requestType);
         return map;
     }
 

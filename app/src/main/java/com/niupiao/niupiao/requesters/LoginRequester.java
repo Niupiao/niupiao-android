@@ -33,8 +33,8 @@ public class LoginRequester {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject();
-            jsonObject.put("username", username);
-            jsonObject.put("password", password);
+            jsonObject.put(Constants.JsonApi.Login.USERNAME, username);
+            jsonObject.put(Constants.JsonApi.Login.PASSWORD, password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -49,13 +49,13 @@ public class LoginRequester {
                     public void onResponse(JSONObject jsonObject) {
                         Log.d(TAG, jsonObject.toString());
                         try {
-                            boolean success = jsonObject.getBoolean("success");
+                            boolean success = jsonObject.getBoolean(Constants.JsonApi.Response.SUCCESS);
                             if (success) {
-                                ApiKey apiKey = ApiKeyDeserializer.fromJsonObject(jsonObject.getJSONObject("api_key"));
-                                User user = UserDeserializer.fromJsonObject(jsonObject.getJSONObject("user"));
+                                ApiKey apiKey = ApiKeyDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.API_KEY));
+                                User user = UserDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.USER));
                                 callback.onLogin(apiKey, user);
                             } else {
-                                callback.onLoginFailure(jsonObject.getString("message"));
+                                callback.onLoginFailure(jsonObject.getString(Constants.JsonApi.Response.MESSAGE));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

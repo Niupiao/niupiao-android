@@ -57,7 +57,7 @@ public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment imple
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.linear_layout_with_list_view, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.linear_layout_with_refreshable_list_view, container, false);
         listView = (ListView) root.findViewById(R.id.list_view);
         listView.setAdapter(new MyTicketsAdapter(getActivity(), R.layout.list_view_item_my_ticket));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

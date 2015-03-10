@@ -152,7 +152,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="40dp"
                     android:layout_toRightOf="@id/event_info_general_price_button"
-                    android:background="@drawable/blueminus" />
+                    android:background="@drawable/blue_minus" />
 
                 <TextView
                     android:id="@+id/event_info_general_number_tickets"
@@ -172,7 +172,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="40dp"
                     android:layout_toRightOf="@id/event_info_general_number_tickets"
-                    android:background="@drawable/blueplus" />
+                    android:background="@drawable/blue_plus" />
 
                 <View
                     android:id="@+id/event_info_divider_line"

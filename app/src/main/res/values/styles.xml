@@ -5,6 +5,93 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    <style name="Login">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Login.ProgressBar" parent="android:Widget.ProgressBar.Large">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="Login.Logo">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:maxHeight">200dp</item>
+        <item name="android:src">@drawable/login_logo</item>
+    </style>
+
+    <style name="Login.RememberMe">
+        <item name="android:hint">@string/remember_me</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Login.Button">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="Login.Button.Login">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:background">@drawable/button_round_corner</item>
+        <item name="android:text">@string/action_login</item>
+        <item name="android:textColor">@color/niupiao_white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Login.Button.LoginFacebook">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="Login.Button.Register">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginRight">18dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:text">@string/register</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Login.Button.ForgotPassword">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginRight">18dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:text">@string/forgot_password</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+
+    <style name="Login.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="Login.Username" parent="Login.EditText">
+        <item name="android:background">@drawable/edit_text_top_rounded</item>
+        <item name="android:hint">@string/prompt_email</item>
+    </style>
+
+    <style name="Login.Password" parent="Login.EditText">
+        <item name="android:background">@drawable/edit_text_bottom_rounded</item>
+        <item name="android:hint">@string/prompt_password</item>
+        <item name="android:imeActionLabel">@string/action_sign_in_short</item>
+        <item name="android:imeOptions">actionUnspecified</item>
+        <item name="android:inputType">textPassword</item>
+
+    </style>
+
+
     <style name="EventInfo"></style>
 
     <style name="EventInfo.TicketCounterButton">
@@ -68,9 +155,6 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_white</item>
     </style>
-
-
-
 
 
 </resources>

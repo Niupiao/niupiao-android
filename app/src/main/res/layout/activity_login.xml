@@ -2,142 +2,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginbackground"
+    android:background="@drawable/login_background"
     tools:context=".LoginActivity">
 
     <ProgressBar
         android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
+        style="@style/Login.ProgressBar" />
 
-    <ScrollView
+    <RelativeLayout
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/email_login_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            >
+        <ImageView
+            android:id="@+id/iv_login_logo"
+            style="@style/Login.Logo"
+            android:contentDescription="@string/content_description_logo" />
 
-            <ImageView
-                android:id="@+id/login_logo"
-                android:layout_marginTop="15dp"
-                android:maxHeight="200dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="true"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/loginlogo" />
+        <EditText
+            android:id="@+id/et_username"
+            style="@style/Login.Username"
+            android:layout_below="@id/iv_login_logo" />
 
-            <EditText
-                android:id="@+id/login_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/login_logo"
-                android:layout_alignLeft="@+id/login_facebook_button"
-                android:layout_alignRight="@+id/login_facebook_button"
-                android:hint="@string/prompt_email"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:background="@drawable/edit_text_top_rounded"
-                android:gravity="center"/>
+        <EditText
+            android:id="@+id/et_password"
+            style="@style/Login.Password"
+            android:layout_below="@id/et_username"
+            android:imeActionId="@+id/login" />
 
-            <EditText
-                android:id="@+id/login_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/login_username"
-                android:layout_alignLeft="@+id/login_facebook_button"
-                android:layout_alignRight="@+id/login_facebook_button"
-                android:hint="@string/prompt_password"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:background="@drawable/edit_text_bottom_rounded"
-                android:gravity="center"/>
+        <CheckBox
+            android:id="@+id/cb_remember_me"
+            style="@style/Login.RememberMe"
+            android:layout_below="@id/et_password" />
 
-            <CheckBox
-                android:id="@+id/login_remember_me"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/login_password"
-                android:layout_alignLeft="@+id/login_facebook_button"
-                android:hint="@string/remember_me"
-                android:textSize="20sp"/>
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/Login.Button.Login"
+            android:layout_below="@id/cb_remember_me" />
 
-            <Button
-                android:id="@+id/login_login_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/login_remember_me"
-                android:layout_alignLeft="@+id/login_facebook_button"
-                android:layout_alignRight="@+id/login_facebook_button"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_login"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="#ffffff"
-                android:background="@drawable/button_round_corner"/>
+        <com.facebook.widget.LoginButton
+            android:id="@+id/btn_facebook_login"
+            style="@style/Login.Button.LoginFacebook"
+            android:layout_below="@id/btn_login" />
 
-            <ImageButton
-                android:id="@+id/login_facebook_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/login_login_button"
-                android:layout_marginTop="16dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/facebook"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                />
+        <Button
+            android:id="@+id/btn_register"
+            style="@style/Login.Button.Register"
+            android:layout_below="@id/btn_facebook_login" />
 
-            <View
-                android:id="@+id/dummyloginview"
-                android:layout_width="0px"
-                android:layout_height="0px"
-                android:layout_centerHorizontal="true"/>
-
-            <Button
-                android:id="@+id/login_register_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/login_facebook_button"
-                android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@id/dummyloginview"
-                android:layout_marginRight="8dp"
-                android:text="@string/register"
-                android:textSize="18sp"
-                android:background="@drawable/button_transparent_right_border"
-                android:textStyle="bold"
-                android:stateListAnimator="@null"
-                />
-
-            <Button
-                android:id="@+id/login_forgotpassword_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/login_facebook_button"
-                android:layout_toRightOf="@id/login_register_button"
-                android:layout_alignBaseline="@id/login_register_button"
-                android:background="@android:color/transparent"
-                android:stateListAnimator="@null"
-                android:text="@string/forgot_password"
-                android:textSize="18sp"
-                />
-        </RelativeLayout>
-    </ScrollView>
+        <Button
+            android:id="@+id/btn_forgot_password"
+            style="@style/Login.Button.ForgotPassword"
+            android:layout_below="@id/btn_facebook_login"
+            android:layout_toEndOf="@+id/btn_register"
+            android:layout_toRightOf="@+id/btn_register" />
+    </RelativeLayout>
 
 </RelativeLayout>

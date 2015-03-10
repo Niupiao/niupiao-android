@@ -19,14 +19,6 @@ import org.json.JSONObject;
  */
 public class RegistrationRequester {
 
-    // Rails params keys
-    public static final String PARAM_LEGAL_NAME = "legal_name";
-    public static final String PARAM_USERNAME = "username";
-    public static final String PARAM_CELL_PHONE = "cell_phone";
-    public static final String PARAM_EMAIL = "email";
-    public static final String PARAM_PASSWORD = "password";
-    public static final String PARAM_PASSWORD_CONFIRM = "password_confirm";
-
     private static final String TAG = RegistrationRequester.class.getSimpleName();
 
     public interface OnRegistrationListener extends VolleyCallback {
@@ -40,12 +32,12 @@ public class RegistrationRequester {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject();
-            jsonObject.put(PARAM_LEGAL_NAME, legalName);
-            jsonObject.put(PARAM_USERNAME, username);
-            jsonObject.put(PARAM_CELL_PHONE, cellPhone);
-            jsonObject.put(PARAM_EMAIL, email);
-            jsonObject.put(PARAM_PASSWORD, password);
-            jsonObject.put(PARAM_PASSWORD_CONFIRM, passwordConfirm);
+            jsonObject.put(Constants.JsonApi.Register.LEGAL_NAME, legalName);
+            jsonObject.put(Constants.JsonApi.Register.USERNAME, username);
+            jsonObject.put(Constants.JsonApi.Register.CELL_PHONE, cellPhone);
+            jsonObject.put(Constants.JsonApi.Register.EMAIL, email);
+            jsonObject.put(Constants.JsonApi.Register.PASSWORD, password);
+            jsonObject.put(Constants.JsonApi.Register.PASSWORD_CONFIRM, passwordConfirm);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -53,20 +45,20 @@ public class RegistrationRequester {
         ResourceRequest request = new ResourceRequest(
                 listener,
                 Request.Method.POST,
-                Constants.Url.SIGNUP_URL,
+                Constants.JsonApi.EndPoints.SIGNUP_URL,
                 jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
                         Log.d(TAG, jsonObject.toString());
                         try {
-                            boolean success = jsonObject.getBoolean("success");
+                            boolean success = jsonObject.getBoolean(Constants.JsonApi.Response.SUCCESS);
                             if (success) {
-                                ApiKey apiKey = ApiKeyDeserializer.fromJsonObject(jsonObject.getJSONObject("api_key"));
-                                User user = UserDeserializer.fromJsonObject(jsonObject.getJSONObject("user"));
+                                ApiKey apiKey = ApiKeyDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.API_KEY));
+                                User user = UserDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.USER));
                                 listener.onRegistration(user, apiKey);
                             } else {
-                                listener.onRegistrationFailure(jsonObject.getString("message"));
+                                listener.onRegistrationFailure(jsonObject.getString(Constants.JsonApi.Response.MESSAGE));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

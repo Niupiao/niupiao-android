@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.adapters.ViewPagerAdapter;
 
@@ -64,13 +65,16 @@ public class CheckoutFragment extends Fragment {
 
         // Initialize fragments
         List<Fragment> fragments = new ArrayList<>(3);
-        fragments.add(TransferTicketsFragment.newInstance());
-        fragments.add(PaymentInfoFragment.newInstance());
-        fragments.add(ConfirmPurchaseFragment.newInstance());
+        fragments.add(0, TransferTicketsFragment.newInstance());
+        fragments.add(1, PaymentInfoFragment.newInstance());
+        fragments.add(2, ConfirmPurchaseFragment.newInstance());
 
         // Initialize the ViewPager and set an adapter
         pager = (ViewPager) root.findViewById(R.id.pager);
-        pager.setAdapter(new ViewPagerAdapter(getFragmentManager(), fragments));
+        pager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), fragments));
+
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) root.findViewById(R.id.tabs);
+        tabs.setViewPager(pager);
 
         return root;
     }

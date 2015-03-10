@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Strings related to payments -->
-    <string name="transfer_title">TRANSFER TICKETS</string>
+    <string name="title_transfer">TRANSFER TICKETS</string>
+    <string name="title_payment_method">PAYMENT METHOD</string>
+    <string name="title_confirmation">CONFIRMATION</string>
+
     <string name="transfer_category_type">TYPE</string>
     <string name="transfer_category_me">ME</string>
     <string name="transfer_category_name">RECIPIENT NAME</string>

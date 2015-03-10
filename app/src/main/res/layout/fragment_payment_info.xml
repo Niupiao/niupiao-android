@@ -7,6 +7,7 @@
     <TextView
         android:id="@+id/title"
         style="@style/Payment.TextView.Title"
-        android:text="@string/title_transfer" />
+        android:text="@string/title_payment_method" />
+
 
 </LinearLayout>

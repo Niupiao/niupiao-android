@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/qrcode"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/tv_this_is_your_ticket"
@@ -21,8 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/iv_qrcode"
-        android:text="@string/this_is_your_ticket"/>
-    
+        android:text="@string/this_is_your_ticket" />
+
     <TextView
         android:id="@+id/tv_ticket_type"
         android:layout_marginTop="15dp"
@@ -31,7 +31,7 @@
         android:layout_below="@id/tv_this_is_your_ticket"
         android:layout_centerHorizontal="true"
         android:textSize="40dp"
-        android:text="@string/general_type"/>
+        android:text="@string/general_type" />
 
     <TextView
         android:id="@+id/tv_ticket_name"
@@ -40,7 +40,7 @@
         android:layout_below="@id/tv_ticket_type"
         android:layout_centerHorizontal="true"
         android:textSize="40dp"
-        android:text="@string/ticket_name"/>
+        android:text="@string/ticket_name" />
 
     <TextView
         android:id="@+id/tv_ticket_allow"
@@ -49,5 +49,5 @@
         android:layout_below="@id/tv_ticket_name"
         android:layout_centerHorizontal="true"
         android:textSize="40dp"
-        android:text="@string/allows_for_entry_default"/>
+        android:text="@string/allows_for_entry_default" />
 </RelativeLayout>

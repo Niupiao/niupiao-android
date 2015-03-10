@@ -35,6 +35,7 @@ public class Constants {
 
             /**
              * TODO use exceptions
+             *
              * @param path must start with '/'
              */
             public static String fullUrl(String path) {

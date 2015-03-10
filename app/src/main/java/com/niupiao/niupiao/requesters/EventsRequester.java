@@ -39,7 +39,7 @@ public class EventsRequester {
     public static void loadEvents(final OnEventsRequestedListener listener) {
         ResourcesRequest request = new ResourcesRequest(
                 listener,
-                Constants.Url.TICKETS_URL,
+                Constants.JsonApi.EndPoints.TICKETS_URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {
@@ -56,7 +56,7 @@ public class EventsRequester {
     public static void loadOnSaleEvents(final OnEventsRequestedListener listener) {
         ResourcesRequest request = new ResourcesRequest(
                 listener,
-                Constants.Url.EVENTS_URL,
+                Constants.JsonApi.EndPoints.EVENTS_URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {
@@ -74,7 +74,7 @@ public class EventsRequester {
     public static void loadComingSoonEvents(final OnEventsRequestedListener listener) {
         ResourcesRequest request = new ResourcesRequest(
                 listener,
-                Constants.Url.EVENTS_URL,
+                Constants.JsonApi.EndPoints.EVENTS_URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {
@@ -92,7 +92,7 @@ public class EventsRequester {
     public static void loadRecommendedEvents(final OnEventsRequestedListener listener) {
         ResourcesRequest request = new ResourcesRequest(
                 listener,
-                Constants.Url.EVENTS_URL,
+                Constants.JsonApi.EndPoints.EVENTS_URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {

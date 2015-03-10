@@ -32,7 +32,7 @@ public class TicketsRequester {
     public static void loadTickets(final OnTicketsLoadedListener listener) {
         ResourcesRequest request = new ResourcesRequest(
                 listener,
-                Constants.Url.TICKETS_URL,
+                Constants.JsonApi.EndPoints.TICKETS_URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {
@@ -49,7 +49,7 @@ public class TicketsRequester {
     public static void loadUpcomingTickets(final OnTicketsLoadedListener listener) {
         ResourcesRequest request = new ResourcesRequest(
                 listener,
-                Constants.Url.TICKETS_URL,
+                Constants.JsonApi.EndPoints.TICKETS_URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {
@@ -67,7 +67,7 @@ public class TicketsRequester {
     public static void loadPastTickets(final OnTicketsLoadedListener listener) {
         ResourcesRequest request = new ResourcesRequest(
                 listener,
-                Constants.Url.TICKETS_URL,
+                Constants.JsonApi.EndPoints.TICKETS_URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {

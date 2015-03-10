@@ -45,7 +45,7 @@ public class RegistrationRequester {
         ResourceRequest request = new ResourceRequest(
                 listener,
                 Request.Method.POST,
-                Constants.Url.SIGNUP_URL,
+                Constants.JsonApi.EndPoints.SIGNUP_URL,
                 jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override

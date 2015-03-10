@@ -74,7 +74,7 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
 
         // Set labels and images
         NetworkImageView image = (NetworkImageView) root.findViewById(R.id.event_image);
-        image.setImageUrl(Constants.Url.fullUrl(event.getImagePath()), ImageLoaderHelper.getInstance().getImageLoader());
+        image.setImageUrl(Constants.JsonApi.EndPoints.fullUrl(event.getImagePath()), ImageLoaderHelper.getInstance().getImageLoader());
         TextView name = (TextView) root.findViewById(R.id.tv_event_title);
         // TODO do something with subtitle
         TextView subtitle = (TextView) root.findViewById(R.id.tv_event_subtitle);

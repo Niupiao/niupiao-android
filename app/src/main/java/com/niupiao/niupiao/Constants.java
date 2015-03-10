@@ -24,6 +24,24 @@ public class Constants {
      */
     public final static class JsonApi {
 
+        public final static class EndPoints {
+
+            public static final String BASE_URL = "https://niupiao-rails.herokuapp.com"; //"http://localhost:3000";
+            public static final String TICKETS_URL = BASE_URL + "/me/tickets.json";
+            public static final String EVENTS_URL = BASE_URL + "/events.json";
+            public static final String SIGNUP_URL = BASE_URL + "/signup.json";
+            public static final String FACEBOOK_LOGIN_URL = BASE_URL + "/facebooklogin.json";
+            public static final String LOGIN_URL = BASE_URL + "/login.json";
+
+            /**
+             * TODO use exceptions
+             * @param path must start with '/'
+             */
+            public static String fullUrl(String path) {
+                return BASE_URL + path;
+            }
+        }
+
         /**
          * Constants contained in server responses.
          */
@@ -92,25 +110,4 @@ public class Constants {
 
     }
 
-    /**
-     * Contains server JSON endpoints.
-     */
-    public final static class Url {
-
-        public static final String BASE_URL = "https://niupiao-rails.herokuapp.com"; //"http://localhost:3000";
-        public static final String LOGIN_URL = BASE_URL + "/login.json";
-        public static final String FACEBOOK_LOGIN_URL = BASE_URL + "/facebooklogin.json";
-        public static final String SIGNUP_URL = BASE_URL + "/signup.json";
-        public static final String EVENTS_URL = BASE_URL + "/events.json";
-        public static final String TICKETS_URL = BASE_URL + "/me/tickets.json";
-
-        /**
-         * TODO use exceptions
-         * @param path must start with '/'
-         */
-        public static String fullUrl(String path) {
-            return BASE_URL + path;
-        }
-
-    }
 }

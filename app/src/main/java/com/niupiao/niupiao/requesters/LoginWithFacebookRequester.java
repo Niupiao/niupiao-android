@@ -7,10 +7,6 @@ import com.android.volley.Response;
 import com.facebook.model.GraphUser;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.NiupiaoApplication;
-import com.niupiao.niupiao.deserializers.ApiKeyDeserializer;
-import com.niupiao.niupiao.deserializers.UserDeserializer;
-import com.niupiao.niupiao.models.ApiKey;
-import com.niupiao.niupiao.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,7 +45,7 @@ public class LoginWithFacebookRequester {
         ResourceRequest request = new ResourceRequest(
                 listener,
                 Request.Method.POST,
-                Constants.Url.FACEBOOK_LOGIN_URL,
+                Constants.JsonApi.EndPoints.FACEBOOK_LOGIN_URL,
                 jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override

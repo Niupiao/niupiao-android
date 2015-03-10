@@ -42,7 +42,7 @@ public class LoginRequester {
         ResourceRequest request = new ResourceRequest(
                 callback,
                 Request.Method.POST,
-                Constants.Url.LOGIN_URL,
+                Constants.JsonApi.EndPoints.LOGIN_URL,
                 jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override

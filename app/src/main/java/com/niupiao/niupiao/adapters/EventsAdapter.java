@@ -53,7 +53,7 @@ public class EventsAdapter extends ParcelableArrayAdapter<Event> {
         String dateTime = event.getDate();
 
         NetworkImageView image = viewHolder.image;
-        image.setImageUrl(Constants.Url.fullUrl(event.getImagePath()), ImageLoaderHelper.getInstance().getImageLoader());
+        image.setImageUrl(Constants.JsonApi.EndPoints.fullUrl(event.getImagePath()), ImageLoaderHelper.getInstance().getImageLoader());
 
         viewHolder.month.setText(DateUtils.format(dateTime, DateUtils.FORMAT_MONTH).toUpperCase());
         viewHolder.day.setText(DateUtils.format(dateTime, DateUtils.FORMAT_DAY_OF_MONTH));

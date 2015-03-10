@@ -58,7 +58,10 @@ public class LoginWithFacebookRequester {
                         try {
                             boolean success = jsonObject.getBoolean(Constants.JsonApi.Response.SUCCESS);
                             if (success) {
-                                // TODO serialize stuff
+                                /**
+                                 * TODO server will pass back {@link com.niupiao.niupiao.models.User} and {@link com.niupiao.niupiao.models.ApiKey}
+                                 * so we can serialize them and pass back to listener
+                                 */
                                 listener.onLoginWithFacebook();
                             }
                         } catch (JSONException e) {

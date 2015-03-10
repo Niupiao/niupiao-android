@@ -78,7 +78,7 @@ public class LoginActivity extends Activity implements
 
     @Override
     public void onLoginWithFacebook() {
-
+        // TODO JSON API will create a Niupiao account associated to a the FB account, then respond with the user and api key
     }
 
     @Override

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_payment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e5e5e5"
+    >
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/Payment.TextView.Title"
+            android:text="@string/title_payment_method" />
+
+    <RelativeLayout
+        android:id="@+id/rl_visa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/thinbottomtopborder">
+
+        <ImageView
+            android:id="@+id/iv_visa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/visa"/>
+
+        <TextView
+            android:id="@+id/tv_visa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_visa"
+            android:layout_centerVertical="true"
+            android:textColor="#d5d5d5"
+            android:text="ending in 0000"/>
+
+        <CheckBox
+            android:id="@+id/cb_visa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:button="@drawable/payments_radio_button"
+            />
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_paypal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_visa"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/thinbottomtopborder">
+
+        <ImageView
+            android:id="@+id/iv_paypal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/paypal"/>
+
+        <CheckBox
+            android:id="@+id/cb_paypal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:button="@drawable/payments_radio_button"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_add_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_paypal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="#434343">
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:text="@string/add_new_card"
+            android:textSize="20dp"
+            android:textColor="#ffffff"/>
+
+        <CheckBox
+            android:id="@+id/cb_add_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:button="@drawable/payments_radio_button"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_add_card_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_add_card"
+        android:background="#e2e2e2">
+
+        <EditText
+            android:id="@+id/et_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:minHeight="40dp"
+            android:textSize="20dp"
+            android:hint="@string/full_name"
+            android:background="@drawable/thinallborder"/>
+
+        <EditText
+            android:id="@+id/et_card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_full_name"
+            android:paddingLeft="5dp"
+            android:minHeight="40dp"
+            android:textSize="20dp"
+            android:hint="@string/card_number"
+            android:background="@drawable/thinallborder"/>
+        
+        <LinearLayout
+            android:id="@+id/ll_add_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/et_card_number">
+            <EditText
+                android:id="@+id/et_exp_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:minHeight="40dp"
+                android:minWidth="125dp"
+                android:textSize="20dp"
+                android:hint="@string/expiration_date"
+                android:background="@drawable/thinallborder"/>
+
+            <EditText
+                android:id="@+id/et_cvs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:minHeight="40dp"
+                android:textSize="20dp"
+                android:hint="@string/cvs"
+                android:background="@drawable/thinallborder"/>
+            </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_zip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_add_card"
+            android:paddingLeft="5dp"
+            android:minHeight="40dp"
+            android:textSize="20dp"
+            android:hint="@string/zip_code"
+            android:background="@drawable/thinallborder"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_save_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:background="@drawable/button_round_corner"
+        android:text="@string/save_card"
+        android:textSize="18sp"
+        android:layout_below="@id/rl_add_card_form" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="#434343">
+
+        <TextView
+            android:id="@+id/tv_cost"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="$0"
+            android:textSize="45dp"
+            android:textColor="@color/niupiao_blue"/>
+
+        <ImageButton
+            android:id="@+id/ib_payment_method"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/checkoutarrow"
+            android:background="@android:color/transparent"
+            android:maxHeight="80dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitEnd"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/tv_cost"
+            android:layout_alignBottom="@id/tv_cost"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -34,4 +34,16 @@
     <string name="transfer_type_general">GENERAL</string>
     <string name="transfer_type_vip">VIP</string>
 
+    <!--Payment Method-->
+    <string name="add_new_card">Add New Card</string>
+    <string name="full_name">Full Name (First Last)</string>
+    <string name="card_number">Card Number</string>
+    <string name="expiration_date">Expiration Date (mm/yy)</string>
+    <string name="cvs">CVS</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="save_card">Save Card</string>
+
+
+
+
 </resources>

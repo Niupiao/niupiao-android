@@ -5,12 +5,10 @@
     <string name="title_payment_method">PAYMENT METHOD</string>
     <string name="title_confirmation">CONFIRMATION</string>
 
-    <string name="transfer_category_type">TYPE</string>
+
     <string name="transfer_category_me">ME</string>
     <string name="transfer_category_name">RECIPIENT NAME</string>
     <string name="transfer_category_cell">RECIPIENT CELL</string>
-    <string name="transfer_type_general">GENERAL</string>
-    <string name="transfer_type_vip">VIP</string>
     <string name="transfer_recipient_name_hint">FIRST, LAST</string>
     <string name="transfer_recipient_cell_hint">(xxx)xxx-xxxx</string>
     <string name="transfer_payment_option_title">PAYMENT OPTION</string>
@@ -26,5 +24,14 @@
     <string name="transfer_state">State</string>
     <string name="transfer_zip">Zip</string>
     <string name="transfer_save_this_card">Save this Card</string>
+
+    <string name="transfer_select">SELECT RECIPIENT</string>
+    <string name="transfer_category_type">TYPE</string>
+    <string name="transfer_note">NOTE: Tickets will be sent to recipients upon purchase.
+    If no recipient is specified, the ticket will be sent to your phone. If you have multiple
+    tickets on your phone you may check in guests at the door. Tickets may not be transferred after
+    purchase.</string>
+    <string name="transfer_type_general">GENERAL</string>
+    <string name="transfer_type_vip">VIP</string>
 
 </resources>

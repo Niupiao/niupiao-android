@@ -1,12 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_transfer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#e5e5e5"
+    >
 
-    <TextView
-        android:id="@+id/title"
-        style="@style/Payment.TextView.Title"
-        android:text="@string/title_transfer" />
+    <RelativeLayout
+        android:id="@+id/rl_transfer_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/Payment.TextView.Title"
+            android:text="@string/title_transfer" />
+
+        <TextView
+            android:id="@+id/tv_type"
+            style="@style/Payment.TextView.Category"
+            android:text="@string/transfer_category_type"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_below="@id/tv_title"
+            />
+
+        <TextView
+            android:id="@+id/tv_select"
+            style="@style/Payment.TextView.Category"
+            android:text="@string/transfer_select"
+            android:layout_marginLeft="24dp"
+            android:layout_below="@id/tv_title"
+            android:layout_toRightOf="@id/tv_type"
+            />
+
+        <ImageView
+            android:id="@+id/iv_border"
+            android:layout_width="wrap_content"
+            android:layout_height="2px"
+            android:scaleType="fitXY"
+            android:src="@drawable/blackline"
+            android:layout_below="@id/tv_select"
+            />
+
+        <!-- Row 1 -->
+        <TextView
+            android:id="@+id/tv_no_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_border"
+            style="@style/Payment.TextView.General"
+            android:text="1"/>
+
+        <TextView
+            android:id="@+id/tv_general_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_type"
+            android:layout_alignBottom="@id/tv_no_1"
+            style="@style/Payment.TextView.General"
+            android:text="@string/transfer_type_general"/>
+
+        <ImageButton
+            android:id="@+id/ib_contacts_1"
+            style="@style/Payment.ImageButton.Contacts"
+            android:layout_toRightOf="@id/tv_general_1"
+            android:layout_alignBottom="@id/tv_no_1"
+            android:layout_alignLeft="@id/tv_select"/>
+
+        <!-- Row 2 -->
+        <TextView
+            android:id="@+id/tv_no_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_no_1"
+            style="@style/Payment.TextView.General"
+            android:text="2"/>
+
+        <TextView
+            android:id="@+id/tv_general_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_type"
+            android:layout_alignBottom="@id/tv_no_2"
+            style="@style/Payment.TextView.General"
+            android:text="@string/transfer_type_general"/>
+
+        <ImageButton
+            android:id="@+id/ib_contacts_2"
+            style="@style/Payment.ImageButton.Contacts"
+            android:layout_toRightOf="@id/tv_general_2"
+            android:layout_alignBottom="@id/tv_no_2"
+            android:layout_alignLeft="@id/tv_select"/>
+
+        <!-- Row 3 -->
+        <TextView
+            android:id="@+id/tv_no_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_no_2"
+            style="@style/Payment.TextView.General"
+            android:text="3"/>
+
+        <TextView
+            android:id="@+id/tv_general_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_type"
+            android:layout_alignBottom="@id/tv_no_3"
+            style="@style/Payment.TextView.General"
+            android:text="@string/transfer_type_general"/>
+
+        <ImageButton
+            android:id="@+id/ib_contacts_3"
+            style="@style/Payment.ImageButton.Contacts"
+            android:layout_toRightOf="@id/tv_general_3"
+            android:layout_alignBottom="@id/tv_no_3"
+            android:layout_alignLeft="@id/tv_select"/>
+
+        <!-- Row 4 -->
+        <TextView
+            android:id="@+id/tv_no_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_no_3"
+            style="@style/Payment.TextView.VIP"
+            android:text="4"/>
+
+        <TextView
+            android:id="@+id/tv_vip_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_type"
+            android:layout_alignBottom="@id/tv_no_4"
+            style="@style/Payment.TextView.VIP"
+            android:text="@string/transfer_type_vip"/>
+
+        <ImageButton
+            android:id="@+id/ib_contacts_4"
+            style="@style/Payment.ImageButton.Contacts"
+            android:layout_toRightOf="@id/tv_vip_4"
+            android:layout_alignBottom="@id/tv_no_4"
+            android:layout_alignLeft="@id/tv_select"/>
+
+        <!-- Row 5 -->
+        <TextView
+            android:id="@+id/tv_no_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_no_4"
+            style="@style/Payment.TextView.VIP"
+            android:text="5"/>
+
+        <TextView
+            android:id="@+id/tv_vip_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_type"
+            android:layout_alignBottom="@id/tv_no_5"
+            style="@style/Payment.TextView.VIP"
+            android:text="@string/transfer_type_vip"/>
+
+        <ImageButton
+            android:id="@+id/ib_contacts_5"
+            style="@style/Payment.ImageButton.Contacts"
+            android:layout_toRightOf="@id/tv_vip_5"
+            android:layout_alignBottom="@id/tv_vip_5"
+            android:layout_alignLeft="@id/tv_select"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Payment.TextView.Note"
+            android:text="@string/transfer_note"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_no_5"
+            />
+        </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@id/rl_transfer_main"
+        android:layout_alignParentBottom="true"
+        android:background="#434343">
+
+        <TextView
+            android:id="@+id/tv_cost"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="$0"
+            android:textSize="45dp"
+            android:textColor="@color/niupiao_blue"/>
+
+        <ImageButton
+            android:id="@+id/ib_payment_method"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/paymentmethodarrow"
+            android:background="@android:color/transparent"
+            android:maxHeight="80dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitEnd"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/tv_cost"
+            android:layout_alignBottom="@id/tv_cost"/>
+
+        </RelativeLayout>
+
+</RelativeLayout>

@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -54,14 +55,18 @@ public class LoginActivity extends Activity implements
     private boolean isAttemptingLogin = false;
 
     @Override
-    public void onLoginWithFacebook(LoginWithFacebookRequester.Status status) {
-        // TODO JSON API will create a Niupiao account associated to a the FB account, then respond with the user and api key
+    public void onLoginWithFacebook(LoginWithFacebookRequester.Status status, ApiKey apiKey, User user) {
         switch (status) {
             case USER_CREATED:
-                // TODO Go to LoginActivity
-                // Autofill the email edittext with user's FB email
+                // TODO fill email field
+                Toast.makeText(this, "Created user for " + user.getEmail(), Toast.LENGTH_LONG).show();
+                Log.d(TAG, "Created user for " + user.getEmail());
                 break;
-            case USER_LOGGED_IN:
+            case USER_EXISTS:
+                Toast.makeText(this, "User exists for " + user.getEmail(), Toast.LENGTH_LONG).show();
+                // TODO check if they still need a password or if they want to change their username
+                // TODO check ApiKey valid/non-null before logging in
+                onLogin(apiKey, user);
                 break;
         }
     }
@@ -153,7 +158,6 @@ public class LoginActivity extends Activity implements
             editor.apply();
         }
     }
-
 
 
     //////////////////////////////////////////////////////////////////////////

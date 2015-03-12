@@ -58,6 +58,7 @@ public class Constants {
          */
         public final static class Response {
             public static final String SUCCESS = "success";
+            public static final String STATUS = "status";
             public static final String MESSAGE = "message";
             public static final String USER = "user";
             public static final String API_KEY = "api_key";
@@ -66,19 +67,12 @@ public class Constants {
         /**
          * API constants for user registration.
          */
-        public final static class Register {
+        public final static class User {
             public static final String FIRST_NAME = "first_name";
             public static final String LAST_NAME = "last_name";
             public static final String EMAIL = "email";
             public static final String PASSWORD = "password";
-        }
-
-        /**
-         * API constants for logging in.
-         */
-        public final static class Login {
             public static final String USERNAME = "username";
-            public static final String PASSWORD = "password";
         }
 
         /**
@@ -101,7 +95,7 @@ public class Constants {
         }
 
         /**
-         * API keys pertaining to the Facebook API, e.g., its {@link com.facebook.model.GraphUser}.
+         * API keys that we use to pass data obtained from the Facebook API, e.g., its {@link com.facebook.model.GraphUser}.
          */
         public final static class Facebook {
             public final static class User {
@@ -116,6 +110,15 @@ public class Constants {
                 public static final String LINK = "link";
                 public static final String ID = "facebook_id";
             }
+
+            /**
+             * Status codes that server passes back when we try to login/register with Facebook
+             */
+            public final static class ResponseStatus {
+                public static final String USER_EXISTS = "user_exists";
+                public static final String USER_CREATED = "user_created";
+            }
+
         }
 
     }

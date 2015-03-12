@@ -12,7 +12,7 @@ import com.niupiao.niupiao.fragments.ViewPagerFragment;
 /**
  * Created by kevinchen on 3/9/15.
  */
-public class ConfirmPurchaseFragment extends ViewPagerFragment {
+public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

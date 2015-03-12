@@ -57,12 +57,10 @@ public class Constants {
          * API constants for user registration.
          */
         public final static class Register {
-            public static final String LEGAL_NAME = "legal_name";
-            public static final String USERNAME = "username";
-            public static final String CELL_PHONE = "cell_phone";
+            public static final String FIRST_NAME = "first_name";
+            public static final String LAST_NAME = "last_name";
             public static final String EMAIL = "email";
             public static final String PASSWORD = "password";
-            public static final String PASSWORD_CONFIRM = "password_confirm";
         }
 
         /**

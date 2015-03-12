@@ -22,9 +22,8 @@ import com.niupiao.niupiao.requesters.RegistrationRequester;
  */
 public class RegistrationActivity extends Activity implements RegistrationRequester.OnRegistrationListener {
 
-    private EditText legalNameEditText;
-    private EditText usernameEditText;
-    private EditText cellPhoneEditText;
+    private EditText firstNameEditText;
+    private EditText lastNameEditText;
     private EditText emailEditText;
     private EditText passwordEditText;
     private EditText passwordConfirmEditText;
@@ -55,9 +54,8 @@ public class RegistrationActivity extends Activity implements RegistrationReques
         TextView title = (TextView) findViewById(R.id.tv_title);
         title.setTypeface(font);
 
-        legalNameEditText = (EditText) findViewById(R.id.et_legal_name);
-        usernameEditText = (EditText) findViewById(R.id.et_username);
-        cellPhoneEditText = (EditText) findViewById(R.id.et_cell_phone);
+        firstNameEditText = (EditText) findViewById(R.id.et_first_name);
+        lastNameEditText = (EditText) findViewById(R.id.et_last_name);
         emailEditText = (EditText) findViewById(R.id.et_email);
         passwordEditText = (EditText) findViewById(R.id.et_password);
         passwordConfirmEditText = (EditText) findViewById(R.id.et_confirm_password);
@@ -75,8 +73,7 @@ public class RegistrationActivity extends Activity implements RegistrationReques
     }
 
     private boolean isValidFields() {
-        return isValidField(legalNameEditText) && isValidField(usernameEditText)
-                && isValidField(cellPhoneEditText) && isValidField(emailEditText)
+        return isValidField(firstNameEditText) && isValidField(lastNameEditText) && isValidField(emailEditText)
                 && isValidField(passwordEditText) && isValidField(passwordConfirmEditText)
                 && TextUtils.equals(passwordEditText.getText(), passwordConfirmEditText.getText());
     }
@@ -89,12 +86,10 @@ public class RegistrationActivity extends Activity implements RegistrationReques
     }
 
     private void register() {
-        String legalName = legalNameEditText.getText().toString();
-        String username = usernameEditText.getText().toString();
-        String cellPhone = cellPhoneEditText.getText().toString();
+        String firstName = firstNameEditText.getText().toString();
+        String lastName = lastNameEditText.getText().toString();
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-        String passwordConfirm = passwordConfirmEditText.getText().toString();
-        RegistrationRequester.register(this, legalName, username, cellPhone, email, password, passwordConfirm);
+        RegistrationRequester.register(this, firstName, lastName, email, password);
     }
 }

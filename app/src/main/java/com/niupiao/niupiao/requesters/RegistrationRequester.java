@@ -27,17 +27,19 @@ public class RegistrationRequester {
         public void onRegistrationFailure(String errorMessage);
     }
 
-    public static void register(final OnRegistrationListener listener, String legalName, String username, String cellPhone, String email, String password, String passwordConfirm) {
+    public static void register(final OnRegistrationListener listener,
+                                String firstName,
+                                String lastName,
+                                String email,
+                                String password) {
         // we provide our login credentials so server knows who's requesting an access token
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject();
-            jsonObject.put(Constants.JsonApi.Register.LEGAL_NAME, legalName);
-            jsonObject.put(Constants.JsonApi.Register.USERNAME, username);
-            jsonObject.put(Constants.JsonApi.Register.CELL_PHONE, cellPhone);
+            jsonObject.put(Constants.JsonApi.Register.FIRST_NAME, firstName);
+            jsonObject.put(Constants.JsonApi.Register.LAST_NAME, lastName);
             jsonObject.put(Constants.JsonApi.Register.EMAIL, email);
             jsonObject.put(Constants.JsonApi.Register.PASSWORD, password);
-            jsonObject.put(Constants.JsonApi.Register.PASSWORD_CONFIRM, passwordConfirm);
         } catch (JSONException e) {
             e.printStackTrace();
         }

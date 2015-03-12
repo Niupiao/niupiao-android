@@ -28,30 +28,11 @@
         android:layout_marginRight="30dp">
 
         <EditText
-            android:id="@+id/et_legal_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_top_rounded"
-            android:gravity="center_horizontal"
-            android:hint="@string/full_name_prompt"
-            android:maxLines="1" />
-
-        <EditText
-            android:id="@+id/et_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/et_legal_name"
-            android:background="@drawable/edit_text_white"
-            android:gravity="center_horizontal"
-            android:hint="@string/username_prompt"
-            android:maxLines="1" />
-
-        <EditText
             android:id="@+id/et_cell_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/et_username"
-            android:background="@drawable/edit_text_white"
+            android:background="@drawable/edit_text_top_rounded"
             android:gravity="center_horizontal"
             android:hint="@string/cell_phone_prompt"
             android:inputType="phone"

@@ -1,5 +1,6 @@
 package com.niupiao.niupiao.requesters;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -7,6 +8,10 @@ import com.android.volley.Response;
 import com.facebook.model.GraphUser;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.NiupiaoApplication;
+import com.niupiao.niupiao.deserializers.ApiKeyDeserializer;
+import com.niupiao.niupiao.deserializers.UserDeserializer;
+import com.niupiao.niupiao.models.ApiKey;
+import com.niupiao.niupiao.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,11 +24,33 @@ public class LoginWithFacebookRequester {
     private static final String TAG = LoginWithFacebookRequester.class.getSimpleName();
 
     public enum Status {
-        USER_LOGGED_IN, USER_CREATED;
+        USER_EXISTS(Constants.JsonApi.Facebook.ResponseStatus.USER_EXISTS),
+        USER_CREATED(Constants.JsonApi.Facebook.ResponseStatus.USER_CREATED);
+
+        private String status;
+
+        private Status(String status) {
+            this.status = status;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public static Status fromString(String s) {
+            if (s != null) {
+                for (Status status1 : Status.values()) {
+                    if (TextUtils.equals(s, status1.getStatus())) {
+                        return status1;
+                    }
+                }
+            }
+            return null;
+        }
     }
 
     public interface OnLoginWithFacebookListener extends VolleyCallback {
-        public void onLoginWithFacebook(Status status);
+        public void onLoginWithFacebook(Status status, ApiKey apiKey, User user);
     }
 
     public static void login(final OnLoginWithFacebookListener listener, GraphUser user) {
@@ -62,11 +89,10 @@ public class LoginWithFacebookRequester {
                         try {
                             boolean success = jsonObject.getBoolean(Constants.JsonApi.Response.SUCCESS);
                             if (success) {
-                                /**
-                                 * TODO server will pass back {@link com.niupiao.niupiao.models.User} and {@link com.niupiao.niupiao.models.ApiKey}
-                                 * so we can serialize them and pass back to listener
-                                 */
-                                listener.onLoginWithFacebook(Status.USER_CREATED);
+                                ApiKey apiKey = ApiKeyDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.API_KEY));
+                                User user = UserDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.USER));
+                                Status status = Status.fromString(jsonObject.getString(Constants.JsonApi.Response.STATUS));
+                                listener.onLoginWithFacebook(status, apiKey, user);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -33,8 +33,8 @@ public class LoginRequester {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject();
-            jsonObject.put(Constants.JsonApi.Login.USERNAME, username);
-            jsonObject.put(Constants.JsonApi.Login.PASSWORD, password);
+            jsonObject.put(Constants.JsonApi.User.USERNAME, username);
+            jsonObject.put(Constants.JsonApi.User.PASSWORD, password);
         } catch (JSONException e) {
             e.printStackTrace();
         }

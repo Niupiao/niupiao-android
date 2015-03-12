@@ -31,7 +31,9 @@ public class FacebookSessionHelper implements Session.StatusCallback {
         if (session != null && session.isOpened()) {
             Log.d(TAG, "Request email permission.......");
             // Make sure we get email permission
-            if (!permitsEmail(session)) requestEmail(session, listener);
+            requestPermissions(session, listener,
+                    Constants.FacebookApi.Permissions.EMAIL
+            );
             Log.d(TAG, "Sending FB info to our server.......");
             loginOrRegisterWithFacebook(session, listener);
         }
@@ -57,14 +59,12 @@ public class FacebookSessionHelper implements Session.StatusCallback {
         request.executeAsync();
     }
 
-    private static void requestEmail(Session session, LoginWithFacebookRequester.OnLoginWithFacebookListener listener) {
+    private static void requestPermissions(Session session,
+                                           LoginWithFacebookRequester.OnLoginWithFacebookListener listener,
+                                           String... permissions) {
         Session.NewPermissionsRequest newPermissionsRequest =
-                new Session.NewPermissionsRequest((Activity) listener, Arrays.asList(Constants.FacebookApi.Permissions.EMAIL));
+                new Session.NewPermissionsRequest((Activity) listener, Arrays.asList(permissions));
         session.requestNewReadPermissions(newPermissionsRequest);
-    }
-
-    public static boolean permitsEmail(Session session) {
-        return session.getPermissions().contains(Constants.FacebookApi.Permissions.EMAIL);
     }
 
 }

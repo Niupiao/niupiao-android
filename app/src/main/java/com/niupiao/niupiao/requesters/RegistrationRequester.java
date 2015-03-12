@@ -9,7 +9,6 @@ import com.niupiao.niupiao.NiupiaoApplication;
 import com.niupiao.niupiao.deserializers.ApiKeyDeserializer;
 import com.niupiao.niupiao.deserializers.UserDeserializer;
 import com.niupiao.niupiao.models.ApiKey;
-import com.niupiao.niupiao.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,7 +21,7 @@ public class RegistrationRequester {
     private static final String TAG = RegistrationRequester.class.getSimpleName();
 
     public interface OnRegistrationListener extends VolleyCallback {
-        public void onRegistration(User user, ApiKey apiKey);
+        public void onRegistration(com.niupiao.niupiao.models.User user, ApiKey apiKey);
 
         public void onRegistrationFailure(String errorMessage);
     }
@@ -36,10 +35,10 @@ public class RegistrationRequester {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject();
-            jsonObject.put(Constants.JsonApi.Register.FIRST_NAME, firstName);
-            jsonObject.put(Constants.JsonApi.Register.LAST_NAME, lastName);
-            jsonObject.put(Constants.JsonApi.Register.EMAIL, email);
-            jsonObject.put(Constants.JsonApi.Register.PASSWORD, password);
+            jsonObject.put(Constants.JsonApi.User.FIRST_NAME, firstName);
+            jsonObject.put(Constants.JsonApi.User.LAST_NAME, lastName);
+            jsonObject.put(Constants.JsonApi.User.EMAIL, email);
+            jsonObject.put(Constants.JsonApi.User.PASSWORD, password);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -57,7 +56,7 @@ public class RegistrationRequester {
                             boolean success = jsonObject.getBoolean(Constants.JsonApi.Response.SUCCESS);
                             if (success) {
                                 ApiKey apiKey = ApiKeyDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.API_KEY));
-                                User user = UserDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.USER));
+                                com.niupiao.niupiao.models.User user = UserDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.USER));
                                 listener.onRegistration(user, apiKey);
                             } else {
                                 listener.onRegistrationFailure(jsonObject.getString(Constants.JsonApi.Response.MESSAGE));

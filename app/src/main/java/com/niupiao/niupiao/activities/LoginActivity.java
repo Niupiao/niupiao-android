@@ -37,6 +37,7 @@ import com.niupiao.niupiao.requesters.LoginRequester;
 import com.niupiao.niupiao.requesters.LoginWithFacebookRequester;
 
 import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -46,6 +47,8 @@ public class LoginActivity extends Activity implements
         LoginRequester.OnLoginListener,
         LoginWithFacebookRequester.OnLoginWithFacebookListener,
         Session.StatusCallback {
+
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
     public static final String[] FACEBOOK_PERMISSIONS = new String[]{"public_profile"};
 

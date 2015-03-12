@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.adapters.ViewPagerAdapter;
+import com.niupiao.niupiao.widgets.NonSwipeableViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +61,8 @@ public class CheckoutFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_non_sliding_view_pager, container, false);
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_sliding_view_pager, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_non_sliding_view_pager, container, false);
+//        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_sliding_view_pager, container, false);
 
         // Initialize fragments
         List<Fragment> fragments = new ArrayList<>(3);
@@ -70,11 +71,8 @@ public class CheckoutFragment extends Fragment {
         fragments.add(2, ConfirmPurchaseFragment.newInstance());
 
         // Initialize the ViewPager and set an adapter
-        pager = (ViewPager) root.findViewById(R.id.pager);
+        pager = (NonSwipeableViewPager) root.findViewById(R.id.pager);
         pager.setAdapter(new ViewPagerAdapter(getChildFragmentManager(), fragments));
-
-        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) root.findViewById(R.id.tabs);
-        tabs.setViewPager(pager);
 
         return root;
     }

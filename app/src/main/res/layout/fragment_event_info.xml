@@ -222,7 +222,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="40dp"
                     android:layout_toRightOf="@id/event_info_vip_price_button"
-                    android:background="@drawable/orangeminus" />
+                    android:background="@drawable/orange_minus" />
 
                 <TextView
                     android:id="@+id/event_info_vip_number_tickets"
@@ -242,7 +242,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="40dp"
                     android:layout_toRightOf="@id/event_info_vip_number_tickets"
-                    android:background="@drawable/orangeplus" />
+                    android:background="@drawable/orange_plus" />
 
             </RelativeLayout>
 

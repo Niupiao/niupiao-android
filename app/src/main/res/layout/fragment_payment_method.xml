@@ -211,7 +211,7 @@
             android:layout_marginRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/checkoutarrow"
+            android:src="@drawable/checkout_arrow"
             android:background="@android:color/transparent"
             android:maxHeight="80dp"
             android:adjustViewBounds="true"

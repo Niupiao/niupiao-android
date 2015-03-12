@@ -18,8 +18,12 @@ public class LoginWithFacebookRequester {
 
     private static final String TAG = LoginWithFacebookRequester.class.getSimpleName();
 
+    public enum Status {
+        USER_LOGGED_IN, USER_CREATED;
+    }
+
     public interface OnLoginWithFacebookListener extends VolleyCallback {
-        public void onLoginWithFacebook();
+        public void onLoginWithFacebook(Status status);
     }
 
     public static void login(final OnLoginWithFacebookListener listener, GraphUser user) {
@@ -27,6 +31,10 @@ public class LoginWithFacebookRequester {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject();
+            Object email = user.getProperty("email");
+            if (email != null) {
+                jsonObject.put(Constants.JsonApi.Facebook.User.EMAIL, email.toString());
+            }
             jsonObject.put(Constants.JsonApi.Facebook.User.BIRTHDAY, user.getBirthday());
             jsonObject.put(Constants.JsonApi.Facebook.User.FIRST_NAME, user.getFirstName());
             jsonObject.put(Constants.JsonApi.Facebook.User.MIDDLE_NAME, user.getMiddleName());
@@ -58,7 +66,7 @@ public class LoginWithFacebookRequester {
                                  * TODO server will pass back {@link com.niupiao.niupiao.models.User} and {@link com.niupiao.niupiao.models.ApiKey}
                                  * so we can serialize them and pass back to listener
                                  */
-                                listener.onLoginWithFacebook();
+                                listener.onLoginWithFacebook(Status.USER_CREATED);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

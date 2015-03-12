@@ -17,6 +17,16 @@ public class Constants {
         public static final String ACCESS_TOKEN_EXPIRES_AT = "expires_at";
     }
 
+    public final static class FacebookApi {
+        public final static class Permissions {
+            public final static String EMAIL = "email";
+            public final static String PUBLIC_PROFILE = "public_profile";
+            public final static String[] getPermissions() {
+                return new String[] { EMAIL, PUBLIC_PROFILE };
+            }
+        }
+    }
+
     /**
      * Contains parameter keys used for POST requests.
      * The reason we have these all together in one file is to easily ensure they
@@ -95,6 +105,7 @@ public class Constants {
          */
         public final static class Facebook {
             public final static class User {
+                public static final String EMAIL = "email";
                 public static final String BIRTHDAY = "birthday";
                 public static final String FIRST_NAME = "first_name";
                 public static final String MIDDLE_NAME = "middle_name";

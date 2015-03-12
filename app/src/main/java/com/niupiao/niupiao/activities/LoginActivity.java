@@ -10,7 +10,6 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,12 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.facebook.Request;
-import com.facebook.Response;
 import com.facebook.Session;
-import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
-import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
@@ -37,7 +32,6 @@ import com.niupiao.niupiao.requesters.LoginRequester;
 import com.niupiao.niupiao.requesters.LoginWithFacebookRequester;
 
 import java.util.Arrays;
-import java.util.Map;
 
 
 /**
@@ -45,12 +39,9 @@ import java.util.Map;
  */
 public class LoginActivity extends Activity implements
         LoginRequester.OnLoginListener,
-        LoginWithFacebookRequester.OnLoginWithFacebookListener,
-        Session.StatusCallback {
+        LoginWithFacebookRequester.OnLoginWithFacebookListener {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
-
-    public static final String[] FACEBOOK_PERMISSIONS = new String[]{"public_profile"};
 
     // UI references.
     private EditText mUsernameView;
@@ -62,92 +53,17 @@ public class LoginActivity extends Activity implements
 
     private boolean isAttemptingLogin = false;
 
-    private void stopProgress() {
-        isAttemptingLogin = false;
-        showProgress(false);
-    }
-
-    private void onClickLogin() {
-        Session.StatusCallback statusCallback = this;
-        Session session = Session.getActiveSession();
-        if (!session.isOpened() && !session.isClosed()) {
-            session.openForRead(new Session.OpenRequest(this)
-                    .setPermissions(Arrays.asList("public_profile"))
-                    .setCallback(statusCallback));
-        } else {
-            Session.openActiveSession(this, true, statusCallback);
-        }
-    }
-
     @Override
-    public void onLoginWithFacebook() {
+    public void onLoginWithFacebook(LoginWithFacebookRequester.Status status) {
         // TODO JSON API will create a Niupiao account associated to a the FB account, then respond with the user and api key
-    }
-
-    @Override
-    public void call(Session session, SessionState sessionState, Exception e) {
-        if (session != null && session.isOpened()) {
-            Log.d("LoginActivity", "Facebook called back!!!!!");
-            makeMeRequest(session);
+        switch (status) {
+            case USER_CREATED:
+                // TODO Go to LoginActivity
+                // Autofill the email edittext with user's FB email
+                break;
+            case USER_LOGGED_IN:
+                break;
         }
-    }
-
-    private void makeMeRequest(final Session session) {
-        // Make an API call to get user data and define a
-        // new callback to handle the response.
-        Request request = Request.newMeRequest(session,
-                new Request.GraphUserCallback() {
-                    @Override
-                    public void onCompleted(GraphUser user, Response response) {
-                        // If the response is successful
-                        if (session == Session.getActiveSession()) {
-                            if (user != null) {
-                                LoginWithFacebookRequester.login(LoginActivity.this, user);
-                            }
-                        }
-                        if (response.getError() != null) {
-                            // Handle errors, will do so later.
-                        }
-                    }
-                });
-        request.executeAsync();
-    }
-
-    @Override
-    public void onLogin(ApiKey apiKey, User user) {
-        stopProgress();
-        saveApiKey(apiKey);
-
-        final String username = mUsernameView.getText().toString();
-        final String password = mPasswordView.getText().toString();
-
-        // Register device with Parse
-//        ParseUtils.signup(this, username, password);
-
-        // Save login credentials to SharedPrefs
-        saveLoginCredentials(username, password);
-
-        login(user);
-
-    }
-
-    private void login(User user) {
-        // Show the main activity
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(MainActivity.INTENT_KEY_FOR_USER, user);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onLoginFailure(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-        stopProgress();
-    }
-
-    @Override
-    public void onVolleyError(VolleyError volleyError) {
-        Toast.makeText(this, "Oops:" + volleyError.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-        stopProgress();
     }
 
     @Override
@@ -155,7 +71,8 @@ public class LoginActivity extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        uiHelper = new UiLifecycleHelper(this, this);
+        Session.StatusCallback statusCallback = new FacebookSessionHelper(this);
+        uiHelper = new UiLifecycleHelper(this, statusCallback);
         uiHelper.onCreate(savedInstanceState);
 
         // Set up the login form.
@@ -191,9 +108,8 @@ public class LoginActivity extends Activity implements
             }
         });
 
-
         LoginButton authButton = (LoginButton) findViewById(R.id.btn_facebook_login);
-        authButton.setReadPermissions(Arrays.asList(FACEBOOK_PERMISSIONS));
+        authButton.setReadPermissions(Arrays.asList(Constants.FacebookApi.Permissions.getPermissions()));
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -204,6 +120,10 @@ public class LoginActivity extends Activity implements
         mUsernameView.setTypeface(robotoBold);
         mPasswordView.setTypeface(robotoBold);
     }
+
+    //////////////////////////////////////////////////////////////////
+    //////////////////////// SHARED PREFS
+    //////////////////////////////////////////////////////////////////
 
     private void populateFieldsFromSharedPrefs() {
         SharedPreferences sp = getSharedPreferences(Constants.SharedPrefs.LOGIN_CREDENTIALS, MODE_PRIVATE);
@@ -233,6 +153,12 @@ public class LoginActivity extends Activity implements
             editor.apply();
         }
     }
+
+
+
+    //////////////////////////////////////////////////////////////////////////
+    ////////// LOGIN METHODS /////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -291,6 +217,48 @@ public class LoginActivity extends Activity implements
         return password.length() > 4;
     }
 
+    private void login(User user) {
+        // Show the main activity
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(MainActivity.INTENT_KEY_FOR_USER, user);
+        startActivity(intent);
+    }
+
+    private void stopProgress() {
+        isAttemptingLogin = false;
+        showProgress(false);
+    }
+
+    @Override
+    public void onLogin(ApiKey apiKey, User user) {
+        stopProgress();
+        saveApiKey(apiKey);
+
+        final String username = mUsernameView.getText().toString();
+        final String password = mPasswordView.getText().toString();
+
+        // TODO Register device with Parse
+//        ParseUtils.signup(this, username, password);
+
+        // Save login credentials to SharedPrefs
+        saveLoginCredentials(username, password);
+
+        login(user);
+
+    }
+
+    @Override
+    public void onLoginFailure(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        stopProgress();
+    }
+
+    @Override
+    public void onVolleyError(VolleyError volleyError) {
+        Toast.makeText(this, "Oops:" + volleyError.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+        stopProgress();
+    }
+
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -327,6 +295,10 @@ public class LoginActivity extends Activity implements
         }
     }
 
+
+    //////////////////////////////////////////////////////////////////////////
+    ////////// LIFE CYCLE METHODS ////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
 
     @Override
     public void onResume() {

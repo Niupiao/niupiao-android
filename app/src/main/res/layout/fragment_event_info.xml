@@ -90,11 +90,12 @@
         android:id="@+id/sv_eventscroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rl_event_details">
-
-        <LinearLayout
+        android:layout_below="@id/rl_event_details"
+        android:layout_above="@+id/rl_checkout">
+        
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -282,6 +283,8 @@
                     android:id="@+id/event_info_ticketing_guidelines_show"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:text="Guidelines for the show"
                     android:visibility="gone" />
 
                 <View
@@ -300,6 +303,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="5dp"
                     android:background="@android:color/transparent"
+                    android:visibility="visible"
                     android:clickable="true"
                     android:onClick="toggle_contents"
                     android:orientation="horizontal">
@@ -322,6 +326,8 @@
                     android:id="@+id/event_info_announcements_show"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:text="Announcements for the show"
                     android:visibility="gone" />
 
                 <View
@@ -362,6 +368,8 @@
                     android:id="@+id/event_info_description_show"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:text="Description of the show"
                     android:visibility="gone" />
 
             </LinearLayout>

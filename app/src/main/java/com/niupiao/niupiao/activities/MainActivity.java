@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.facebook.Session;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.MyAccountFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
@@ -224,6 +225,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     }
 
     private void logout() {
+        Session.getActiveSession().close();
         finish();
     }
 

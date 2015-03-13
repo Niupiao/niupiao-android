@@ -84,10 +84,13 @@ public class RegistrationActivity extends Activity implements RegistrationReques
 
     private boolean isValidField(EditText editText) {
         if (editText == null) {
-            editText.setError(getResources().getString(R.string.no_text_in_field));
             throw new IllegalArgumentException("null EditText");
         }
-        return !TextUtils.isEmpty(editText.getText());
+        boolean test1 = !TextUtils.isEmpty(editText.getText());
+
+        if(!test1){editText.setError(getResources().getString(R.string.no_text_in_field));}
+
+        return test1;
     }
 
     private boolean validateEmail(EditText email){

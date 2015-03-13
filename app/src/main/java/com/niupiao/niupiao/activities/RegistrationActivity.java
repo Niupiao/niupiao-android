@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -73,16 +74,43 @@ public class RegistrationActivity extends Activity implements RegistrationReques
     }
 
     private boolean isValidFields() {
-        return isValidField(firstNameEditText) && isValidField(lastNameEditText) && isValidField(emailEditText)
-                && isValidField(passwordEditText) && isValidField(passwordConfirmEditText)
-                && TextUtils.equals(passwordEditText.getText(), passwordConfirmEditText.getText());
+        boolean test1 = isValidField(firstNameEditText);
+        boolean test2 = isValidField(lastNameEditText);
+        boolean test3 = validateEmail(emailEditText);
+        boolean test4 = validatePassword(passwordEditText, passwordConfirmEditText);
+
+        return test1 && test2 && test3 && test4;
     }
 
     private boolean isValidField(EditText editText) {
         if (editText == null) {
+            editText.setError(getResources().getString(R.string.no_text_in_field));
             throw new IllegalArgumentException("null EditText");
         }
         return !TextUtils.isEmpty(editText.getText());
+    }
+
+    private boolean validateEmail(EditText email){
+        boolean test1 = Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches();
+
+        if(!test1) {email.setError(getResources().getString(R.string.invalid_email));}
+
+        return test1;
+    }
+
+    private boolean validatePassword(EditText pw, EditText confirm){
+        String pwtext = pw.getText().toString();
+        String confirmtext = confirm.getText().toString();
+
+        boolean test1 = pwtext.equals(confirmtext);
+        boolean test2 = pwtext.length() >= 6;
+        boolean test3 = confirmtext.length() >= 6;
+
+        if(!test1) {confirm.setError(getResources().getString(R.string.password_does_not_match));}
+        if(!test2) {pw.setError(getResources().getString(R.string.password_too_short));}
+        if(!test3) {confirm.setError(getResources().getString(R.string.password_too_short));}
+
+        return test1 && test2 && test3;
     }
 
     private void register() {

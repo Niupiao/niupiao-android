@@ -214,5 +214,28 @@
         <item name="android:textColor">@color/niupiao_white</item>
     </style>
 
+    <style name="Account"></style>
+
+    <style name="Account.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Account.TextView.Name">
+        <item name="android:color">@color/niupiao_orange</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Account.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Account.Button.Settings">
+        <item name="android:color">@color/niupiao_orange</item>
+        <item name="android:minWidth">15sp</item>
+        <item name="android:minHeight">15sp</item>
+        <item name="android:textSize">8sp</item>
+    </style>
 
 </resources>

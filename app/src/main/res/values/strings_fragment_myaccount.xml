@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Strings related to an Account page -->
+    <string name="account_settings">Account Settings</string>
+    <string name="payment_settings">Payment Settings</string>
+</resources>

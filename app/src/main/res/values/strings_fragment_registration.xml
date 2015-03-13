@@ -11,4 +11,9 @@
     <string name="confirm_password_prompt">CONFIRM PASSWORD</string>
     <string name="registration_button">Register</string>
 
+    <string name="no_text_in_field">Incomplete</string>
+    <string name="password_does_not_match">Doesn\'t match Password</string>
+    <string name="password_too_short">Password must have at least 6 characters</string>
+    <string name="invalid_email">Invalid Email</string>
+
 </resources>

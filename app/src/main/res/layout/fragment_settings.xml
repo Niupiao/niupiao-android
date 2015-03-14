@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_social"
-            android:background="@drawable/thinbottomtopbordertransparent"
+            android:background="@drawable/thin_bottom_top_border_transparent"
             android:orientation="horizontal"
             android:weightSum="3">
 
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_facebookshare"
-            android:background="@drawable/thinbottomtopbordertransparent"
+            android:background="@drawable/thin_bottom_top_border_transparent"
             android:orientation="horizontal"
             android:weightSum="3">
 
@@ -90,7 +90,7 @@
             android:layout_below="@id/tv_other"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/thinbottomtopbordertransparent"
+            android:background="@drawable/thin_bottom_top_border_transparent"
             android:text="@string/help_center"
             android:textColor="@color/niupiao_black" />
 
@@ -101,7 +101,7 @@
             android:layout_below="@id/btn_help"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/thinbottomtopbordertransparent"
+            android:background="@drawable/thin_bottom_top_border_transparent"
             android:text="@string/privacy"
             android:textColor="@color/niupiao_black" />
 
@@ -112,7 +112,7 @@
             android:layout_below="@id/btn_privacy"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/thinbottomtopbordertransparent"
+            android:background="@drawable/thin_bottom_top_border_transparent"
             android:text="@string/terms_conditions"
             android:textColor="@color/niupiao_black" />
 
@@ -123,7 +123,7 @@
             android:layout_below="@id/btn_terms"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/thinbottomtopbordertransparent"
+            android:background="@drawable/thin_bottom_top_border_transparent"
             android:text="@string/about_us"
             android:textColor="@color/niupiao_black" />
     </RelativeLayout>

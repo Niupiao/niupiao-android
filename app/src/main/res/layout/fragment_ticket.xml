@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/qrcode" />
+        android:src="@drawable/qr_code" />
 
     <TextView
         android:id="@+id/tv_this_is_your_ticket"

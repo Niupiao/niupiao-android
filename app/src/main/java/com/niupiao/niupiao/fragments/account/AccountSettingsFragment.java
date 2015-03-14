@@ -22,15 +22,13 @@ public class AccountSettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_account_settings, container, false);
 
-        Button rtn = (Button) root.findViewById(R.id.btn_return);
-        rtn.setOnClickListener(new View.OnClickListener() {
+        Button returnButton = (Button) root.findViewById(R.id.btn_return);
+        returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AccountActivity account = (AccountActivity) getActivity();
-                Toast toast = Toast.makeText(getActivity().getApplicationContext(),
-                        "Payment settings clicked", Toast.LENGTH_SHORT);
-                toast.show();
-                account.changeScreen(AccountActivity.AccountScreen.ACCOUNT_SCREEN);
+                AccountActivity activity = (AccountActivity) getActivity();
+                Toast.makeText(getActivity().getApplicationContext(), "Payment settings clicked", Toast.LENGTH_SHORT).show();
+                activity.changeScreen(AccountActivity.AccountScreen.ACCOUNT_SCREEN);
             }
         });
 

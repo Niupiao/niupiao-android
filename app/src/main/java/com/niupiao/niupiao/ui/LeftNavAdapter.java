@@ -1,9 +1,6 @@
 package com.niupiao.niupiao.ui;
 
-import java.util.ArrayList;
-
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,29 +10,35 @@ import android.widget.TextView;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.models.Data;
 
-/**n
+import java.util.ArrayList;
+
+/**
+ * n
  * The Adapter class for the ListView displayed i the left navigation drawer.
  */
-public class LeftNavAdapter extends BaseAdapter
-{
+public class LeftNavAdapter extends BaseAdapter {
 
-    /** The items. */
+    /**
+     * The items.
+     */
     private ArrayList<Data> items;
 
-    /** The context. */
+    /**
+     * The context.
+     */
     private Context context;
 
-    /** The selected. */
+    /**
+     * The selected.
+     */
     private int selected;
 
     /**
      * Setup the current selected position of adapter.
      *
-     * @param position
-     *            the new selection
+     * @param position the new selection
      */
-    public void setSelection(int position)
-    {
+    public void setSelection(int position) {
         selected = position;
         notifyDataSetChanged();
     }
@@ -43,13 +46,10 @@ public class LeftNavAdapter extends BaseAdapter
     /**
      * Instantiates a new left navigation adapter.
      *
-     * @param context
-     *            the context of activity
-     * @param items
-     *            the array of items to be displayed on ListView
+     * @param context the context of activity
+     * @param items   the array of items to be displayed on ListView
      */
-    public LeftNavAdapter(Context context, ArrayList<Data> items)
-    {
+    public LeftNavAdapter(Context context, ArrayList<Data> items) {
         this.context = context;
         this.items = items;
     }
@@ -58,8 +58,7 @@ public class LeftNavAdapter extends BaseAdapter
      * @see android.widget.Adapter#getCount()
      */
     @Override
-    public int getCount()
-    {
+    public int getCount() {
         return items.size();
     }
 
@@ -67,8 +66,7 @@ public class LeftNavAdapter extends BaseAdapter
      * @see android.widget.Adapter#getItem(int)
      */
     @Override
-    public Data getItem(int arg0)
-    {
+    public Data getItem(int arg0) {
         return items.get(arg0);
     }
 
@@ -76,8 +74,7 @@ public class LeftNavAdapter extends BaseAdapter
      * @see android.widget.Adapter#getItemId(int)
      */
     @Override
-    public long getItemId(int position)
-    {
+    public long getItemId(int position) {
         return position;
     }
 
@@ -85,8 +82,7 @@ public class LeftNavAdapter extends BaseAdapter
      * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
      */
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null)
             convertView = LayoutInflater.from(context).inflate(
                     R.layout.drawer_list_item, null);

@@ -4,30 +4,31 @@ package com.niupiao.niupiao.models;
  * The Class Data is a simple Java Bean that is used to hold Name, Detail and
  * image pairs.
  */
-public class Data
-{
+public class Data {
 
-    /** The title1. */
+    /**
+     * The title1.
+     */
     private String title;
 
-    /** The description. */
+    /**
+     * The description.
+     */
     private String desc;
 
-    /** The image resource id. */
+    /**
+     * The image resource id.
+     */
     private int image;
 
     /**
      * Instantiates a new data.
      *
-     * @param title
-     *            the title1
-     * @param desc
-     *            the desc
-     * @param image
-     *            the image1
+     * @param title the title1
+     * @param desc  the desc
+     * @param image the image1
      */
-    public Data(String title, String desc, int image)
-    {
+    public Data(String title, String desc, int image) {
         this.title = title;
         this.desc = desc;
         this.image = image;
@@ -36,13 +37,10 @@ public class Data
     /**
      * Instantiates a new data.
      *
-     * @param title
-     *            the title
-     * @param image
-     *            the image
+     * @param title the title
+     * @param image the image
      */
-    public Data(String title, int image)
-    {
+    public Data(String title, int image) {
         this.title = title;
         this.image = image;
     }
@@ -52,19 +50,16 @@ public class Data
      *
      * @return the title1
      */
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
     /**
      * Sets the title1.
      *
-     * @param title1
-     *            the new title1
+     * @param title1 the new title1
      */
-    public void setTitle(String title1)
-    {
+    public void setTitle(String title1) {
         this.title = title;
     }
 
@@ -73,19 +68,16 @@ public class Data
      *
      * @return the desc
      */
-    public String getDesc()
-    {
+    public String getDesc() {
         return desc;
     }
 
     /**
      * Sets the desc.
      *
-     * @param desc
-     *            the new desc
+     * @param desc the new desc
      */
-    public void setDesc(String desc)
-    {
+    public void setDesc(String desc) {
         this.desc = desc;
     }
 
@@ -94,19 +86,16 @@ public class Data
      *
      * @return the image1
      */
-    public int getImage()
-    {
+    public int getImage() {
         return image;
     }
 
     /**
      * Sets the image.
      *
-     * @param image
-     *            the new image1
+     * @param image the new image1
      */
-    public void setImage1(int image)
-    {
+    public void setImage1(int image) {
         this.image = image;
     }
 

@@ -1,6 +1,5 @@
 package com.niupiao.niupiao.activities;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -16,17 +15,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.facebook.Session;
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.fragments.account.MyAccountFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
 import com.niupiao.niupiao.fragments.SettingsFragment;
 import com.niupiao.niupiao.fragments.StarredFragment;
+import com.niupiao.niupiao.fragments.account.MyAccountFragment;
 import com.niupiao.niupiao.fragments.events.EventsFragment;
 import com.niupiao.niupiao.fragments.my_tickets.MyTicketsFragment;
 import com.niupiao.niupiao.managers.EventManager;
@@ -131,15 +129,15 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         }
     }
 
-    private ArrayList<Data> instantiateData(){
+    private ArrayList<Data> instantiateData() {
         mFragmentTitles = getResources().getStringArray(R.array.fragments_array);
         int[] mFragmentDrawables = {R.drawable.browseeventsicon, R.drawable.ticketicon, R.drawable.staricon,
-        R.drawable.personicon, R.drawable.gearicon};
+                R.drawable.personicon, R.drawable.gearicon};
 
         ArrayList<Data> navbaritems = new ArrayList<Data>();
 
         int length = mFragmentTitles.length;
-        for(int i = 0; i < length; i ++){
+        for (int i = 0; i < length; i++) {
             navbaritems.add(new Data(mFragmentTitles[i], mFragmentDrawables[i]));
         }
 

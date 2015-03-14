@@ -11,12 +11,12 @@ import com.niupiao.niupiao.R;
 /**
  * Created by kevinchen on 2/18/15.
  */
-public class StarredFragment extends NiuNavigationDrawerFragment {
+public class SettingsNavFragment extends NiuNavigationDrawerFragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_starred, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_settings, container, false);
         return root;
     }
 }

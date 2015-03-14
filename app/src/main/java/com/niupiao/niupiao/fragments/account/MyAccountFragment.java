@@ -1,7 +1,11 @@
 package com.niupiao.niupiao.fragments.account;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.activities.AccountActivity;
 import com.niupiao.niupiao.activities.MainActivity;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
-import com.niupiao.niupiao.models.User;
 
 /**
  * Created by kevinchen on 2/18/15.
@@ -34,9 +38,11 @@ public class MyAccountFragment extends NiuNavigationDrawerFragment {
         acnt_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AccountActivity account = (AccountActivity) getActivity();
                 Toast toast = Toast.makeText(getActivity().getApplicationContext(),
                         "Account settings clicked", Toast.LENGTH_SHORT);
                 toast.show();
+                account.changeScreen(AccountActivity.AccountScreen.ACCOUNT_SETTINGS);
             }
         });
 
@@ -44,12 +50,18 @@ public class MyAccountFragment extends NiuNavigationDrawerFragment {
         pymt_settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AccountActivity account = (AccountActivity) getActivity();
                 Toast toast = Toast.makeText(getActivity().getApplicationContext(),
                         "Payment settings clicked", Toast.LENGTH_SHORT);
                 toast.show();
+                account.changeScreen(AccountActivity.AccountScreen.PAYMENT_SETTINGS);
             }
         });
 
         return root;
+    }
+
+    public static MyAccountFragment newInstance() {
+        return new MyAccountFragment();
     }
 }

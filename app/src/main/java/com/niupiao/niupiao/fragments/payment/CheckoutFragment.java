@@ -49,6 +49,7 @@ public class CheckoutFragment extends Fragment {
                 show(CheckoutPhase.CONFIRM_PURCHASE);
                 break;
             case CONFIRM_PURCHASE:
+                // TODO go to My Tickets
                 getActivity().finish();
         }
     }
@@ -61,13 +62,12 @@ public class CheckoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_non_sliding_view_pager, container, false);
-//        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_sliding_view_pager, container, false);
 
-        // Initialize fragments
+        // Initialize fragments (order in which they're added to list matters)
         List<Fragment> fragments = new ArrayList<>(3);
-        fragments.add(0, TransferTicketsFragment.newInstance());
-        fragments.add(1, PaymentInfoFragment.newInstance());
-        fragments.add(2, ConfirmPurchaseFragment.newInstance());
+        fragments.add(TransferTicketsFragment.newInstance());
+        fragments.add(PaymentInfoFragment.newInstance());
+        fragments.add(ConfirmPurchaseFragment.newInstance());
 
         // Initialize the ViewPager and set an adapter
         pager = (NonSwipeableViewPager) root.findViewById(R.id.pager);

@@ -9,11 +9,8 @@ import android.util.Log;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.payment.CheckoutFragment;
 import com.niupiao.niupiao.fragments.payment.EventInfoFragment;
+import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.models.Event;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by kevinchen on 2/25/15.
@@ -24,12 +21,10 @@ public class PayActivity extends ActionBarActivity {
 
     public static final String INTENT_KEY_FOR_EVENT = "event";
 
-    private List<Person> recipients;
-
+    // TODO don't hardcode, get from event.getMaxNumberOfTicketsPurchaseable();
     private final static int MAX_NUMBER_OF_RECIPIENTS = 5;
 
-    private int totalTicketCount;
-    private int totalPrice;
+    private PaymentManager paymentManager;
 
     /**
      * The phase of ticket purchasing in which the user starts.
@@ -45,75 +40,34 @@ public class PayActivity extends ActionBarActivity {
      * The phases of ticket purchasing.
      */
     public enum PaymentPhase {
-        PURCHASE_TICKETS,
-        CHECKOUT
-    }
+        PURCHASE_TICKETS(EventInfoFragment.class.getName()),
+        CHECKOUT(CheckoutFragment.class.getName());
 
-    /**
-     * Used for storing recipients of tickets.
-     */
-    public static class Person {
+        private String fragmentClassName;
 
-        private String name;
-        private String cell;
-        private boolean me;
-
-        public Person(String name, String cell, boolean me) {
-            this.name = name;
-            this.cell = cell;
-            this.me = me;
+        private PaymentPhase(String fragmentClassName) {
+            this.fragmentClassName = fragmentClassName;
         }
 
-        public String getName() {
-            return name;
-        }
-
-        public String getCell() {
-            return cell;
-        }
-
-        public boolean isMe() {
-            return me;
+        public String getFragmentClassName() {
+            return fragmentClassName;
         }
     }
 
-    public PaymentPhase getPaymentPhase() {
-        return paymentPhase;
+    public PaymentManager getPaymentManager() {
+        return paymentManager;
     }
 
     public Event getEvent() {
         return event;
     }
 
-    public void addRecipients(Person... recipients) {
-        Collections.addAll(this.recipients, recipients);
-    }
-
-    public List<Person> getRecipients() {
-        return recipients;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public void setTotalTicketCount(int totalTicketCount) {
-        this.totalTicketCount = totalTicketCount;
-    }
-
-    public int getTotalTicketCount() {
-        return totalTicketCount;
-    }
-
-    public int getTotalPrice() {
-        return totalPrice;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
-        recipients = new ArrayList<>(MAX_NUMBER_OF_RECIPIENTS);
+        paymentManager = new PaymentManager(MAX_NUMBER_OF_RECIPIENTS);
+
         event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
         show(PaymentPhase.PURCHASE_TICKETS);
     }
@@ -130,21 +84,8 @@ public class PayActivity extends ActionBarActivity {
 
     private void show(PaymentPhase paymentPhase) {
         this.paymentPhase = paymentPhase;
+        Fragment fragment = Fragment.instantiate(this, paymentPhase.getFragmentClassName());
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = null;
-        switch (paymentPhase) {
-            case PURCHASE_TICKETS:
-                fragment = EventInfoFragment.newInstance();
-                break;
-            case CHECKOUT:
-                Log.d(TAG, "showing checkout fragment");
-                fragment = CheckoutFragment.newInstance();
-                break;
-            default:
-                throw new IllegalArgumentException("Bad enum for " +
-                        PaymentPhase.class.getSimpleName());
-        }
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-
     }
 }

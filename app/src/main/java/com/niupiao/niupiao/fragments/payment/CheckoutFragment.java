@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.adapters.ViewPagerAdapter;
 import com.niupiao.niupiao.widgets.NonSwipeableViewPager;

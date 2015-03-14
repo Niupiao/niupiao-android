@@ -53,6 +53,13 @@ public class LoginWithFacebookRequester {
         public void onLoginWithFacebook(Status status, ApiKey apiKey, User user);
     }
 
+    /**
+     * Sends user info pulled from Facebook request to our server.
+     * Will either create user from FB email, return user from FB email, or return error.
+     *
+     * @param listener Called back with the created user.
+     * @param user     The FB user object from which we pull FB user info.
+     */
     public static void login(final OnLoginWithFacebookListener listener, GraphUser user) {
         // we provide our login credentials so server knows who's requesting an access token
         JSONObject jsonObject = null;

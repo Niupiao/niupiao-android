@@ -10,7 +10,6 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +22,7 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.facebook.Session;
+import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.LoginButton;
 import com.niupiao.niupiao.Constants;
@@ -45,7 +45,7 @@ public class LoginActivity extends Activity implements
     private static final String TAG = LoginActivity.class.getSimpleName();
 
     // UI references.
-    private EditText mUsernameView;
+    private EditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -56,19 +56,27 @@ public class LoginActivity extends Activity implements
 
     @Override
     public void onLoginWithFacebook(LoginWithFacebookRequester.Status status, ApiKey apiKey, User user) {
+
+        // Set field to FB-authorized user's email
+        mEmailView.setText(user.getEmail());
+
+        // TODO don't hardcode password, get from user?
+        mPasswordView.setText("foobar");
+
         switch (status) {
             case USER_CREATED:
-                // TODO fill email field
+                // TODO use dialog for this note
                 Toast.makeText(this, "Created user for " + user.getEmail(), Toast.LENGTH_LONG).show();
-                Log.d(TAG, "Created user for " + user.getEmail());
                 break;
             case USER_EXISTS:
                 Toast.makeText(this, "User exists for " + user.getEmail(), Toast.LENGTH_LONG).show();
                 // TODO check if they still need a password or if they want to change their username
                 // TODO check ApiKey valid/non-null before logging in
-                onLogin(apiKey, user);
                 break;
         }
+
+        // Log us in!
+        onLogin(apiKey, user);
     }
 
     @Override
@@ -76,12 +84,8 @@ public class LoginActivity extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Session.StatusCallback statusCallback = new FacebookSessionHelper(this);
-        uiHelper = new UiLifecycleHelper(this, statusCallback);
-        uiHelper.onCreate(savedInstanceState);
-
         // Set up the login form.
-        mUsernameView = (EditText) findViewById(R.id.et_username);
+        mEmailView = (EditText) findViewById(R.id.et_username);
         mPasswordView = (EditText) findViewById(R.id.et_password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -114,6 +118,8 @@ public class LoginActivity extends Activity implements
         });
 
         LoginButton authButton = (LoginButton) findViewById(R.id.btn_facebook_login);
+        Session.StatusCallback statusCallback = new FacebookSessionHelper(this);
+        authButton.setSessionStatusCallback(statusCallback);
         authButton.setReadPermissions(Arrays.asList(Constants.FacebookApi.Permissions.getPermissions()));
 
         mLoginFormView = findViewById(R.id.login_form);
@@ -122,8 +128,24 @@ public class LoginActivity extends Activity implements
         // FONTS
         Typeface robotoBold = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
         loginButton.setTypeface(robotoBold);
-        mUsernameView.setTypeface(robotoBold);
+        mEmailView.setTypeface(robotoBold);
         mPasswordView.setTypeface(robotoBold);
+
+
+        // After initializing widgets, initialize Facebook lifecycle helper
+        uiHelper = new UiLifecycleHelper(this, new Session.StatusCallback() {
+            @Override
+            public void call(Session session, SessionState sessionState, Exception e) {
+                if (session.isOpened()) {
+                    // TODO we're already logged in from FB, so login
+                    // User user = serializeUserFromDB(getEmailFromSharedPrefs());
+                    // login(user);
+                }
+
+            }
+        });
+        uiHelper.onCreate(savedInstanceState);
+
     }
 
     //////////////////////////////////////////////////////////////////
@@ -134,7 +156,7 @@ public class LoginActivity extends Activity implements
         SharedPreferences sp = getSharedPreferences(Constants.SharedPrefs.LOGIN_CREDENTIALS, MODE_PRIVATE);
         boolean remembered = sp.getBoolean(Constants.SharedPrefs.REMEMBER_ME, false);
         if (remembered) {
-            mUsernameView.setText(sp.getString(Constants.SharedPrefs.USERNAME, ""));
+            mEmailView.setText(sp.getString(Constants.SharedPrefs.USERNAME, ""));
             mPasswordView.setText(sp.getString(Constants.SharedPrefs.PASSWORD, ""));
         }
         CheckBox rememberMe = (CheckBox) findViewById(R.id.cb_remember_me);
@@ -178,11 +200,11 @@ public class LoginActivity extends Activity implements
         isAttemptingLogin = true;
 
         // Reset errors.
-        mUsernameView.setError(null);
+        mEmailView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String username = mUsernameView.getText().toString();
+        String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -196,10 +218,10 @@ public class LoginActivity extends Activity implements
             cancel = true;
         }
 
-        // Check for a valid username.
-        if (TextUtils.isEmpty(username)) {
-            mUsernameView.setError(getString(R.string.error_field_required));
-            focusView = mUsernameView;
+        // Check for a valid email.
+        if (TextUtils.isEmpty(email)) {
+            mEmailView.setError(getString(R.string.error_field_required));
+            focusView = mEmailView;
             cancel = true;
         }
 
@@ -212,20 +234,13 @@ public class LoginActivity extends Activity implements
             // perform the user login attempt.
             showProgress(true);
 
-            LoginRequester.login(username, password, this);
+            LoginRequester.login(this, email, password);
         }
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
-    }
-
-    private void login(User user) {
-        // Show the main activity
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(MainActivity.INTENT_KEY_FOR_USER, user);
-        startActivity(intent);
     }
 
     private void stopProgress() {
@@ -238,7 +253,7 @@ public class LoginActivity extends Activity implements
         stopProgress();
         saveApiKey(apiKey);
 
-        final String username = mUsernameView.getText().toString();
+        final String username = mEmailView.getText().toString();
         final String password = mPasswordView.getText().toString();
 
         // TODO Register device with Parse
@@ -249,6 +264,13 @@ public class LoginActivity extends Activity implements
 
         login(user);
 
+    }
+
+    private void login(User user) {
+        // Show the main activity
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(MainActivity.INTENT_KEY_FOR_USER, user);
+        startActivity(intent);
     }
 
     @Override

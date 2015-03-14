@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.fragments.ViewPagerFragment;
 
 /**
  * Created by kevinchen on 3/9/15.

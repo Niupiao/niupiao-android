@@ -21,8 +21,9 @@ public class Constants {
         public final static class Permissions {
             public final static String EMAIL = "email";
             public final static String PUBLIC_PROFILE = "public_profile";
+
             public final static String[] getPermissions() {
-                return new String[] { EMAIL, PUBLIC_PROFILE };
+                return new String[]{EMAIL, PUBLIC_PROFILE};
             }
         }
     }
@@ -72,7 +73,6 @@ public class Constants {
             public static final String LAST_NAME = "last_name";
             public static final String EMAIL = "email";
             public static final String PASSWORD = "password";
-            public static final String USERNAME = "username";
         }
 
         /**

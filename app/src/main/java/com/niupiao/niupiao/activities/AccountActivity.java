@@ -13,7 +13,7 @@ import com.niupiao.niupiao.fragments.account.PaymentSettingsFragment;
 /**
  * Created by Ryan on 2/27/15.
  */
-public class AccountActivity extends ActionBarActivity {
+public class AccountActivity extends MainActivity {
 
     private AccountScreen currentscreen = AccountScreen.ACCOUNT_SCREEN;
 

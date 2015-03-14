@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.fragments.ViewPagerFragment;
 
 /**
  * Created by kevinchen on 3/9/15.

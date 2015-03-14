@@ -21,8 +21,9 @@ public class Constants {
         public final static class Permissions {
             public final static String EMAIL = "email";
             public final static String PUBLIC_PROFILE = "public_profile";
+
             public final static String[] getPermissions() {
-                return new String[] { EMAIL, PUBLIC_PROFILE };
+                return new String[]{EMAIL, PUBLIC_PROFILE};
             }
         }
     }

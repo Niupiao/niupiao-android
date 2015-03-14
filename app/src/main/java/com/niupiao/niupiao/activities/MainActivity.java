@@ -31,9 +31,13 @@ import com.niupiao.niupiao.fragments.events.EventsFragment;
 import com.niupiao.niupiao.fragments.my_tickets.MyTicketsFragment;
 import com.niupiao.niupiao.managers.EventManager;
 import com.niupiao.niupiao.managers.TicketManager;
+import com.niupiao.niupiao.models.Data;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.ResourceCallback;
+import com.niupiao.niupiao.ui.LeftNavAdapter;
 import com.niupiao.niupiao.utils.SharedPrefsUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by kmchen1 on 2/17/15.
@@ -87,15 +91,13 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         ticketManager = new TicketManager(this);
 
         mTitle = mDrawerTitle = getTitle();
-        mFragmentTitles = getResources().getStringArray(R.array.fragments_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<>(this,
-                R.layout.drawer_list_item, mFragmentTitles));
+        mDrawerList.setAdapter(new LeftNavAdapter(this, instantiateData()));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
@@ -127,6 +129,21 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         if (savedInstanceState == null) {
             selectItem(0);
         }
+    }
+
+    private ArrayList<Data> instantiateData(){
+        mFragmentTitles = getResources().getStringArray(R.array.fragments_array);
+        int[] mFragmentDrawables = {R.drawable.browseeventsicon, R.drawable.ticketicon, R.drawable.staricon,
+        R.drawable.personicon, R.drawable.gearicon};
+
+        ArrayList<Data> navbaritems = new ArrayList<Data>();
+
+        int length = mFragmentTitles.length;
+        for(int i = 0; i < length; i ++){
+            navbaritems.add(new Data(mFragmentTitles[i], mFragmentDrawables[i]));
+        }
+
+        return navbaritems;
     }
 
     /* The click listener for ListView in the navigation drawer */

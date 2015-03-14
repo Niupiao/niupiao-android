@@ -10,7 +10,6 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +22,7 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.facebook.Session;
+import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.LoginButton;
 import com.niupiao.niupiao.Constants;
@@ -56,29 +56,33 @@ public class LoginActivity extends Activity implements
 
     @Override
     public void onLoginWithFacebook(LoginWithFacebookRequester.Status status, ApiKey apiKey, User user) {
+
+        // Set field to FB-authorized user's email
+        mUsernameView.setText(user.getEmail());
+
+        // TODO don't hardcode password, get from user?
+        mPasswordView.setText("foobar");
+
         switch (status) {
             case USER_CREATED:
-                // TODO fill email field
+                // TODO use dialog for this note
                 Toast.makeText(this, "Created user for " + user.getEmail(), Toast.LENGTH_LONG).show();
-                Log.d(TAG, "Created user for " + user.getEmail());
                 break;
             case USER_EXISTS:
                 Toast.makeText(this, "User exists for " + user.getEmail(), Toast.LENGTH_LONG).show();
                 // TODO check if they still need a password or if they want to change their username
                 // TODO check ApiKey valid/non-null before logging in
-                onLogin(apiKey, user);
                 break;
         }
+
+        // Log us in!
+        onLogin(apiKey, user);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        Session.StatusCallback statusCallback = new FacebookSessionHelper(this);
-        uiHelper = new UiLifecycleHelper(this, statusCallback);
-        uiHelper.onCreate(savedInstanceState);
 
         // Set up the login form.
         mUsernameView = (EditText) findViewById(R.id.et_username);
@@ -114,6 +118,8 @@ public class LoginActivity extends Activity implements
         });
 
         LoginButton authButton = (LoginButton) findViewById(R.id.btn_facebook_login);
+        Session.StatusCallback statusCallback = new FacebookSessionHelper(this);
+        authButton.setSessionStatusCallback(statusCallback);
         authButton.setReadPermissions(Arrays.asList(Constants.FacebookApi.Permissions.getPermissions()));
 
         mLoginFormView = findViewById(R.id.login_form);
@@ -124,6 +130,16 @@ public class LoginActivity extends Activity implements
         loginButton.setTypeface(robotoBold);
         mUsernameView.setTypeface(robotoBold);
         mPasswordView.setTypeface(robotoBold);
+
+
+        // After initializing widgets, initialize Facebook lifecycle helper
+        uiHelper = new UiLifecycleHelper(this, new Session.StatusCallback() {
+            @Override
+            public void call(Session session, SessionState sessionState, Exception e) {
+            }
+        });
+        uiHelper.onCreate(savedInstanceState);
+
     }
 
     //////////////////////////////////////////////////////////////////
@@ -221,13 +237,6 @@ public class LoginActivity extends Activity implements
         return password.length() > 4;
     }
 
-    private void login(User user) {
-        // Show the main activity
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(MainActivity.INTENT_KEY_FOR_USER, user);
-        startActivity(intent);
-    }
-
     private void stopProgress() {
         isAttemptingLogin = false;
         showProgress(false);
@@ -247,7 +256,10 @@ public class LoginActivity extends Activity implements
         // Save login credentials to SharedPrefs
         saveLoginCredentials(username, password);
 
-        login(user);
+        // Show the main activity
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(MainActivity.INTENT_KEY_FOR_USER, user);
+        startActivity(intent);
 
     }
 

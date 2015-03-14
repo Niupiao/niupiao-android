@@ -88,20 +88,24 @@ public class RegistrationActivity extends Activity implements RegistrationReques
         }
         boolean test1 = !TextUtils.isEmpty(editText.getText());
 
-        if(!test1){editText.setError(getResources().getString(R.string.no_text_in_field));}
+        if (!test1) {
+            editText.setError(getResources().getString(R.string.no_text_in_field));
+        }
 
         return test1;
     }
 
-    private boolean validateEmail(EditText email){
+    private boolean validateEmail(EditText email) {
         boolean test1 = Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches();
 
-        if(!test1) {email.setError(getResources().getString(R.string.invalid_email));}
+        if (!test1) {
+            email.setError(getResources().getString(R.string.invalid_email));
+        }
 
         return test1;
     }
 
-    private boolean validatePassword(EditText pw, EditText confirm){
+    private boolean validatePassword(EditText pw, EditText confirm) {
         String pwtext = pw.getText().toString();
         String confirmtext = confirm.getText().toString();
 
@@ -109,9 +113,15 @@ public class RegistrationActivity extends Activity implements RegistrationReques
         boolean test2 = pwtext.length() >= 6;
         boolean test3 = confirmtext.length() >= 6;
 
-        if(!test1) {confirm.setError(getResources().getString(R.string.password_does_not_match));}
-        if(!test2) {pw.setError(getResources().getString(R.string.password_too_short));}
-        if(!test3) {confirm.setError(getResources().getString(R.string.password_too_short));}
+        if (!test1) {
+            confirm.setError(getResources().getString(R.string.password_does_not_match));
+        }
+        if (!test2) {
+            pw.setError(getResources().getString(R.string.password_too_short));
+        }
+        if (!test3) {
+            confirm.setError(getResources().getString(R.string.password_too_short));
+        }
 
         return test1 && test2 && test3;
     }

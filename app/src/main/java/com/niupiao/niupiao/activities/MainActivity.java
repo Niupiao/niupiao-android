@@ -22,11 +22,11 @@ import com.android.volley.VolleyError;
 import com.facebook.Session;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
-import com.niupiao.niupiao.fragments.SettingsFragment;
-import com.niupiao.niupiao.fragments.StarredFragment;
-import com.niupiao.niupiao.fragments.account.MyAccountFragment;
-import com.niupiao.niupiao.fragments.events.EventsFragment;
-import com.niupiao.niupiao.fragments.my_tickets.MyTicketsFragment;
+import com.niupiao.niupiao.fragments.SettingsNavFragment;
+import com.niupiao.niupiao.fragments.StarredNavFragment;
+import com.niupiao.niupiao.fragments.account.AccountNavFragment;
+import com.niupiao.niupiao.fragments.events.EventsNavFragment;
+import com.niupiao.niupiao.fragments.my_tickets.MyTicketsNavFragment;
 import com.niupiao.niupiao.managers.EventManager;
 import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Data;
@@ -134,14 +134,14 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         int[] mFragmentDrawables = {R.drawable.browseeventsicon, R.drawable.ticketicon, R.drawable.staricon,
                 R.drawable.personicon, R.drawable.gearicon};
 
-        ArrayList<Data> navbaritems = new ArrayList<Data>();
+        ArrayList<Data> navBarItems = new ArrayList<Data>();
 
         int length = mFragmentTitles.length;
         for (int i = 0; i < length; i++) {
-            navbaritems.add(new Data(mFragmentTitles[i], mFragmentDrawables[i]));
+            navBarItems.add(new Data(mFragmentTitles[i], mFragmentDrawables[i]));
         }
 
-        return navbaritems;
+        return navBarItems;
     }
 
     /* The click listener for ListView in the navigation drawer */
@@ -155,15 +155,15 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     private NiuNavigationDrawerFragment getSelectedFragment(int position) {
         switch (position) {
             case 0:
-                return new EventsFragment();
+                return new EventsNavFragment();
             case 1:
-                return new MyTicketsFragment();
+                return new MyTicketsNavFragment();
             case 2:
-                return new StarredFragment();
+                return new StarredNavFragment();
             case 3:
-                return new MyAccountFragment();
+                return new AccountNavFragment();
             case 4:
-                return new SettingsFragment();
+                return new SettingsNavFragment();
             default:
                 Log.wtf(TAG, "unhandled fragment");
                 return null;

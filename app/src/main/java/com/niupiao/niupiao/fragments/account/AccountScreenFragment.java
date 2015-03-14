@@ -2,6 +2,7 @@ package com.niupiao.niupiao.fragments.account;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,13 +12,12 @@ import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.MainActivity;
-import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
 import com.niupiao.niupiao.models.User;
 
 /**
- * Created by kevinchen on 2/18/15.
+ * Created by kevinchen on 3/14/15.
  */
-public class MyAccountFragment extends NiuNavigationDrawerFragment {
+public class AccountScreenFragment extends Fragment {
 
     @Nullable
     @Override
@@ -33,6 +33,7 @@ public class MyAccountFragment extends NiuNavigationDrawerFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity().getApplicationContext(), "Account settings clicked", Toast.LENGTH_SHORT).show();
+                ((AccountNavFragment) getParentFragment()).changeScreen(AccountNavFragment.AccountScreen.ACCOUNT_SETTINGS);
             }
         });
 
@@ -41,13 +42,11 @@ public class MyAccountFragment extends NiuNavigationDrawerFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity().getApplicationContext(), "Payment settings clicked", Toast.LENGTH_SHORT).show();
+                ((AccountNavFragment) getParentFragment()).changeScreen(AccountNavFragment.AccountScreen.PAYMENT_SETTINGS);
             }
         });
 
         return root;
     }
 
-    public static MyAccountFragment newInstance() {
-        return new MyAccountFragment();
-    }
 }

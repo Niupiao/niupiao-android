@@ -19,9 +19,9 @@ import java.util.List;
 /**
  * Created by kevinchen on 2/18/15.
  */
-public class EventsFragment extends NiuNavigationDrawerFragment {
+public class EventsNavFragment extends NiuNavigationDrawerFragment {
 
-    public static final String TAG = EventsFragment.class.getSimpleName();
+    public static final String TAG = EventsNavFragment.class.getSimpleName();
 
     private static final int FRAGMENT_POSITION_ON_SALE = 0;
     private static final int FRAGMENT_POSITION_COMING_SOON = 1;

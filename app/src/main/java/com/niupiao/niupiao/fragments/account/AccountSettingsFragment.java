@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.activities.AccountActivity;
 
 /**
  * Created by kevinchen on 2/18/15.
@@ -26,16 +25,12 @@ public class AccountSettingsFragment extends Fragment {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AccountActivity activity = (AccountActivity) getActivity();
                 Toast.makeText(getActivity().getApplicationContext(), "Payment settings clicked", Toast.LENGTH_SHORT).show();
-                activity.changeScreen(AccountActivity.AccountScreen.ACCOUNT_SCREEN);
+                ((AccountNavFragment) getParentFragment()).changeScreen(AccountNavFragment.AccountScreen.ACCOUNT_SCREEN);
             }
         });
 
         return root;
     }
 
-    public static AccountSettingsFragment newInstance() {
-        return new AccountSettingsFragment();
-    }
 }

@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by kevinchen on 2/18/15.
  */
-public class MyTicketsFragment extends NiuNavigationDrawerFragment {
+public class MyTicketsNavFragment extends NiuNavigationDrawerFragment {
 
     private static final int FRAGMENT_POSITION_UPCOMING_EVENTS = 0;
     private static final int FRAGMENT_POSITION_PAST_EVENTS = 1;

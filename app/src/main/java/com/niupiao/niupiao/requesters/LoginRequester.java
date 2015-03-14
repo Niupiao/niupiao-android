@@ -27,13 +27,13 @@ public class LoginRequester {
         public void onLoginFailure(String message);
     }
 
-    public static void login(final String username, final String password, final OnLoginListener callback) {
+    public static void login(final OnLoginListener callback, final String email, final String password) {
 
         // we provide our login credentials so server knows who's requesting an access token
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject();
-            jsonObject.put(Constants.JsonApi.User.USERNAME, username);
+            jsonObject.put(Constants.JsonApi.User.EMAIL, email);
             jsonObject.put(Constants.JsonApi.User.PASSWORD, password);
         } catch (JSONException e) {
             e.printStackTrace();

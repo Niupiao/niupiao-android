@@ -3,4 +3,5 @@
     <!-- Strings related to an Account page -->
     <string name="account_settings">Account Settings</string>
     <string name="payment_settings">Payment Settings</string>
+    <string name="return_to_account">Return to My Account</string>
 </resources>

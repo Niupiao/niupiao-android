@@ -1,5 +1,6 @@
 package com.niupiao.niupiao.activities;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -22,7 +23,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.facebook.Session;
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.fragments.MyAccountFragment;
+import com.niupiao.niupiao.fragments.account.MyAccountFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
 import com.niupiao.niupiao.fragments.SettingsFragment;
 import com.niupiao.niupiao.fragments.StarredFragment;

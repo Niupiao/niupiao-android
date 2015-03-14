@@ -11,6 +11,14 @@
         <item>Settings</item>
     </string-array>
 
+    <string-array name="fragments_drawables">
+        <item>@drawable/browseeventsicon</item>
+        <item>@drawable/ticketicon</item>
+        <item>@drawable/staricon</item>
+        <item>@drawable/personicon</item>
+        <item>@drawable/gearicon</item>
+    </string-array>
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>

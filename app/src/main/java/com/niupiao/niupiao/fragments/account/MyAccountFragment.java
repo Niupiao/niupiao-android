@@ -1,4 +1,4 @@
-package com.niupiao.niupiao.fragments;
+package com.niupiao.niupiao.fragments.account;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.MainActivity;
+import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
 import com.niupiao.niupiao.models.User;
 
 /**

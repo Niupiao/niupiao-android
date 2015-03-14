@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.facebook.Session;
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.fragments.MyAccountFragment;
+import com.niupiao.niupiao.fragments.account.MyAccountFragment;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
 import com.niupiao.niupiao.fragments.SettingsFragment;
 import com.niupiao.niupiao.fragments.StarredFragment;

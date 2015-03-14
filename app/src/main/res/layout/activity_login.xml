@@ -54,13 +54,13 @@
             android:id="@+id/dummyloginview"
             android:layout_width="0px"
             android:layout_height="0px"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true" />
 
         <Button
             android:id="@+id/btn_register"
             style="@style/Login.Button.Register"
             android:layout_below="@id/btn_facebook_login"
-            android:layout_toLeftOf="@id/dummyloginview"/>
+            android:layout_toLeftOf="@id/dummyloginview" />
 
         <Button
             android:id="@+id/btn_forgot_password"

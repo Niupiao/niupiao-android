@@ -3,17 +3,16 @@
     android:id="@+id/rl_transfer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5e5e5"
-    >
+    android:background="@color/niupiao_white_background">
 
     <RelativeLayout
         android:id="@+id/rl_transfer_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
             android:id="@+id/tv_title"
@@ -23,200 +22,196 @@
         <TextView
             android:id="@+id/tv_type"
             style="@style/Payment.TextView.Category"
-            android:text="@string/transfer_category_type"
+            android:layout_below="@id/tv_title"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="30dp"
-            android:layout_below="@id/tv_title"
-            />
+            android:text="@string/transfer_category_type" />
 
         <TextView
             android:id="@+id/tv_select"
             style="@style/Payment.TextView.Category"
-            android:text="@string/transfer_select"
-            android:layout_marginLeft="24dp"
             android:layout_below="@id/tv_title"
+            android:layout_marginLeft="24dp"
             android:layout_toRightOf="@id/tv_type"
-            />
+            android:text="@string/transfer_select" />
 
         <ImageView
             android:id="@+id/iv_border"
             android:layout_width="wrap_content"
             android:layout_height="2px"
-            android:scaleType="fitXY"
-            android:src="@drawable/blackline"
             android:layout_below="@id/tv_select"
-            />
+            android:scaleType="fitXY"
+            android:src="@drawable/blackline" />
 
         <!-- Row 1 -->
         <TextView
             android:id="@+id/tv_no_1"
+            style="@style/Payment.TextView.General"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/iv_border"
-            style="@style/Payment.TextView.General"
-            android:text="1"/>
+            android:text="1" />
 
         <TextView
             android:id="@+id/tv_general_1"
+            style="@style/Payment.TextView.General"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_type"
             android:layout_alignBottom="@id/tv_no_1"
-            style="@style/Payment.TextView.General"
-            android:text="@string/transfer_type_general"/>
+            android:layout_alignLeft="@id/tv_type"
+            android:text="@string/transfer_type_general" />
 
         <ImageButton
             android:id="@+id/ib_contacts_1"
             style="@style/Payment.ImageButton.Contacts"
-            android:layout_toRightOf="@id/tv_general_1"
             android:layout_alignBottom="@id/tv_no_1"
-            android:layout_alignLeft="@id/tv_select"/>
+            android:layout_alignLeft="@id/tv_select"
+            android:layout_toRightOf="@id/tv_general_1" />
 
         <!-- Row 2 -->
         <TextView
             android:id="@+id/tv_no_2"
+            style="@style/Payment.TextView.General"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_no_1"
-            style="@style/Payment.TextView.General"
-            android:text="2"/>
+            android:text="2" />
 
         <TextView
             android:id="@+id/tv_general_2"
+            style="@style/Payment.TextView.General"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_type"
             android:layout_alignBottom="@id/tv_no_2"
-            style="@style/Payment.TextView.General"
-            android:text="@string/transfer_type_general"/>
+            android:layout_alignLeft="@id/tv_type"
+            android:text="@string/transfer_type_general" />
 
         <ImageButton
             android:id="@+id/ib_contacts_2"
             style="@style/Payment.ImageButton.Contacts"
-            android:layout_toRightOf="@id/tv_general_2"
             android:layout_alignBottom="@id/tv_no_2"
-            android:layout_alignLeft="@id/tv_select"/>
+            android:layout_alignLeft="@id/tv_select"
+            android:layout_toRightOf="@id/tv_general_2" />
 
         <!-- Row 3 -->
         <TextView
             android:id="@+id/tv_no_3"
+            style="@style/Payment.TextView.General"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_no_2"
-            style="@style/Payment.TextView.General"
-            android:text="3"/>
+            android:text="3" />
 
         <TextView
             android:id="@+id/tv_general_3"
+            style="@style/Payment.TextView.General"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_type"
             android:layout_alignBottom="@id/tv_no_3"
-            style="@style/Payment.TextView.General"
-            android:text="@string/transfer_type_general"/>
+            android:layout_alignLeft="@id/tv_type"
+            android:text="@string/transfer_type_general" />
 
         <ImageButton
             android:id="@+id/ib_contacts_3"
             style="@style/Payment.ImageButton.Contacts"
-            android:layout_toRightOf="@id/tv_general_3"
             android:layout_alignBottom="@id/tv_no_3"
-            android:layout_alignLeft="@id/tv_select"/>
+            android:layout_alignLeft="@id/tv_select"
+            android:layout_toRightOf="@id/tv_general_3" />
 
         <!-- Row 4 -->
         <TextView
             android:id="@+id/tv_no_4"
+            style="@style/Payment.TextView.VIP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_no_3"
-            style="@style/Payment.TextView.VIP"
-            android:text="4"/>
+            android:text="4" />
 
         <TextView
             android:id="@+id/tv_vip_4"
+            style="@style/Payment.TextView.VIP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_type"
             android:layout_alignBottom="@id/tv_no_4"
-            style="@style/Payment.TextView.VIP"
-            android:text="@string/transfer_type_vip"/>
+            android:layout_alignLeft="@id/tv_type"
+            android:text="@string/transfer_type_vip" />
 
         <ImageButton
             android:id="@+id/ib_contacts_4"
             style="@style/Payment.ImageButton.Contacts"
-            android:layout_toRightOf="@id/tv_vip_4"
             android:layout_alignBottom="@id/tv_no_4"
-            android:layout_alignLeft="@id/tv_select"/>
+            android:layout_alignLeft="@id/tv_select"
+            android:layout_toRightOf="@id/tv_vip_4" />
 
         <!-- Row 5 -->
         <TextView
             android:id="@+id/tv_no_5"
+            style="@style/Payment.TextView.VIP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_no_4"
-            style="@style/Payment.TextView.VIP"
-            android:text="5"/>
+            android:text="5" />
 
         <TextView
             android:id="@+id/tv_vip_5"
+            style="@style/Payment.TextView.VIP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_type"
             android:layout_alignBottom="@id/tv_no_5"
-            style="@style/Payment.TextView.VIP"
-            android:text="@string/transfer_type_vip"/>
+            android:layout_alignLeft="@id/tv_type"
+            android:text="@string/transfer_type_vip" />
 
         <ImageButton
             android:id="@+id/ib_contacts_5"
             style="@style/Payment.ImageButton.Contacts"
-            android:layout_toRightOf="@id/tv_vip_5"
             android:layout_alignBottom="@id/tv_vip_5"
-            android:layout_alignLeft="@id/tv_select"/>
+            android:layout_alignLeft="@id/tv_select"
+            android:layout_toRightOf="@id/tv_vip_5" />
 
         <TextView
+            style="@style/Payment.TextView.Note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Payment.TextView.Note"
-            android:text="@string/transfer_note"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/tv_no_5"
-            />
-        </RelativeLayout>
+            android:layout_centerHorizontal="true"
+            android:text="@string/transfer_note" />
+    </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:layout_alignParentBottom="true"
-        android:background="#434343">
+        android:background="@color/niupiao_grey"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
 
         <TextView
             android:id="@+id/tv_cost"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="0dp"
             android:text="$0"
-            android:textSize="45dp"
-            android:textColor="@color/niupiao_blue"/>
+            android:textColor="@color/niupiao_blue"
+            android:textSize="45dp" />
 
         <ImageButton
             android:id="@+id/ib_payment_method"
-            android:layout_marginBottom="3dp"
-            android:layout_marginRight="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/payment_method_arrow"
-            android:background="@android:color/transparent"
-            android:maxHeight="80dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitEnd"
+            android:layout_alignBottom="@id/tv_cost"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@id/tv_cost"
-            android:layout_alignBottom="@id/tv_cost"/>
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="5dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:maxHeight="80dp"
+            android:scaleType="fitEnd"
+            android:src="@drawable/payment_method_arrow" />
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

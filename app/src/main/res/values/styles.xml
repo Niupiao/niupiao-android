@@ -24,7 +24,7 @@
     <style name="Payment.TextView.Category">
         <item name="android:textAllCaps">true</item>
         <item name="android:textSize">20dp</item>
-        <item name="android:textColor">#000000</item>
+        <item name="android:textColor">@color/niupiao_black</item>
     </style>
 
     <style name="Payment.TextView.General">
@@ -222,7 +222,7 @@
     </style>
 
     <style name="Account.TextView.Name">
-        <item name="android:textColor">#000000</item>
+        <item name="android:textColor">@color/niupiao_black</item>
         <item name="android:textSize">32sp</item>
     </style>
 

@@ -1,6 +1,5 @@
 package com.niupiao.niupiao.fragments.my_tickets;
 
-import com.niupiao.niupiao.activities.MainActivity;
 import com.niupiao.niupiao.managers.TicketManager;
 
 /**
@@ -10,7 +9,7 @@ public class PastEventsFragment extends MyTicketsViewPagerFragment {
 
     @Override
     protected void requestEventsFromManager() {
-        TicketManager manager = ((MainActivity) getActivity()).getTicketManager();
+        TicketManager manager = getTicketManager();
         manager.loadPastEvents(this);
     }
 

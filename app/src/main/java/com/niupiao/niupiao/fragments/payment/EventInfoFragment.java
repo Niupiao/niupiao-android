@@ -17,6 +17,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
+import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.utils.DateUtils;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;
@@ -28,26 +29,10 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
 
     public static final String TAG = EventInfoFragment.class.getSimpleName();
 
-    public static final int MAX_NUMBER_OF_GENERAL_TICKETS = 3;
-    public static final int MAX_NUMBER_OF_VIP_TICKETS = 2;
-
-    // holds the number of VIP-status tickets purchased so far
     private TextView vipTicketsTextView;
-
-    // holds the number of General-status tickets purchased so far
     private TextView generalTicketsTextView;
 
-    // the price of the VIP-status ticket
-    private int vipTicketPrice;
-
-    // the price of the General-status ticket
-    private int generalTicketPrice;
-
-    // the number of VIP-status tickets purchased so far
-    private int numberVipTickets;
-
-    // the number of General-status tickets purchased so far
-    private int numberGeneralTickets;
+    private PaymentManager paymentManager;
 
     public static EventInfoFragment newInstance() {
         return new EventInfoFragment();
@@ -58,18 +43,21 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_event_info, container, false);
 
-        numberVipTickets = 0;
-        numberGeneralTickets = 0;
-
-        // TODO don't hardcode these, call PayActivity#getEvent
-        vipTicketPrice = 150;
-        generalTicketPrice = 50;
-
         vipTicketsTextView = (TextView) root.findViewById(R.id.event_info_vip_number_tickets);
         generalTicketsTextView = (TextView) root.findViewById(R.id.event_info_general_number_tickets);
 
         // Get event for this activity
         PayActivity payActivity = (PayActivity) getActivity();
+        paymentManager = payActivity.getPaymentManager();
+
+        // TODO don't hardcode these, call PayActivity#getEvent
+        paymentManager.setMaxNumberOfGeneralTickets(3)
+                .setMaxNumberOfVipTickets(2)
+                .setGeneralTicketPrice(50)
+                .setVipTicketPrice(150)
+                .setNumberGeneralTickets(0)
+                .setNumberVipTickets(0);
+
         Event event = payActivity.getEvent();
 
         // Set labels and images
@@ -168,51 +156,50 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         }
     }
 
-    private int getTotalCostSoFar() {
-        return (numberVipTickets * vipTicketPrice) + (numberGeneralTickets * generalTicketPrice);
-    }
 
     private void checkout() {
         PayActivity activity = (PayActivity) getActivity();
-        activity.setTotalPrice(getTotalCostSoFar());
-        activity.setTotalTicketCount(numberGeneralTickets + numberVipTickets);
         activity.nextPaymentPhase();
     }
 
     private void updateCheckoutCost() {
         TextView checkoutCost = (TextView) getActivity().findViewById(R.id.tv_checkout_cost);
-        int cost = getTotalCostSoFar();
+        int cost = paymentManager.getTotalCostSoFar();
         checkoutCost.setText("$" + cost);
     }
 
     private void incrementGeneralTickets() {
-        if (numberGeneralTickets < MAX_NUMBER_OF_GENERAL_TICKETS) {
-            generalTicketsTextView.setText("" + (++numberGeneralTickets));
+        if (paymentManager.getNumberGeneralTickets() < paymentManager.getMaxNumberOfGeneralTickets()) {
+            paymentManager.setNumberGeneralTickets(paymentManager.getNumberGeneralTickets() + 1);
+            generalTicketsTextView.setText("" + paymentManager.getNumberGeneralTickets());
             updateCheckoutCost();
         } else {
-            Toast.makeText(getActivity(), String.format("Can buy up to %d GENERAL tickets", MAX_NUMBER_OF_GENERAL_TICKETS), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), String.format("Can buy up to %d GENERAL tickets", paymentManager.getMaxNumberOfGeneralTickets()), Toast.LENGTH_SHORT).show();
         }
     }
 
     private void decrementGeneralTickets() {
-        if (numberGeneralTickets > 0) {
-            generalTicketsTextView.setText("" + (--numberGeneralTickets));
+        if (paymentManager.getNumberGeneralTickets() > 0) {
+            paymentManager.setNumberGeneralTickets(paymentManager.getNumberGeneralTickets() - 1);
+            generalTicketsTextView.setText("" + paymentManager.getNumberGeneralTickets());
             updateCheckoutCost();
         }
     }
 
     private void incrementVipTickets() {
-        if (numberVipTickets < MAX_NUMBER_OF_VIP_TICKETS) {
-            vipTicketsTextView.setText("" + (++numberVipTickets));
+        if (paymentManager.getNumberVipTickets() < paymentManager.getMaxNumberOfVipTickets()) {
+            paymentManager.setNumberVipTickets(paymentManager.getNumberVipTickets() + 1);
+            vipTicketsTextView.setText("" + paymentManager.getNumberVipTickets());
             updateCheckoutCost();
         } else {
-            Toast.makeText(getActivity(), String.format("Can buy up to %d VIP tickets", MAX_NUMBER_OF_VIP_TICKETS), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), String.format("Can buy up to %d VIP tickets", paymentManager.getMaxNumberOfVipTickets()), Toast.LENGTH_SHORT).show();
         }
     }
 
     private void decrementVipTickets() {
-        if (numberVipTickets > 0) {
-            vipTicketsTextView.setText("" + (--numberVipTickets));
+        if (paymentManager.getNumberVipTickets() > 0) {
+            paymentManager.setNumberVipTickets(paymentManager.getNumberVipTickets() - 1);
+            vipTicketsTextView.setText("" + paymentManager.getNumberVipTickets());
             updateCheckoutCost();
         }
     }

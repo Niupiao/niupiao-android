@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.activities.MainActivity;
 import com.niupiao.niupiao.activities.TicketActivity;
 import com.niupiao.niupiao.adapters.MyTicketsAdapter;
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
@@ -32,6 +33,10 @@ public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment imple
     private SwipeRefreshLayout swipeContainer;
 
     protected abstract void requestEventsFromManager();
+
+    protected TicketManager getTicketManager() {
+        return ((MainActivity) getActivity()).getTicketManager();
+    }
 
     @Override
     public void onEventsLoaded(Collection<Event> events) {

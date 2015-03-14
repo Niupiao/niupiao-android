@@ -12,11 +12,11 @@
     </string-array>
 
     <string-array name="fragments_drawables">
-        <item>@drawable/browseeventsicon</item>
-        <item>@drawable/ticketicon</item>
-        <item>@drawable/staricon</item>
-        <item>@drawable/personicon</item>
-        <item>@drawable/gearicon</item>
+        <item>@drawable/browse_events_icon</item>
+        <item>@drawable/ticket_icon</item>
+        <item>@drawable/star_icon</item>
+        <item>@drawable/person_icon</item>
+        <item>@drawable/gear_icon</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>

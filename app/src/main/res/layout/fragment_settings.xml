@@ -2,79 +2,77 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d2d2d2">
+    android:background="@color/niupiao_white_background">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin">
+        android:layout_marginTop="@dimen/activity_vertical_margin">
 
         <TextView
             android:id="@+id/tv_social"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/social"
-            android:textColor="@color/niupiao_orange"/>
+            android:textColor="@color/niupiao_orange" />
 
         <LinearLayout
             android:id="@+id/ll_facebookshare"
-            android:orientation="horizontal"
-            android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_social"
-            android:background="@drawable/thinbottomtopbordertransparent">
+            android:background="@drawable/thin_bottom_top_border_transparent"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <TextView
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="2"
                 android:text="@string/facebook_share"
-                android:textColor="#000000"/>
+                android:textColor="#000000" />
 
             <CheckBox
                 android:id="@+id/cb_facebook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:maxHeight="1dp"
                 android:button="@drawable/checkbox_on_off_background"
-                />
-            </LinearLayout>
+                android:maxHeight="1dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_push_notification"
-            android:orientation="horizontal"
-            android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_facebookshare"
-            android:background="@drawable/thinbottomtopbordertransparent">
+            android:background="@drawable/thin_bottom_top_border_transparent"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <TextView
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="2"
                 android:text="@string/push_notification"
-                android:textColor="#000000"/>
+                android:textColor="@color/niupiao_black" />
 
             <CheckBox
                 android:id="@+id/cb_push_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:maxHeight="1dp"
                 android:button="@drawable/checkbox_on_off_background"
-                />
+                android:maxHeight="1dp" />
         </LinearLayout>
 
         <TextView
@@ -83,51 +81,51 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_push_notification"
             android:text="@string/others"
-            android:textColor="@color/niupiao_orange"/>
+            android:textColor="@color/niupiao_orange" />
 
         <Button
             android:id="@+id/btn_help"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_other"
-            android:background="@drawable/thinbottomtopbordertransparent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/thin_bottom_top_border_transparent"
             android:text="@string/help_center"
-            android:textColor="#000000"/>
+            android:textColor="@color/niupiao_black" />
 
         <Button
             android:id="@+id/btn_privacy"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btn_help"
-            android:background="@drawable/thinbottomtopbordertransparent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/thin_bottom_top_border_transparent"
             android:text="@string/privacy"
-            android:textColor="#000000"/>
+            android:textColor="@color/niupiao_black" />
 
         <Button
             android:id="@+id/btn_terms"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btn_privacy"
-            android:background="@drawable/thinbottomtopbordertransparent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/thin_bottom_top_border_transparent"
             android:text="@string/terms_conditions"
-            android:textColor="#000000"/>
+            android:textColor="@color/niupiao_black" />
 
         <Button
             android:id="@+id/btn_about_us"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/btn_terms"
-            android:background="@drawable/thinbottomtopbordertransparent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/thin_bottom_top_border_transparent"
             android:text="@string/about_us"
-            android:textColor="#000000"/>
-        </RelativeLayout>
+            android:textColor="@color/niupiao_black" />
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -65,7 +65,7 @@
             android:layout_below="@id/tv_event_date"
             android:layout_centerHorizontal="true"
             android:text="Wednesday, 7-10 PM EST"
-            android:textColor="#ffffff" />
+            android:textColor="@color/niupiao_white" />
 
         <TextView
             android:id="@+id/tv_event_where"
@@ -83,7 +83,7 @@
             android:layout_below="@id/tv_event_where"
             android:layout_centerHorizontal="true"
             android:text="2 Queen's Road Central, Hong Kong"
-            android:textColor="#ffffff" />
+            android:textColor="@color/niupiao_white" />
     </RelativeLayout>
 
     <ScrollView
@@ -92,8 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_event_details"
         android:layout_above="@+id/rl_checkout">
-        
-    <LinearLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -101,7 +101,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#d3d3d3"
+                android:background="@color/niupiao_white_background"
                 android:paddingBottom="20dp">
 
                 <TextView
@@ -250,7 +250,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:background="#e0e0e0"
+                android:background="@color/niupiao_white_background"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -385,8 +385,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="#000000"
-        android:backgroundTint="#EE000000"
+        android:background="@color/niupiao_black"
+        android:backgroundTint="@color/niupiao_black"
         android:backgroundTintMode="src_over">
 
         <!--android:layout_toLeftOf="@+id/ib_confirm"-->

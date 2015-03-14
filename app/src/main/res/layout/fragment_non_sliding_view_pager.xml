@@ -14,10 +14,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:background="#33b5e5"
+            android:background="@color/niupiao_blue"
             android:paddingBottom="4dp"
             android:paddingTop="4dp"
-            android:textColor="#fff" />
+            android:textColor="@color/niupiao_white" />
 
     </com.niupiao.niupiao.widgets.NonSwipeableViewPager>
 

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5e5e5">
+    android:background="@color/niupiao_white_background">
 
     <TextView
         android:id="@+id/tv_title"
@@ -93,5 +93,5 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/button_registration"
         android:text="@string/registration_button"
-        android:textColor="#ffffff" />
+        android:textColor="@color/niupiao_white" />
 </RelativeLayout>

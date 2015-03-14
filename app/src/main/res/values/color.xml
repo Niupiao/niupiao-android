@@ -4,4 +4,8 @@
     <color name="niupiao_blue">#67c0b9</color>
     <color name="niupiao_orange">#fa945c</color>
     <color name="niupiao_white">#ffffff</color>
+    <color name="niupiao_white_background">#e2e2e2</color>
+    <color name="niupiao_black">#000000</color>
+    <color name="niupiao_black_nav_drawer">#111</color>
+    <color name="niupiao_grey">#434343</color>
 </resources>

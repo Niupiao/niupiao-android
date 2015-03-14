@@ -39,7 +39,7 @@
         android:layout_alignParentBottom="true"
         android:layout_below="@id/rl_date"
         android:layout_marginTop="130dp"
-        android:background="#BC000000"
+        android:background="@color/niupiao_black"
         android:paddingLeft="4dp"
         android:paddingRight="4dp">
 

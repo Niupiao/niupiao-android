@@ -131,8 +131,8 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
 
     private ArrayList<Data> instantiateData() {
         mFragmentTitles = getResources().getStringArray(R.array.fragments_array);
-        int[] mFragmentDrawables = {R.drawable.browseeventsicon, R.drawable.ticketicon, R.drawable.staricon,
-                R.drawable.personicon, R.drawable.gearicon};
+        int[] mFragmentDrawables = {R.drawable.browse_events_icon, R.drawable.ticket_icon, R.drawable.star_icon,
+                R.drawable.person_icon, R.drawable.gear_icon};
 
         ArrayList<Data> navBarItems = new ArrayList<Data>();
 

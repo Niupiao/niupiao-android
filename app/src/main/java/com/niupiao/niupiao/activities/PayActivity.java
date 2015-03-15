@@ -64,7 +64,7 @@ public class PayActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
         event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
-        paymentManager = new PaymentManager(event);
+        paymentManager = new PaymentManager(event, this);
         show(PaymentPhase.PURCHASE_TICKETS);
     }
 

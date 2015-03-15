@@ -12,26 +12,22 @@ import com.niupiao.niupiao.R;
 /**
  * Created by kevinchen on 3/9/15.
  */
-public class PaymentInfoFragment extends CheckoutViewPagerFragment implements View.OnClickListener {
+public class PaymentInfoFragment extends CheckoutViewPagerFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_info, container, false);
 
         ImageButton next = (ImageButton) root.findViewById(R.id.ib_next_screen);
-        next.setOnClickListener(this);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextCheckoutPhase();
+            }
+        });
         next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.payment_confirm_arrow));
 
         return root;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ib_next_screen:
-                nextCheckoutPhase();
-                break;
-        }
     }
 
     @Override

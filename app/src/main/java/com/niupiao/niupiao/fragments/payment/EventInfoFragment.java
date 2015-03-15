@@ -1,5 +1,6 @@
 package com.niupiao.niupiao.fragments.payment;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,18 +21,20 @@ import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.models.Ticket;
+import com.niupiao.niupiao.models.TicketStatus;
 import com.niupiao.niupiao.utils.DateUtils;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;
+
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by kevinchen on 2/18/15.
  */
-public class EventInfoFragment extends Fragment implements View.OnClickListener {
+public class EventInfoFragment extends Fragment {
 
     public static final String TAG = EventInfoFragment.class.getSimpleName();
-
-    private TextView vipTicketsTextView;
-    private TextView generalTicketsTextView;
 
     private PaymentManager paymentManager;
 
@@ -38,13 +42,60 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         return new EventInfoFragment();
     }
 
+    private void initializeTicketRows(ViewGroup root) {
+
+        // Maps ticketStatus to a collection of tickets the size of ticketStatus.getMaxPurchasable()
+        Map<TicketStatus, Collection<Ticket>> tickets = paymentManager.getTickets();
+
+        // We will be adding stuff to the sole child of a ScrollView. (ScrollView can only have one child).
+        RelativeLayout insideScrollView = (RelativeLayout) root.findViewById(R.id.sv_child);
+
+        // The layout inflater will be dynamically inflating views,
+        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        // The TextView showing total checkout
+        final TextView checkoutCostTextView = (TextView) root.findViewById(R.id.tv_cost);
+
+        // We will be adding a row for each ticket status
+        for (final TicketStatus ticketStatus : tickets.keySet()) {
+
+            View child = layoutInflater.inflate(R.layout.payment_checkout_tickets_row, insideScrollView);
+
+            TextView ticketStatusTextView = (TextView) child.findViewById(R.id.tv_ticket_status);
+            ticketStatusTextView.setText(ticketStatus.getName());
+
+            TextView ticketPriceTextView = (TextView) child.findViewById(R.id.tv_ticket_price);
+            // TODO hardcode for now, since price is per-ticket instead of per-TicketStatus
+            ticketPriceTextView.setText("$50");
+
+            final TextView numberOfTicketsPurchasedTextView = (TextView) child.findViewById(R.id.tv_number_tickets);
+
+            ImageButton minusButton = (ImageButton) child.findViewById(R.id.ib_minus_button);
+            minusButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    paymentManager.decrement(ticketStatus, numberOfTicketsPurchasedTextView, checkoutCostTextView);
+                }
+            });
+
+            ImageButton plusButton = (ImageButton) child.findViewById(R.id.ib_plus_button);
+            plusButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    paymentManager.increment(ticketStatus, numberOfTicketsPurchasedTextView, checkoutCostTextView);
+                }
+            });
+
+            // TODO If it's not the last status, add the divider
+            View divider = layoutInflater.inflate(R.layout.payment_checkout_tickets_row_divider, insideScrollView);
+        }
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_event_info, container, false);
-
-        vipTicketsTextView = (TextView) root.findViewById(R.id.event_info_vip_number_tickets);
-        generalTicketsTextView = (TextView) root.findViewById(R.id.event_info_general_number_tickets);
 
         // Get event for this activity
         PayActivity payActivity = (PayActivity) getActivity();
@@ -65,134 +116,26 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         date.setText(DateUtils.format(event.getDate(), DateUtils.FORMAT_DATE));
         location.setText(event.getLocation());
 
-        // Set button listeners
-        ImageButton imageButton = (ImageButton) root.findViewById(R.id.event_info_general_plus_button);
-        imageButton.setOnClickListener(this);
+        initializeTicketRows(root);
 
-        imageButton = (ImageButton) root.findViewById(R.id.event_info_general_minus_button);
-        imageButton.setOnClickListener(this);
-
-        imageButton = (ImageButton) root.findViewById(R.id.event_info_vip_plus_button);
-        imageButton.setOnClickListener(this);
-
-        imageButton = (ImageButton) root.findViewById(R.id.event_info_vip_minus_button);
-        imageButton.setOnClickListener(this);
-
-        imageButton = (ImageButton) root.findViewById(R.id.ib_checkout);
-        imageButton.setOnClickListener(this);
-
-        // Set fonts
-        Typeface robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Bold.ttf");
-        TextView getTickets = (TextView) root.findViewById(R.id.event_info_get_info_tv);
-        getTickets.setTypeface(robotoBold);
-
-        LinearLayout ticketGuidelines = (LinearLayout) root.findViewById(R.id.event_info_ticketing_guidelines);
-        final TextView showGuidelines = (TextView) root.findViewById(R.id.event_info_ticketing_guidelines_show);
-        ticketGuidelines.setOnClickListener(new View.OnClickListener() {
+        ImageButton imageButton = (ImageButton) root.findViewById(R.id.ib_next_screen);
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (showGuidelines.isShown())
-                    showGuidelines.setVisibility(View.GONE);
-                else
-                    showGuidelines.setVisibility(View.VISIBLE);
+                checkout();
             }
         });
 
-        LinearLayout announcements = (LinearLayout) root.findViewById(R.id.event_info_announcements);
-        final TextView showAnnouncements = (TextView) root.findViewById(R.id.event_info_announcements_show);
-        announcements.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (showAnnouncements.isShown())
-                    showAnnouncements.setVisibility(View.GONE);
-                else
-                    showAnnouncements.setVisibility(View.VISIBLE);
-            }
-        });
-
-        LinearLayout eventDescription = (LinearLayout) root.findViewById(R.id.event_info_event_description);
-        final TextView showDescription = (TextView) root.findViewById(R.id.event_info_description_show);
-        eventDescription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (showDescription.isShown())
-                    showDescription.setVisibility(View.GONE);
-                else
-                    showDescription.setVisibility(View.VISIBLE);
-            }
-        });
+        // TODO Set fonts
+//        Typeface robotoBold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Bold.ttf");
 
         return root;
     }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.event_info_general_plus_button:
-                incrementGeneralTickets();
-                break;
-            case R.id.event_info_general_minus_button:
-                decrementGeneralTickets();
-                break;
-            case R.id.event_info_vip_plus_button:
-                incrementVipTickets();
-                break;
-            case R.id.event_info_vip_minus_button:
-                decrementVipTickets();
-                break;
-            case R.id.ib_checkout:
-                checkout();
-                break;
-            default:
-                Log.wtf(TAG, "What other button was pressed?");
-        }
-    }
-
 
     private void checkout() {
         PayActivity activity = (PayActivity) getActivity();
         activity.nextPaymentPhase();
     }
 
-    private void updateCheckoutCost() {
-        TextView checkoutCost = (TextView) getActivity().findViewById(R.id.tv_checkout_cost);
-        int cost = paymentManager.getTotalCost();
-        checkoutCost.setText("$" + cost);
-    }
 
-    private void incrementGeneralTickets() {
-        if (paymentManager.getNumberGeneralTickets() < paymentManager.getMaxNumberOfGeneralTickets()) {
-            paymentManager.setNumberGeneralTickets(paymentManager.getNumberGeneralTickets() + 1);
-            generalTicketsTextView.setText("" + paymentManager.getNumberGeneralTickets());
-            updateCheckoutCost();
-        } else {
-            Toast.makeText(getActivity(), String.format("Can buy up to %d GENERAL tickets", paymentManager.getMaxNumberOfGeneralTickets()), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void decrementGeneralTickets() {
-        if (paymentManager.getNumberGeneralTickets() > 0) {
-            paymentManager.setNumberGeneralTickets(paymentManager.getNumberGeneralTickets() - 1);
-            generalTicketsTextView.setText("" + paymentManager.getNumberGeneralTickets());
-            updateCheckoutCost();
-        }
-    }
-
-    private void incrementVipTickets() {
-        if (paymentManager.getNumberVipTickets() < paymentManager.getMaxNumberOfVipTickets()) {
-            paymentManager.setNumberVipTickets(paymentManager.getNumberVipTickets() + 1);
-            vipTicketsTextView.setText("" + paymentManager.getNumberVipTickets());
-            updateCheckoutCost();
-        } else {
-            Toast.makeText(getActivity(), String.format("Can buy up to %d VIP tickets", paymentManager.getMaxNumberOfVipTickets()), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void decrementVipTickets() {
-        if (paymentManager.getNumberVipTickets() > 0) {
-            paymentManager.setNumberVipTickets(paymentManager.getNumberVipTickets() - 1);
-            vipTicketsTextView.setText("" + paymentManager.getNumberVipTickets());
-            updateCheckoutCost();
-        }
-    }
 }

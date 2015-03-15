@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_ticket_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/niupiao_blue"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv_ticket_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="General"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_ticket_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="$50"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/ib_minus_button"
+        style="@style/EventInfo.TicketCounterButton"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@id/ll_ticket_info"
+        android:background="@drawable/blue_minus" />
+
+    <TextView
+        android:id="@+id/tv_number_tickets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/ib_minus_button"
+        android:text="0"
+        android:textSize="60sp" />
+
+    <ImageButton
+        android:id="@+id/ib_plus_button"
+        style="@style/EventInfo.TicketCounterButton"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@id/tv_number_tickets"
+        android:background="@drawable/blue_plus" />
+
+</RelativeLayout>

@@ -32,7 +32,7 @@ import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Data;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.ResourceCallback;
-import com.niupiao.niupiao.ui.LeftNavAdapter;
+import com.niupiao.niupiao.adapters.LeftNavAdapter;
 import com.niupiao.niupiao.utils.SharedPrefsUtils;
 
 import java.util.ArrayList;

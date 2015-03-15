@@ -1,4 +1,4 @@
-package com.niupiao.niupiao.ui;
+package com.niupiao.niupiao.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

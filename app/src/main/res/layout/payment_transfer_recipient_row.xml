@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/payment_transfer_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_recipient_number"
+        style="@style/Payment.TextView.General"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        style="@style/Payment.TextView.General"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tv_recipient_number"
+        android:layout_alignLeft="@id/tv_type"
+        android:layout_toRightOf="@+id/tv_recipient_number"
+        android:text="@string/transfer_type_general" />
+
+    <ImageButton
+        android:id="@+id/ib_choose_contact"
+        style="@style/Payment.ImageButton.Contacts"
+        android:layout_alignBottom="@id/tv_recipient_number"
+        android:layout_alignLeft="@id/tv_select"
+        android:layout_toRightOf="@id/tv_status" />
+
+</RelativeLayout>

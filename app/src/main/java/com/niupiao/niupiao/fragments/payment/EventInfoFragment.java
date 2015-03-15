@@ -160,6 +160,7 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         checkoutCost.setText("$" + cost);
     }
 
+    //TODO Set up EventInfo to be dynamic.
     private void incrementGeneralTickets() {
         if (paymentManager.getNumberGeneralTickets() < paymentManager.getMaxNumberOfGeneralTickets()) {
             paymentManager.setNumberGeneralTickets(paymentManager.getNumberGeneralTickets() + 1);

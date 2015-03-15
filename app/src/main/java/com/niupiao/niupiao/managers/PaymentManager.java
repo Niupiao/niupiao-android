@@ -54,4 +54,38 @@ public class PaymentManager {
         return totalCost;
     }
 
+    /**
+     * Code Below is Temp Code until EventInfo can be dynamic.
+     */
+
+    private int numGeneral = 0;
+    private int maxGeneral = 3;
+    private int numVIP = 0;
+    private int maxVIP = 2;
+
+    public int getNumberGeneralTickets(){
+        return numGeneral;
+    }
+
+    public int getMaxNumberOfGeneralTickets(){
+        return maxGeneral;
+    }
+
+    public void setNumberGeneralTickets(int num){
+        numGeneral = num;
+    }
+
+    public int getNumberVipTickets(){
+        return numVIP;
+    }
+
+    public int getMaxNumberOfVipTickets(){
+        return maxVIP;
+    }
+
+    public void setNumberVipTickets(int num){
+        numVIP = num;
+    }
+
+
 }

@@ -67,7 +67,7 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment implement
 
                 // Inflate the row that shows the recipient number, the ticket status, and the choose recipient button
                 // See payment_transfer_recipient_row.xml
-                View child = layoutInflater.inflate(R.id.payment_transfer_row, insideScrollView);
+                View child = layoutInflater.inflate(R.layout.payment_transfer_recipient_row, insideScrollView);
 
                 // Show the recipient number
                 TextView recipientNumberTextView = (TextView) child.findViewById(R.id.tv_recipient_number);

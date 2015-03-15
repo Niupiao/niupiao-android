@@ -50,14 +50,6 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
         PayActivity payActivity = (PayActivity) getActivity();
         paymentManager = payActivity.getPaymentManager();
 
-        // TODO don't hardcode these, call PayActivity#getEvent
-        paymentManager.setMaxNumberOfGeneralTickets(3)
-                .setMaxNumberOfVipTickets(2)
-                .setGeneralTicketPrice(50)
-                .setVipTicketPrice(150)
-                .setNumberGeneralTickets(0)
-                .setNumberVipTickets(0);
-
         Event event = payActivity.getEvent();
 
         // Set labels and images
@@ -164,7 +156,7 @@ public class EventInfoFragment extends Fragment implements View.OnClickListener 
 
     private void updateCheckoutCost() {
         TextView checkoutCost = (TextView) getActivity().findViewById(R.id.tv_checkout_cost);
-        int cost = paymentManager.getTotalCostSoFar();
+        int cost = paymentManager.getTotalCost();
         checkoutCost.setText("$" + cost);
     }
 

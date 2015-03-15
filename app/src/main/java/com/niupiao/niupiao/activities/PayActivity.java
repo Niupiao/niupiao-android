@@ -21,9 +21,6 @@ public class PayActivity extends ActionBarActivity {
 
     public static final String INTENT_KEY_FOR_EVENT = "event";
 
-    // TODO don't hardcode, get from event.getMaxNumberOfTicketsPurchaseable();
-    private final static int MAX_NUMBER_OF_RECIPIENTS = 5;
-
     private PaymentManager paymentManager;
 
     /**
@@ -66,9 +63,8 @@ public class PayActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
-        paymentManager = new PaymentManager(MAX_NUMBER_OF_RECIPIENTS);
-
         event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
+        paymentManager = new PaymentManager(event);
         show(PaymentPhase.PURCHASE_TICKETS);
     }
 

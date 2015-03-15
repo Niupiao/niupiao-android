@@ -1,121 +1,57 @@
 package com.niupiao.niupiao.managers;
 
+import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.models.Ticket;
+import com.niupiao.niupiao.models.TicketStatus;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by kevinchen on 3/14/15.
  */
 public class PaymentManager {
 
-    private List<TicketRecipient> recipients;
 
-    // the price of the VIP-status ticket
-    private int vipTicketPrice;
+    // maps status names to tickets
+    private Map<TicketStatus, Collection<Ticket>> tickets;
 
-    // the price of the General-status ticket
-    private int generalTicketPrice;
+    public Map<TicketStatus, Collection<Ticket>> getTickets() {
+        return tickets;
+    }
 
-    // the number of VIP-status tickets purchased so far
-    private int numberVipTickets;
+    public int getNumberOfTicketsForStatus(TicketStatus ticketStatus) {
+        return tickets.get(ticketStatus).size();
+    }
 
-    // the number of General-status tickets purchased so far
-    private int numberGeneralTickets;
 
-    private int maxNumberOfGeneralTickets;
-    private int maxNumberOfVipTickets;
-
-    public PaymentManager(int maxNumberOfTicketsPurchaseable) {
-        recipients = new ArrayList<>(maxNumberOfTicketsPurchaseable);
+    public PaymentManager(Event event) {
+        Collection<TicketStatus> ticketStatuses = event.getTicketStatuses();
+        tickets = new HashMap<>(event.getNumberOfTicketStatuses());
+        if (ticketStatuses != null) {
+            for (TicketStatus ticketStatus : ticketStatuses) {
+                tickets.put(ticketStatus, new ArrayList<Ticket>(ticketStatus.getMaxPurchasable()));
+            }
+        }
     }
 
     /**
      * Returns the amount of money spent so far
      */
-    public int getTotalCostSoFar() {
-        return (numberVipTickets * vipTicketPrice) + (numberGeneralTickets * generalTicketPrice);
-    }
-
-    public int getMaxNumberOfGeneralTickets() {
-        return maxNumberOfGeneralTickets;
-    }
-
-    public int getMaxNumberOfVipTickets() {
-        return maxNumberOfVipTickets;
-    }
-
-    public int getVipTicketPrice() {
-        return vipTicketPrice;
-    }
-
-    public int getGeneralTicketPrice() {
-        return generalTicketPrice;
-    }
-
-    public int getNumberVipTickets() {
-        return numberVipTickets;
-    }
-
-    public int getNumberGeneralTickets() {
-        return numberGeneralTickets;
-    }
-
-    public PaymentManager setVipTicketPrice(int vipTicketPrice) {
-        this.vipTicketPrice = vipTicketPrice;
-        return this;
-    }
-
-    public PaymentManager setGeneralTicketPrice(int generalTicketPrice) {
-        this.generalTicketPrice = generalTicketPrice;
-        return this;
-    }
-
-    public PaymentManager setNumberVipTickets(int numberVipTickets) {
-        this.numberVipTickets = numberVipTickets;
-        return this;
-    }
-
-    public PaymentManager setNumberGeneralTickets(int numberGeneralTickets) {
-        this.numberGeneralTickets = numberGeneralTickets;
-        return this;
-    }
-
-    public PaymentManager setMaxNumberOfGeneralTickets(int maxNumberOfGeneralTickets) {
-        this.maxNumberOfGeneralTickets = maxNumberOfGeneralTickets;
-        return this;
-    }
-
-    public PaymentManager setMaxNumberOfVipTickets(int maxNumberOfVipTickets) {
-        this.maxNumberOfVipTickets = maxNumberOfVipTickets;
-        return this;
-    }
-
-
-    /**
-     * Used for storing recipients of tickets.
-     */
-    public static class TicketRecipient {
-
-        private String name;
-        private String cell;
-        private boolean me;
-
-        public TicketRecipient(String name, String cell, boolean me) {
-            this.name = name;
-            this.cell = cell;
-            this.me = me;
+    public int getTotalCost() {
+        int totalCost = 0;
+        for (TicketStatus ticketStatus : tickets.keySet()) {
+            Collection<Ticket> ticketsBought = tickets.get(ticketStatus);
+            if (ticketsBought != null) {
+                for (Ticket ticket : ticketsBought) {
+                    totalCost += ticket.getPrice();
+                }
+            }
         }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getCell() {
-            return cell;
-        }
-
-        public boolean isMe() {
-            return me;
-        }
+        return totalCost;
     }
+
 }

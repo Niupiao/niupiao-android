@@ -57,7 +57,7 @@
     </style>
 
     <style name="Payment.ImageButton.Contacts">
-        <item name="android:src">@drawable/blackline</item>
+        <item name="android:src">@drawable/black_line</item>
         <item name="android:scaleType">fitCenter</item>
     </style>
 

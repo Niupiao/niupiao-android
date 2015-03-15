@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
 
@@ -29,7 +30,15 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment implement
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_transfer, container, false);
 
         TextView cost = (TextView) root.findViewById(R.id.tv_cost);
-        cost.setText("$" + getPaymentManager().getTotalCostSoFar());
+        cost.setText("$" + getPaymentManager().getTotalCost());
+
+        ImageButton contact1 = (ImageButton) root.findViewById(R.id.ib_contacts_1);
+        contact1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "TODO - show contact chooser", Toast.LENGTH_LONG).show();
+            }
+        });
 
         ImageButton next = (ImageButton) root.findViewById(R.id.ib_payment_method);
         next.setOnClickListener(this);

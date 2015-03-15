@@ -38,10 +38,10 @@
         <ImageView
             android:id="@+id/iv_border"
             android:layout_width="wrap_content"
-            android:layout_height="2px"
+            android:layout_height="2dp"
             android:layout_below="@id/tv_select"
             android:scaleType="fitXY"
-            android:src="@drawable/blackline" />
+            android:src="@drawable/black_line" />
 
         <!-- Row 1 -->
         <TextView

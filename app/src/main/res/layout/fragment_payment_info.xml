@@ -9,19 +9,7 @@
         style="@style/Payment.TextView.Title"
         android:text="@string/title_payment_method" />
 
-    <ImageButton
-        android:id="@+id/ib_confirm"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="3dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/confirm"
-        android:background="@android:color/transparent"
-        android:maxHeight="80dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitEnd"
-        android:layout_alignParentRight="true" />
+    <include layout="@layout/checkout_tickets_bottom_bar"/>
 
 
 </RelativeLayout>

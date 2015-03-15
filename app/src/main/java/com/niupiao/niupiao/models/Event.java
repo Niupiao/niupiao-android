@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by kmchen1 on 2/17/15.
@@ -103,6 +105,12 @@ public class Event implements Parcelable {
     @SerializedName("tickets")
     private Collection<Ticket> tickets;
 
+    @SerializedName("number_of_ticket_statuses")
+    private int numberOfTicketStatuses;
+
+    @SerializedName("ticket_statuses")
+    private Collection<TicketStatus> ticketStatuses;
+
     public int getId() {
         return id;
     }
@@ -145,6 +153,14 @@ public class Event implements Parcelable {
 
     public Collection<Ticket> getTickets() {
         return tickets;
+    }
+
+    public int getNumberOfTicketStatuses() {
+        return numberOfTicketStatuses;
+    }
+
+    public Collection<TicketStatus> getTicketStatuses() {
+        return ticketStatuses;
     }
 
     @Override

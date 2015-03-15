@@ -28,6 +28,7 @@ public class Ticket implements Parcelable {
         dest.writeInt(userId);
         dest.writeInt(price);
         dest.writeString(status);
+        dest.writeParcelable(ticketStatus, 0);
     }
 
     public Ticket() {
@@ -40,6 +41,7 @@ public class Ticket implements Parcelable {
         userId = in.readInt();
         price = in.readInt();
         status = in.readString();
+        ticketStatus = in.readParcelable(TicketStatus.class.getClassLoader());
     }
 
     public static final Creator<Ticket> CREATOR = new Creator<Ticket>() {
@@ -71,6 +73,9 @@ public class Ticket implements Parcelable {
 
     @SerializedName("status")
     private String status;
+
+    @SerializedName("ticket_status")
+    private TicketStatus ticketStatus;
 
     public int getId() {
         return id;
@@ -118,5 +123,13 @@ public class Ticket implements Parcelable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public TicketStatus getTicketStatus() {
+        return ticketStatus;
+    }
+
+    public void setTicketStatus(TicketStatus ticketStatus) {
+        this.ticketStatus = ticketStatus;
     }
 }

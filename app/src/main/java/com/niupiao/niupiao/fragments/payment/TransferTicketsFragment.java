@@ -22,16 +22,7 @@ import java.util.Map;
 /**
  * Created by kevinchen on 3/9/15.
  */
-public class TransferTicketsFragment extends CheckoutViewPagerFragment implements View.OnClickListener {
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ib_payment_method:
-                nextCheckoutPhase();
-                break;
-        }
-    }
+public class TransferTicketsFragment extends CheckoutViewPagerFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -93,7 +84,12 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment implement
 
         // Show the button that will lead to the next screen
         ImageButton next = (ImageButton) root.findViewById(R.id.ib_next_screen);
-        next.setOnClickListener(this);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextCheckoutPhase();
+            }
+        });
         next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.payment_method_arrow));
 
         return root;

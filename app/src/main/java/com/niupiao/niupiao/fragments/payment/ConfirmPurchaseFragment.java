@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
@@ -31,6 +32,16 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
         Map<TicketStatus, Collection<Ticket>> ticketStatuses = paymentManager.getTickets();
 
         // TODO dynamically add views
+
+
+        ImageButton next = (ImageButton) root.findViewById(R.id.ib_next_screen);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextCheckoutPhase();
+            }
+        });
+        next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.view_tickets));
 
 
         return root;

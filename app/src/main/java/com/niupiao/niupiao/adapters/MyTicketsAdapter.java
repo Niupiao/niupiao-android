@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.models.Ticket;
+import com.niupiao.niupiao.models.TicketStatus;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.utils.DateUtils;
 
@@ -63,7 +64,8 @@ public class MyTicketsAdapter extends ParcelableArrayAdapter<Ticket> {
             viewHolder.date.setText(date);
             viewHolder.time.setText(time);
         }
-        viewHolder.price.setText("$" + ticket.getTicketStatus().getPrice());
+        TicketStatus ticketStatus = ticket.getTicketStatus();
+        viewHolder.price.setText("$" + ticketStatus.getPrice());
         viewHolder.status.setText(ticket.getStatus());
         User user = getMainActivity().getUser();
         viewHolder.buyerName.setText(user.getName());

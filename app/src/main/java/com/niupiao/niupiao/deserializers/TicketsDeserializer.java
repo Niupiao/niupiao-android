@@ -48,7 +48,6 @@ public class TicketsDeserializer implements JsonDeserializer<Ticket> {
         final JsonObject jsonObject = json.getAsJsonObject();
         final Ticket ticket = new Ticket();
         ticket.setId(jsonObject.get("id").getAsInt());
-        ticket.setPrice(jsonObject.get("price").getAsInt());
         ticket.setStatus(jsonObject.get("status").getAsString());
         ticket.setEventId(jsonObject.get("event_id").getAsInt());
         ticket.setUserId(jsonObject.get("user_id").getAsInt());

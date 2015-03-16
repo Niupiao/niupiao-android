@@ -29,9 +29,11 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
 
         PaymentManager paymentManager = getPaymentManager();
 
-        Map<TicketStatus, Collection<Ticket>> ticketStatuses = paymentManager.getTickets();
+        Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
 
-        // TODO dynamically add views
+        for (TicketStatus ticketStatus : numTickets.keySet()) {
+            // TODO dynamically add views
+        }
 
 
         ImageButton next = (ImageButton) root.findViewById(R.id.ib_next_screen);

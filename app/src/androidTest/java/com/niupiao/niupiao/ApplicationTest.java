@@ -5,12 +5,15 @@ import android.test.ApplicationTestCase;
 
 import com.niupiao.niupiao.deserializers.TicketsDeserializer;
 import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.models.Ticket;
+import com.niupiao.niupiao.models.TicketStatus;
 
 import junit.framework.Assert;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -85,6 +88,14 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
             Assert.assertFalse(events.isEmpty());
             Event first = events.get(0);
             Assert.assertEquals(first.getId(), 1);
+
+            Collection<Ticket> tickets = first.getTickets();
+            Assert.assertFalse(tickets.isEmpty());
+            Ticket ticket = tickets.iterator().next();
+            Assert.assertNotNull(ticket);
+            TicketStatus ticketStatus = ticket.getTicketStatus();
+            Assert.assertNotNull(ticketStatus);
+            Assert.assertEquals(ticketStatus.getPrice(), 50);
         } catch (JSONException e) {
             e.printStackTrace();
         }

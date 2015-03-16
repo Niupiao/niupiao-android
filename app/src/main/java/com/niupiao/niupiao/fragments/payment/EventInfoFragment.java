@@ -65,8 +65,7 @@ public class EventInfoFragment extends Fragment {
             ticketStatusTextView.setText(ticketStatus.getName());
 
             TextView ticketPriceTextView = (TextView) child.findViewById(R.id.tv_ticket_price);
-            // TODO hardcode for now, since price is per-ticket instead of per-TicketStatus
-            ticketPriceTextView.setText("$50");
+            ticketPriceTextView.setText("$" + ticketStatus.getPrice());
 
             final TextView numberOfTicketsPurchasedTextView = (TextView) child.findViewById(R.id.tv_number_tickets);
 

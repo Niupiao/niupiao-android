@@ -76,24 +76,9 @@ public class PaymentManager {
     public int getTotalCost() {
         int totalCost = 0;
         for (TicketStatus ticketStatus : numTickets.keySet()) {
-            int incrementBy = numTickets.get(ticketStatus) * 50; // TODO instead of hardcode, call ticketStatus.getPrice()
+            int incrementBy = numTickets.get(ticketStatus) * ticketStatus.getPrice();
             totalCost += incrementBy;
         }
         return totalCost;
     }
-
-    // Per-Ticket method
-    public int getTotalCostPerTicket() {
-        int totalCost = 0;
-        for (TicketStatus ticketStatus : tickets.keySet()) {
-            Collection<Ticket> ticketsBought = tickets.get(ticketStatus);
-            if (ticketsBought != null) {
-                for (Ticket ticket : ticketsBought) {
-                    totalCost += ticket.getPrice();
-                }
-            }
-        }
-        return totalCost;
-    }
-
 }

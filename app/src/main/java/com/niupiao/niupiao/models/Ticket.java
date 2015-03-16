@@ -11,11 +11,6 @@ import com.google.gson.annotations.SerializedName;
 public class Ticket implements Parcelable {
 
     @Override
-    public String toString() {
-        return String.format("%s for $%d", status, price);
-    }
-
-    @Override
     public int describeContents() {
         return 0;
     }
@@ -26,7 +21,6 @@ public class Ticket implements Parcelable {
         dest.writeInt(eventId);
         dest.writeParcelable(event, 0);
         dest.writeInt(userId);
-        dest.writeInt(price);
         dest.writeString(status);
         dest.writeParcelable(ticketStatus, 0);
     }
@@ -39,7 +33,6 @@ public class Ticket implements Parcelable {
         eventId = in.readInt();
         event = in.readParcelable(Event.class.getClassLoader());
         userId = in.readInt();
-        price = in.readInt();
         status = in.readString();
         ticketStatus = in.readParcelable(TicketStatus.class.getClassLoader());
     }
@@ -68,9 +61,6 @@ public class Ticket implements Parcelable {
     @SerializedName("user_id")
     private int userId;
 
-    @SerializedName("price")
-    private int price;
-
     @SerializedName("status")
     private String status;
 
@@ -87,10 +77,6 @@ public class Ticket implements Parcelable {
 
     public int getUserId() {
         return userId;
-    }
-
-    public int getPrice() {
-        return price;
     }
 
     public String getStatus() {
@@ -115,10 +101,6 @@ public class Ticket implements Parcelable {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public void setStatus(String status) {

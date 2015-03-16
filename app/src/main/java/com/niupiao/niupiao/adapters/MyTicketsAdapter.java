@@ -63,7 +63,7 @@ public class MyTicketsAdapter extends ParcelableArrayAdapter<Ticket> {
             viewHolder.date.setText(date);
             viewHolder.time.setText(time);
         }
-        viewHolder.price.setText("$" + ticket.getPrice());
+        viewHolder.price.setText("$" + ticket.getTicketStatus().getPrice());
         viewHolder.status.setText(ticket.getStatus());
         User user = getMainActivity().getUser();
         viewHolder.buyerName.setText(user.getName());

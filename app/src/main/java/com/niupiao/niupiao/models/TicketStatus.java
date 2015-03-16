@@ -46,6 +46,9 @@ public class TicketStatus implements Parcelable {
     @SerializedName("name")
     private String name;
 
+    @SerializedName("price")
+    private int price;
+
     @SerializedName("max_purchasable")
     private int maxPurchasable;
 
@@ -55,6 +58,10 @@ public class TicketStatus implements Parcelable {
 
     public int getMaxPurchasable() {
         return maxPurchasable;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     @Override

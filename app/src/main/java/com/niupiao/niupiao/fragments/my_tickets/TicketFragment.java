@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
@@ -20,6 +21,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.niupiao.niupiao.R;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Inanity on 2/27/15.
  */
@@ -28,11 +31,19 @@ public class TicketFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_ticket, container, false);
         ImageView qrcode = (ImageView) root.findViewById(R.id.iv_qrcode);
+        TextView ticket_type = (TextView) root.findViewById(R.id.tv_ticket_type);
+        TextView ticket_user = (TextView) root.findViewById(R.id.tv_ticket_name);
+        TextView ticket_num = (TextView) root.findViewById(R.id.tv_ticket_allow);
 
         Intent intent = getActivity().getIntent();
         String admitType = intent.getStringExtra("EXTRA_TICKET_ADMIT_TYPE");
         String quantity = intent.getStringExtra("EXTRA_TICKET_QUANTITY");
         String name = intent.getStringExtra("EXTRA_TICKET_BUYER_NAME");
+
+        ticket_type.setText(admitType);
+        ticket_user.setText(name);
+        ticket_num.setText(getResources().getString(R.string.allows) + " " + quantity + " "
+                + getResources().getString(R.string.for_entry));
 
         String embeddedInfo = admitType + "\n" + quantity + "\n" + name;
 

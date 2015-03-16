@@ -19,28 +19,17 @@ import java.util.Map;
  */
 public class PaymentManager {
 
-    // used if PRICE is PER-TicketStatus
     private Map<TicketStatus, Integer> numTickets;
-
-    // used if PRICE is PER-Ticket
-    private Map<TicketStatus, Collection<Ticket>> tickets;
-
-    public Map<TicketStatus, Collection<Ticket>> getTickets() {
-        return tickets;
-    }
 
     private Context context;
 
+    public Map<TicketStatus, Integer> getNumTickets() {
+        return numTickets;
+    }
+
     public PaymentManager(Event event, Context context) {
         this.context = context;
-        Collection<TicketStatus> ticketStatuses = event.getTicketStatuses();
         numTickets = new HashMap<>(event.getNumberOfTicketStatuses());
-        tickets = new HashMap<>(event.getNumberOfTicketStatuses());
-        if (ticketStatuses != null) {
-            for (TicketStatus ticketStatus : ticketStatuses) {
-                tickets.put(ticketStatus, new ArrayList<Ticket>(ticketStatus.getMaxPurchasable()));
-            }
-        }
     }
 
     public void increment(TicketStatus ticketStatus, TextView numberOfTicketsTextView, TextView checkoutCostTextView) {
@@ -72,7 +61,6 @@ public class PaymentManager {
         }
     }
 
-    // Per Ticket-Status method
     public int getTotalCost() {
         int totalCost = 0;
         for (TicketStatus ticketStatus : numTickets.keySet()) {

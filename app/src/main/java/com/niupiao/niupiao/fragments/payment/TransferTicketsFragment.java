@@ -36,7 +36,7 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
         cost.setText("$" + paymentManager.getTotalCost());
 
         // Maps ticketStatus to a collection of tickets the size of ticketStatus.getMaxPurchasable()
-        Map<TicketStatus, Collection<Ticket>> tickets = paymentManager.getTickets();
+        Map<TicketStatus, Integer> tickets = paymentManager.getNumTickets();
 
         // We will be adding stuff to the sole child of a ScrollView. (ScrollView can only have one child).
         RelativeLayout insideScrollView = (RelativeLayout) root.findViewById(R.id.sv_child);

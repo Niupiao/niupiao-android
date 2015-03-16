@@ -44,8 +44,7 @@ public class EventInfoFragment extends Fragment {
 
     private void initializeTicketRows(ViewGroup root) {
 
-        // Maps ticketStatus to a collection of tickets the size of ticketStatus.getMaxPurchasable()
-        Map<TicketStatus, Collection<Ticket>> tickets = paymentManager.getTickets();
+        Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
 
         // We will be adding stuff to the sole child of a ScrollView. (ScrollView can only have one child).
         RelativeLayout insideScrollView = (RelativeLayout) root.findViewById(R.id.sv_child);
@@ -57,7 +56,7 @@ public class EventInfoFragment extends Fragment {
         final TextView checkoutCostTextView = (TextView) root.findViewById(R.id.tv_cost);
 
         // We will be adding a row for each ticket status
-        for (final TicketStatus ticketStatus : tickets.keySet()) {
+        for (final TicketStatus ticketStatus : numTickets.keySet()) {
 
             View child = layoutInflater.inflate(R.layout.payment_checkout_tickets_row, insideScrollView);
 

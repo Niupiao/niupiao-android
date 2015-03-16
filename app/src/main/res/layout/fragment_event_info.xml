@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/fragment_event_info_event_details" />
+    <include layout="@layout/fragment_event_info_event_details" android:id="@+id/rl_event_details" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/rl_event_details"
         android:background="@color/niupiao_white_background"
         android:paddingBottom="20dp">
 

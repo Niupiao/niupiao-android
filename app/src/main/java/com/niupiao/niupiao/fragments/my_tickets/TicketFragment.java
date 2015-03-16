@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -34,6 +35,7 @@ public class TicketFragment extends Fragment {
         String name = intent.getStringExtra("EXTRA_TICKET_BUYER_NAME");
 
         String embeddedInfo = admitType + "\n" + quantity + "\n" + name;
+
         try {
             generateQRCode_general(embeddedInfo, qrcode);
         } catch(WriterException e){
@@ -51,12 +53,11 @@ public class TicketFragment extends Fragment {
     //Code taken from:
     // http://stackoverflow.com/questions/22371626/android-generate-qr-code-and-barcode-using-zxing
     private void generateQRCode_general(String data, ImageView image) throws WriterException{
-        int width = 331;
-        int height = 331;
+        int width = 500;
+        int height = 500;
         com.google.zxing.Writer writer = new QRCodeWriter();
-        String finaldata = Uri.encode(data, "utf-8");
 
-        BitMatrix bm = writer.encode(finaldata, BarcodeFormat.QR_CODE, width, height);
+        BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE, width, height);
         Bitmap ImageBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
         for (int i = 0; i < width; i++) {//width

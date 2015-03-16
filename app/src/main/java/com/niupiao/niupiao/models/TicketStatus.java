@@ -22,6 +22,8 @@ public class TicketStatus implements Parcelable {
         dest.writeInt(maxPurchasable);
     }
 
+    public TicketStatus() {}
+
     public TicketStatus(Parcel in) {
         id = in.readInt();
         name = in.readString();
@@ -67,5 +69,21 @@ public class TicketStatus implements Parcelable {
     @Override
     public boolean equals(Object o) {
         return o instanceof TicketStatus && ((TicketStatus) o).getName().equals(name);
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setMaxPurchasable(int maxPurchasable) {
+        this.maxPurchasable = maxPurchasable;
     }
 }

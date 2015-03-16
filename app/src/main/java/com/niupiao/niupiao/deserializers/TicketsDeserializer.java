@@ -10,6 +10,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.models.Ticket;
+import com.niupiao.niupiao.models.TicketStatus;
 
 import org.json.JSONArray;
 
@@ -26,6 +27,7 @@ public class TicketsDeserializer implements JsonDeserializer<Ticket> {
         Type type = new TypeToken<List<Event>>() {
         }.getType();
         final GsonBuilder gsonBuilder = new GsonBuilder();
+        System.out.println("Registering adapter...");
         gsonBuilder.registerTypeAdapter(Ticket.class, new TicketsDeserializer());
         final Gson gson = gsonBuilder.create();
 
@@ -45,12 +47,33 @@ public class TicketsDeserializer implements JsonDeserializer<Ticket> {
 
     @Override
     public Ticket deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        final JsonObject jsonObject = json.getAsJsonObject();
+        final JsonObject ticketJson = json.getAsJsonObject();
         final Ticket ticket = new Ticket();
-        ticket.setId(jsonObject.get("id").getAsInt());
-        ticket.setStatus(jsonObject.get("status").getAsString());
-        ticket.setEventId(jsonObject.get("event_id").getAsInt());
-        ticket.setUserId(jsonObject.get("user_id").getAsInt());
+        System.out.println("WOOHOO");
+        ticket.setId(ticketJson.get("id").getAsInt());
+        ticket.setStatus(ticketJson.get("status").getAsString());
+        ticket.setEventId(ticketJson.get("event_id").getAsInt());
+        ticket.setUserId(ticketJson.get("user_id").getAsInt());
+
+        JsonObject ticketStatusJson = ticketJson.getAsJsonObject("ticket_status");
+        TicketStatus ticketStatus = new TicketStatus();
+
+        if (ticketStatusJson != null) {
+            JsonElement element = ticketStatusJson.get("price");
+            if (element != null) ticketStatus.setPrice(element.getAsInt());
+
+            element = ticketStatusJson.get("id");
+            if (element != null) ticketStatus.setId(element.getAsInt());
+
+            element = ticketStatusJson.get("max_purchasable");
+            if (element != null) ticketStatus.setMaxPurchasable(element.getAsInt());
+
+            element = ticketStatusJson.get("name");
+            if (element != null) ticketStatus.setName(element.getAsString());
+
+        }
+        ticket.setTicketStatus(ticketStatus);
+
         return ticket;
     }
 }

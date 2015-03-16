@@ -93,9 +93,15 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
             Assert.assertFalse(tickets.isEmpty());
             Ticket ticket = tickets.iterator().next();
             Assert.assertNotNull(ticket);
+
+            Assert.assertEquals(ticket.getId(), 1);
+            Assert.assertEquals(ticket.getStatus(), "General");
+
             TicketStatus ticketStatus = ticket.getTicketStatus();
             Assert.assertNotNull(ticketStatus);
             Assert.assertEquals(ticketStatus.getPrice(), 50);
+            Assert.assertEquals(ticketStatus.getName(), "General");
+            Assert.assertEquals(ticketStatus.getMaxPurchasable(), 3);
         } catch (JSONException e) {
             e.printStackTrace();
         }

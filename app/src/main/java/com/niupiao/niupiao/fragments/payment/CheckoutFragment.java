@@ -66,7 +66,7 @@ public class CheckoutFragment extends Fragment {
         // Initialize fragments (order in which they're added to list matters)
         List<Fragment> fragments = new ArrayList<>(3);
         fragments.add(TransferTicketsFragment.newInstance());
-        fragments.add(PaymentInfoFragment.newInstance());
+        fragments.add(PaymentMethodFragment.newInstance());
         fragments.add(ConfirmPurchaseFragment.newInstance());
 
         // Initialize the ViewPager and set an adapter

@@ -12,11 +12,11 @@ import com.niupiao.niupiao.R;
 /**
  * Created by kevinchen on 3/9/15.
  */
-public class PaymentInfoFragment extends CheckoutViewPagerFragment {
+public class PaymentMethodFragment extends CheckoutViewPagerFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_info, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_method, container, false);
 
         ImageButton next = (ImageButton) root.findViewById(R.id.ib_next_screen);
         next.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +35,7 @@ public class PaymentInfoFragment extends CheckoutViewPagerFragment {
         return "Payment Info";
     }
 
-    public static PaymentInfoFragment newInstance() {
-        return new PaymentInfoFragment();
+    public static PaymentMethodFragment newInstance() {
+        return new PaymentMethodFragment();
     }
 }

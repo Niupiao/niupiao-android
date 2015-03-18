@@ -1,8 +1,15 @@
 package com.niupiao.niupiao.fragments.payment;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +90,17 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
                 });
             }
         }
+
+        //Formatting the Note:
+        TextView note = (TextView) root.findViewById(R.id.tv_note);
+        String noteTextString = root.getResources().getString(R.string.transfer_note);
+        Spannable noteText = new SpannableString(noteTextString);
+        noteText.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.niupiao_blue)),
+                noteTextString.indexOf("NOT"), noteTextString.indexOf(" "),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        noteText.setSpan(new StyleSpan(Typeface.BOLD), noteTextString.indexOf("Tickets may not be"),
+                noteTextString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        note.setText(noteText);
 
         // Show the button that will lead to the next screen
         ImageButton next = (ImageButton) root.findViewById(R.id.ib_next_screen);

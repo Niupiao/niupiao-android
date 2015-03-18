@@ -48,6 +48,7 @@
     <style name="Payment.TextView.Note">
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:text">@string/transfer_note</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:layout_width">match_parent</item>
     </style>
 

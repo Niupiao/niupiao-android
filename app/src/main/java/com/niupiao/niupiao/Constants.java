@@ -22,7 +22,7 @@ public class Constants {
             public final static String EMAIL = "email";
             public final static String PUBLIC_PROFILE = "public_profile";
 
-            public final static String[] getPermissions() {
+            public static String[] getPermissions() {
                 return new String[]{EMAIL, PUBLIC_PROFILE};
             }
         }
@@ -65,6 +65,11 @@ public class Constants {
             public static final String API_KEY = "api_key";
         }
 
+        public final static class ApiKey {
+            public static final String EXPIRES_AT = "expires_at";
+            public static final String ACCESS_TOKEN = "access_token";
+        }
+
         /**
          * API constants for user registration.
          */
@@ -79,6 +84,21 @@ public class Constants {
          * API constants for accessing {@link com.niupiao.niupiao.models.Event} resources.
          */
         public final static class Event {
+
+            public static final String NAME = "name";
+            public static final String ORGANIZER = "organizer";
+            public static final String DATE = "date";
+            public static final String LOCATION = "location";
+            public static final String DESCRIPTION = "description";
+            public static final String LINK = "link";
+            public static final String IMAGE_PATH = "image_path";
+            public static final String TOTAL_TICKETS = "total_tickets";
+            public static final String TICKETS_SOLD = "tickets_sold";
+            public static final String TICKETS = "tickets";
+            public static final String NUMBER_OF_TICKET_STATUSES = "number_of_ticket_statuses";
+            public static final String TICKET_STATUSES = "ticket_statuses";
+
+            // for requesting
             public static final String HEADER_KEY_REQUEST_TYPE = "request_type";
             public static final String HEADER_VALUE_EVENT_ON_SALE = "on_sale";
             public static final String HEADER_VALUE_EVENT_COMING_SOON = "coming_soon";
@@ -89,9 +109,24 @@ public class Constants {
          * API constants for accessing {@link com.niupiao.niupiao.models.Ticket} resources.
          */
         public final static class Ticket {
+
+            public static final String EVENT = "event";
+            public static final String EVENT_ID = "event_id";
+            public static final String USER_ID = "user_id";
+            public static final String STATUS = "status";
+            public static final String TICKET_STATUS = "ticket_status";
+
+
+            // for requesting
             public static final String HEADER_KEY_REQUEST_TYPE = "request_type";
             public static final String HEADER_VALUE_TICKET_PAST = "past";
             public static final String HEADER_VALUE_TICKET_UPCOMING = "upcoming";
+        }
+
+        public final static class TicketStatus {
+            public static final String NAME = "name";
+            public static final String PRICE = "price";
+            public static final String MAX_PURCHASABLE = "max_purchasable";
         }
 
         /**

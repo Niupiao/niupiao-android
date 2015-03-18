@@ -1,14 +1,14 @@
 package com.niupiao.niupiao.models;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.niupiao.niupiao.Constants;
 
 /**
  * Created by kevinchen on 3/14/15.
  */
-public class TicketStatus implements Parcelable {
+public class TicketStatus extends ParcelableModel {
 
     @Override
     public int describeContents() {
@@ -27,7 +27,7 @@ public class TicketStatus implements Parcelable {
     }
 
     public TicketStatus(Parcel in) {
-        id = in.readInt();
+        super(in);
         name = in.readString();
         maxPurchasable = in.readInt();
         price = in.readInt();
@@ -45,16 +45,13 @@ public class TicketStatus implements Parcelable {
         }
     };
 
-    @SerializedName("id")
-    private int id;
-
-    @SerializedName("name")
+    @SerializedName(Constants.JsonApi.TicketStatus.NAME)
     private String name;
 
-    @SerializedName("price")
+    @SerializedName(Constants.JsonApi.TicketStatus.PRICE)
     private int price;
 
-    @SerializedName("max_purchasable")
+    @SerializedName(Constants.JsonApi.TicketStatus.MAX_PURCHASABLE)
     private int maxPurchasable;
 
     public String getName() {
@@ -72,10 +69,6 @@ public class TicketStatus implements Parcelable {
     @Override
     public boolean equals(Object o) {
         return o instanceof TicketStatus && ((TicketStatus) o).getName().equals(name);
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setName(String name) {

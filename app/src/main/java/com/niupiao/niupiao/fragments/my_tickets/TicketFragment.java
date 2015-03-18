@@ -35,17 +35,20 @@ public class TicketFragment extends Fragment {
         TextView ticket_user = (TextView) root.findViewById(R.id.tv_ticket_name);
         TextView ticket_num = (TextView) root.findViewById(R.id.tv_ticket_allow);
 
-        Intent intent = getActivity().getIntent();
-        String admitType = intent.getStringExtra("EXTRA_TICKET_ADMIT_TYPE");
-        String quantity = intent.getStringExtra("EXTRA_TICKET_QUANTITY");
-        String name = intent.getStringExtra("EXTRA_TICKET_BUYER_NAME");
+        Bundle extras = getActivity().getIntent().getExtras();
+
+        String eventName = extras.getString("MyTickets.event.name");
+        String admitType = extras.getString("MyTickets.admit.type");
+        String quantity = extras.getString("MyTickets.quantity");
+        String name = extras.getString("MyTickets.buyer.name");
 
         ticket_type.setText(admitType);
         ticket_user.setText(name);
         ticket_num.setText(getResources().getString(R.string.allows) + " " + quantity + " "
                 + getResources().getString(R.string.for_entry));
 
-        String embeddedInfo = admitType + "\n" + quantity + "\n" + name;
+        String embeddedInfo = "Event Name: " + eventName + "\n" + "Ticketholder's Name: " + name
+                + "\n" + "Admit Type: " + admitType + "\n" + "Quantity: " + quantity;
 
         try {
             generateQRCode_general(embeddedInfo, qrcode);

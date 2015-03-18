@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/payment_transfer_recipient_row"
+    android:orientation="horizontal"
+    android:weightSum="5"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,6 +11,8 @@
         style="@style/Payment.TextView.General"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="5dp"
         android:text="1" />
 
     <TextView
@@ -16,16 +20,14 @@
         style="@style/Payment.TextView.General"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/tv_recipient_number"
-        android:layout_alignLeft="@id/tv_type"
-        android:layout_toRightOf="@+id/tv_recipient_number"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
         android:text="@string/transfer_type_general" />
 
     <ImageButton
         android:id="@+id/ib_choose_contact"
         style="@style/Payment.ImageButton.Contacts"
-        android:layout_alignBottom="@id/tv_recipient_number"
-        android:layout_alignLeft="@id/tv_select"
-        android:layout_toRightOf="@id/tv_status" />
+        android:layout_gravity="center_vertical"
+        android:layout_weight="4"/>
 
-</RelativeLayout>
+</LinearLayout>

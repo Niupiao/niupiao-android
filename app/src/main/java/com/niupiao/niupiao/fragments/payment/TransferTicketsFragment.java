@@ -49,7 +49,7 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
         for (TicketStatus ticketStatus : tickets.keySet()) {
 
             // The max number of tickets you can buy for any given status is the number of rows we show
-            int numRowsToAdd = ticketStatus.getMaxPurchasable();
+            int numRowsToAdd = tickets.get(ticketStatus);
 
             // The layout inflater will be dynamically inflating views,
             LayoutInflater factory = LayoutInflater.from(root.getContext());

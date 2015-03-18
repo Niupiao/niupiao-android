@@ -20,6 +20,7 @@ public class TicketStatus implements Parcelable {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeInt(maxPurchasable);
+        dest.writeInt(price);
     }
 
     public TicketStatus() {}
@@ -28,6 +29,7 @@ public class TicketStatus implements Parcelable {
         id = in.readInt();
         name = in.readString();
         maxPurchasable = in.readInt();
+        price = in.readInt();
     }
 
     public static final Creator<TicketStatus> CREATOR = new Creator<TicketStatus>() {

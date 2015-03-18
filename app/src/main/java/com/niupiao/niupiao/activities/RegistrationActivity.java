@@ -38,6 +38,7 @@ public class RegistrationActivity extends Activity implements RegistrationReques
     public void onRegistration(User user, ApiKey apiKey) {
         Log.d("callback, user -- ", user.toString());
         Log.d("callback, apiK -- ", apiKey.toString());
+        finish();
     }
 
     @Override

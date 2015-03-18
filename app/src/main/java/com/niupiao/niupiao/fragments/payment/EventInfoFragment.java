@@ -1,20 +1,14 @@
 package com.niupiao.niupiao.fragments.payment;
 
-import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.niupiao.niupiao.Constants;
@@ -22,12 +16,10 @@ import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.models.Event;
-import com.niupiao.niupiao.models.Ticket;
 import com.niupiao.niupiao.models.TicketStatus;
 import com.niupiao.niupiao.utils.DateUtils;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;
 
-import java.util.Collection;
 import java.util.Map;
 
 /**

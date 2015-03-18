@@ -10,10 +10,8 @@ import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.managers.PaymentManager;
-import com.niupiao.niupiao.models.Ticket;
 import com.niupiao.niupiao.models.TicketStatus;
 
-import java.util.Collection;
 import java.util.Map;
 
 /**

@@ -1,9 +1,7 @@
 package com.niupiao.niupiao.fragments.my_tickets;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,13 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.Writer;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.niupiao.niupiao.R;
-
-import org.w3c.dom.Text;
+import com.niupiao.niupiao.activities.TicketActivity;
+import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.models.Ticket;
+import com.niupiao.niupiao.models.User;
 
 /**
  * Created by Inanity on 2/27/15.
@@ -29,30 +29,48 @@ import org.w3c.dom.Text;
 public class TicketFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_ticket, container, false);
-        ImageView qrcode = (ImageView) root.findViewById(R.id.iv_qrcode);
-        TextView ticket_type = (TextView) root.findViewById(R.id.tv_ticket_type);
-        TextView ticket_user = (TextView) root.findViewById(R.id.tv_ticket_name);
-        TextView ticket_num = (TextView) root.findViewById(R.id.tv_ticket_allow);
 
-        Bundle extras = getActivity().getIntent().getExtras();
+        ImageView qrCodeImageView = (ImageView) root.findViewById(R.id.iv_qrcode);
+        TextView ticketStatusTextView = (TextView) root.findViewById(R.id.tv_ticket_type);
+        TextView buyerNameTextView = (TextView) root.findViewById(R.id.tv_ticket_name);
+        TextView maxTicketsAllowedTextView = (TextView) root.findViewById(R.id.tv_ticket_allow);
 
-        String eventName = extras.getString("MyTickets.event.name");
-        String admitType = extras.getString("MyTickets.admit.type");
-        String quantity = extras.getString("MyTickets.quantity");
-        String name = extras.getString("MyTickets.buyer.name");
+        Ticket ticket = getActivity().getIntent().getParcelableExtra(TicketActivity.INTENT_KEY_FOR_TICKET);
+        Event event = ticket.getEvent();
+        User user = getActivity().getIntent().getParcelableExtra(TicketActivity.INTENT_KEY_FOR_USER);
 
-        ticket_type.setText(admitType);
-        ticket_user.setText(name);
-        ticket_num.setText(getResources().getString(R.string.allows) + " " + quantity + " "
-                + getResources().getString(R.string.for_entry));
+        ticketStatusTextView.setText(ticket.getTicketStatus().getName());
+        buyerNameTextView.setText(user.getName());
 
-        String embeddedInfo = "Event Name: " + eventName + "\n" + "Ticketholder's Name: " + name
-                + "\n" + "Admit Type: " + admitType + "\n" + "Quantity: " + quantity;
+        maxTicketsAllowedTextView.setText(
+                String.format("%s %d %s",
+                        getResources().getString(R.string.allows),
+                        ticket.getTicketStatus().getMaxPurchasable(),
+                        getResources().getString(R.string.for_entry)
+                ));
 
+
+        String embeddedInfo = String.format("%s %s %s %s %s %s %s %s %s %s %s",
+                "event_name:",
+                event.getName(),
+                "\n",
+
+                "buyer_name:",
+                user.getName(),
+                "\n",
+
+                "admit_type:",
+                ticket.getStatus(),
+                "\n",
+
+                "quantity:",
+                ticket.getTicketStatus().getMaxPurchasable()
+        );
         try {
-            generateQRCode_general(embeddedInfo, qrcode);
-        } catch(WriterException e){
+            generateQRCode(embeddedInfo, qrCodeImageView);
+        } catch (WriterException e) {
             Toast.makeText(getActivity().getApplicationContext(), "Error with QR Code Generation",
                     Toast.LENGTH_SHORT).show();
         }
@@ -64,19 +82,19 @@ public class TicketFragment extends Fragment {
         return new TicketFragment();
     }
 
-    //Code taken from:
+    // Code taken from:
     // http://stackoverflow.com/questions/22371626/android-generate-qr-code-and-barcode-using-zxing
-    private void generateQRCode_general(String data, ImageView image) throws WriterException{
+    private void generateQRCode(String data, ImageView image) throws WriterException {
         int width = 500;
         int height = 500;
-        com.google.zxing.Writer writer = new QRCodeWriter();
+        Writer writer = new QRCodeWriter();
 
         BitMatrix bm = writer.encode(data, BarcodeFormat.QR_CODE, width, height);
         Bitmap ImageBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
         for (int i = 0; i < width; i++) {//width
             for (int j = 0; j < height; j++) {//height
-                ImageBitmap.setPixel(i, j, bm.get(i, j) ? Color.BLACK: Color.WHITE);
+                ImageBitmap.setPixel(i, j, bm.get(i, j) ? Color.BLACK : Color.WHITE);
             }
         }
 

@@ -29,6 +29,15 @@ public class Ticket extends ParcelableModel {
 
     }
 
+    //TODO Remove (Hacked)
+    public Ticket(int id, Event event, int user, String status, TicketStatus ticketstatus){
+        eventId = id;
+        this.event = event;
+        userId = user;
+        this.status = status;
+        ticketStatus = ticketstatus;
+    }
+
     public Ticket(Parcel in) {
         super(in);
         eventId = in.readInt();

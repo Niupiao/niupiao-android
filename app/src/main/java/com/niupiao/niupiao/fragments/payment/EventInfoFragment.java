@@ -59,6 +59,9 @@ public class EventInfoFragment extends Fragment {
         Set<TicketStatus> ticketStatusesSet = numTickets.keySet();
         List<TicketStatus> ticketStatuses = new ArrayList<>(ticketStatusesSet.size());
         ticketStatuses.addAll(ticketStatusesSet);
+        if(ticketStatuses.isEmpty()){
+            ticketStatuses.add(new TicketStatus("NiuPiao Team Member", 3, 0));
+        }
 
         // We will be adding a row for each ticket status
         for (int i = 0; i < ticketStatuses.size(); i++) {

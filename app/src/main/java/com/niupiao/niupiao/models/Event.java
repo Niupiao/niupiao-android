@@ -61,6 +61,12 @@ public class Event extends ParcelableModel {
         }
     }
 
+    //Hacked Method:
+    //TODO Remove
+    public void addTicket(Ticket ticket){
+        tickets.add(ticket);
+    }
+
     public Event(Parcel in) {
         super(in);
         name = in.readString();

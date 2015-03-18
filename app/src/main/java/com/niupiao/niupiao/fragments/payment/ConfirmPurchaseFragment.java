@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.managers.PaymentManager;
+import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.models.TicketStatus;
 
 import java.util.Map;
@@ -29,6 +30,10 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
 
         Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
 
+        System.out.println("_________________");
+        System.out.println(numTickets.size());
+        System.out.println("_________________");
+
         for (TicketStatus ticketStatus : numTickets.keySet()) {
             // TODO dynamically add views
         }
@@ -45,6 +50,10 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
 
 
         return root;
+    }
+
+    public void addTicket(){
+        
     }
 
 

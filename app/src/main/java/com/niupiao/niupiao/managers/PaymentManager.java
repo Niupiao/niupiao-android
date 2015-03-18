@@ -29,6 +29,9 @@ public class PaymentManager {
         this.context = context;
         numTickets = new HashMap<>(event.getNumberOfTicketStatuses());
         Collection<TicketStatus> statuses = event.getTicketStatuses();
+        if(statuses.isEmpty()){
+            statuses.add(new TicketStatus("NiuPiao Team Member", 3, 0));
+        }
         Iterator statusIterator = statuses.iterator();
         while (statusIterator.hasNext()) {
             numTickets.put((TicketStatus) statusIterator.next(), 0);

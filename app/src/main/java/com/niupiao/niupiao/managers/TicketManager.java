@@ -2,6 +2,7 @@ package com.niupiao.niupiao.managers;
 
 import com.android.volley.VolleyError;
 import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.models.TicketStatus;
 import com.niupiao.niupiao.requesters.ResourceCallback;
 import com.niupiao.niupiao.requesters.TicketsRequester;
 

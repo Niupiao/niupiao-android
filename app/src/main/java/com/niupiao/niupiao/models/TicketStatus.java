@@ -26,6 +26,13 @@ public class TicketStatus extends ParcelableModel {
     public TicketStatus() {
     }
 
+    //For the purposes of the hack.
+    public TicketStatus(String name, int maxPurchasable, int price){
+        this.name = name;
+        this.maxPurchasable = maxPurchasable;
+        this.price = price;
+    }
+
     public TicketStatus(Parcel in) {
         super(in);
         name = in.readString();

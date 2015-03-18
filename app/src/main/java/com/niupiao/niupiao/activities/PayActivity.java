@@ -11,6 +11,7 @@ import com.niupiao.niupiao.fragments.payment.CheckoutFragment;
 import com.niupiao.niupiao.fragments.payment.EventInfoFragment;
 import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.models.Ticket;
 
 /**
  * Created by kevinchen on 2/25/15.
@@ -83,5 +84,10 @@ public class PayActivity extends ActionBarActivity {
         Fragment fragment = Fragment.instantiate(this, paymentPhase.getFragmentClassName());
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+    }
+
+    //TODO Remove (Hacked)
+    public void addTicket(Ticket ticket){
+        this.event.addTicket(ticket);
     }
 }

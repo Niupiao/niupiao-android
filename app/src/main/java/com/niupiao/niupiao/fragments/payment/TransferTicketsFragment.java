@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +40,7 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
         Map<TicketStatus, Integer> tickets = paymentManager.getNumTickets();
 
         // We will be adding stuff to the sole child of a ScrollView. (ScrollView can only have one child).
-        RelativeLayout insideScrollView = (RelativeLayout) root.findViewById(R.id.sv_child);
+        LinearLayout insideScrollView = (LinearLayout) root.findViewById(R.id.sv_child);
 
         // The recipient number starts at 1
         int recipientNumber = 1;
@@ -51,14 +52,14 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
             int numRowsToAdd = ticketStatus.getMaxPurchasable();
 
             // The layout inflater will be dynamically inflating views,
-            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater factory = LayoutInflater.from(root.getContext());
 
             // Add a row for each ticket the user can potentially buy
             for (int i = 0; i < numRowsToAdd; i++) {
 
                 // Inflate the row that shows the recipient number, the ticket status, and the choose recipient button
                 // See payment_transfer_recipient_row.xml
-                View child = layoutInflater.inflate(R.layout.payment_transfer_recipient_row, insideScrollView);
+                View child = factory.inflate(R.layout.payment_transfer_recipient_row, null);
 
                 // Show the recipient number
                 TextView recipientNumberTextView = (TextView) child.findViewById(R.id.tv_recipient_number);
@@ -68,7 +69,8 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
                 // Show the ticket status
                 TextView statusTextView = (TextView) child.findViewById(R.id.tv_status);
                 statusTextView.setText(ticketStatus.getName());
-                insideScrollView.addView(child, recipientNumber);
+                insideScrollView.addView(child);
+                //insideScrollView.addView(child, recipientNumber);
 
                 // Set the click listener for the Recipient Chooser button
                 ImageButton chooseContactImageButton = (ImageButton) child.findViewById(R.id.ib_choose_contact);

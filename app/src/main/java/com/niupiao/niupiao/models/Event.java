@@ -6,12 +6,8 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by kmchen1 on 2/17/15.
@@ -52,13 +48,13 @@ public class Event implements Parcelable {
         tickets = ticketCollection;
     }
 
-    private void writeTicketStatusesToParcel(Parcel dest){
+    private void writeTicketStatusesToParcel(Parcel dest) {
         dest.writeParcelableArray(ticketStatuses.toArray(new TicketStatus[ticketStatuses.size()]), 0);
     }
 
-    private void readTicketStatusesFromParcel(Parcel in){
+    private void readTicketStatusesFromParcel(Parcel in) {
         Parcelable[] parcelables = in.readParcelableArray(TicketStatus.class.getClassLoader());
-        for (Parcelable parcelable : parcelables){
+        for (Parcelable parcelable : parcelables) {
             ticketStatuses.add((TicketStatus) parcelable);
         }
     }

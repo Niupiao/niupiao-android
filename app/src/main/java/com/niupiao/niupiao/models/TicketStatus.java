@@ -23,7 +23,8 @@ public class TicketStatus implements Parcelable {
         dest.writeInt(price);
     }
 
-    public TicketStatus() {}
+    public TicketStatus() {
+    }
 
     public TicketStatus(Parcel in) {
         id = in.readInt();

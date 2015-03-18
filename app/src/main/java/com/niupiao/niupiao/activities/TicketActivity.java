@@ -13,6 +13,9 @@ import com.niupiao.niupiao.fragments.my_tickets.TicketFragment;
  */
 public class TicketActivity extends ActionBarActivity {
 
+    public static final String INTENT_KEY_FOR_TICKET = "ticket";
+    public static final String INTENT_KEY_FOR_USER = "user";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

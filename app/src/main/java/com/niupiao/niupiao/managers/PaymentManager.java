@@ -5,14 +5,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.niupiao.niupiao.models.Event;
-import com.niupiao.niupiao.models.Ticket;
 import com.niupiao.niupiao.models.TicketStatus;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,7 +30,7 @@ public class PaymentManager {
         numTickets = new HashMap<>(event.getNumberOfTicketStatuses());
         Collection<TicketStatus> statuses = event.getTicketStatuses();
         Iterator statusIterator = statuses.iterator();
-        while(statusIterator.hasNext()){
+        while (statusIterator.hasNext()) {
             numTickets.put((TicketStatus) statusIterator.next(), 0);
         }
     }

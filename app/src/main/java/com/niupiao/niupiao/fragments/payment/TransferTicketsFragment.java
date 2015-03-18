@@ -1,11 +1,8 @@
 package com.niupiao.niupiao.fragments.payment;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -15,16 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.managers.PaymentManager;
-import com.niupiao.niupiao.models.Ticket;
 import com.niupiao.niupiao.models.TicketStatus;
 
-import java.util.Collection;
 import java.util.Map;
 
 /**

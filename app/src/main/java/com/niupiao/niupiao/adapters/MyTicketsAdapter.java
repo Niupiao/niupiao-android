@@ -47,15 +47,25 @@ public class MyTicketsAdapter extends ParcelableArrayAdapter<Ticket> {
             viewHolder.buyerName = (TextView) convertView.findViewById(R.id.tv_buyer_name);
             viewHolder.date = (TextView) convertView.findViewById(R.id.tv_event_date);
             viewHolder.time = (TextView) convertView.findViewById(R.id.tv_event_time);
+            viewHolder.location = (TextView) convertView.findViewById(R.id.tv_event_location);
+            viewHolder.street = (TextView) convertView.findViewById(R.id.tv_event_street);
+            viewHolder.quantity = (TextView) convertView.findViewById(R.id.tv_ticket_quantity);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
         Ticket ticket = getItem(position);
+        TicketStatus ticketStatus = ticket.getTicketStatus();
         Event event = ticket.getEvent();
         if (event != null) {
             viewHolder.eventName.setText(event.getName());
+            viewHolder.location.setText(event.getLocation());
+
+            // TODO viewHolder.street.setText(event.getStreet());
+
+            // TODO change later to actual num purchased
+            viewHolder.quantity.setText("" + ticketStatus.getMaxPurchasable());
 
             String dateTime = event.getDate();
             String date = DateUtils.format(dateTime, DateUtils.FORMAT_DATE);
@@ -64,7 +74,7 @@ public class MyTicketsAdapter extends ParcelableArrayAdapter<Ticket> {
             viewHolder.date.setText(date);
             viewHolder.time.setText(time);
         }
-        TicketStatus ticketStatus = ticket.getTicketStatus();
+
         viewHolder.price.setText("$" + ticketStatus.getPrice());
         viewHolder.status.setText(ticket.getStatus());
         User user = getMainActivity().getUser();

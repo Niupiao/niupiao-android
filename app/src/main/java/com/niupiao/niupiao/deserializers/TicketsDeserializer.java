@@ -27,7 +27,6 @@ public class TicketsDeserializer implements JsonDeserializer<Ticket> {
         Type type = new TypeToken<List<Event>>() {
         }.getType();
         final GsonBuilder gsonBuilder = new GsonBuilder();
-        System.out.println("Registering adapter...");
         gsonBuilder.registerTypeAdapter(Ticket.class, new TicketsDeserializer());
         final Gson gson = gsonBuilder.create();
 
@@ -49,7 +48,7 @@ public class TicketsDeserializer implements JsonDeserializer<Ticket> {
     public Ticket deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         final JsonObject ticketJson = json.getAsJsonObject();
         final Ticket ticket = new Ticket();
-        System.out.println("WOOHOO");
+
         ticket.setId(ticketJson.get("id").getAsInt());
         ticket.setStatus(ticketJson.get("status").getAsString());
         ticket.setEventId(ticketJson.get("event_id").getAsInt());

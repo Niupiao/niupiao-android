@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.facebook.Session;
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.adapters.LeftNavAdapter;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
 import com.niupiao.niupiao.fragments.SettingsNavFragment;
 import com.niupiao.niupiao.fragments.StarredNavFragment;
@@ -32,7 +33,6 @@ import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Data;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.ResourceCallback;
-import com.niupiao.niupiao.adapters.LeftNavAdapter;
 import com.niupiao.niupiao.utils.SharedPrefsUtils;
 
 import java.util.ArrayList;

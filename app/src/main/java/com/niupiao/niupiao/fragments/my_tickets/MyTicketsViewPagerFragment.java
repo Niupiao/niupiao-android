@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.MainActivity;
@@ -30,11 +29,6 @@ import java.util.Collection;
  */
 public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment implements TicketManager.OnEventsLoadedListener {
 
-    public static final String EXTRA_TICKET_EVENT_NAME = "MyTickets.event.name";
-    public static final String EXTRA_TICKET_BUYER_NAME = "MyTickets.buyer.name";
-    public static final String EXTRA_TICKET_ADMIT_TYPE = "MyTickets.admit.type";
-    public static final String EXTRA_TICKET_QUANTITY = "MyTickets.quantity";
-    
     protected ListView listView;
     private SwipeRefreshLayout swipeContainer;
 
@@ -61,7 +55,7 @@ public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment imple
 
         try {
             Log.d(MyTicketsViewPagerFragment.class.getSimpleName(), "FIRST TICKET: " + events.iterator().next().getTickets().toString());
-        } catch (Exception e){
+        } catch (Exception e) {
             Log.d(MyTicketsViewPagerFragment.class.getSimpleName(), "No tickets!");
         }
 
@@ -78,19 +72,11 @@ public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment imple
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(getActivity(), "click", Toast.LENGTH_SHORT).show();
-                //MyTicketsAdapter adapter = ((MyTicketsAdapter) listView.getAdapter());
-                //Ticket ticket = adapter.getItem(position);
-                TextView admitType = (TextView) view.findViewById(R.id.tv_ticket_admit_status);
-                TextView quantity = (TextView) view.findViewById(R.id.tv_ticket_quantity);
-                TextView name = (TextView) view.findViewById(R.id.tv_buyer_name);
-                TextView eventName = (TextView) view.findViewById(R.id.tv_event_title);
-                
+                MyTicketsAdapter adapter = ((MyTicketsAdapter) listView.getAdapter());
+                Ticket ticket = adapter.getItem(position);
                 Intent intent = new Intent(getActivity(), TicketActivity.class);
-                intent.putExtra(EXTRA_TICKET_EVENT_NAME, eventName.getText().toString());
-                intent.putExtra(EXTRA_TICKET_BUYER_NAME, name.getText().toString());
-                intent.putExtra(EXTRA_TICKET_ADMIT_TYPE, admitType.getText().toString());
-                intent.putExtra(EXTRA_TICKET_QUANTITY, quantity.getText().toString());
+                intent.putExtra(TicketActivity.INTENT_KEY_FOR_USER, ((MainActivity) getActivity()).getUser());
+                intent.putExtra(TicketActivity.INTENT_KEY_FOR_TICKET, ticket);
                 startActivity(intent);
             }
         });

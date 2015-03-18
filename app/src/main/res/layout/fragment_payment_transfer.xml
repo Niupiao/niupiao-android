@@ -35,26 +35,28 @@
             android:layout_toRightOf="@id/tv_type"
             android:text="@string/transfer_select" />
 
-        <ImageView
+        <View
             android:id="@+id/iv_border"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_below="@id/tv_select"
-            android:scaleType="fitXY"
-            android:src="@drawable/black_line" />
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray" />
 
         <ScrollView
             android:id="@+id/scroll_view"
+            android:layout_below="@id/iv_border"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="250dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/sv_child"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
 
-            </RelativeLayout>
+            </LinearLayout>
         </ScrollView>
 
 

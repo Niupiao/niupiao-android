@@ -19,8 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/sv_child"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

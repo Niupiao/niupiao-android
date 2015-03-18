@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,11 +47,16 @@ public class EventInfoFragment extends Fragment {
 
         Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
 
+        //TODO Clean up ex-code that's now stuffed in comments.
         // We will be adding stuff to the sole child of a ScrollView. (ScrollView can only have one child).
-        RelativeLayout insideScrollView = (RelativeLayout) root.findViewById(R.id.sv_child);
+        //RelativeLayout insideScrollView = (RelativeLayout) root.findViewById(R.id.sv_child);
+        LinearLayout insideScrollView = (LinearLayout) root.findViewById(R.id.sv_child);
 
         // The layout inflater will be dynamically inflating views,
-        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        // From: http://developer.android.com/reference/android/view/LayoutInflater.html
+        // "It is never used directly"
+        // LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater factory = LayoutInflater.from(root.getContext());
 
         // The TextView showing total checkout
         final TextView checkoutCostTextView = (TextView) root.findViewById(R.id.tv_cost);
@@ -58,7 +64,8 @@ public class EventInfoFragment extends Fragment {
         // We will be adding a row for each ticket status
         for (final TicketStatus ticketStatus : numTickets.keySet()) {
 
-            View child = layoutInflater.inflate(R.layout.payment_checkout_tickets_row, insideScrollView);
+            //View child = layoutInflater.inflate(R.layout.payment_checkout_tickets_row, insideScrollView);
+            View child = factory.inflate(R.layout.payment_checkout_tickets_row, null);
 
             TextView ticketStatusTextView = (TextView) child.findViewById(R.id.tv_ticket_status);
             ticketStatusTextView.setText(ticketStatus.getName());
@@ -83,9 +90,10 @@ public class EventInfoFragment extends Fragment {
                     paymentManager.increment(ticketStatus, numberOfTicketsPurchasedTextView, checkoutCostTextView);
                 }
             });
+            insideScrollView.addView(child);
 
             // TODO If it's not the last status, add the divider
-            View divider = layoutInflater.inflate(R.layout.payment_checkout_tickets_row_divider, insideScrollView);
+            //View divider = layoutInflater.inflate(R.layout.payment_checkout_tickets_row_divider, insideScrollView);
         }
 
     }

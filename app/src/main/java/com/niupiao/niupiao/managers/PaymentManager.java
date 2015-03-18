@@ -11,6 +11,7 @@ import com.niupiao.niupiao.models.TicketStatus;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,11 @@ public class PaymentManager {
     public PaymentManager(Event event, Context context) {
         this.context = context;
         numTickets = new HashMap<>(event.getNumberOfTicketStatuses());
+        Collection<TicketStatus> statuses = event.getTicketStatuses();
+        Iterator statusIterator = statuses.iterator();
+        while(statusIterator.hasNext()){
+            numTickets.put((TicketStatus) statusIterator.next(), 0);
+        }
     }
 
     public void increment(TicketStatus ticketStatus, TextView numberOfTicketsTextView, TextView checkoutCostTextView) {

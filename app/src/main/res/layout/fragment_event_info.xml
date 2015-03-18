@@ -5,27 +5,30 @@
 
     <include layout="@layout/fragment_event_info_event_details" android:id="@+id/rl_event_details" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_event_details"
+        android:layout_above="@+id/rl_bottom_bar"
         android:background="@color/niupiao_white_background"
+        android:orientation="vertical"
         android:paddingBottom="20dp">
 
         <ScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/sv_child"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </ScrollView>
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <include layout="@layout/checkout_tickets_bottom_bar" />
+    <include layout="@layout/checkout_tickets_bottom_bar" android:id="@+id/rl_bottom_bar" />
 
 </RelativeLayout>

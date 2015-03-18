@@ -6,8 +6,11 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +34,8 @@ public class Event implements Parcelable {
         dest.writeString(imagePath);
         dest.writeInt(totalTickets);
         dest.writeInt(ticketsSold);
+        dest.writeInt(numberOfTicketStatuses);
+        dest.writeList((List) ticketStatuses);
 //        writeTicketsToParcel(dest);
     }
 
@@ -47,6 +52,17 @@ public class Event implements Parcelable {
         tickets = ticketCollection;
     }
 
+    private void writeTicketStatusesToParcel(Parcel dest){
+        dest.writeParcelableArray(ticketStatuses.toArray(new TicketStatus[ticketStatuses.size()]), 0);
+    }
+
+    private void readTicketStatusesFromParcel(Parcel in){
+        Parcelable[] parcelables = in.readParcelableArray(TicketStatus.class.getClassLoader());
+        for (Parcelable parcelable : parcelables){
+            ticketStatuses.add((TicketStatus) parcelable);
+        }
+    }
+
     public Event(Parcel in) {
         name = in.readString();
         organizer = in.readString();
@@ -57,6 +73,9 @@ public class Event implements Parcelable {
         imagePath = in.readString();
         totalTickets = in.readInt();
         ticketsSold = in.readInt();
+        numberOfTicketStatuses = in.readInt();
+        ticketStatuses = in.readArrayList(TicketStatus.class.getClassLoader());
+
 //        readTicketsFromParcel(in);
     }
 

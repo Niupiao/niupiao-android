@@ -29,7 +29,8 @@ import java.util.Collection;
  * Created by kmchen1 on 2/21/15.
  */
 public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment implements TicketManager.OnEventsLoadedListener {
-    
+
+    public static final String EXTRA_TICKET_EVENT_NAME = "MyTickets.event.name";
     public static final String EXTRA_TICKET_BUYER_NAME = "MyTickets.buyer.name";
     public static final String EXTRA_TICKET_ADMIT_TYPE = "MyTickets.admit.type";
     public static final String EXTRA_TICKET_QUANTITY = "MyTickets.quantity";
@@ -79,8 +80,10 @@ public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment imple
                 TextView admitType = (TextView) view.findViewById(R.id.tv_ticket_admit_status);
                 TextView quantity = (TextView) view.findViewById(R.id.tv_ticket_quantity);
                 TextView name = (TextView) view.findViewById(R.id.tv_buyer_name);
+                TextView eventName = (TextView) view.findViewById(R.id.tv_event_title);
                 
                 Intent intent = new Intent(getActivity(), TicketActivity.class);
+                intent.putExtra(EXTRA_TICKET_EVENT_NAME, eventName.getText().toString());
                 intent.putExtra(EXTRA_TICKET_BUYER_NAME, name.getText().toString());
                 intent.putExtra(EXTRA_TICKET_ADMIT_TYPE, admitType.getText().toString());
                 intent.putExtra(EXTRA_TICKET_QUANTITY, quantity.getText().toString());

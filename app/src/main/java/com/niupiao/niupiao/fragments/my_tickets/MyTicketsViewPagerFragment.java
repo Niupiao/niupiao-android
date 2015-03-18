@@ -59,7 +59,11 @@ public abstract class MyTicketsViewPagerFragment extends ViewPagerFragment imple
             }
         }
 
-        Log.d(MyTicketsViewPagerFragment.class.getSimpleName(), "FIRST TICKET: " + events.iterator().next().getTickets().toString());
+        try {
+            Log.d(MyTicketsViewPagerFragment.class.getSimpleName(), "FIRST TICKET: " + events.iterator().next().getTickets().toString());
+        } catch (Exception e){
+            Log.d(MyTicketsViewPagerFragment.class.getSimpleName(), "No tickets!");
+        }
 
         // update the adapter
         adapter.setObjects(tickets);

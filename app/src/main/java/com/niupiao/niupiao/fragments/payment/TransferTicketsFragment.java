@@ -19,7 +19,10 @@ import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.models.TicketStatus;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by kevinchen on 3/9/15.
@@ -37,8 +40,8 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
         TextView cost = (TextView) root.findViewById(R.id.tv_cost);
         cost.setText("$" + paymentManager.getTotalCost());
 
-        // Maps ticketStatus to a collection of tickets the size of ticketStatus.getMaxPurchasable()
-        Map<TicketStatus, Integer> tickets = paymentManager.getNumTickets();
+        // Maps ticketStatus to a collection of tickets the capacity of ticketStatus.getMaxPurchasable()
+        Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
 
         // We will be adding stuff to the sole child of a ScrollView. (ScrollView can only have one child).
         LinearLayout insideScrollView = (LinearLayout) root.findViewById(R.id.sv_child);
@@ -46,17 +49,25 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
         // The recipient number starts at 1
         int recipientNumber = 1;
 
+        Set<TicketStatus> ticketStatusesSet = numTickets.keySet();
+        List<TicketStatus> ticketStatuses = new ArrayList<>(ticketStatusesSet.size());
+        ticketStatuses.addAll(ticketStatusesSet);
+
         // We will be adding a group of rows for each ticket status
-        for (TicketStatus ticketStatus : tickets.keySet()) {
+        for (int i = 0; i < ticketStatuses.size(); i++) {
+
+            final TicketStatus ticketStatus = ticketStatuses.get(i);
 
             // The max number of tickets you can buy for any given status is the number of rows we show
-            int numRowsToAdd = tickets.get(ticketStatus);
+            int numRowsToAdd = numTickets.get(ticketStatus);
 
             // The layout inflater will be dynamically inflating views,
             LayoutInflater factory = LayoutInflater.from(root.getContext());
 
+            int color = getResources().getColor(i % 2 == 0 ? R.color.niupiao_blue : R.color.niupiao_orange);
+
             // Add a row for each ticket the user can potentially buy
-            for (int i = 0; i < numRowsToAdd; i++) {
+            for (int r = 0; r < numRowsToAdd; r++) {
 
                 // Inflate the row that shows the recipient number, the ticket status, and the choose recipient button
                 // See payment_transfer_recipient_row.xml
@@ -65,11 +76,13 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
                 // Show the recipient number
                 TextView recipientNumberTextView = (TextView) child.findViewById(R.id.tv_recipient_number);
                 recipientNumberTextView.setText("" + recipientNumber);
+                recipientNumberTextView.setTextColor(color);
                 recipientNumber++;
 
                 // Show the ticket status
                 TextView statusTextView = (TextView) child.findViewById(R.id.tv_status);
                 statusTextView.setText(ticketStatus.getName());
+                statusTextView.setTextColor(color);
                 insideScrollView.addView(child);
                 //insideScrollView.addView(child, recipientNumber);
 

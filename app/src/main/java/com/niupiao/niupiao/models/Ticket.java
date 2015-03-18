@@ -1,14 +1,14 @@
 package com.niupiao.niupiao.models;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.niupiao.niupiao.Constants;
 
 /**
  * Created by kevinchen on 2/17/15.
  */
-public class Ticket implements Parcelable {
+public class Ticket extends ParcelableModel {
 
     @Override
     public int describeContents() {
@@ -17,7 +17,7 @@ public class Ticket implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
+        super.writeToParcel(dest, flags);
         dest.writeInt(eventId);
         dest.writeParcelable(event, 0);
         dest.writeInt(userId);
@@ -26,10 +26,11 @@ public class Ticket implements Parcelable {
     }
 
     public Ticket() {
+
     }
 
     public Ticket(Parcel in) {
-        id = in.readInt();
+        super(in);
         eventId = in.readInt();
         event = in.readParcelable(Event.class.getClassLoader());
         userId = in.readInt();
@@ -49,27 +50,20 @@ public class Ticket implements Parcelable {
         }
     };
 
-    @SerializedName("id")
-    private int id;
-
-    @SerializedName("event_id")
+    @SerializedName(Constants.JsonApi.Ticket.EVENT_ID)
     private int eventId;
 
-    @SerializedName("event")
+    @SerializedName(Constants.JsonApi.Ticket.EVENT)
     private Event event;
 
-    @SerializedName("user_id")
+    @SerializedName(Constants.JsonApi.Ticket.USER_ID)
     private int userId;
 
-    @SerializedName("status")
+    @SerializedName(Constants.JsonApi.Ticket.STATUS)
     private String status;
 
-    @SerializedName("ticket_status")
+    @SerializedName(Constants.JsonApi.Ticket.TICKET_STATUS)
     private TicketStatus ticketStatus;
-
-    public int getId() {
-        return id;
-    }
 
     public int getEventId() {
         return eventId;
@@ -89,10 +83,6 @@ public class Ticket implements Parcelable {
 
     public void setEvent(Event event) {
         this.event = event;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setEventId(int eventId) {

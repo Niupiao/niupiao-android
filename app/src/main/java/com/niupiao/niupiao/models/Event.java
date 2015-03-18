@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.niupiao.niupiao.Constants;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Created by kmchen1 on 2/17/15.
  */
-public class Event implements Parcelable {
+public class Event extends ParcelableModel {
 
     @Override
     public int describeContents() {
@@ -21,6 +22,7 @@ public class Event implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
         dest.writeString(name);
         dest.writeString(organizer);
         dest.writeString(date);
@@ -60,6 +62,7 @@ public class Event implements Parcelable {
     }
 
     public Event(Parcel in) {
+        super(in);
         name = in.readString();
         organizer = in.readString();
         date = in.readString();
@@ -87,48 +90,41 @@ public class Event implements Parcelable {
         }
     };
 
-    @SerializedName("id")
-    private int id;
-
-    @SerializedName("name")
+    @SerializedName(Constants.JsonApi.Event.NAME)
     private String name;
 
-    @SerializedName("organizer")
+    @SerializedName(Constants.JsonApi.Event.ORGANIZER)
     private String organizer;
 
-    @SerializedName("date")
+    @SerializedName(Constants.JsonApi.Event.DATE)
     private String date;
 
-    @SerializedName("location")
+    @SerializedName(Constants.JsonApi.Event.LOCATION)
     private String location;
 
-    @SerializedName("description")
+    @SerializedName(Constants.JsonApi.Event.DESCRIPTION)
     private String description;
 
-    @SerializedName("link")
+    @SerializedName(Constants.JsonApi.Event.LINK)
     private String link;
 
-    @SerializedName("image_path")
+    @SerializedName(Constants.JsonApi.Event.IMAGE_PATH)
     private String imagePath;
 
-    @SerializedName("total_tickets")
+    @SerializedName(Constants.JsonApi.Event.TOTAL_TICKETS)
     private int totalTickets;
 
-    @SerializedName("tickets_sold")
+    @SerializedName(Constants.JsonApi.Event.TICKETS_SOLD)
     private int ticketsSold;
 
-    @SerializedName("tickets")
+    @SerializedName(Constants.JsonApi.Event.TICKETS)
     private Collection<Ticket> tickets;
 
-    @SerializedName("number_of_ticket_statuses")
+    @SerializedName(Constants.JsonApi.Event.NUMBER_OF_TICKET_STATUSES)
     private int numberOfTicketStatuses;
 
-    @SerializedName("ticket_statuses")
+    @SerializedName(Constants.JsonApi.Event.TICKET_STATUSES)
     private Collection<TicketStatus> ticketStatuses;
-
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;

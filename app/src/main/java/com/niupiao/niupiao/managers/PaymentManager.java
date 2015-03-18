@@ -33,10 +33,8 @@ public class PaymentManager {
         numTickets = new HashMap<>(event.getNumberOfTicketStatuses());
         Collection<TicketStatus> statuses = event.getTicketStatuses();
         Iterator statusIterator = statuses.iterator();
-        int counter = 1;
         while(statusIterator.hasNext()){
-            numTickets.put((TicketStatus) statusIterator.next(), counter);
-            counter++;
+            numTickets.put((TicketStatus) statusIterator.next(), 0);
         }
     }
 

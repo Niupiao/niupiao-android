@@ -31,6 +31,13 @@ public class PaymentManager {
     public PaymentManager(Event event, Context context) {
         this.context = context;
         numTickets = new HashMap<>(event.getNumberOfTicketStatuses());
+        Collection<TicketStatus> statuses = event.getTicketStatuses();
+        Iterator statusIterator = statuses.iterator();
+        int counter = 1;
+        while(statusIterator.hasNext()){
+            numTickets.put((TicketStatus) statusIterator.next(), counter);
+            counter++;
+        }
     }
 
     public void increment(TicketStatus ticketStatus, TextView numberOfTicketsTextView, TextView checkoutCostTextView) {

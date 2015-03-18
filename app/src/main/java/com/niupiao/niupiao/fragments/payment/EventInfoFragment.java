@@ -20,7 +20,10 @@ import com.niupiao.niupiao.models.TicketStatus;
 import com.niupiao.niupiao.utils.DateUtils;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by kevinchen on 2/18/15.
@@ -53,11 +56,20 @@ public class EventInfoFragment extends Fragment {
         // The TextView showing total checkout
         final TextView checkoutCostTextView = (TextView) root.findViewById(R.id.tv_cost);
 
+        Set<TicketStatus> ticketStatusesSet = numTickets.keySet();
+        List<TicketStatus> ticketStatuses = new ArrayList<>(ticketStatusesSet.size());
+        ticketStatuses.addAll(ticketStatusesSet);
+
         // We will be adding a row for each ticket status
-        for (final TicketStatus ticketStatus : numTickets.keySet()) {
+        for (int i = 0; i < ticketStatuses.size(); i++) {
+
+            final TicketStatus ticketStatus = ticketStatuses.get(i);
 
             //View child = layoutInflater.inflate(R.layout.payment_checkout_tickets_row, insideScrollView);
             View child = factory.inflate(R.layout.payment_checkout_tickets_row, null);
+
+            LinearLayout ticketInfoBox = (LinearLayout) child.findViewById(R.id.ll_ticket_info);
+            ticketInfoBox.setBackgroundColor(getActivity().getResources().getColor(i % 2 == 0 ? R.color.niupiao_blue : R.color.niupiao_orange));
 
             TextView ticketStatusTextView = (TextView) child.findViewById(R.id.tv_ticket_status);
             ticketStatusTextView.setText(ticketStatus.getName());
@@ -68,6 +80,7 @@ public class EventInfoFragment extends Fragment {
             final TextView numberOfTicketsPurchasedTextView = (TextView) child.findViewById(R.id.tv_number_tickets);
 
             ImageButton minusButton = (ImageButton) child.findViewById(R.id.ib_minus_button);
+            minusButton.setImageDrawable(getActivity().getResources().getDrawable(i % 2 == 0 ? R.drawable.blue_minus : R.drawable.orange_minus));
             minusButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -76,6 +89,7 @@ public class EventInfoFragment extends Fragment {
             });
 
             ImageButton plusButton = (ImageButton) child.findViewById(R.id.ib_plus_button);
+            plusButton.setImageDrawable(getActivity().getResources().getDrawable(i % 2 == 0 ? R.drawable.blue_plus : R.drawable.orange_plus));
             plusButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -16,7 +16,7 @@
         android:layout_marginRight="0dp"
         android:text="$0"
         android:textColor="@color/niupiao_blue"
-        android:textSize="45sp" />
+        android:textSize="35sp" />
 
     <ImageButton
         android:id="@+id/ib_next_screen"
@@ -26,7 +26,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@id/tv_cost"
         android:layout_marginBottom="3dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="3dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
         android:maxHeight="80dp"

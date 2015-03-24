@@ -205,6 +205,7 @@ public class LoginActivity extends Activity implements
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
+        email = email.replaceAll(" ", "");
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;

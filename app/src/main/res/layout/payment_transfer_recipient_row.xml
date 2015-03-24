@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/payment_transfer_recipient_row"
     android:orientation="horizontal"
-    android:weightSum="5"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -21,13 +20,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"
         android:text="@string/transfer_type_general" />
 
     <ImageButton
         android:id="@+id/ib_choose_contact"
+        android:src="@drawable/contactsbutton"
         style="@style/Payment.ImageButton.Contacts"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="4"/>
+        android:layout_gravity="center_vertical|right"
+        />
 
 </LinearLayout>

@@ -54,6 +54,7 @@
             android:id="@+id/dummyloginview"
             android:layout_width="0px"
             android:layout_height="0px"
+            android:layout_marginLeft="5dp"
             android:layout_centerInParent="true" />
 
         <Button

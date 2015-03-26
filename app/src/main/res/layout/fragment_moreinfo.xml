@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/et_first_name"
-            android:background="@drawable/edit_text_top_rounded"
+            android:background="@drawable/edit_text_white"
             android:gravity="center_horizontal"
             android:hint="@string/last_name"
             android:maxLines="1" />

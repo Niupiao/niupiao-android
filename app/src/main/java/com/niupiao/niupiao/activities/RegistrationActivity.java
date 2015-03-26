@@ -80,6 +80,10 @@ public class RegistrationActivity extends ActionBarActivity {
 
         // Bind the tabs to the ViewPager
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+
+        //TODO: Perhaps move these tab strip customization code to the XML.
+        //TODO: For above, look at https://github.com/astuetz/PagerSlidingTabStrip#customization
+        tabs.setIndicatorColor(getResources().getColor(R.color.niupiao_orange));
         tabs.setViewPager(pager);
 
     }

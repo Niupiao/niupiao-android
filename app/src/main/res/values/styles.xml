@@ -188,31 +188,31 @@
     </style>
 
     <style name="Events.TextView.Name">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">26sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_orange</item>
     </style>
 
     <style name="Events.TextView.Time">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_blue</item>
     </style>
 
     <style name="Events.TextView.Day">
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">34sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_white</item>
     </style>
 
     <style name="Events.TextView.Month">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_white</item>
     </style>
 
     <style name="Events.TextView.General">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_white</item>
     </style>

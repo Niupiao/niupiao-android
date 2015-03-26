@@ -2,11 +2,15 @@ package com.niupiao.niupiao.activities;
 
 import android.app.Activity;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,7 +25,8 @@ import com.niupiao.niupiao.requesters.RegistrationRequester;
 /**
  * Created by kevinchen on 2/25/15.
  */
-public class RegistrationActivity extends Activity implements RegistrationRequester.OnRegistrationListener {
+public class RegistrationActivity extends ActionBarActivity
+        implements RegistrationRequester.OnRegistrationListener {
 
     private EditText firstNameEditText;
     private EditText lastNameEditText;
@@ -51,10 +56,36 @@ public class RegistrationActivity extends Activity implements RegistrationReques
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Black.ttf");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.niupiao_blue)));
+
+        View mActionBarView = getLayoutInflater().inflate(R.layout.actionbar_registration, null);
+        actionBar.setCustomView(mActionBarView);
+        View postView = actionBar.getCustomView();
+        ActionBar.LayoutParams lp = (ActionBar.LayoutParams) postView.getLayoutParams();
+        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        postView.setLayoutParams(lp);
+        Button rtnToLogin = (Button) mActionBarView.findViewById(R.id.btn_return_login);
+
+        rtnToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
+        //Non-ActionBar Items.
+        Typeface black = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Black.ttf");
+        Typeface medium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
 
         TextView title = (TextView) findViewById(R.id.tv_title);
-        title.setTypeface(font);
+        Button register = (Button) findViewById(R.id.btn_register);
+        title.setTypeface(black);
+        register.setTypeface(medium);
 
         firstNameEditText = (EditText) findViewById(R.id.et_first_name);
         lastNameEditText = (EditText) findViewById(R.id.et_last_name);
@@ -73,6 +104,13 @@ public class RegistrationActivity extends Activity implements RegistrationReques
         });
 
     }
+
+    /*
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.registration, menu);
+        return true;
+    }*/
 
     private boolean isValidFields() {
         boolean test1 = isValidField(firstNameEditText);

@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@id/rl_date"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="150dp"
         android:background="@color/niupiao_black_80"
         android:paddingLeft="8dp"
         android:paddingRight="8dp">
@@ -56,7 +56,6 @@
             android:id="@+id/tv_event_time"
             style="@style/Events.TextView.Time"
             android:layout_below="@id/tv_event_name"
-            android:layout_marginTop="4dp"
             android:text="Event Time" />
 
         <TextView
@@ -68,7 +67,7 @@
 
         <TextView
             android:id="@+id/tv_event_location"
-            style="@style/Events.TextView.General"
+            style="@style/Events.TextView.Location"
             android:layout_alignBaseline="@id/tv_event_time"
             android:layout_below="@id/tv_event_name"
             android:layout_toRightOf="@id/tv_first_divider"

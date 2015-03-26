@@ -211,6 +211,11 @@
         <item name="android:textColor">@color/niupiao_white</item>
     </style>
 
+    <style name="Events.TextView.Location">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/niupiao_white</item>
+    </style>
+
     <style name="Events.TextView.General">
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>

@@ -1,6 +1,7 @@
 package com.niupiao.niupiao.activities;
 
 import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -10,11 +11,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -100,17 +104,45 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.niupiao_blue)));
+
+        View mActionBarView = getLayoutInflater().inflate(R.layout.actionbar_main, null);
+        actionBar.setCustomView(mActionBarView);
+        View postView = actionBar.getCustomView();
+        ActionBar.LayoutParams lp = (ActionBar.LayoutParams) postView.getLayoutParams();
+        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        postView.setLayoutParams(lp);
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
+
+        ImageButton home = (ImageButton) findViewById(R.id.ib_home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+                public void onClick(View v) {
+                if(! mDrawerLayout.isDrawerOpen(Gravity.LEFT)){
+                    mDrawerLayout.openDrawer(Gravity.LEFT);
+                    //TODO: Figure out: Why are we creating a call to onPrepareOptionsMenu?
+                    invalidateOptionsMenu();
+                } else{
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                    invalidateOptionsMenu();
+                }
+            }
+        });
+        /*
+        Old Drawer Code:
         mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
-                R.string.drawer_open,  /* "open drawer" description for accessibility */
-                R.string.drawer_close  /* "close drawer" description for accessibility */
+                this,
+                mDrawerLayout,
+                R.drawable.slideicon,
+                R.string.drawer_open,
+                R.string.drawer_close
         ) {
             public void onDrawerClosed(View view) {
                 getSupportActionBar().setTitle(mTitle);
@@ -123,6 +155,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+         */
 
         if (savedInstanceState == null) {
             selectItem(0);
@@ -198,7 +231,11 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
+        try{
+            mDrawerToggle.syncState();
+        } catch(Exception e){
+            //TODO Figure out why this throws an Exception, and fix.
+        }
     }
 
     @Override
@@ -219,7 +256,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     public boolean onPrepareOptionsMenu(Menu menu) {
         // If the nav drawer is open, hide action items related to the content view
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.logout).setVisible(!drawerOpen);
+        //menu.findItem(R.id.logout).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -232,9 +269,9 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         }
         // Handle action buttons
         switch (item.getItemId()) {
-            case R.id.logout:
-                logout();
-                return true;
+            //case R.id.logout:
+            //    logout();
+            //    return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

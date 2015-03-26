@@ -59,19 +59,25 @@ public class MoreInfoFragment extends ViewPagerFragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_moreinfo, container, false);
         activity = (RegistrationActivity) getActivity();
 
-        Typeface black = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Black.ttf");
-        Typeface medium = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Medium.ttf");
-
-        TextView title = (TextView) root.findViewById(R.id.tv_title);
-        Button register = (Button) root.findViewById(R.id.btn_register);
-        title.setTypeface(black);
-        register.setTypeface(medium);
-
         firstNameEditText = (EditText) root.findViewById(R.id.et_first_name);
         lastNameEditText = (EditText) root.findViewById(R.id.et_last_name);
         emailEditText = (EditText) root.findViewById(R.id.et_email);
         passwordEditText = (EditText) root.findViewById(R.id.et_password);
         passwordConfirmEditText = (EditText) root.findViewById(R.id.et_confirm_password);
+
+        Typeface black = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Black.ttf");
+        Typeface medium = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Medium.ttf");
+        Typeface regular = Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Regular.ttf");
+
+        TextView title = (TextView) root.findViewById(R.id.tv_title);
+        Button register = (Button) root.findViewById(R.id.btn_register);
+        title.setTypeface(black);
+        register.setTypeface(medium);
+        firstNameEditText.setTypeface(regular);
+        lastNameEditText.setTypeface(regular);
+        emailEditText.setTypeface(regular);
+        passwordEditText.setTypeface(regular);
+        passwordConfirmEditText.setTypeface(regular);
 
         Button registerButton = (Button) root.findViewById(R.id.btn_register);
         registerButton.setOnClickListener(new View.OnClickListener() {

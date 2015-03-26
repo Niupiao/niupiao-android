@@ -107,7 +107,7 @@
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/tv_payment_method_text"
             android:layout_alignTop="@id/tv_payment_method_text"
-            android:text="null"/>
+            android:text="None Chosen"/>
 
     </RelativeLayout>
 

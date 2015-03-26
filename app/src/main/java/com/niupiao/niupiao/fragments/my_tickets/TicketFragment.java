@@ -53,19 +53,19 @@ public class TicketFragment extends Fragment {
 
 
         String embeddedInfo = String.format("%s %s %s %s %s %s %s %s %s %s %s",
-                "event_name:",
+                "Event Name:",
                 event.getName(),
                 "\n",
 
-                "buyer_name:",
+                "Buyer Name:",
                 user.getName(),
                 "\n",
 
-                "admit_type:",
+                "Ticket Type:",
                 ticket.getStatus(),
                 "\n",
 
-                "quantity:",
+                "Quantity:",
                 ticket.getTicketStatus().getMaxPurchasable()
         );
         try {

@@ -53,6 +53,10 @@
     <string name="zip_code">Zip Code</string>
     <string name="save_card">Save Card</string>
 
+    <!--Confirm-->
+    <string name="order_total">Order Total:</string>
+    <string name="buyer_name">Buyer Name:</string>
+    <string name="payment_method">Payment Method:</string>
 
 
 

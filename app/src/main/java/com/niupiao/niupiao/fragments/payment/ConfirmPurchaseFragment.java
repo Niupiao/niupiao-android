@@ -1,5 +1,6 @@
 package com.niupiao.niupiao.fragments.payment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -23,9 +24,16 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_confirm, container, false);
 
-        TextView info = (TextView) root.findViewById(R.id.info);
-
+        // Tickets and payment info are stored in the PaymentManager
         PaymentManager paymentManager = getPaymentManager();
+
+        // Set the total amount of money spent so far
+        Typeface black = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
+        Typeface light = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+
+        TextView cost = (TextView) root.findViewById(R.id.tv_cost);
+        cost.setText("$" + paymentManager.getTotalCost());
+        cost.setTypeface(light);
 
         Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
 

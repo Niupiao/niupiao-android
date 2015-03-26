@@ -134,6 +134,7 @@ public class EventInfoFragment extends Fragment {
         TextView date = (TextView) root.findViewById(R.id.tv_event_date);
         TextView location = (TextView) root.findViewById(R.id.tv_event_where);
         TextView getTickets = (TextView) root.findViewById(R.id.tv_get_tickets);
+        TextView price = (TextView) root.findViewById(R.id.tv_cost);
 
         name.setText(event.getName());
         subtitle.setText("");
@@ -141,8 +142,10 @@ public class EventInfoFragment extends Fragment {
         location.setText(event.getLocation());
 
         Typeface black = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
+        Typeface light = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
 
         getTickets.setTypeface(black);
+        price.setTypeface(light);
 
         initializeTicketRows(root);
 

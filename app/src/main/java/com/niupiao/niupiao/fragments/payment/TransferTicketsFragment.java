@@ -37,8 +37,11 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
         PaymentManager paymentManager = getPaymentManager();
 
         // Set the total amount of money spent so far
+        Typeface light = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+
         TextView cost = (TextView) root.findViewById(R.id.tv_cost);
         cost.setText("$" + paymentManager.getTotalCost());
+        cost.setTypeface(light);
 
         // Maps ticketStatus to a collection of tickets the capacity of ticketStatus.getMaxPurchasable()
         Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();

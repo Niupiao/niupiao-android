@@ -3,17 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/ib_home"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentLeft="true"
+    <Button
+        android:id="@+id/btn_return_mytickets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:src="@drawable/slideicon"
+        android:drawablePadding="5sp"
+        android:drawableLeft="@drawable/register_leftarrow"
+        android:textColor="@android:color/white"
+        android:text="@string/upcoming_tickets"
+        android:textSize="10sp"
         android:background="@android:color/transparent"/>
-    
+
     <ImageView
-        android:id="@+id/iv_titlecowhead"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:src="@drawable/cowhead"

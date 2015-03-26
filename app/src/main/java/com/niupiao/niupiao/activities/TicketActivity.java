@@ -1,9 +1,14 @@
 package com.niupiao.niupiao.activities;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.my_tickets.TicketFragment;
@@ -20,6 +25,29 @@ public class TicketActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.niupiao_blue)));
+
+        View mActionBarView = getLayoutInflater().inflate(R.layout.actionbar_ticket, null);
+        actionBar.setCustomView(mActionBarView);
+        View postView = actionBar.getCustomView();
+        ActionBar.LayoutParams lp = (ActionBar.LayoutParams) postView.getLayoutParams();
+        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        postView.setLayoutParams(lp);
+        Button rtnToTickets= (Button) mActionBarView.findViewById(R.id.btn_return_mytickets);
+
+        rtnToTickets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
         show();
     }
 

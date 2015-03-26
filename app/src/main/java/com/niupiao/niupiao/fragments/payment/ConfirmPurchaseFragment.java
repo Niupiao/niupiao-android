@@ -61,7 +61,7 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
 
             purchasers.setText(numTicketsPurchased + " " +
                     getActivity().getResources().getString(R.string.owned_by) +
-                    " Ryan Kwon");
+                    " Kevin Chen");
 
             purchasers.setTypeface(light);
 
@@ -72,7 +72,7 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
         orderTotal.setText(paymentManager.getTotalCost() + "");
 
         TextView buyerName = (TextView) root.findViewById(R.id.tv_buyer_name);
-        buyerName.setText("Ryan Kwon");
+        buyerName.setText("Kevin Chen");
 
         ImageButton next = (ImageButton) root.findViewById(R.id.ib_next_screen);
         next.setOnClickListener(new View.OnClickListener() {

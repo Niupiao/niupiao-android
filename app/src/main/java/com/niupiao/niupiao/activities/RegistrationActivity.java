@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
@@ -17,39 +19,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.adapters.ViewPagerAdapter;
+import com.niupiao.niupiao.fragments.registration.DoneFragment;
+import com.niupiao.niupiao.fragments.registration.MoreInfoFragment;
+import com.niupiao.niupiao.fragments.registration.SetupProfileFragment;
 import com.niupiao.niupiao.models.ApiKey;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.RegistrationRequester;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by kevinchen on 2/25/15.
  */
-public class RegistrationActivity extends ActionBarActivity
-        implements RegistrationRequester.OnRegistrationListener {
+public class RegistrationActivity extends ActionBarActivity {
 
-    private EditText firstNameEditText;
-    private EditText lastNameEditText;
-    private EditText emailEditText;
-    private EditText passwordEditText;
-    private EditText passwordConfirmEditText;
+    private static final int FRAGMENT_MORE_INFO = 0;
+    private static final int FRAGMENT_SETUP_PROFILE = 1;
+    private static final int FRAGMENT_DONE = 2;
 
-    @Override
-    public void onVolleyError(VolleyError volleyError) {
-        Toast.makeText(this, "VE: " + volleyError.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onRegistration(User user, ApiKey apiKey) {
-        Log.d("callback, user -- ", user.toString());
-        Log.d("callback, apiK -- ", apiKey.toString());
-        finish();
-    }
-
-    @Override
-    public void onRegistrationFailure(String errorMessage) {
-        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
-    }
+    private ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,98 +70,17 @@ public class RegistrationActivity extends ActionBarActivity
         });
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
-        //Non-ActionBar Items.
-        Typeface black = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Black.ttf");
-        Typeface medium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+        List<Fragment> fragments = new ArrayList<>(3);
+        fragments.add(FRAGMENT_MORE_INFO, MoreInfoFragment.newInstance(FRAGMENT_MORE_INFO));
+        fragments.add(FRAGMENT_SETUP_PROFILE, SetupProfileFragment.newInstance(FRAGMENT_SETUP_PROFILE));
+        fragments.add(FRAGMENT_DONE, DoneFragment.newInstance(FRAGMENT_DONE));
 
-        TextView title = (TextView) findViewById(R.id.tv_title);
-        Button register = (Button) findViewById(R.id.btn_register);
-        title.setTypeface(black);
-        register.setTypeface(medium);
+        pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), fragments));
 
-        firstNameEditText = (EditText) findViewById(R.id.et_first_name);
-        lastNameEditText = (EditText) findViewById(R.id.et_last_name);
-        emailEditText = (EditText) findViewById(R.id.et_email);
-        passwordEditText = (EditText) findViewById(R.id.et_password);
-        passwordConfirmEditText = (EditText) findViewById(R.id.et_confirm_password);
+        // Bind the tabs to the ViewPager
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        tabs.setViewPager(pager);
 
-        Button registerButton = (Button) findViewById(R.id.btn_register);
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isValidFields()) {
-                    register();
-                }
-            }
-        });
-
-    }
-
-    /*
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.registration, menu);
-        return true;
-    }*/
-
-    private boolean isValidFields() {
-        boolean test1 = isValidField(firstNameEditText);
-        boolean test2 = isValidField(lastNameEditText);
-        boolean test3 = validateEmail(emailEditText);
-        boolean test4 = validatePassword(passwordEditText, passwordConfirmEditText);
-
-        return test1 && test2 && test3 && test4;
-    }
-
-    private boolean isValidField(EditText editText) {
-        if (editText == null) {
-            throw new IllegalArgumentException("null EditText");
-        }
-        boolean test1 = !TextUtils.isEmpty(editText.getText());
-
-        if (!test1) {
-            editText.setError(getResources().getString(R.string.no_text_in_field));
-        }
-
-        return test1;
-    }
-
-    private boolean validateEmail(EditText email) {
-        boolean test1 = Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches();
-
-        if (!test1) {
-            email.setError(getResources().getString(R.string.invalid_email));
-        }
-
-        return test1;
-    }
-
-    private boolean validatePassword(EditText pw, EditText confirm) {
-        String pwtext = pw.getText().toString();
-        String confirmtext = confirm.getText().toString();
-
-        boolean test1 = pwtext.equals(confirmtext);
-        boolean test2 = pwtext.length() >= 6;
-        boolean test3 = confirmtext.length() >= 6;
-
-        if (!test1) {
-            confirm.setError(getResources().getString(R.string.password_does_not_match));
-        }
-        if (!test2) {
-            pw.setError(getResources().getString(R.string.password_too_short));
-        }
-        if (!test3) {
-            confirm.setError(getResources().getString(R.string.password_too_short));
-        }
-
-        return test1 && test2 && test3;
-    }
-
-    private void register() {
-        String firstName = firstNameEditText.getText().toString();
-        String lastName = lastNameEditText.getText().toString();
-        String email = emailEditText.getText().toString();
-        String password = passwordEditText.getText().toString();
-        RegistrationRequester.register(this, firstName, lastName, email, password);
     }
 }

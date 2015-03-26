@@ -188,7 +188,7 @@
     </style>
 
     <style name="Events.TextView.Name">
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_orange</item>
     </style>

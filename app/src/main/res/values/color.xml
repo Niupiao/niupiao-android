@@ -9,4 +9,5 @@
     <color name="niupiao_black_80">#CC000000</color>
     <color name="niupiao_black_nav_drawer">#111</color>
     <color name="niupiao_grey">#434343</color>
+    <color name="niupiao_grey_80">#CC434343</color>
 </resources>

@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/niupiao_white_background">
 
     <include layout="@layout/fragment_event_info_event_details" android:id="@+id/rl_event_details" />
+
+    <TextView
+        android:id="@+id/tv_get_tickets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@id/rl_event_details"
+        android:layout_centerHorizontal="true"
+        android:text="@string/get_tickets"
+        android:textAllCaps="true"
+        android:textColor="@color/niupiao_blue"
+        android:textSize="35sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rl_event_details"
+        android:layout_below="@id/tv_get_tickets"
         android:layout_above="@+id/rl_bottom_bar"
-        android:background="@color/niupiao_white_background"
         android:orientation="vertical"
         android:paddingBottom="20dp">
 

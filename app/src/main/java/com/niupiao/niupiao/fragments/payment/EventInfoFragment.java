@@ -1,5 +1,6 @@
 package com.niupiao.niupiao.fragments.payment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import com.niupiao.niupiao.models.TicketStatus;
 import com.niupiao.niupiao.utils.DateUtils;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +43,8 @@ public class EventInfoFragment extends Fragment {
     private void initializeTicketRows(ViewGroup root) {
 
         Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
+
+        Typeface black = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
 
         //TODO Clean up ex-code that's now stuffed in comments.
         // We will be adding stuff to the sole child of a ScrollView. (ScrollView can only have one child).
@@ -68,8 +72,9 @@ public class EventInfoFragment extends Fragment {
             //View child = layoutInflater.inflate(R.layout.payment_checkout_tickets_row, insideScrollView);
             View child = factory.inflate(R.layout.payment_checkout_tickets_row, null);
 
+            int color = getActivity().getResources().getColor(i % 2 == 0 ? R.color.niupiao_blue : R.color.niupiao_orange);
             LinearLayout ticketInfoBox = (LinearLayout) child.findViewById(R.id.ll_ticket_info);
-            ticketInfoBox.setBackgroundColor(getActivity().getResources().getColor(i % 2 == 0 ? R.color.niupiao_blue : R.color.niupiao_orange));
+            ticketInfoBox.setBackgroundColor(color);
 
             TextView ticketStatusTextView = (TextView) child.findViewById(R.id.tv_ticket_status);
             ticketStatusTextView.setText(ticketStatus.getName());
@@ -78,6 +83,8 @@ public class EventInfoFragment extends Fragment {
             ticketPriceTextView.setText("$" + ticketStatus.getPrice());
 
             final TextView numberOfTicketsPurchasedTextView = (TextView) child.findViewById(R.id.tv_number_tickets);
+            numberOfTicketsPurchasedTextView.setTextColor(color);
+            numberOfTicketsPurchasedTextView.setTypeface(black);
 
             ImageButton minusButton = (ImageButton) child.findViewById(R.id.ib_minus_button);
             minusButton.setImageDrawable(getActivity().getResources().getDrawable(i % 2 == 0 ? R.drawable.blue_minus : R.drawable.orange_minus));
@@ -99,7 +106,10 @@ public class EventInfoFragment extends Fragment {
             insideScrollView.addView(child);
 
             // TODO If it's not the last status, add the divider
-            //View divider = layoutInflater.inflate(R.layout.payment_checkout_tickets_row_divider, insideScrollView);
+            if(i < ticketStatuses.size() - 1){
+                View divider = factory.inflate(R.layout.payment_checkout_tickets_row_divider, null);
+                insideScrollView.addView(divider);
+            }
         }
 
     }
@@ -123,10 +133,16 @@ public class EventInfoFragment extends Fragment {
         TextView subtitle = (TextView) root.findViewById(R.id.tv_event_subtitle);
         TextView date = (TextView) root.findViewById(R.id.tv_event_date);
         TextView location = (TextView) root.findViewById(R.id.tv_event_where);
+        TextView getTickets = (TextView) root.findViewById(R.id.tv_get_tickets);
 
         name.setText(event.getName());
+        subtitle.setText("");
         date.setText(DateUtils.format(event.getDate(), DateUtils.FORMAT_DATE));
         location.setText(event.getLocation());
+
+        Typeface black = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
+
+        getTickets.setTypeface(black);
 
         initializeTicketRows(root);
 

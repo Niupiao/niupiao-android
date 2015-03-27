@@ -1,11 +1,14 @@
 package com.niupiao.niupiao.fragments.payment;
 
+import android.app.Dialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,8 +37,9 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
         PaymentManager paymentManager = getPaymentManager();
 
         // Set the total amount of money spent so far
-        Typeface black = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
-        Typeface light = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+        final Typeface black = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
+        final Typeface medium = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Medium.ttf");
+        final Typeface light = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
 
         TextView cost = (TextView) root.findViewById(R.id.tv_cost);
         cost.setText("$" + paymentManager.getTotalCost());
@@ -82,7 +86,23 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextCheckoutPhase();
+                final Dialog dialog = new Dialog(getActivity());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.payment_dialog_congratulations);
+
+                TextView congrats = (TextView) dialog.findViewById(R.id.tv_congratulations);
+                congrats.setTypeface(medium);
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.btn_view_tickets);
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        getActivity().finish();
+                    }
+                });
+
+                dialog.show();
             }
         });
         next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.view_tickets));

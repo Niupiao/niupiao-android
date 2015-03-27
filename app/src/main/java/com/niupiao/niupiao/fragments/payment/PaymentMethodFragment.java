@@ -45,7 +45,7 @@ public class PaymentMethodFragment extends CheckoutViewPagerFragment {
                 nextCheckoutPhase();
             }
         });
-        next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.payment_confirm_arrow));
+        next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.checkout));
 
         return root;
     }

@@ -12,8 +12,10 @@ import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.MainActivity;
+import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.models.TicketStatus;
+import com.niupiao.niupiao.models.User;
 
 import java.util.Map;
 
@@ -25,6 +27,8 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_confirm, container, false);
+
+        User user = getActivity().getIntent().getParcelableExtra(PayActivity.INTENT_KEY_FOR_USER);
 
         // Tickets and payment info are stored in the PaymentManager
         PaymentManager paymentManager = getPaymentManager();
@@ -61,7 +65,7 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
 
             purchasers.setText(numTicketsPurchased + " " +
                     getActivity().getResources().getString(R.string.owned_by) +
-                    " Kevin Chen");
+                    " " + user.getFirstName() + " " + user.getLastName());
 
             purchasers.setTypeface(light);
 
@@ -72,7 +76,7 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
         orderTotal.setText(paymentManager.getTotalCost() + "");
 
         TextView buyerName = (TextView) root.findViewById(R.id.tv_buyer_name);
-        buyerName.setText("Kevin Chen");
+        buyerName.setText(user.getFirstName() + " " + user.getLastName());
 
         ImageButton next = (ImageButton) root.findViewById(R.id.ib_next_screen);
         next.setOnClickListener(new View.OnClickListener() {

@@ -25,6 +25,7 @@ public class PayActivity extends ActionBarActivity {
     private static final String TAG = PayActivity.class.getSimpleName();
 
     public static final String INTENT_KEY_FOR_EVENT = "event";
+    public static final String INTENT_KEY_FOR_USER = "user";
 
     private PaymentManager paymentManager;
 

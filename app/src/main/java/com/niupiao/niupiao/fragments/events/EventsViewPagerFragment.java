@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.activities.MainActivity;
 import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.adapters.EventsAdapter;
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
@@ -49,6 +50,7 @@ public abstract class EventsViewPagerFragment extends ViewPagerFragment implemen
                 Event event = adapter.getItem(position);
                 Intent intent = new Intent(getActivity(), PayActivity.class);
                 intent.putExtra(PayActivity.INTENT_KEY_FOR_EVENT, event);
+                intent.putExtra(PayActivity.INTENT_KEY_FOR_USER, ((MainActivity) getActivity()).getUser());
                 startActivity(intent);
             }
         });

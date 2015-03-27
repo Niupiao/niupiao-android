@@ -59,7 +59,7 @@
     <string name="payment_method">Payment Method:</string>
     <string name="owned_by">owned by</string>
     <string name="transferred_to">transferred to</string>
-
-
+    <string name="congratulations">Congratulations!</string>
+    <string name="view_tickets">View Tickets</string>
 
 </resources>

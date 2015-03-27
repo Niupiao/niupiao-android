@@ -120,14 +120,14 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
                 nextCheckoutPhase();
             }
         });
-        next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.payment_method_arrow));
+        next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.paymentmethod));
 
         return root;
     }
 
     @Override
     public String getTitle() {
-        return "Transfer Tickets";
+        return "Transfer";
     }
 
     public static TransferTicketsFragment newInstance() {

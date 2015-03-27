@@ -105,7 +105,7 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
                 dialog.show();
             }
         });
-        next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.confirmnext));
+        next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.confirm));
 
 
         return root;

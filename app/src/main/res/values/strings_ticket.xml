@@ -9,4 +9,6 @@
     <string name="allows_for_entry_default">Allows 3 for Entry</string>
     <string name="allows">Allows</string>
     <string name="for_entry">for Entry</string>
+
+    <string name="upcoming_tickets">Upcoming Tickets</string>
 </resources>

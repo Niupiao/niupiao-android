@@ -31,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:text="Girls Generation"
         android:textColor="@color/niupiao_orange"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView

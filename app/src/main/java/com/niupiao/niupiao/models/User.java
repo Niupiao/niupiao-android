@@ -18,11 +18,19 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(email);
+        dest.writeString(firstName);
+        dest.writeString(lastName);
         dest.writeString(name);
+        dest.writeString(username);
     }
 
     public User(Parcel in) {
+        email = in.readString();
+        firstName = in.readString();
+        lastName = in.readString();
         name = in.readString();
+        username = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {

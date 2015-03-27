@@ -15,15 +15,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title"
-        android:background="@drawable/thin_bottom_top_border"
+        android:background="@drawable/thin_top_border"
         android:paddingBottom="5dp"
         android:paddingTop="5dp">
 
         <ImageView
             android:id="@+id/iv_visa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:paddingLeft="5dp"
             android:src="@drawable/visa" />
 
@@ -51,15 +54,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_visa"
-        android:background="@drawable/thin_bottom_top_border"
+        android:background="@drawable/thin_top_border"
         android:paddingBottom="5dp"
         android:paddingTop="5dp">
 
         <ImageView
             android:id="@+id/iv_paypal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="45dp"
             android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:paddingLeft="5dp"
             android:src="@drawable/paypal" />
 
@@ -83,8 +89,10 @@
         android:paddingTop="10dp">
 
         <TextView
+            android:id="@+id/tv_add_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:paddingLeft="5dp"
             android:text="@string/add_new_card"
             android:textColor="@color/niupiao_white"
@@ -97,7 +105,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:button="@drawable/payments_radio_button" />
+            android:button="@drawable/radio_button_white" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -114,7 +122,7 @@
             android:background="@drawable/thin_all_border"
             android:hint="@string/full_name"
             android:minHeight="40dp"
-            android:paddingLeft="5dp"
+            android:paddingLeft="8dp"
             android:textSize="20dp" />
 
         <EditText
@@ -125,7 +133,7 @@
             android:background="@drawable/thin_all_border"
             android:hint="@string/card_number"
             android:minHeight="40dp"
-            android:paddingLeft="5dp"
+            android:paddingLeft="8dp"
             android:textSize="20dp" />
 
         <LinearLayout
@@ -143,7 +151,8 @@
                 android:hint="@string/expiration_date"
                 android:minHeight="40dp"
                 android:minWidth="125dp"
-                android:paddingLeft="5dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="5dp"
                 android:textSize="20dp" />
 
             <EditText
@@ -166,7 +175,7 @@
             android:background="@drawable/thin_all_border"
             android:hint="@string/zip_code"
             android:minHeight="40dp"
-            android:paddingLeft="5dp"
+            android:paddingLeft="8dp"
             android:textSize="20dp" />
     </RelativeLayout>
 
@@ -176,47 +185,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_add_card_form"
         android:layout_marginTop="2dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:background="@drawable/button_round_corner"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
         android:text="@string/save_card"
         android:textSize="18sp" />
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/niupiao_grey"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/tv_cost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="0dp"
-            android:text="$0"
-            android:textColor="@color/niupiao_blue"
-            android:textSize="45dp" />
-
-        <ImageButton
-            android:id="@+id/ib_next_screen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/tv_cost"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@id/tv_cost"
-            android:layout_marginBottom="3dp"
-            android:layout_marginRight="5dp"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:maxHeight="80dp"
-            android:scaleType="fitEnd"
-            android:src="@drawable/checkout_arrow" />
-
-    </RelativeLayout>
+    <include layout="@layout/checkout_tickets_bottom_bar" />
 
 </RelativeLayout>

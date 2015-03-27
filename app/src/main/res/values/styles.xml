@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
     </style>
 
     <style name="Payment"></style>
@@ -27,21 +26,24 @@
         <item name="android:textColor">@color/niupiao_black</item>
     </style>
 
+    <style name="Payment.TextView.Number">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/niupiao_blue</item>
+    </style>
+
     <style name="Payment.TextView.General">
         <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">@dimen/abc_text_size_large_material</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:paddingTop">5dp</item>
-        <item name="android:layout_marginLeft">0dp</item>
-        <item name="android:layout_marginRight">0dp</item>
         <item name="android:textColor">@color/niupiao_blue</item>
     </style>
 
     <style name="Payment.TextView.VIP">
         <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">@dimen/abc_text_size_large_material</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:paddingTop">5dp</item>
-        <item name="android:layout_marginLeft">0dp</item>
-        <item name="android:layout_marginRight">0dp</item>
         <item name="android:textColor">@color/niupiao_orange</item>
     </style>
 
@@ -59,6 +61,7 @@
 
     <style name="Payment.ImageButton.Contacts">
         <item name="android:src">@color/niupiao_orange</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:maxWidth">210dp</item>
         <item name="android:scaleType">fitCenter</item>
@@ -189,31 +192,36 @@
     </style>
 
     <style name="Events.TextView.Name">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_orange</item>
     </style>
 
     <style name="Events.TextView.Time">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_blue</item>
     </style>
 
     <style name="Events.TextView.Day">
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">34sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_white</item>
     </style>
 
     <style name="Events.TextView.Month">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_white</item>
     </style>
 
+    <style name="Events.TextView.Location">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/niupiao_white</item>
+    </style>
+
     <style name="Events.TextView.General">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/niupiao_white</item>
     </style>

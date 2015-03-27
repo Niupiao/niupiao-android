@@ -5,8 +5,8 @@
 
     <LinearLayout
         android:id="@+id/ll_ticket_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="95dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="10dp"
         android:background="@color/niupiao_blue"

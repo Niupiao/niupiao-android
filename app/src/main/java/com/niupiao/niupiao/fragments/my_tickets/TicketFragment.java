@@ -2,6 +2,7 @@ package com.niupiao.niupiao.fragments.my_tickets;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,17 +33,24 @@ public class TicketFragment extends Fragment {
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_ticket, container, false);
 
+        Typeface light = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+
         ImageView qrCodeImageView = (ImageView) root.findViewById(R.id.iv_qrcode);
         TextView ticketStatusTextView = (TextView) root.findViewById(R.id.tv_ticket_type);
         TextView buyerNameTextView = (TextView) root.findViewById(R.id.tv_ticket_name);
         TextView maxTicketsAllowedTextView = (TextView) root.findViewById(R.id.tv_ticket_allow);
 
+        ticketStatusTextView.setTypeface(light);
+        buyerNameTextView.setTypeface(light);
+        maxTicketsAllowedTextView.setTypeface(light);
+
         Ticket ticket = getActivity().getIntent().getParcelableExtra(TicketActivity.INTENT_KEY_FOR_TICKET);
         Event event = ticket.getEvent();
         User user = getActivity().getIntent().getParcelableExtra(TicketActivity.INTENT_KEY_FOR_USER);
+        String name = user.getFirstName() + " " + user.getLastName();
 
         ticketStatusTextView.setText(ticket.getTicketStatus().getName());
-        buyerNameTextView.setText(user.getName());
+        buyerNameTextView.setText(name);
 
         maxTicketsAllowedTextView.setText(
                 String.format("%s %d %s",
@@ -53,19 +61,19 @@ public class TicketFragment extends Fragment {
 
 
         String embeddedInfo = String.format("%s %s %s %s %s %s %s %s %s %s %s",
-                "event_name:",
+                "Event Name:",
                 event.getName(),
                 "\n",
 
-                "buyer_name:",
-                user.getName(),
+                "Buyer Name:",
+                name,
                 "\n",
 
-                "admit_type:",
+                "Ticket Type:",
                 ticket.getStatus(),
                 "\n",
 
-                "quantity:",
+                "Quantity:",
                 ticket.getTicketStatus().getMaxPurchasable()
         );
         try {

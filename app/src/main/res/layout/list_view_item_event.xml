@@ -3,10 +3,11 @@
     android:id="@+id/rl_event"
     android:layout_width="match_parent"
     android:layout_height="300dp"
-    android:layout_marginBottom="6dp"
-    android:layout_marginLeft="6dp"
-    android:layout_marginRight="6dp"
-    android:layout_marginTop="6dp">
+    android:paddingBottom="6dp"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:paddingTop="6dp"
+    android:background="#e5e5e5">
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/image"
@@ -16,12 +17,17 @@
         android:id="@+id/rl_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:layout_alignParentRight="true"
-        android:background="@drawable/datebg">
+        android:background="#CC232323"
+        >
 
         <TextView
             android:id="@+id/tv_day"
             style="@style/Events.TextView.Day"
+            android:layout_marginTop="-5dp"
+            android:layout_marginBottom="-5dp"
             android:layout_centerHorizontal="true"
             android:text="23" />
 
@@ -38,21 +44,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@id/rl_date"
-        android:layout_marginTop="130dp"
-        android:background="@color/niupiao_black"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp">
+        android:layout_marginTop="150dp"
+        android:background="@color/niupiao_black_80"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
 
         <TextView
             android:id="@+id/tv_event_name"
             style="@style/Events.TextView.Name"
-            android:text="Event Name" />
+            android:text="Event Name"
+            android:layout_marginBottom="-5dp"/>
 
         <TextView
             android:id="@+id/tv_event_time"
             style="@style/Events.TextView.Time"
             android:layout_below="@id/tv_event_name"
-            android:layout_marginTop="5dp"
             android:text="Event Time" />
 
         <TextView
@@ -64,7 +70,7 @@
 
         <TextView
             android:id="@+id/tv_event_location"
-            style="@style/Events.TextView.General"
+            style="@style/Events.TextView.Location"
             android:layout_alignBaseline="@id/tv_event_time"
             android:layout_below="@id/tv_event_name"
             android:layout_toRightOf="@id/tv_first_divider"

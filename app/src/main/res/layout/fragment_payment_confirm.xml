@@ -18,10 +18,96 @@
             style="@style/Payment.TextView.Title"
             android:text="@string/title_confirmation" />
 
+        <LinearLayout
+            android:id="@+id/ll_tickets_bought"
+            android:layout_below="@id/tv_title"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            </LinearLayout>
+
+        <include layout="@layout/payment_confirm_divider"
+            android:id="@+id/divider"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_below="@id/ll_tickets_bought"/>
+
+        <!--Total Order Resources-->
         <TextView
-            android:id="@+id/info"
+            android:id="@+id/tv_order_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:layout_toLeftOf="@+id/tv_currency_symbol"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/order_total"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_currency_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:layout_toLeftOf="@+id/tv_order_cost"
+            android:layout_alignTop="@id/tv_order_text"
+            android:text="@string/usd"
+            android:textSize="20sp"
+            android:textColor="@color/niupiao_black_80"
+            />
+
+        <TextView
+            android:id="@+id/tv_order_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/tv_order_text"
+            android:layout_marginRight="10dp"
+            android:text="null"
+            android:textSize="20sp"
+            android:textColor="@color/niupiao_black_80"/>
+
+
+        <!--Buyer and Payment Method information-->
+        <TextView
+            android:id="@+id/tv_buyer_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_order_text"
+            android:layout_marginTop="8dp"
+            android:text="@string/buyer_name"
+            android:textColor="@color/niupiao_black_80"
+            />
+
+        <TextView
+            android:id="@+id/tv_buyer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/tv_buyer_name_text"
+            android:layout_alignTop="@id/tv_buyer_name_text"
+            android:text="null"/>
+
+        <TextView
+            android:id="@+id/tv_payment_method_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_buyer_name_text"
+            android:text="@string/payment_method"
+            android:textColor="@color/niupiao_black_80"
+            />
+
+        <TextView
+            android:id="@+id/tv_payment_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/tv_payment_method_text"
+            android:layout_alignTop="@id/tv_payment_method_text"
+            android:text="None Chosen"/>
 
     </RelativeLayout>
 

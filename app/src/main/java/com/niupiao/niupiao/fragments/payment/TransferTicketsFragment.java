@@ -37,8 +37,11 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
         PaymentManager paymentManager = getPaymentManager();
 
         // Set the total amount of money spent so far
+        Typeface light = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+
         TextView cost = (TextView) root.findViewById(R.id.tv_cost);
         cost.setText("$" + paymentManager.getTotalCost());
+        cost.setTypeface(light);
 
         // Maps ticketStatus to a collection of tickets the capacity of ticketStatus.getMaxPurchasable()
         Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
@@ -117,14 +120,14 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
                 nextCheckoutPhase();
             }
         });
-        next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.payment_method_arrow));
+        next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.paymentmethod));
 
         return root;
     }
 
     @Override
     public String getTitle() {
-        return "Transfer Tickets";
+        return "Transfer";
     }
 
     public static TransferTicketsFragment newInstance() {

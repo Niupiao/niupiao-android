@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Strings related to fragment_event_info -->
+    <string name="get_tickets">GET TICKETS</string>
+    <string name="ticket_type_general">GENERAL</string>
+    <string name="ticket_type_vip">VIP</string>
+    <string name="ticketing_guidelines">Ticketing Guidelines</string>
+    <string name="announcements">Announcements</string>
+    <string name="event_description">Event Description</string>
+    <string name="upcoming_events">Upcoming Events</string>
+
     <!--Strings related to payments -->
     <string name="title_transfer">TRANSFER TICKETS</string>
     <string name="title_payment_method">PAYMENT METHOD</string>
@@ -43,7 +53,13 @@
     <string name="zip_code">Zip Code</string>
     <string name="save_card">Save Card</string>
 
-
-
+    <!--Confirm-->
+    <string name="order_total">Order Total:</string>
+    <string name="buyer_name">Buyer Name:</string>
+    <string name="payment_method">Payment Method:</string>
+    <string name="owned_by">owned by</string>
+    <string name="transferred_to">transferred to</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="view_tickets">View Tickets</string>
 
 </resources>

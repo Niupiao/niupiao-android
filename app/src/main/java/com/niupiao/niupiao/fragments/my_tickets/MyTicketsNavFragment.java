@@ -43,6 +43,7 @@ public class MyTicketsNavFragment extends NiuNavigationDrawerFragment {
 
         // Bind the tabs to the ViewPager
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) root.findViewById(R.id.tabs);
+        tabs.setIndicatorColor(getResources().getColor(R.color.niupiao_orange));
         tabs.setViewPager(pager);
 
         // if we use listener, set it on widget, not the pager

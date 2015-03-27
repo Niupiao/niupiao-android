@@ -1,10 +1,15 @@
 package com.niupiao.niupiao.activities;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.fragments.payment.CheckoutFragment;
@@ -20,6 +25,7 @@ public class PayActivity extends ActionBarActivity {
     private static final String TAG = PayActivity.class.getSimpleName();
 
     public static final String INTENT_KEY_FOR_EVENT = "event";
+    public static final String INTENT_KEY_FOR_USER = "user";
 
     private PaymentManager paymentManager;
 
@@ -63,6 +69,29 @@ public class PayActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.niupiao_blue)));
+
+        View mActionBarView = getLayoutInflater().inflate(R.layout.actionbar_payment, null);
+        actionBar.setCustomView(mActionBarView);
+        View postView = actionBar.getCustomView();
+        ActionBar.LayoutParams lp = (ActionBar.LayoutParams) postView.getLayoutParams();
+        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        postView.setLayoutParams(lp);
+        Button rtnToEvents = (Button) mActionBarView.findViewById(R.id.btn_return_events);
+
+        rtnToEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+
         event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
         paymentManager = new PaymentManager(event, this);
         show(PaymentPhase.PURCHASE_TICKETS);

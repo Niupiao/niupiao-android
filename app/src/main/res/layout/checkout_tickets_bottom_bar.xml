@@ -3,20 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:background="@color/niupiao_grey"
+    android:background="@color/niupiao_black_80"
     android:paddingBottom="10dp"
-    android:paddingTop="10dp">
+    android:paddingTop="5dp">
 
     <TextView
         android:id="@+id/tv_cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginLeft="25dp"
         android:text="$0"
         android:textColor="@color/niupiao_blue"
-        android:textSize="35sp" />
+        android:textSize="50sp" />
+
+    <ImageView
+        android:id="@+id/iv_slidebar"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/slidebar"/>
 
     <ImageButton
         android:id="@+id/ib_next_screen"
@@ -24,13 +32,15 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/tv_cost"
         android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/iv_slidebar"
         android:layout_alignTop="@id/tv_cost"
         android:layout_marginBottom="3dp"
         android:layout_marginRight="3dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
         android:maxHeight="80dp"
+        android:maxWidth="200dp"
         android:scaleType="fitEnd"
-        android:src="@drawable/payment_method_arrow" />
+        android:src="@drawable/checkout" />
 
 </RelativeLayout>

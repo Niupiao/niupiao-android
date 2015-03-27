@@ -18,7 +18,7 @@
     android:id="@android:id/text1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:drawableLeft="@drawable/ticket_icon"
+    android:drawableLeft="@drawable/ticket"
     android:drawablePadding="15dp"
     android:background="?android:attr/activatedBackgroundIndicator"
     android:gravity="center_vertical"

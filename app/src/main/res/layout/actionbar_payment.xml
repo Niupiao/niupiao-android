@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_return_events"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:drawablePadding="5sp"
+        android:drawableLeft="@drawable/register_leftarrow"
+        android:textColor="@android:color/white"
+        android:text="@string/upcoming_events"
+        android:textSize="10sp"
+        android:background="@android:color/transparent"/>
+
+    <ImageView
+        android:id="@+id/iv_titlecowhead"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/cowhead"
+        android:layout_centerInParent="true"
+        />
+
+    <ImageButton
+        android:id="@+id/ib_speechbubble"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:scaleType="centerInside"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/speechbubble"/>
+
+    <ImageButton
+        android:id="@+id/ib_search"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:scaleType="centerInside"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@id/ib_speechbubble"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/search"/>
+
+</RelativeLayout>

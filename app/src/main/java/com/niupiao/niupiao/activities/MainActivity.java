@@ -302,9 +302,14 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO: Remove System.out.println, which are currently here for testing.
         // Check which request we're responding to
+        System.out.println("RequestCode: " + requestCode);
         if (requestCode == PayActivity.REQUEST_CODE_CHECKOUT_TICKETS) {
             // Make sure the request was successful
+            System.out.println("RESULT_OK: " + RESULT_OK);
+            System.out.println("RESULT_CANCELED: " + RESULT_CANCELED);
+            System.out.println("ResultCode: " + resultCode);
             if (resultCode == RESULT_OK) {
                 Event event = data.getParcelableExtra(PayActivity.RESULT_KEY_FOR_EVENT);
                 ArrayList<PaymentManager.Tickets> tickets = data.getParcelableArrayListExtra(PayActivity.RESULT_KEY_FOR_TICKETS_PURCHASED);
@@ -328,7 +333,11 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
 
             } else if (resultCode == RESULT_CANCELED) {
                 // we didn't buy any tickets so show the events page
-                selectItem(NAV_DRAWER_INDEX_EVENTS);
+                try {
+                    selectItem(NAV_DRAWER_INDEX_EVENTS);
+                } catch (IllegalStateException e){
+                    //TODO: IllegalStateException is called. Perhaps see http://stackoverflow.com/questions/3353023/android-illegalstateexception-when-is-it-thrown
+                }
             }
         }
     }

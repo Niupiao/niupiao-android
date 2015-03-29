@@ -93,7 +93,12 @@ public class PayActivity extends ActionBarActivity {
             setResult(RESULT_OK, returnIntent);
         }
         finish();
+    }
 
+    @Override
+    public void onBackPressed() {
+        confirmTicketPurchase(true);
+        super.onBackPressed();
     }
 
     @Override

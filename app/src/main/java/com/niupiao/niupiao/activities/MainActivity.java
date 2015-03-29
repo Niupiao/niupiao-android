@@ -322,7 +322,11 @@ public class MainActivity extends ActionBarActivity
                 purchaseTickets(ticketsPurchasedData);
             } else if (resultCode == RESULT_CANCELED) {
                 // we didn't buy any tickets so show the events page
-                selectItem(NAV_DRAWER_INDEX_EVENTS);
+                try {
+                    selectItem(NAV_DRAWER_INDEX_EVENTS);
+                } catch (IllegalStateException e){
+                    //TODO: IllegalStateException is called. Perhaps see http://stackoverflow.com/questions/3353023/android-illegalstateexception-when-is-it-thrown
+                }
             }
         }
     }

@@ -40,6 +40,7 @@ import com.niupiao.niupiao.models.Data;
 import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.ResourceCallback;
+import com.niupiao.niupiao.requesters.TicketsPurchaseRequester;
 import com.niupiao.niupiao.utils.SharedPrefsUtils;
 
 import org.json.JSONException;
@@ -50,7 +51,8 @@ import java.util.ArrayList;
 /**
  * Created by kmchen1 on 2/17/15.
  */
-public class MainActivity extends ActionBarActivity implements ResourceCallback {
+public class MainActivity extends ActionBarActivity
+        implements ResourceCallback, TicketsPurchaseRequester.OnTicketsPurchasedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String INTENT_KEY_FOR_USER = "user";
@@ -300,32 +302,24 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         startActivityForResult(intent, PayActivity.REQUEST_CODE_CHECKOUT_TICKETS);
     }
 
+    private void purchaseTickets(Intent ticketsPurchasedData) {
+        Event event = ticketsPurchasedData.getParcelableExtra(PayActivity.RESULT_KEY_FOR_EVENT);
+        ArrayList<PaymentManager.Tickets> tickets = ticketsPurchasedData.getParcelableArrayListExtra(PayActivity.RESULT_KEY_FOR_TICKETS_PURCHASED);
+        TicketsPurchaseRequester.purchaseTickets(this, event, tickets);
+    }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onTicketsPurchased() {
+        // TODO
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent ticketsPurchasedData) {
         // Check which request we're responding to
         if (requestCode == PayActivity.REQUEST_CODE_CHECKOUT_TICKETS) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                Event event = data.getParcelableExtra(PayActivity.RESULT_KEY_FOR_EVENT);
-                ArrayList<PaymentManager.Tickets> tickets = data.getParcelableArrayListExtra(PayActivity.RESULT_KEY_FOR_TICKETS_PURCHASED);
-
-                // TODO move to Requester -- POST to server so it knows we just bought these tickets
-                // e.g., { "event_id" : 1, "tickets_purchased" : { "VIP" : 2, "General" : 3 } }
-                try {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("event_id", event.getId());
-                    JSONObject ticketsPurchasedJsonObject = new JSONObject();
-                    if (tickets != null) {
-                        for (PaymentManager.Tickets ticketPacket : tickets) {
-                            ticketsPurchasedJsonObject.put(ticketPacket.getTicketStatus().getName(),
-                                    ticketPacket.getNumberTicketsPurchased());
-                        }
-                    }
-                    jsonObject.put("tickets_purchased", ticketsPurchasedJsonObject);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
+                purchaseTickets(ticketsPurchasedData);
             } else if (resultCode == RESULT_CANCELED) {
                 // we didn't buy any tickets so show the events page
                 selectItem(NAV_DRAWER_INDEX_EVENTS);

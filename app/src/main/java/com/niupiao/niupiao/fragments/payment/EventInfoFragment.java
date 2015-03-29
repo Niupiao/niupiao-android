@@ -21,7 +21,6 @@ import com.niupiao.niupiao.models.TicketStatus;
 import com.niupiao.niupiao.utils.DateUtils;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +41,7 @@ public class EventInfoFragment extends Fragment {
 
     private void initializeTicketRows(ViewGroup root) {
 
-        Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
+        Map<TicketStatus, Integer> numTickets = paymentManager.getTickets();
 
         Typeface black = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
 

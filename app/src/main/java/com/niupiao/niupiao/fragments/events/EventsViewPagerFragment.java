@@ -48,10 +48,9 @@ public abstract class EventsViewPagerFragment extends ViewPagerFragment implemen
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 EventsAdapter adapter = ((EventsAdapter) listView.getAdapter());
                 Event event = adapter.getItem(position);
-                Intent intent = new Intent(getActivity(), PayActivity.class);
-                intent.putExtra(PayActivity.INTENT_KEY_FOR_EVENT, event);
-                intent.putExtra(PayActivity.INTENT_KEY_FOR_USER, ((MainActivity) getActivity()).getUser());
-                startActivity(intent);
+
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.checkout(event);
             }
         });
 

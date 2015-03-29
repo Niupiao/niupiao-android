@@ -26,7 +26,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-    apply plugin: 'android-unit-test'
+//    apply plugin: 'android-unit-test'
 
     dependencies {
         compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -40,8 +40,11 @@ android {
 //        instrumentTestCompile 'org.robolectric:robolectric:2.+'
 //        instrumentTestCompile 'junit:junit:4.+'
 
+
+        testCompile 'junit:junit:4.12'
+        testCompile "org.mockito:mockito-core:1.9.5"
+
         testCompile 'org.easytesting:fest:1.0.16'
-        testCompile 'junit:junit:4.10'
         testCompile 'org.robolectric:robolectric:2.4'
         testCompile 'com.squareup:fest-android:1.0.8'
     }

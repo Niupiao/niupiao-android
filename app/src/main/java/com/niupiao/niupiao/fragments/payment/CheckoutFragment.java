@@ -1,5 +1,6 @@
 package com.niupiao.niupiao.fragments.payment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,7 +11,9 @@ import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
+import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.adapters.ViewPagerAdapter;
+import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.widgets.NonSwipeableViewPager;
 
 import java.util.ArrayList;
@@ -50,8 +53,9 @@ public class CheckoutFragment extends Fragment {
                 show(CheckoutPhase.CONFIRM_PURCHASE);
                 break;
             case CONFIRM_PURCHASE:
-                // TODO go to My Tickets
-                getActivity().finish();
+                PayActivity payActivity = (PayActivity) getActivity();
+                // TODO determine whether checkout was cancelled -- for now assume it was not cancelled
+                payActivity.confirmTicketPurchase(false);
         }
     }
 

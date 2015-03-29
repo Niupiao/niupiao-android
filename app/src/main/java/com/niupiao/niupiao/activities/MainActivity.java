@@ -1,5 +1,6 @@
 package com.niupiao.niupiao.activities;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -33,11 +34,16 @@ import com.niupiao.niupiao.fragments.account.AccountNavFragment;
 import com.niupiao.niupiao.fragments.events.EventsNavFragment;
 import com.niupiao.niupiao.fragments.my_tickets.MyTicketsNavFragment;
 import com.niupiao.niupiao.managers.EventManager;
+import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Data;
+import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.ResourceCallback;
 import com.niupiao.niupiao.utils.SharedPrefsUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -79,8 +85,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     }
 
     public User getUser() {
-        User user = getIntent().getParcelableExtra(INTENT_KEY_FOR_USER);
-        return user;
+        return getIntent().getParcelableExtra(INTENT_KEY_FOR_USER);
     }
 
     @Override
@@ -88,7 +93,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO broadcast receiver should listen for connection and have EventManger go then
+        // TODO broadcast receiver should listen for connection and have EventManager go then
         eventManager = new EventManager(this);
         ticketManager = new TicketManager(this);
 
@@ -158,7 +163,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
          */
 
         if (savedInstanceState == null) {
-            selectItem(0);
+            selectItem(NAV_DRAWER_INDEX_EVENTS);
         }
     }
 
@@ -185,17 +190,23 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         }
     }
 
+    private static final int NAV_DRAWER_INDEX_EVENTS = 0;
+    private static final int NAV_DRAWER_INDEX_MY_TICKETS = 1;
+    private static final int NAV_DRAWER_INDEX_STARRED = 2;
+    private static final int NAV_DRAWER_INDEX_ACCOUNT = 3;
+    private static final int NAV_DRAWER_INDEX_SETTINGS = 4;
+
     private NiuNavigationDrawerFragment getSelectedFragment(int position) {
         switch (position) {
-            case 0:
+            case NAV_DRAWER_INDEX_EVENTS:
                 return new EventsNavFragment();
-            case 1:
+            case NAV_DRAWER_INDEX_MY_TICKETS:
                 return new MyTicketsNavFragment();
-            case 2:
+            case NAV_DRAWER_INDEX_STARRED:
                 return new StarredNavFragment();
-            case 3:
+            case NAV_DRAWER_INDEX_ACCOUNT:
                 return new AccountNavFragment();
-            case 4:
+            case NAV_DRAWER_INDEX_SETTINGS:
                 return new SettingsNavFragment();
             default:
                 Log.wtf(TAG, "unhandled fragment");
@@ -282,5 +293,43 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         finish();
     }
 
+    public void checkout(Event event) {
+        Intent intent = new Intent(this, PayActivity.class);
+        intent.putExtra(PayActivity.INTENT_KEY_FOR_EVENT, event);
+        intent.putExtra(PayActivity.INTENT_KEY_FOR_USER, getUser());
+        startActivityForResult(intent, PayActivity.REQUEST_CODE_CHECKOUT_TICKETS);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == PayActivity.REQUEST_CODE_CHECKOUT_TICKETS) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                Event event = data.getParcelableExtra(PayActivity.RESULT_KEY_FOR_EVENT);
+                ArrayList<PaymentManager.Tickets> tickets = data.getParcelableArrayListExtra(PayActivity.RESULT_KEY_FOR_TICKETS_PURCHASED);
+
+                // TODO move to Requester -- POST to server so it knows we just bought these tickets
+                // e.g., { "event_id" : 1, "tickets_purchased" : { "VIP" : 2, "General" : 3 } }
+                try {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("event_id", event.getId());
+                    JSONObject ticketsPurchasedJsonObject = new JSONObject();
+                    if (tickets != null) {
+                        for (PaymentManager.Tickets ticketPacket : tickets) {
+                            ticketsPurchasedJsonObject.put(ticketPacket.getTicketStatus().getName(),
+                                    ticketPacket.getNumberTicketsPurchased());
+                        }
+                    }
+                    jsonObject.put("tickets_purchased", ticketsPurchasedJsonObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            } else if (resultCode == RESULT_CANCELED) {
+                // we didn't buy any tickets so show the events page
+                selectItem(NAV_DRAWER_INDEX_EVENTS);
+            }
+        }
+    }
 }

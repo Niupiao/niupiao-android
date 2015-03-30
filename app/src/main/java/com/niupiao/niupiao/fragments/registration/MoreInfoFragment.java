@@ -161,6 +161,10 @@ public class MoreInfoFragment extends ViewPagerFragment
         String lastName = lastNameEditText.getText().toString();
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
+
+        firstName.replaceAll(" ", "");
+        lastName.replaceAll(" ", "");
+        email.replaceAll(" ", "");
         RegistrationRequester.register(this, firstName, lastName, email, password);
     }
 }

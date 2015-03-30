@@ -9,6 +9,7 @@
         <item>Starred</item>
         <item>My Account</item>
         <item>Settings</item>
+        <item>Logout</item>
     </string-array>
 
     <string-array name="fragments_drawables">

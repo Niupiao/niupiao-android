@@ -49,6 +49,8 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String INTENT_KEY_FOR_USER = "user";
 
+    private static final int POSITION_OF_LOGOUT = 5;
+
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -165,7 +167,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     private ArrayList<Data> instantiateData() {
         mFragmentTitles = getResources().getStringArray(R.array.fragments_array);
         int[] mFragmentDrawables = {R.drawable.documents, R.drawable.ticket, R.drawable.star,
-                R.drawable.person, R.drawable.gear};
+                R.drawable.person, R.drawable.gear, R.drawable.navbar_empty};
 
         ArrayList<Data> navBarItems = new ArrayList<Data>();
 
@@ -200,20 +202,23 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
             default:
                 Log.wtf(TAG, "unhandled fragment");
                 return null;
-
         }
     }
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        Fragment fragment = getSelectedFragment(position);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        if(position == MainActivity.POSITION_OF_LOGOUT){
+            finish(); // TODO: Better way to do this? This seems clunky.
+        } else {
+            Fragment fragment = getSelectedFragment(position);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
-        // update selected item and title, then close the drawer
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mFragmentTitles[position]);
-        mDrawerLayout.closeDrawer(mDrawerList);
+            // update selected item and title, then close the drawer
+            mDrawerList.setItemChecked(position, true);
+            setTitle(mFragmentTitles[position]);
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
     }
 
     @Override

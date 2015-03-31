@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Strings related to an Account page -->
+    <string name="my_account">My Account</string>
+    <string name="manage_account">manage\naccount</string>
+    <string name="manage_alerts">manage\nalerts</string>
+    <string name="order_history">order\nhistory</string>
+    <string name="update_profile">update\nprofile</string>
+
     <string name="account_settings">Account Settings</string>
     <string name="payment_settings">Payment Settings</string>
     <string name="return_to_account">Return to My Account</string>

@@ -187,7 +187,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:background="@drawable/button_round_corner"
+        android:background="@drawable/orange_button_round_corner"
         android:text="@string/save_card"
         android:textSize="18sp" />
 

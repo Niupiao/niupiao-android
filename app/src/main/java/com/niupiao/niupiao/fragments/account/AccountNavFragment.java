@@ -18,8 +18,11 @@ public class AccountNavFragment extends NiuNavigationDrawerFragment {
 
     public enum AccountScreen {
         ACCOUNT_SCREEN(AccountScreenFragment.class.getName()),
-        ACCOUNT_SETTINGS(AccountSettingsFragment.class.getName()),
-        PAYMENT_SETTINGS(PaymentSettingsFragment.class.getName());
+        MANAGE_ACCOUNT(ManageAccountFragment.class
+        .getName()),
+        UPDATE_PROFILE(AccountSettingsFragment.class.getName()),
+        MANAGE_ALERTS(AccountSettingsFragment.class.getName()),
+        ORDER_HISTORY(AccountSettingsFragment.class.getName());
 
         private String fragmentClassName;
 

@@ -7,6 +7,14 @@
     <string name="order_history">order\nhistory</string>
     <string name="update_profile">update\nprofile</string>
 
+    <!-- Strings related to Update Profile -->
+    <string name="update_info">UPDATE INFO</string>
+    <string name="update_email_address">UPDATE EMAIL ADDRESS</string>
+    <string name="update_email_address_example">example@gmail.com</string>
+    <string name="update_password">UPDATE PASSWORD</string>
+    <string name="update_password_example">example</string>
+    <string name="save">SAVE</string>
+
     <string name="account_settings">Account Settings</string>
     <string name="payment_settings">Payment Settings</string>
     <string name="return_to_account">Return to My Account</string>

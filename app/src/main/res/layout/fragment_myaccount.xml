@@ -34,7 +34,7 @@
         android:layout_toStartOf="@id/dummy_view"
         android:layout_marginRight="@dimen/account_button_horizontal_distance"
         android:layout_marginEnd="@dimen/account_button_horizontal_distance"
-        style="@style/Account.Button.Blue"
+        style="@style/Account.Button.Main.Blue"
         android:text="@string/manage_account"
         />
 
@@ -48,7 +48,7 @@
         android:layout_alignRight="@id/btn_account"
         android:layout_alignEnd="@id/btn_account"
         android:layout_marginTop="@dimen/account_button_vertical_distance"
-        style="@style/Account.Button.Blue"
+        style="@style/Account.Button.Main.Blue"
         android:text="@string/update_profile"
         />
 
@@ -60,7 +60,7 @@
         android:layout_toEndOf="@id/dummy_view"
         android:layout_marginLeft="@dimen/account_button_horizontal_distance"
         android:layout_marginStart="@dimen/account_button_horizontal_distance"
-        style="@style/Account.Button.Orange"
+        style="@style/Account.Button.Main.Orange"
         android:text="@string/manage_alerts"
         />
 
@@ -73,7 +73,7 @@
         android:layout_alignStart="@id/btn_alerts"
         android:layout_alignRight="@id/btn_alerts"
         android:layout_alignEnd="@id/btn_alerts"
-        style="@style/Account.Button.Orange"
+        style="@style/Account.Button.Main.Orange"
         android:text="@string/order_history"
         />
 

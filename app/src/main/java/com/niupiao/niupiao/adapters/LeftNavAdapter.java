@@ -92,24 +92,21 @@ public class LeftNavAdapter extends BaseAdapter {
         lbl.setCompoundDrawablesWithIntrinsicBounds(getItem(position)
                 .getImage(), 0, 0, 0);
         //TODO Fix current issues with "selected" navbar item. Color and background changes are all wrong.
-        /*
+
         if (position == selected)
         {
             lbl.setCompoundDrawablesWithIntrinsicBounds(getItem(position)
                     .getImage(), 0, 0, 0);
             lbl.setBackgroundColor(context.getResources().getColor(
                     R.color.niupiao_orange));
-            lbl.setTextColor(Color.WHITE);
         }
         else
         {
             lbl.setCompoundDrawablesWithIntrinsicBounds(getItem(position)
                     .getImage(), 0, 0, 0);
             lbl.setBackgroundResource(0);
-            lbl.setTextColor(context.getResources().getColor(
-                    R.color.niupiao_blue));
         }
-        */
+
         return convertView;
     }
 }

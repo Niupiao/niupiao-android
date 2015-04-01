@@ -235,7 +235,8 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
             // update selected item and title, then close the drawer
-            mDrawerList.setItemChecked(position, true);
+            //mDrawerList.setItemChecked(position, true);
+            ((LeftNavAdapter)mDrawerList.getAdapter()).setSelection(position);
             setTitle(mFragmentTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
         }

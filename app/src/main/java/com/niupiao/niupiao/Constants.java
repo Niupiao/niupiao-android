@@ -15,6 +15,7 @@ public class Constants {
         public static final String REMEMBER_ME = "remember_me";
         public static final String ACCESS_TOKEN = "access_token";
         public static final String ACCESS_TOKEN_EXPIRES_AT = "expires_at";
+        public static final String FIRST_RUN = "first_run";
     }
 
     public final static class FacebookApi {

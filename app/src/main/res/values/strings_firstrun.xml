@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Strings related to the First Run -->
+    <string name="welcome">Welcome!</string>
+    <string name="find_events">Find events here. Press any that you\'re interested in in order to
+        begin the buying process.</string>
+
+    <string name="nav_drawer_title">How to get to my Tickets</string>
+    <string name="find_tickets">Press this button, and then press \'My Tickets\' in order to see the
+    tickets you\'ve purchased.</string>
+
+    <string name="tickets_at_door">Showing your tickets at the door</string>
+    <string name="bring_up_tickets">Tickets will show up here.
+        \n\nOpen a ticket by pressing it, and show this to the bouncer in order to get into the event.</string>
+</resources>

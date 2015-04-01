@@ -1,5 +1,7 @@
 package com.niupiao.niupiao.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -24,6 +26,10 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.facebook.Session;
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
+import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.adapters.LeftNavAdapter;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
@@ -49,6 +55,9 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String INTENT_KEY_FOR_USER = "user";
 
+    //Positions of main fragments in the NavDrawer
+    private static final int POSITION_OF_EVENTS = 0;
+    private static final int POSITION_OF_MY_TICKETS=1;
     private static final int POSITION_OF_LOGOUT = 5;
 
     private DrawerLayout mDrawerLayout;
@@ -162,6 +171,17 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         if (savedInstanceState == null) {
             selectItem(0);
         }
+
+        SharedPreferences sp = getSharedPreferences(Constants.SharedPrefs.LOGIN_CREDENTIALS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = getSharedPreferences(Constants.SharedPrefs.LOGIN_CREDENTIALS, MODE_PRIVATE).edit();
+        boolean firstTime = sp.getBoolean(Constants.SharedPrefs.FIRST_RUN, true);
+
+        if(firstTime){ //If this is the first time the App is being used.
+            eventRun(); //Begin the tutorial process!
+            editor.putBoolean(Constants.SharedPrefs.FIRST_RUN, false);
+            editor.apply();
+        }
+
     }
 
     private ArrayList<Data> instantiateData() {
@@ -287,5 +307,86 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         finish();
     }
 
+    /*
+     * First Run Showcased views below. Each one is a step describing a particular
+     */
+
+    private void eventRun() {
+        new ShowcaseView.Builder(this)
+                .setContentTitle(this.getResources().getString(R.string.welcome))
+                .setContentText(this.getResources().getString(R.string.find_events))
+                .setStyle(R.style.FirstRunTheme)
+                .setTarget(new ViewTarget(R.id.content_frame, this))
+                        .setShowcaseEventListener(new OnShowcaseEventListener() {
+
+                            @Override
+                            public void onShowcaseViewShow(final ShowcaseView scv) { }
+
+                            @Override
+                            public void onShowcaseViewHide(final ShowcaseView scv) {
+                                scv.setVisibility(View.GONE);
+                                ticketRun();
+                            }
+
+                            @Override
+                            public void onShowcaseViewDidHide(final ShowcaseView scv) { }
+
+                        })
+                        .build();
+    }
+
+    private void ticketRun() {
+        //TODO: Might be better to just have a method that takes care of opening the drawer.
+        mDrawerLayout.openDrawer(Gravity.LEFT);
+        invalidateOptionsMenu();
+
+        new ShowcaseView.Builder(this)
+                .setContentTitle(this.getResources().getString(R.string.nav_drawer_title))
+                .setContentText(this.getResources().getString(R.string.find_tickets))
+                .setStyle(R.style.FirstRunTheme)
+                .setTarget(new ViewTarget(R.id.ib_home, this))
+                .setShowcaseEventListener(new OnShowcaseEventListener() {
+
+                    @Override
+                    public void onShowcaseViewShow(final ShowcaseView scv) { }
+
+                    @Override
+                    public void onShowcaseViewHide(final ShowcaseView scv) {
+                        scv.setVisibility(View.GONE);
+                        openingTicketRun();
+                    }
+
+                    @Override
+                    public void onShowcaseViewDidHide(final ShowcaseView scv) { }
+
+                })
+                .build();
+    }
+
+    private void openingTicketRun() {
+        selectItem(POSITION_OF_MY_TICKETS);
+
+        new ShowcaseView.Builder(this)
+                .setContentTitle(this.getResources().getString(R.string.tickets_at_door))
+                .setContentText(this.getResources().getString(R.string.bring_up_tickets))
+                .setStyle(R.style.FirstRunTheme)
+                .setTarget(new ViewTarget(R.id.content_frame, this))
+                .setShowcaseEventListener(new OnShowcaseEventListener() {
+
+                    @Override
+                    public void onShowcaseViewShow(final ShowcaseView scv) { }
+
+                    @Override
+                    public void onShowcaseViewHide(final ShowcaseView scv) {
+                        scv.setVisibility(View.GONE);
+                        selectItem(POSITION_OF_EVENTS);
+                    }
+
+                    @Override
+                    public void onShowcaseViewDidHide(final ShowcaseView scv) { }
+
+                })
+                .build();
+    }
 
 }

@@ -18,4 +18,13 @@
     <string name="account_settings">Account Settings</string>
     <string name="payment_settings">Payment Settings</string>
     <string name="return_to_account">Return to My Account</string>
+
+    <!-- Strings related to Order History -->
+    <string name="order_history_title">ORDER HISTORY</string>
+    <string name="ordered_on">ORDERED ON</string>
+    <string name="ticket_info">TICKET INFO</string>
+    <string name="event">EVENT</string>
+    <string name="options">OPTIONS</string>
+    <string name="receipt">RECEIPT</string>
+    <string name="cancel">CANCEL</string>
 </resources>

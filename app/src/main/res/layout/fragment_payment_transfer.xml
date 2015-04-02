@@ -3,7 +3,7 @@
     android:id="@+id/rl_transfer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/niupiao_white_background">
+    android:background="@color/niupiao_light_grey">
 
     <RelativeLayout
         android:id="@+id/rl_transfer_main"

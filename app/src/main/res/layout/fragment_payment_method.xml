@@ -3,7 +3,7 @@
     android:id="@+id/rl_payment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/niupiao_white_background">
+    android:background="@color/niupiao_light_grey">
 
     <TextView
         android:id="@+id/tv_title"
@@ -113,7 +113,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_add_card"
-        android:background="@color/niupiao_white_background">
+        android:background="@color/niupiao_light_grey">
 
         <EditText
             android:id="@+id/et_full_name"

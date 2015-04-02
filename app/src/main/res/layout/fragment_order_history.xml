@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/niupiao_grey_4">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:text="@string/order_history_title"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/niupiao_blue"
+        android:paddingTop="24dp"
+        android:paddingBottom="30dp"/>
+
+    <ScrollView
+        android:id="@+id/sv_orders"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sv_length"
+        android:layout_below="@id/tv_title">
+
+        <include layout="@layout/order_title_row"/>
+
+        </ScrollView>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sv_orders"
+        android:layout_alignStart="@id/tv_title"
+        android:layout_alignLeft="@id/tv_title"
+        android:layout_alignEnd="@id/tv_title"
+        android:layout_alignRight="@id/tv_title"
+        android:background="@drawable/orange_button_round_corner"
+        android:text="@string/save"
+        android:textColor="@color/niupiao_white"
+        />
+</RelativeLayout>

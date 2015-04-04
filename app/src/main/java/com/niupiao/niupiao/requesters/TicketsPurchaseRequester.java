@@ -1,9 +1,14 @@
 package com.niupiao.niupiao.requesters;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.NiupiaoApplication;
+import com.niupiao.niupiao.deserializers.ApiKeyDeserializer;
 import com.niupiao.niupiao.managers.PaymentManager;
+import com.niupiao.niupiao.models.ApiKey;
 import com.niupiao.niupiao.models.Event;
 
 import org.json.JSONException;
@@ -43,12 +48,25 @@ public class TicketsPurchaseRequester {
         ResourceRequest request = new ResourceRequest(
                 listener,
                 Request.Method.POST,
-                url,
+                Constants.JsonApi.EndPoints.BUY_TICKETS_URL,
                 jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
                         // TODO analyze json for success, pass stuff back to listener
+                        //Modeled in large part on the RegistrationRequester
+                        try{
+                            boolean success = jsonObject.getBoolean(Constants.JsonApi.Response.SUCCESS);
+                            if(success){
+                                System.out.println("Success(?)");
+                                ApiKey apiKey = ApiKeyDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.API_KEY));
+
+                            } else {
+
+                            }
+                        } catch (JSONException e){
+                            e.printStackTrace();
+                        }
                     }
                 }
         );

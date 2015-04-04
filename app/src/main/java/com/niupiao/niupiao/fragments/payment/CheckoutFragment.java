@@ -1,6 +1,5 @@
 package com.niupiao.niupiao.fragments.payment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,8 +12,6 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.adapters.ViewPagerAdapter;
-import com.niupiao.niupiao.managers.PaymentManager;
-import com.niupiao.niupiao.widgets.NonSwipeableViewPager;
 
 import java.util.ArrayList;
 import java.util.List;

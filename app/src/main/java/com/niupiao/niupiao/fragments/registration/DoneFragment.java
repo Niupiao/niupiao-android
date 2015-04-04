@@ -1,7 +1,5 @@
 package com.niupiao.niupiao.fragments.registration;
 
-import android.support.v4.app.Fragment;
-
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
 
 /**
@@ -9,7 +7,7 @@ import com.niupiao.niupiao.fragments.ViewPagerFragment;
  */
 public class DoneFragment extends ViewPagerFragment {
 
-    public static DoneFragment newInstance(int position){
+    public static DoneFragment newInstance(int position) {
         DoneFragment fragment = new DoneFragment();
 
         return fragment;

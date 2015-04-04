@@ -2,7 +2,6 @@ package com.niupiao.niupiao.requesters;
 
 import android.util.Log;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.NiupiaoApplication;
@@ -26,7 +25,7 @@ public class TicketsPurchaseRequester {
     private static final String TAG = TicketsPurchaseRequester.class.getSimpleName();
 
     public interface OnTicketsPurchasedListener extends ResourceCallback {
-        public void onTicketsPurchased(List<TicketPurchase> ticketPurchases);
+        void onTicketsPurchased(List<TicketPurchase> ticketPurchases);
     }
 
     /**
@@ -34,7 +33,7 @@ public class TicketsPurchaseRequester {
      * the ticket being purchased,
      * whether it was successfully purchased
      */
-    static class TicketPurchase {
+    public static class TicketPurchase {
         Ticket ticket;
         boolean isSuccessfullyPurchased;
 
@@ -66,7 +65,7 @@ public class TicketsPurchaseRequester {
         final Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
-                try{
+                try {
                     Log.d(TAG, jsonArray.toString());
 
                     final int length = jsonArray.length();
@@ -81,7 +80,7 @@ public class TicketsPurchaseRequester {
                     }
 
                     listener.onTicketsPurchased(ticketPurchases);
-                } catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

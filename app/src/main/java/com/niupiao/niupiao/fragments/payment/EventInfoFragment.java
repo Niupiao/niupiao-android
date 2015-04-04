@@ -105,7 +105,7 @@ public class EventInfoFragment extends Fragment {
             insideScrollView.addView(child);
 
             // TODO If it's not the last status, add the divider
-            if(i < ticketStatuses.size() - 1){
+            if (i < ticketStatuses.size() - 1) {
                 View divider = factory.inflate(R.layout.payment_checkout_tickets_row_divider, null);
                 insideScrollView.addView(divider);
             }

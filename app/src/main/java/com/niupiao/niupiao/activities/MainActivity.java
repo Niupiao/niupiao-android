@@ -38,14 +38,10 @@ import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Data;
 import com.niupiao.niupiao.models.Event;
-import com.niupiao.niupiao.models.Ticket;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.ResourceCallback;
 import com.niupiao.niupiao.requesters.TicketsPurchaseRequester;
 import com.niupiao.niupiao.utils.SharedPrefsUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,12 +129,12 @@ public class MainActivity extends ActionBarActivity
         ImageButton home = (ImageButton) findViewById(R.id.ib_home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
-                public void onClick(View v) {
-                if(! mDrawerLayout.isDrawerOpen(Gravity.LEFT)){
+            public void onClick(View v) {
+                if (!mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     mDrawerLayout.openDrawer(Gravity.LEFT);
                     //TODO: Figure out: Why are we creating a call to onPrepareOptionsMenu?
                     invalidateOptionsMenu();
-                } else{
+                } else {
                     mDrawerLayout.closeDrawer(Gravity.LEFT);
                     invalidateOptionsMenu();
                 }
@@ -246,9 +242,9 @@ public class MainActivity extends ActionBarActivity
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        try{
+        try {
             mDrawerToggle.syncState();
-        } catch(Exception e){
+        } catch (Exception e) {
             //TODO Figure out why this throws an Exception, and fix.
         }
     }
@@ -311,7 +307,7 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
-    public void onTicketsPurchased() {
+    public void onTicketsPurchased(List<TicketsPurchaseRequester.TicketPurchase> ticketPurchases) {
         // TODO
     }
 
@@ -326,7 +322,7 @@ public class MainActivity extends ActionBarActivity
                 // we didn't buy any tickets so show the events page
                 try {
                     selectItem(NAV_DRAWER_INDEX_EVENTS);
-                } catch (IllegalStateException e){
+                } catch (IllegalStateException e) {
                     //TODO: IllegalStateException is called. Perhaps see http://stackoverflow.com/questions/3353023/android-illegalstateexception-when-is-it-thrown
                 }
             }

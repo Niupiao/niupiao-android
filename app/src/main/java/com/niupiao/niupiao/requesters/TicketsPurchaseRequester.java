@@ -39,6 +39,7 @@ public class TicketsPurchaseRequester {
                 }
             }
             jsonObject.put("tickets_purchased", ticketsPurchasedJsonObject);
+            //TODO: Authorization token? Where is it put in?
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -54,7 +55,21 @@ public class TicketsPurchaseRequester {
                         try{
                             Log.d("PURCHASE TICKETS - From localhost: ", jsonArray.toString());
 
-                            //PurchasedTicketDeseralizer was a mini-attempt of mine to deserialize the jsonArray. Later deleted, didn't get anywhere.
+                            //If the response was not an error.
+                            if(!jsonArray.getJSONObject(0).keys().next().contains("error")){
+                                Log.d("PURCHASE TICKETS - From localhost: ", "success");
+                                //TODO Something in response to success.
+                                int length = jsonArray.length();
+                                for(int i = 0; i < length; i ++){
+                                    JSONObject ticketInfo = jsonArray.getJSONObject(i);
+                                    boolean success = (Boolean) ticketInfo.get("success");
+                                }
+                            } else {
+                                Log.d("PURCHASE TICKETS - From localhost: ", "failure");
+                                //TODO Inform users of failure.
+                            }
+                            //PurchasedTicketDeseralizer was a mini-attempt of mine to deserialize the jsonArray.
+                            // Later deleted, was essentially a copy-paste of TicketsDeserializer.
                             //List<Ticket> tickets = PurchasedTicketsDeserializer.fromJsonArray(jsonArray);
                         } catch(Exception e){
                             e.printStackTrace();
@@ -62,25 +77,6 @@ public class TicketsPurchaseRequester {
                     }
                 }
         );
-
-        /* //TODO: I'm guessing you don't want this Kevin?
-        ResourcesRequest request = new ResourcesRequest(
-                listener,
-                Constants.JsonApi.EndPoints.BUY_TICKETS_URL,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray jsonArray) {
-                        try{
-                            Log.d("PURCHASE TICKETS - From localhost: ", jsonArray.toString());
-                            List<Ticket> tickets = PurchasedTicketsDeserializer.fromJsonArray(jsonArray);
-                            //listener.onTicketsPurchased(tickets);
-                        } catch(Exception e){ //TODO Specify exception. Currently, no JSONException thrown in try.
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-        );*/
 
         NiupiaoApplication.getRequestQueue().add(request);
     }

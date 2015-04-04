@@ -38,6 +38,7 @@ import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Data;
 import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.models.Ticket;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.ResourceCallback;
 import com.niupiao.niupiao.requesters.TicketsPurchaseRequester;
@@ -47,6 +48,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kmchen1 on 2/17/15.

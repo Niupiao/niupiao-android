@@ -6,11 +6,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.NiupiaoApplication;
-import com.niupiao.niupiao.deserializers.ApiKeyDeserializer;
 import com.niupiao.niupiao.managers.PaymentManager;
-import com.niupiao.niupiao.models.ApiKey;
 import com.niupiao.niupiao.models.Event;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,7 +24,7 @@ public class TicketsPurchaseRequester {
         public void onTicketsPurchased();
     }
 
-    public static void purchaseTickets(OnTicketsPurchasedListener listener, Event event, ArrayList<PaymentManager.Tickets> tickets) {
+    public static void purchaseTickets(final OnTicketsPurchasedListener listener, Event event, ArrayList<PaymentManager.Tickets> tickets) {
 
         // e.g., { "event_id" : 1, "tickets_purchased" : { "VIP" : 2, "General" : 3 } }
         JSONObject jsonObject = null;
@@ -44,32 +43,44 @@ public class TicketsPurchaseRequester {
             e.printStackTrace();
         }
 
-
-        ResourceRequest request = new ResourceRequest(
+        ResourceResponseRequest request = new ResourceResponseRequest(
                 listener,
                 Request.Method.POST,
                 Constants.JsonApi.EndPoints.BUY_TICKETS_URL,
                 jsonObject,
-                new Response.Listener<JSONObject>() {
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject jsonObject) {
-                        // TODO analyze json for success, pass stuff back to listener
-                        //Modeled in large part on the RegistrationRequester
+                    public void onResponse(JSONArray jsonArray) {
                         try{
-                            boolean success = jsonObject.getBoolean(Constants.JsonApi.Response.SUCCESS);
-                            if(success){
-                                System.out.println("Success(?)");
-                                ApiKey apiKey = ApiKeyDeserializer.fromJsonObject(jsonObject.getJSONObject(Constants.JsonApi.Response.API_KEY));
+                            Log.d("PURCHASE TICKETS - From localhost: ", jsonArray.toString());
 
-                            } else {
-
-                            }
-                        } catch (JSONException e){
+                            //PurchasedTicketDeseralizer was a mini-attempt of mine to deserialize the jsonArray. Later deleted, didn't get anywhere.
+                            //List<Ticket> tickets = PurchasedTicketsDeserializer.fromJsonArray(jsonArray);
+                        } catch(Exception e){
                             e.printStackTrace();
                         }
                     }
                 }
         );
+
+        /* //TODO: I'm guessing you don't want this Kevin?
+        ResourcesRequest request = new ResourcesRequest(
+                listener,
+                Constants.JsonApi.EndPoints.BUY_TICKETS_URL,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray jsonArray) {
+                        try{
+                            Log.d("PURCHASE TICKETS - From localhost: ", jsonArray.toString());
+                            List<Ticket> tickets = PurchasedTicketsDeserializer.fromJsonArray(jsonArray);
+                            //listener.onTicketsPurchased(tickets);
+                        } catch(Exception e){ //TODO Specify exception. Currently, no JSONException thrown in try.
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+        );*/
 
         NiupiaoApplication.getRequestQueue().add(request);
     }

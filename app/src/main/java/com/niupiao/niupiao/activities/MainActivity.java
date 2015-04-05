@@ -333,7 +333,8 @@ public class MainActivity extends ActionBarActivity
                         .setShowcaseEventListener(new OnShowcaseEventListener() {
 
                             @Override
-                            public void onShowcaseViewShow(final ShowcaseView scv) { }
+                            public void onShowcaseViewShow(final ShowcaseView scv) {
+                            }
 
                             @Override
                             public void onShowcaseViewHide(final ShowcaseView scv) {
@@ -342,7 +343,8 @@ public class MainActivity extends ActionBarActivity
                             }
 
                             @Override
-                            public void onShowcaseViewDidHide(final ShowcaseView scv) { }
+                            public void onShowcaseViewDidHide(final ShowcaseView scv) {
+                            }
 
                         })
                         .build();
@@ -387,7 +389,8 @@ public class MainActivity extends ActionBarActivity
                 .setShowcaseEventListener(new OnShowcaseEventListener() {
 
                     @Override
-                    public void onShowcaseViewShow(final ShowcaseView scv) { }
+                    public void onShowcaseViewShow(final ShowcaseView scv) {
+                    }
 
                     @Override
                     public void onShowcaseViewHide(final ShowcaseView scv) {
@@ -396,10 +399,11 @@ public class MainActivity extends ActionBarActivity
                     }
 
                     @Override
-                    public void onShowcaseViewDidHide(final ShowcaseView scv) { }
+                    public void onShowcaseViewDidHide(final ShowcaseView scv) {
+                    }
 
-                })
-                .build();
+                }).build();
+    }
 
     public void checkout(Event event) {
         Intent intent = new Intent(this, PayActivity.class);

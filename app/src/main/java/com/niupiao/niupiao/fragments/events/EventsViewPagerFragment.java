@@ -1,6 +1,5 @@
 package com.niupiao.niupiao.fragments.events;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,7 +12,6 @@ import android.widget.ListView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.MainActivity;
-import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.adapters.EventsAdapter;
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
 import com.niupiao.niupiao.managers.EventManager;

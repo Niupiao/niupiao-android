@@ -78,7 +78,6 @@ public class PayActivity extends ActionBarActivity {
     }
 
     /**
-     *
      * @param isCancelled Whether the transaction was cancelled.
      */
     public void confirmTicketPurchase(boolean isCancelled) {

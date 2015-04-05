@@ -23,7 +23,7 @@ public class ResourceResponseRequest extends JsonRequest<JSONArray> {
     private ResourceCallback callback;
 
     public ResourceResponseRequest(ResourceCallback callback, int method, String url, JSONObject jsonRequest,
-                            Response.Listener<JSONArray> listener) {
+                                   Response.Listener<JSONArray> listener) {
         super(method, url, (jsonRequest == null) ? null : jsonRequest.toString(),
                 listener, new NiuErrorListener(callback));
         this.callback = callback;
@@ -33,13 +33,13 @@ public class ResourceResponseRequest extends JsonRequest<JSONArray> {
     protected Response<JSONArray> parseNetworkResponse(NetworkResponse response) {
         try {
             String jsonString =
-                            new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                    new String(response.data, HttpHeaderParser.parseCharset(response.headers));
             return Response.success(new JSONArray(jsonString),
-                                HttpHeaderParser.parseCacheHeaders(response));
-                    } catch (UnsupportedEncodingException e) {
+                    HttpHeaderParser.parseCacheHeaders(response));
+        } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
-            } catch (JSONException je) {
+        } catch (JSONException je) {
             return Response.error(new ParseError(je));
-            }
         }
+    }
 }

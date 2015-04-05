@@ -1,33 +1,21 @@
 package com.niupiao.niupiao.activities;
 
-import android.app.Activity;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.text.TextUtils;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.VolleyError;
 import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.adapters.ViewPagerAdapter;
 import com.niupiao.niupiao.fragments.registration.DoneFragment;
 import com.niupiao.niupiao.fragments.registration.MoreInfoFragment;
 import com.niupiao.niupiao.fragments.registration.SetupProfileFragment;
-import com.niupiao.niupiao.models.ApiKey;
-import com.niupiao.niupiao.models.User;
-import com.niupiao.niupiao.requesters.RegistrationRequester;
 
 import java.util.ArrayList;
 import java.util.List;

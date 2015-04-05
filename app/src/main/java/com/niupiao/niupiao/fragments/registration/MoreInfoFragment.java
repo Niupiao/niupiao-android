@@ -1,6 +1,5 @@
 package com.niupiao.niupiao.fragments.registration;
 
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -92,7 +91,7 @@ public class MoreInfoFragment extends ViewPagerFragment
         return root;
     }
 
-    public static MoreInfoFragment newInstance(int position){
+    public static MoreInfoFragment newInstance(int position) {
         MoreInfoFragment fragment = new MoreInfoFragment();
 
         return fragment;

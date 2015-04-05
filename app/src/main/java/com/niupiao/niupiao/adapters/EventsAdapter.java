@@ -14,8 +14,6 @@ import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.utils.DateUtils;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;
 
-import org.w3c.dom.Text;
-
 /**
  * Created by kmchen1 on 2/21/15.
  */

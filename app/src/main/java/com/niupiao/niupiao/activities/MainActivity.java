@@ -1,7 +1,9 @@
 package com.niupiao.niupiao.activities;
 
 import android.content.Intent;
+
 import android.content.SharedPreferences;
+
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -39,18 +41,23 @@ import com.niupiao.niupiao.fragments.account.AccountNavFragment;
 import com.niupiao.niupiao.fragments.events.EventsNavFragment;
 import com.niupiao.niupiao.fragments.my_tickets.MyTicketsNavFragment;
 import com.niupiao.niupiao.managers.EventManager;
+import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Data;
+import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.ResourceCallback;
+import com.niupiao.niupiao.requesters.TicketsPurchaseRequester;
 import com.niupiao.niupiao.utils.SharedPrefsUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kmchen1 on 2/17/15.
  */
-public class MainActivity extends ActionBarActivity implements ResourceCallback {
+public class MainActivity extends ActionBarActivity
+        implements ResourceCallback, TicketsPurchaseRequester.OnTicketsPurchasedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String INTENT_KEY_FOR_USER = "user";
@@ -90,8 +97,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     }
 
     public User getUser() {
-        User user = getIntent().getParcelableExtra(INTENT_KEY_FOR_USER);
-        return user;
+        return getIntent().getParcelableExtra(INTENT_KEY_FOR_USER);
     }
 
     @Override
@@ -99,7 +105,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO broadcast receiver should listen for connection and have EventManger go then
+        // TODO broadcast receiver should listen for connection and have EventManager go then
         eventManager = new EventManager(this);
         ticketManager = new TicketManager(this);
 
@@ -135,12 +141,12 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         ImageButton home = (ImageButton) findViewById(R.id.ib_home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
-                public void onClick(View v) {
-                if(! mDrawerLayout.isDrawerOpen(Gravity.LEFT)){
+            public void onClick(View v) {
+                if (!mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     mDrawerLayout.openDrawer(Gravity.LEFT);
                     //TODO: Figure out: Why are we creating a call to onPrepareOptionsMenu?
                     invalidateOptionsMenu();
-                } else{
+                } else {
                     mDrawerLayout.closeDrawer(Gravity.LEFT);
                     invalidateOptionsMenu();
                 }
@@ -169,7 +175,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
          */
 
         if (savedInstanceState == null) {
-            selectItem(0);
+            selectItem(NAV_DRAWER_INDEX_EVENTS);
         }
 
         SharedPreferences sp = getSharedPreferences(Constants.SharedPrefs.LOGIN_CREDENTIALS, MODE_PRIVATE);
@@ -207,17 +213,23 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         }
     }
 
+    private static final int NAV_DRAWER_INDEX_EVENTS = 0;
+    private static final int NAV_DRAWER_INDEX_MY_TICKETS = 1;
+    private static final int NAV_DRAWER_INDEX_STARRED = 2;
+    private static final int NAV_DRAWER_INDEX_ACCOUNT = 3;
+    private static final int NAV_DRAWER_INDEX_SETTINGS = 4;
+
     private NiuNavigationDrawerFragment getSelectedFragment(int position) {
         switch (position) {
-            case 0:
+            case NAV_DRAWER_INDEX_EVENTS:
                 return new EventsNavFragment();
-            case 1:
+            case NAV_DRAWER_INDEX_MY_TICKETS:
                 return new MyTicketsNavFragment();
-            case 2:
+            case NAV_DRAWER_INDEX_STARRED:
                 return new StarredNavFragment();
-            case 3:
+            case NAV_DRAWER_INDEX_ACCOUNT:
                 return new AccountNavFragment();
-            case 4:
+            case NAV_DRAWER_INDEX_SETTINGS:
                 return new SettingsNavFragment();
             default:
                 Log.wtf(TAG, "unhandled fragment");
@@ -257,9 +269,9 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        try{
+        try {
             mDrawerToggle.syncState();
-        } catch(Exception e){
+        } catch (Exception e) {
             //TODO Figure out why this throws an Exception, and fix.
         }
     }
@@ -388,6 +400,41 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
 
                 })
                 .build();
+
+    public void checkout(Event event) {
+        Intent intent = new Intent(this, PayActivity.class);
+        intent.putExtra(PayActivity.INTENT_KEY_FOR_EVENT, event);
+        intent.putExtra(PayActivity.INTENT_KEY_FOR_USER, getUser());
+        startActivityForResult(intent, PayActivity.REQUEST_CODE_CHECKOUT_TICKETS);
     }
 
+    private void purchaseTickets(Intent ticketsPurchasedData) {
+        Event event = ticketsPurchasedData.getParcelableExtra(PayActivity.RESULT_KEY_FOR_EVENT);
+        ArrayList<PaymentManager.Tickets> tickets = ticketsPurchasedData.getParcelableArrayListExtra(PayActivity.RESULT_KEY_FOR_TICKETS_PURCHASED);
+        TicketsPurchaseRequester.purchaseTickets(this, event, tickets);
+    }
+
+    @Override
+    public void onTicketsPurchased(List<TicketsPurchaseRequester.TicketPurchase> ticketPurchases) {
+        // TODO
+        Toast.makeText(this, "TODO in MainActivity", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent ticketsPurchasedData) {
+        // Check which request we're responding to
+        if (requestCode == PayActivity.REQUEST_CODE_CHECKOUT_TICKETS) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                purchaseTickets(ticketsPurchasedData);
+            } else if (resultCode == RESULT_CANCELED) {
+                // we didn't buy any tickets so show the events page
+                try {
+                    selectItem(NAV_DRAWER_INDEX_EVENTS);
+                } catch (IllegalStateException e) {
+                    //TODO: IllegalStateException is called. Perhaps see http://stackoverflow.com/questions/3353023/android-illegalstateexception-when-is-it-thrown
+                }
+            }
+        }
+    }
 }

@@ -13,6 +13,7 @@ import com.niupiao.niupiao.models.Ticket;
 import com.niupiao.niupiao.models.TicketStatus;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -22,6 +23,10 @@ import java.util.List;
  * Created by kevinchen on 2/22/15.
  */
 public class TicketsDeserializer implements JsonDeserializer<Ticket> {
+
+    public static Ticket fromJsonObject(JSONObject jsonObject) {
+        return new Gson().fromJson(jsonObject.toString(), Ticket.class);
+    }
 
     public static List<Event> fromJsonArray(JSONArray jsonArray) {
         Type type = new TypeToken<List<Event>>() {

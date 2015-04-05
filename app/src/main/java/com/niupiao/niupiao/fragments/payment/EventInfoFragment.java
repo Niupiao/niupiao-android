@@ -21,7 +21,6 @@ import com.niupiao.niupiao.models.TicketStatus;
 import com.niupiao.niupiao.utils.DateUtils;
 import com.niupiao.niupiao.utils.ImageLoaderHelper;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +41,7 @@ public class EventInfoFragment extends Fragment {
 
     private void initializeTicketRows(ViewGroup root) {
 
-        Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
+        Map<TicketStatus, Integer> numTickets = paymentManager.getTickets();
 
         Typeface black = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Black.ttf");
 
@@ -106,7 +105,7 @@ public class EventInfoFragment extends Fragment {
             insideScrollView.addView(child);
 
             // TODO If it's not the last status, add the divider
-            if(i < ticketStatuses.size() - 1){
+            if (i < ticketStatuses.size() - 1) {
                 View divider = factory.inflate(R.layout.payment_checkout_tickets_row_divider, null);
                 insideScrollView.addView(divider);
             }

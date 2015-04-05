@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.niupiao.niupiao.R;
-import com.niupiao.niupiao.activities.MainActivity;
 import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.models.TicketStatus;
@@ -31,7 +30,9 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_confirm, container, false);
 
-        User user = getActivity().getIntent().getParcelableExtra(PayActivity.INTENT_KEY_FOR_USER);
+        PayActivity payActivity = (PayActivity) getActivity();
+
+        User user = payActivity.getUser();
 
         // Tickets and payment info are stored in the PaymentManager
         PaymentManager paymentManager = getPaymentManager();
@@ -48,7 +49,7 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
         TextView title = (TextView) root.findViewById(R.id.tv_title);
         title.setTypeface(black);
 
-        Map<TicketStatus, Integer> numTickets = paymentManager.getNumTickets();
+        Map<TicketStatus, Integer> numTickets = paymentManager.getTickets();
         LinearLayout receipt = (LinearLayout) root.findViewById(R.id.ll_tickets_bought);
 
         for (TicketStatus ticketStatus : numTickets.keySet()) {
@@ -98,7 +99,7 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        getActivity().finish();
+                        nextCheckoutPhase();
                     }
                 });
 

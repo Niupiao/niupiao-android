@@ -1,5 +1,6 @@
 package com.niupiao.niupiao.activities;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import com.niupiao.niupiao.fragments.payment.CheckoutFragment;
 import com.niupiao.niupiao.fragments.payment.EventInfoFragment;
 import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.models.Event;
+import com.niupiao.niupiao.models.User;
 
 /**
  * Created by kevinchen on 2/25/15.
@@ -23,6 +25,10 @@ import com.niupiao.niupiao.models.Event;
 public class PayActivity extends ActionBarActivity {
 
     private static final String TAG = PayActivity.class.getSimpleName();
+
+    public static final int REQUEST_CODE_CHECKOUT_TICKETS = 1;
+    public static final String RESULT_KEY_FOR_TICKETS_PURCHASED = "tickets_purchased";
+    public static final String RESULT_KEY_FOR_EVENT = "event_purchased";
 
     public static final String INTENT_KEY_FOR_EVENT = "event";
     public static final String INTENT_KEY_FOR_USER = "user";
@@ -33,6 +39,8 @@ public class PayActivity extends ActionBarActivity {
      * The phase of ticket purchasing in which the user starts.
      */
     private PaymentPhase paymentPhase;
+
+    private User user;
 
     /**
      * The event for which the user is purchasing tickets.
@@ -65,6 +73,33 @@ public class PayActivity extends ActionBarActivity {
         return event;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * @param isCancelled Whether the transaction was cancelled.
+     */
+    public void confirmTicketPurchase(boolean isCancelled) {
+        if (isCancelled) {
+            setResult(RESULT_CANCELED);
+        } else {
+            PaymentManager paymentManager = getPaymentManager();
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra(RESULT_KEY_FOR_EVENT, event);
+            returnIntent.putParcelableArrayListExtra(RESULT_KEY_FOR_TICKETS_PURCHASED,
+                    paymentManager.getTicketsArrayList());
+            setResult(RESULT_OK, returnIntent);
+        }
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        confirmTicketPurchase(true);
+        super.onBackPressed();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +127,7 @@ public class PayActivity extends ActionBarActivity {
         });
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
+        user = getIntent().getParcelableExtra(INTENT_KEY_FOR_USER);
         event = getIntent().getParcelableExtra(INTENT_KEY_FOR_EVENT);
         paymentManager = new PaymentManager(event, this);
         show(PaymentPhase.PURCHASE_TICKETS);

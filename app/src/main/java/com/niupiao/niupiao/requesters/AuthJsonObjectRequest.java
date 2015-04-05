@@ -12,10 +12,10 @@ import java.util.Map;
 /**
  * Created by kevinchen on 2/23/15.
  */
-public class ResourceRequest extends JsonObjectRequest {
+public class AuthJsonObjectRequest extends JsonObjectRequest {
     private VolleyCallback callback;
 
-    public ResourceRequest(VolleyCallback callback, int method, String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener) {
+    public AuthJsonObjectRequest(VolleyCallback callback, int method, String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener) {
         super(method, url, jsonRequest, listener, new NiuErrorListener(callback));
         this.callback = callback;
     }

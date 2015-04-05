@@ -43,7 +43,7 @@ public class RegistrationRequester {
             e.printStackTrace();
         }
 
-        ResourceRequest request = new ResourceRequest(
+        AuthJsonObjectRequest request = new AuthJsonObjectRequest(
                 listener,
                 Request.Method.POST,
                 Constants.JsonApi.EndPoints.SIGNUP_URL,

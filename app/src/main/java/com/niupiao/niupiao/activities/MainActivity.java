@@ -309,6 +309,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onTicketsPurchased(List<TicketsPurchaseRequester.TicketPurchase> ticketPurchases) {
         // TODO
+        Toast.makeText(this, "TODO in MainActivity", Toast.LENGTH_LONG).show();
     }
 
     @Override

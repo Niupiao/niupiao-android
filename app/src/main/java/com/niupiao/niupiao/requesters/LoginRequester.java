@@ -39,7 +39,7 @@ public class LoginRequester {
             e.printStackTrace();
         }
 
-        ResourceRequest request = new ResourceRequest(
+        AuthJsonObjectRequest request = new AuthJsonObjectRequest(
                 callback,
                 Request.Method.POST,
                 Constants.JsonApi.EndPoints.LOGIN_URL,

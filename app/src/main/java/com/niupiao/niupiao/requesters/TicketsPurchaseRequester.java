@@ -86,8 +86,7 @@ public class TicketsPurchaseRequester {
             }
         };
 
-        // ResourceResponseRequest request = new ResourceResponseRequest(listener, Request.Method.POST, Constants.JsonApi.EndPoints.BUY_TICKETS_URL, jsonObject, responseListener);
-        ResourcesRequest request = new ResourcesRequest(listener, Constants.JsonApi.EndPoints.BUY_TICKETS_URL, responseListener);
+        AuthPostJsonArrayRequest request = new AuthPostJsonArrayRequest(listener, Constants.JsonApi.EndPoints.BUY_TICKETS_URL, responseListener, postParamsJsonObject);
 
         NiupiaoApplication.getRequestQueue().add(request);
     }

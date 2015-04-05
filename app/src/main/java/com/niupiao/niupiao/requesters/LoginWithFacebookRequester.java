@@ -84,7 +84,7 @@ public class LoginWithFacebookRequester {
 
         Log.d(TAG, "SENDING JSON TO OUR SERVER: " + jsonObject.toString());
 
-        ResourceRequest request = new ResourceRequest(
+        AuthJsonObjectRequest request = new AuthJsonObjectRequest(
                 listener,
                 Request.Method.POST,
                 Constants.JsonApi.EndPoints.FACEBOOK_LOGIN_URL,

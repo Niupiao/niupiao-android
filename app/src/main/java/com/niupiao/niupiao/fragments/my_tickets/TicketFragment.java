@@ -24,6 +24,11 @@ import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.models.Ticket;
 import com.niupiao.niupiao.models.User;
 
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 /**
  * Created by Inanity on 2/27/15.
  */
@@ -59,8 +64,26 @@ public class TicketFragment extends Fragment {
                         getResources().getString(R.string.for_entry)
                 ));
 
+        //Get Local Time and Date
+        LocalTime localTime = new LocalTime();
+        LocalDate localDate = new LocalDate();
 
-        String embeddedInfo = String.format("%s %s %s %s %s %s %s %s %s %s %s",
+        //Set up format for embeddedInfo
+        String format = "%s ";
+        int numArgs = 17;
+        format = TicketFragment.repeatHelper(format, numArgs);
+        format = format.substring(0, format.length()-1);
+
+        String embeddedInfo = String.format(format,
+                "Current Date:",
+                localDate.toString("yyyy/MM/dd"), //International Format
+                "\n",
+
+                "Current Local Time:",
+                localTime.getHourOfDay() + ":" + localTime.getMinuteOfHour(),
+                "\n",
+
+
                 "Event Name:",
                 event.getName(),
                 "\n",
@@ -114,4 +137,19 @@ public class TicketFragment extends Fragment {
         }
     }
 
+    /*
+     * A very small utility method. Based in part on producing the same output as
+     * a similar method as org.apache.commons.lang3.StringUtils
+     *
+     * @param String str is the string to be repeated.
+     * @param int num is the number of times to repeat the string. If 0, an empty string is returned.
+     *        Values lss than 0 produce output identical to 0.
+     */
+    public static String repeatHelper(String str, int num){
+        String output = "";
+        for(int i = 0; i < num; i ++){
+            output = output + str;
+        }
+        return output;
+    }
 }

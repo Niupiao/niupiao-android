@@ -37,7 +37,7 @@ public class EventsRequester {
     }
 
     public static void loadEvents(final OnEventsRequestedListener listener) {
-        ResourcesRequest request = new ResourcesRequest(
+        AuthJsonArrayRequest request = new AuthJsonArrayRequest(
                 listener,
                 Constants.JsonApi.EndPoints.TICKETS_URL,
                 new Response.Listener<JSONArray>() {
@@ -54,7 +54,7 @@ public class EventsRequester {
     }
 
     public static void loadOnSaleEvents(final OnEventsRequestedListener listener) {
-        ResourcesRequest request = new ResourcesRequest(
+        AuthJsonArrayRequest request = new AuthJsonArrayRequest(
                 listener,
                 Constants.JsonApi.EndPoints.EVENTS_URL,
                 new Response.Listener<JSONArray>() {
@@ -72,7 +72,7 @@ public class EventsRequester {
     }
 
     public static void loadComingSoonEvents(final OnEventsRequestedListener listener) {
-        ResourcesRequest request = new ResourcesRequest(
+        AuthJsonArrayRequest request = new AuthJsonArrayRequest(
                 listener,
                 Constants.JsonApi.EndPoints.EVENTS_URL,
                 new Response.Listener<JSONArray>() {
@@ -90,7 +90,7 @@ public class EventsRequester {
     }
 
     public static void loadRecommendedEvents(final OnEventsRequestedListener listener) {
-        ResourcesRequest request = new ResourcesRequest(
+        AuthJsonArrayRequest request = new AuthJsonArrayRequest(
                 listener,
                 Constants.JsonApi.EndPoints.EVENTS_URL,
                 new Response.Listener<JSONArray>() {

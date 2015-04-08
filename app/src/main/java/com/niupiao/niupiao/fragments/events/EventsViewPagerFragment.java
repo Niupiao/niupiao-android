@@ -1,6 +1,5 @@
 package com.niupiao.niupiao.fragments.events;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,7 +12,6 @@ import android.widget.ListView;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.MainActivity;
-import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.adapters.EventsAdapter;
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
 import com.niupiao.niupiao.managers.EventManager;
@@ -48,10 +46,9 @@ public abstract class EventsViewPagerFragment extends ViewPagerFragment implemen
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 EventsAdapter adapter = ((EventsAdapter) listView.getAdapter());
                 Event event = adapter.getItem(position);
-                Intent intent = new Intent(getActivity(), PayActivity.class);
-                intent.putExtra(PayActivity.INTENT_KEY_FOR_EVENT, event);
-                intent.putExtra(PayActivity.INTENT_KEY_FOR_USER, ((MainActivity) getActivity()).getUser());
-                startActivity(intent);
+
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.checkout(event);
             }
         });
 

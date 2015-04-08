@@ -4,6 +4,18 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
     </style>
 
+    <style name="FirstRunTheme" parent="android:Theme.Holo">
+        <item name="sv_backgroundColor">#CC000000</item>
+    </style>
+
+    <style name="Transparent" parent="@android:style/Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
     <style name="Payment"></style>
     
     <style name="Payment.TextView">
@@ -75,7 +87,7 @@
     <style name="Login.ProgressBar" parent="android:Widget.ProgressBar.Large">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_centerInParent">true</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:visibility">gone</item>
     </style>
@@ -102,7 +114,7 @@
     <style name="Login.Button.Login">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_marginTop">2dp</item>
-        <item name="android:background">@drawable/button_round_corner</item>
+        <item name="android:background">@drawable/orange_button_round_corner</item>
         <item name="android:text">@string/action_login</item>
         <item name="android:textColor">@color/niupiao_white</item>
         <item name="android:textSize">20sp</item>
@@ -238,16 +250,64 @@
         <item name="android:textSize">32sp</item>
     </style>
 
+    <style name="Account.TextView.Title">
+        <item name="android:textColor">@color/niupiao_blue</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
     <style name="Account.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="Account.Button.Settings">
+    <style name="Account.Button.Main">
+        <item name="android:paddingLeft">@dimen/account_button_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/account_button_horizontal_padding</item>
+        <item name="android:textColor">@color/niupiao_white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Account.Button.Main.Blue">
+        <item name="android:background">@drawable/blue_button_round_corner</item>
+    </style>
+
+    <style name="Account.Button.Main.Orange">
+        <item name="android:background">@drawable/orange_button_round_corner</item>
+    </style>
+
+    <style name="Account.Button.Main.Settings">
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
         <item name="android:background">@color/niupiao_orange</item>
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="Account.Button.ManageAccount">
+        <item name="android:paddingLeft">70dp</item>
+        <item name="android:paddingRight">70dp</item>
+        <item name="android:background">@color/niupiao_orange</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/niupiao_white</item>
+    </style>
+
+    <style name="Account.TextView.ManageAccountOption">
+        <item name="android:textColor">@color/niupiao_blue</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+    </style>
+
+    <style name="Account.EditText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Account.EditText.ManageAccount">
+        <item name="android:textColor">@color/niupiao_blue</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:background">@drawable/edit_text_rounded_white</item>
+    </style>
 </resources>

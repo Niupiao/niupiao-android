@@ -23,6 +23,10 @@ import com.niupiao.niupiao.activities.TicketActivity;
 import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.models.Ticket;
 import com.niupiao.niupiao.models.User;
+import com.niupiao.niupiao.utils.StringUtils;
+
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 /**
  * Created by Inanity on 2/27/15.
@@ -59,8 +63,25 @@ public class TicketFragment extends Fragment {
                         getResources().getString(R.string.for_entry)
                 ));
 
+        //Get Local Time and Date
+        LocalTime localTime = new LocalTime();
+        LocalDate localDate = new LocalDate();
 
-        String embeddedInfo = String.format("%s %s %s %s %s %s %s %s %s %s %s",
+        //Set up format for embeddedInfo
+        String format = "%s ";
+        int numArgs = 17;
+        format = StringUtils.repeatHelper(format, numArgs);
+        format = format.substring(0, format.length()-1);
+
+        String embeddedInfo = String.format(format,
+                "Current Date:",
+                localDate.toString("yyyy/MM/dd"), //International Format
+                "\n",
+
+                "Current Local Time:",
+                localTime.getHourOfDay() + ":" + localTime.getMinuteOfHour(),
+                "\n",
+
                 "Event Name:",
                 event.getName(),
                 "\n",
@@ -113,5 +134,4 @@ public class TicketFragment extends Fragment {
                     Toast.LENGTH_SHORT).show();
         }
     }
-
 }

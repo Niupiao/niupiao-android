@@ -81,27 +81,32 @@ public class Ticket extends ParcelableModel {
         return event;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
-    }
-
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public TicketStatus getTicketStatus() {
         return ticketStatus;
     }
 
-    public void setTicketStatus(TicketStatus ticketStatus) {
+    public Ticket setEvent(Event event) {
+        this.event = event;
+        return this;
+    }
+
+    public Ticket setEventId(int eventId) {
+        this.eventId = eventId;
+        return this;
+    }
+
+    public Ticket setUserId(int userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public Ticket setStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public Ticket setTicketStatus(TicketStatus ticketStatus) {
         this.ticketStatus = ticketStatus;
+        return this;
     }
 }

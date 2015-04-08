@@ -1,6 +1,5 @@
 package com.niupiao.niupiao.fragments.registration;
 
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -92,7 +91,7 @@ public class MoreInfoFragment extends ViewPagerFragment
         return root;
     }
 
-    public static MoreInfoFragment newInstance(int position){
+    public static MoreInfoFragment newInstance(int position) {
         MoreInfoFragment fragment = new MoreInfoFragment();
 
         return fragment;
@@ -161,6 +160,10 @@ public class MoreInfoFragment extends ViewPagerFragment
         String lastName = lastNameEditText.getText().toString();
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
+
+        firstName.replaceAll(" ", "");
+        lastName.replaceAll(" ", "");
+        email.replaceAll(" ", "");
         RegistrationRequester.register(this, firstName, lastName, email, password);
     }
 }

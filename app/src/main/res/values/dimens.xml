@@ -2,4 +2,16 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Account Margins and Paddings. -->
+    <dimen name="account_title_button_distance">35dp</dimen>
+    <dimen name="account_button_horizontal_padding">18dp</dimen>
+    <dimen name="account_button_vertical_distance">20dp</dimen>
+    <dimen name="account_button_horizontal_distance">25dp</dimen>
+
+    <!-- Account/Manage Account Margins and Paddings. -->
+    <dimen name="manage_account_title_distance">35dp</dimen>
+    <dimen name="manage_account_option_horizontal_margin">10dp</dimen>
+    <dimen name="manage_account_option_width">170dp</dimen>
+    <dimen name="manage_account_distance_from_save_to_bottom">30dp</dimen>
 </resources>

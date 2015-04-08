@@ -1,7 +1,5 @@
 package com.niupiao.niupiao.fragments.registration;
 
-import android.support.v4.app.Fragment;
-
 import com.niupiao.niupiao.fragments.ViewPagerFragment;
 
 /**
@@ -10,7 +8,7 @@ import com.niupiao.niupiao.fragments.ViewPagerFragment;
 public class SetupProfileFragment extends ViewPagerFragment {
 
 
-    public static SetupProfileFragment newInstance(int position){
+    public static SetupProfileFragment newInstance(int position) {
         SetupProfileFragment fragment = new SetupProfileFragment();
 
         return fragment;

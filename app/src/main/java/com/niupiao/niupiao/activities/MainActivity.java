@@ -1,5 +1,9 @@
 package com.niupiao.niupiao.activities;
 
+import android.content.Intent;
+
+import android.content.SharedPreferences;
+
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -24,6 +28,10 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.facebook.Session;
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
+import com.niupiao.niupiao.Constants;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.adapters.LeftNavAdapter;
 import com.niupiao.niupiao.fragments.NiuNavigationDrawerFragment;
@@ -33,21 +41,31 @@ import com.niupiao.niupiao.fragments.account.AccountNavFragment;
 import com.niupiao.niupiao.fragments.events.EventsNavFragment;
 import com.niupiao.niupiao.fragments.my_tickets.MyTicketsNavFragment;
 import com.niupiao.niupiao.managers.EventManager;
+import com.niupiao.niupiao.managers.PaymentManager;
 import com.niupiao.niupiao.managers.TicketManager;
 import com.niupiao.niupiao.models.Data;
+import com.niupiao.niupiao.models.Event;
 import com.niupiao.niupiao.models.User;
 import com.niupiao.niupiao.requesters.ResourceCallback;
+import com.niupiao.niupiao.requesters.TicketsPurchaseRequester;
 import com.niupiao.niupiao.utils.SharedPrefsUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kmchen1 on 2/17/15.
  */
-public class MainActivity extends ActionBarActivity implements ResourceCallback {
+public class MainActivity extends ActionBarActivity
+        implements ResourceCallback, TicketsPurchaseRequester.OnTicketsPurchasedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String INTENT_KEY_FOR_USER = "user";
+
+    //Positions of main fragments in the NavDrawer
+    private static final int POSITION_OF_EVENTS = 0;
+    private static final int POSITION_OF_MY_TICKETS=1;
+    private static final int POSITION_OF_LOGOUT = 5;
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -79,8 +97,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     }
 
     public User getUser() {
-        User user = getIntent().getParcelableExtra(INTENT_KEY_FOR_USER);
-        return user;
+        return getIntent().getParcelableExtra(INTENT_KEY_FOR_USER);
     }
 
     @Override
@@ -88,7 +105,7 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO broadcast receiver should listen for connection and have EventManger go then
+        // TODO broadcast receiver should listen for connection and have EventManager go then
         eventManager = new EventManager(this);
         ticketManager = new TicketManager(this);
 
@@ -124,12 +141,12 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         ImageButton home = (ImageButton) findViewById(R.id.ib_home);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
-                public void onClick(View v) {
-                if(! mDrawerLayout.isDrawerOpen(Gravity.LEFT)){
+            public void onClick(View v) {
+                if (!mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     mDrawerLayout.openDrawer(Gravity.LEFT);
                     //TODO: Figure out: Why are we creating a call to onPrepareOptionsMenu?
                     invalidateOptionsMenu();
-                } else{
+                } else {
                     mDrawerLayout.closeDrawer(Gravity.LEFT);
                     invalidateOptionsMenu();
                 }
@@ -158,14 +175,25 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
          */
 
         if (savedInstanceState == null) {
-            selectItem(0);
+            selectItem(NAV_DRAWER_INDEX_EVENTS);
         }
+
+        SharedPreferences sp = getSharedPreferences(Constants.SharedPrefs.LOGIN_CREDENTIALS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = getSharedPreferences(Constants.SharedPrefs.LOGIN_CREDENTIALS, MODE_PRIVATE).edit();
+        boolean firstTime = sp.getBoolean(Constants.SharedPrefs.FIRST_RUN, true);
+
+        if(firstTime){ //If this is the first time the App is being used.
+            eventRun(); //Begin the tutorial process!
+            editor.putBoolean(Constants.SharedPrefs.FIRST_RUN, false);
+            editor.apply();
+        }
+
     }
 
     private ArrayList<Data> instantiateData() {
         mFragmentTitles = getResources().getStringArray(R.array.fragments_array);
         int[] mFragmentDrawables = {R.drawable.documents, R.drawable.ticket, R.drawable.star,
-                R.drawable.person, R.drawable.gear};
+                R.drawable.person, R.drawable.gear, R.drawable.navbar_empty};
 
         ArrayList<Data> navBarItems = new ArrayList<Data>();
 
@@ -185,35 +213,45 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         }
     }
 
+    private static final int NAV_DRAWER_INDEX_EVENTS = 0;
+    private static final int NAV_DRAWER_INDEX_MY_TICKETS = 1;
+    private static final int NAV_DRAWER_INDEX_STARRED = 2;
+    private static final int NAV_DRAWER_INDEX_ACCOUNT = 3;
+    private static final int NAV_DRAWER_INDEX_SETTINGS = 4;
+
     private NiuNavigationDrawerFragment getSelectedFragment(int position) {
         switch (position) {
-            case 0:
+            case NAV_DRAWER_INDEX_EVENTS:
                 return new EventsNavFragment();
-            case 1:
+            case NAV_DRAWER_INDEX_MY_TICKETS:
                 return new MyTicketsNavFragment();
-            case 2:
+            case NAV_DRAWER_INDEX_STARRED:
                 return new StarredNavFragment();
-            case 3:
+            case NAV_DRAWER_INDEX_ACCOUNT:
                 return new AccountNavFragment();
-            case 4:
+            case NAV_DRAWER_INDEX_SETTINGS:
                 return new SettingsNavFragment();
             default:
                 Log.wtf(TAG, "unhandled fragment");
                 return null;
-
         }
     }
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-        Fragment fragment = getSelectedFragment(position);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        if(position == MainActivity.POSITION_OF_LOGOUT){
+            finish(); // TODO: Better way to do this? This seems clunky.
+        } else {
+            Fragment fragment = getSelectedFragment(position);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
-        // update selected item and title, then close the drawer
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mFragmentTitles[position]);
-        mDrawerLayout.closeDrawer(mDrawerList);
+            // update selected item and title, then close the drawer
+            //mDrawerList.setItemChecked(position, true);
+            ((LeftNavAdapter)mDrawerList.getAdapter()).setSelection(position);
+            setTitle(mFragmentTitles[position]);
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
     }
 
     @Override
@@ -231,9 +269,9 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        try{
+        try {
             mDrawerToggle.syncState();
-        } catch(Exception e){
+        } catch (Exception e) {
             //TODO Figure out why this throws an Exception, and fix.
         }
     }
@@ -282,5 +320,125 @@ public class MainActivity extends ActionBarActivity implements ResourceCallback 
         finish();
     }
 
+    /*
+     * First Run Showcased views below. Each one is a step describing a particular
+     */
 
+    private void eventRun() {
+        new ShowcaseView.Builder(this)
+                .setContentTitle(this.getResources().getString(R.string.welcome))
+                .setContentText(this.getResources().getString(R.string.find_events))
+                .setStyle(R.style.FirstRunTheme)
+                .setTarget(new ViewTarget(R.id.content_frame, this))
+                        .setShowcaseEventListener(new OnShowcaseEventListener() {
+
+                            @Override
+                            public void onShowcaseViewShow(final ShowcaseView scv) {
+                            }
+
+                            @Override
+                            public void onShowcaseViewHide(final ShowcaseView scv) {
+                                scv.setVisibility(View.GONE);
+                                ticketRun();
+                            }
+
+                            @Override
+                            public void onShowcaseViewDidHide(final ShowcaseView scv) {
+                            }
+
+                        })
+                        .build();
+    }
+
+    private void ticketRun() {
+        //TODO: Might be better to just have a method that takes care of opening the drawer.
+        mDrawerLayout.openDrawer(Gravity.LEFT);
+        invalidateOptionsMenu();
+
+        new ShowcaseView.Builder(this)
+                .setContentTitle(this.getResources().getString(R.string.nav_drawer_title))
+                .setContentText(this.getResources().getString(R.string.find_tickets))
+                .setStyle(R.style.FirstRunTheme)
+                .setTarget(new ViewTarget(R.id.ib_home, this))
+                .setShowcaseEventListener(new OnShowcaseEventListener() {
+
+                    @Override
+                    public void onShowcaseViewShow(final ShowcaseView scv) { }
+
+                    @Override
+                    public void onShowcaseViewHide(final ShowcaseView scv) {
+                        scv.setVisibility(View.GONE);
+                        openingTicketRun();
+                    }
+
+                    @Override
+                    public void onShowcaseViewDidHide(final ShowcaseView scv) { }
+
+                })
+                .build();
+    }
+
+    private void openingTicketRun() {
+        selectItem(POSITION_OF_MY_TICKETS);
+
+        new ShowcaseView.Builder(this)
+                .setContentTitle(this.getResources().getString(R.string.tickets_at_door))
+                .setContentText(this.getResources().getString(R.string.bring_up_tickets))
+                .setStyle(R.style.FirstRunTheme)
+                .setTarget(new ViewTarget(R.id.content_frame, this))
+                .setShowcaseEventListener(new OnShowcaseEventListener() {
+
+                    @Override
+                    public void onShowcaseViewShow(final ShowcaseView scv) {
+                    }
+
+                    @Override
+                    public void onShowcaseViewHide(final ShowcaseView scv) {
+                        scv.setVisibility(View.GONE);
+                        selectItem(POSITION_OF_EVENTS);
+                    }
+
+                    @Override
+                    public void onShowcaseViewDidHide(final ShowcaseView scv) {
+                    }
+
+                }).build();
+    }
+
+    public void checkout(Event event) {
+        Intent intent = new Intent(this, PayActivity.class);
+        intent.putExtra(PayActivity.INTENT_KEY_FOR_EVENT, event);
+        intent.putExtra(PayActivity.INTENT_KEY_FOR_USER, getUser());
+        startActivityForResult(intent, PayActivity.REQUEST_CODE_CHECKOUT_TICKETS);
+    }
+
+    private void purchaseTickets(Intent ticketsPurchasedData) {
+        Event event = ticketsPurchasedData.getParcelableExtra(PayActivity.RESULT_KEY_FOR_EVENT);
+        ArrayList<PaymentManager.Tickets> tickets = ticketsPurchasedData.getParcelableArrayListExtra(PayActivity.RESULT_KEY_FOR_TICKETS_PURCHASED);
+        TicketsPurchaseRequester.purchaseTickets(this, event, tickets);
+    }
+
+    @Override
+    public void onTicketsPurchased(List<TicketsPurchaseRequester.TicketPurchase> ticketPurchases) {
+        // TODO
+        Toast.makeText(this, "TODO in MainActivity", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent ticketsPurchasedData) {
+        // Check which request we're responding to
+        if (requestCode == PayActivity.REQUEST_CODE_CHECKOUT_TICKETS) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                purchaseTickets(ticketsPurchasedData);
+            } else if (resultCode == RESULT_CANCELED) {
+                // we didn't buy any tickets so show the events page
+                try {
+                    selectItem(NAV_DRAWER_INDEX_EVENTS);
+                } catch (IllegalStateException e) {
+                    //TODO: IllegalStateException is called. Perhaps see http://stackoverflow.com/questions/3353023/android-illegalstateexception-when-is-it-thrown
+                }
+            }
+        }
+    }
 }

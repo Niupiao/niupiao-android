@@ -15,6 +15,7 @@ public class Constants {
         public static final String REMEMBER_ME = "remember_me";
         public static final String ACCESS_TOKEN = "access_token";
         public static final String ACCESS_TOKEN_EXPIRES_AT = "expires_at";
+        public static final String FIRST_RUN = "first_run";
     }
 
     public final static class FacebookApi {
@@ -39,6 +40,7 @@ public class Constants {
 
             public static final String BASE_URL = "https://niupiao-rails.herokuapp.com"; //"http://localhost:3000";
             public static final String TICKETS_URL = BASE_URL + "/me/tickets.json";
+            public static final String BUY_TICKETS_URL = BASE_URL + "/buy.json";
             public static final String EVENTS_URL = BASE_URL + "/events.json";
             public static final String SIGNUP_URL = BASE_URL + "/signup.json";
             public static final String FACEBOOK_LOGIN_URL = BASE_URL + "/facebooklogin.json";

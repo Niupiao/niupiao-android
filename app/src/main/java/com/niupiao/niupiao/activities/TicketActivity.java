@@ -38,7 +38,7 @@ public class TicketActivity extends ActionBarActivity {
         ActionBar.LayoutParams lp = (ActionBar.LayoutParams) postView.getLayoutParams();
         lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
         postView.setLayoutParams(lp);
-        Button rtnToTickets= (Button) mActionBarView.findViewById(R.id.btn_return_mytickets);
+        Button rtnToTickets = (Button) mActionBarView.findViewById(R.id.btn_return_mytickets);
 
         rtnToTickets.setOnClickListener(new View.OnClickListener() {
             @Override

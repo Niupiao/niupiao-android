@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
@@ -51,4 +50,8 @@ android {
         testCompile 'com.squareup:fest-android:1.0.8'
     }
 
+}
+
+dependencies {
+    compile files('libs/PayPalAndroidSDK-2.9.1.jar')
 }

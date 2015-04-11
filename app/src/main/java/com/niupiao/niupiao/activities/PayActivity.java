@@ -149,4 +149,5 @@ public class PayActivity extends ActionBarActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
     }
+
 }

@@ -114,7 +114,7 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
             @Override
             public void onClick(View v) {
 
-                if (PaymentMethodFragment.isPaypal) {
+                if (PaymentMethodFragment.isPaypal || PaymentMethodFragment.isCard) {
                     openPayPalGateway();
                 } else {
                     //  TODO add payment gateways for other payment methods

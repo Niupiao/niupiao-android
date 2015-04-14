@@ -18,4 +18,5 @@ public abstract class CheckoutViewPagerFragment extends ViewPagerFragment {
         PayActivity payActivity = (PayActivity) getActivity();
         return payActivity.getPaymentManager();
     }
+
 }

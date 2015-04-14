@@ -7,28 +7,31 @@
     <TextView
         android:id="@+id/tv_recipient_number"
         style="@style/Payment.TextView.Number"
-        android:layout_width="wrap_content"
+        android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp"
         android:text="1" />
 
     <TextView
         android:id="@+id/tv_status"
         style="@style/Payment.TextView.General"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/tv_recipient_number"
         android:layout_alignBottom="@id/tv_recipient_number"
         android:layout_centerVertical="true"
         android:text="@string/transfer_type_general" />
 
-    <ImageButton
+    <Button
         android:id="@+id/ib_choose_contact"
-        android:src="@drawable/contactsbutton"
         style="@style/Payment.ImageButton.Contacts"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
+        android:background="@drawable/contacts_button"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
         />
 
 </RelativeLayout>

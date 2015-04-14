@@ -44,30 +44,37 @@ public class PaymentMethodFragment extends CheckoutViewPagerFragment {
         paypal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                isPaypal = true;
-                isVisa = false;
-                visa.setChecked(false);
-                card.setChecked(false);
+                
+                if (isChecked == true) {
+                    isPaypal = true;
+                    isVisa = false;
+                    visa.setChecked(false);
+                    card.setChecked(false);
+                }
             }
         });
         
         visa.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                isVisa = true;
-                isPaypal = true;
-                paypal.setChecked(false);
-                card.setChecked(false);
+                if (isChecked == true) {
+                    isVisa = true;
+                    isPaypal = true;
+                    paypal.setChecked(false);
+                    card.setChecked(false);
+                }
             }
         });
         
         card.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                isCard = true;
-                isVisa = false;
-                visa.setChecked(false);
-                paypal.setChecked(false);
+                if (isChecked == true) {
+                    isCard = true;
+                    isVisa = false;
+                    visa.setChecked(false);
+                    paypal.setChecked(false);
+                }
             }
         });
 

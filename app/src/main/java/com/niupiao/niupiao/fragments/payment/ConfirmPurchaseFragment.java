@@ -1,12 +1,10 @@
 package com.niupiao.niupiao.fragments.payment;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +23,6 @@ import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
-import com.paypal.android.sdk.payments.PaymentConfirmation;
-
-import org.json.JSONException;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -41,7 +36,7 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
 
     private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_PRODUCTION;
     private static final String CONFIG_CLIENT_ID = "AaQYgusU5beVhH6HgLfG7LVtgKROHTyuyV5sJ2E-kMF1JcoU6PmO0gP0cgylnFD4PLoHPtI7JVJpOh4H";
-    private static final int REQUEST_PAYPAL_PAYMENT = 10;
+    public static final int REQUEST_PAYPAL_PAYMENT = 10;
     private static PayPalConfiguration config = new PayPalConfiguration()
             // Start with mock environment.  When ready, switch to sandbox (ENVIRONMENT_SANDBOX)
             // or live (ENVIRONMENT_PRODUCTION)
@@ -125,35 +120,6 @@ public class ConfirmPurchaseFragment extends CheckoutViewPagerFragment {
         next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.confirm));
 
         return root;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == Activity.RESULT_OK) {
-            PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-
-            if (confirm != null) {
-                try {
-                    Log.i("paymentExample", confirm.toJSONObject().toString(4));
-                    // TODO send confirmation to NiuPiao servers for verification
-
-                    // Shows the reader congratulations dialogue
-                    // showConfirmationDialogue();
-
-                } catch (JSONException e) {
-                    Log.e("PaymentExample", "an unlikely failure occured:", e);
-                }
-
-                Log.e("Check", "Just Checking to see if it reaches here");
-            }
-
-        } else if (resultCode == Activity.RESULT_CANCELED) {
-            Log.i("paymentExample", "The user canceled.");
-        } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
-            Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
-        }
-
-        Log.e("Check", "Just Checking to see if it reaches here");
     }
 
     @Override

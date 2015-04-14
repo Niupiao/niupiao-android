@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -145,7 +146,9 @@ public class LoginActivity extends Activity implements
             }
         });
         uiHelper.onCreate(savedInstanceState);
-
+        
+        // Hides the keyboard as default
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
     //////////////////////////////////////////////////////////////////

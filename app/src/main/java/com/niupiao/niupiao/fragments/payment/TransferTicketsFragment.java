@@ -1,7 +1,9 @@
 package com.niupiao.niupiao.fragments.payment;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -10,10 +12,10 @@ import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.managers.PaymentManager;
@@ -29,9 +31,16 @@ import java.util.Set;
  */
 public class TransferTicketsFragment extends CheckoutViewPagerFragment {
 
+    public static final int RQS_PICK_CONTACT = 1;
+    public static Button contactButton;
+    public String phoneNumber;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_transfer, container, false);
+
+        // Initializes the phone number
+        phoneNumber = "1";
 
         // Tickets and payment info are stored in the PaymentManager
         PaymentManager paymentManager = getPaymentManager();
@@ -90,12 +99,16 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
                 //insideScrollView.addView(child, recipientNumber);
 
                 // Set the click listener for the Recipient Chooser button
-                ImageButton chooseContactImageButton = (ImageButton) child.findViewById(R.id.ib_choose_contact);
+                Button chooseContactImageButton = (Button) child.findViewById(R.id.ib_choose_contact);
+                contactButton = chooseContactImageButton;
                 chooseContactImageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // TODO show Contact Chooser dialog/fragment
-                        Toast.makeText(getActivity(), "TODO - show contact chooser", Toast.LENGTH_LONG).show();
+
+                        // Starts the contact chooser
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
+                        startActivityForResult(intent, RQS_PICK_CONTACT);
                     }
                 });
             }

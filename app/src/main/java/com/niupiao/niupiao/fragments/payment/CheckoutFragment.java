@@ -1,9 +1,15 @@
 package com.niupiao.niupiao.fragments.payment;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +18,10 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
 import com.niupiao.niupiao.activities.PayActivity;
 import com.niupiao.niupiao.adapters.ViewPagerAdapter;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +90,57 @@ public class CheckoutFragment extends Fragment {
         tabs.setViewPager(pager);
 
         return root;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Pick Contact request
+        if (requestCode == TransferTicketsFragment.RQS_PICK_CONTACT) {
+            // If the request was for the contact picker
+            if (resultCode == Activity.RESULT_OK) {
+                Uri contactURI = data.getData();
+
+                String[] projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
+                Cursor cursor = getActivity().getContentResolver().query(contactURI, projection,
+                        null, null, null);
+                cursor.moveToFirst();
+
+                int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                String number = cursor.getString(column);
+
+                // Sets the textView with the chosen number
+                // TODO fix button issue
+                TransferTicketsFragment.contactButton.setText(number);
+                TransferTicketsFragment.contactButton.setBackground(null);
+            }
+
+        } else if (requestCode == ConfirmPurchaseFragment.REQUEST_PAYPAL_PAYMENT) {
+            // Paypal request
+            if (resultCode == Activity.RESULT_OK) {
+                PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+
+                if (confirm != null) {
+                    try {
+                        Log.i("paymentExample", confirm.toJSONObject().toString(4));
+                        // TODO send confirmation to NiuPiao servers for verification
+
+                        // Shows the reader congratulations dialogue
+                        // showConfirmationDialogue();
+
+                    } catch (JSONException e) {
+                        Log.e("PaymentExample", "an unlikely failure occured:", e);
+                    }
+
+                    Log.e("Check", "Just Checking to see if it reaches here");
+                }
+
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Log.i("paymentExample", "The user canceled.");
+            } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+                Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
+            }
+        }
+
     }
 
     public static CheckoutFragment newInstance() {

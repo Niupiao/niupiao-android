@@ -147,7 +147,12 @@ public class PayActivity extends ActionBarActivity {
         this.paymentPhase = paymentPhase;
         Fragment fragment = Fragment.instantiate(this, paymentPhase.getFragmentClassName());
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment, paymentPhase.getFragmentClassName()).commit();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }

@@ -32,15 +32,13 @@ import java.util.Set;
 public class TransferTicketsFragment extends CheckoutViewPagerFragment {
 
     public static final int RQS_PICK_CONTACT = 1;
-    public static Button contactButton;
-    public String phoneNumber;
+    public static TransferTicketsFragment thisFragment;
+    
+    private Button lastButtonClicked;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_payment_transfer, container, false);
-
-        // Initializes the phone number
-        phoneNumber = "1";
 
         // Tickets and payment info are stored in the PaymentManager
         PaymentManager paymentManager = getPaymentManager();
@@ -99,12 +97,13 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
                 //insideScrollView.addView(child, recipientNumber);
 
                 // Set the click listener for the Recipient Chooser button
-                Button chooseContactImageButton = (Button) child.findViewById(R.id.ib_choose_contact);
-                contactButton = chooseContactImageButton;
+                final Button chooseContactImageButton = (Button) child.findViewById(R.id.ib_choose_contact);
                 chooseContactImageButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        // Saves the last button clicked
+                        TransferTicketsFragment.this.setLastButtonClicked(chooseContactImageButton);
+                       
                         // Starts the contact chooser
                         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                         intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE);
@@ -134,8 +133,26 @@ public class TransferTicketsFragment extends CheckoutViewPagerFragment {
             }
         });
         next.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.paymentmethod));
+        
+        setTransferFragment(this);
 
         return root;
+    }
+
+    public Button getLastButtonClicked() {
+        return lastButtonClicked;
+    }
+
+    public void setLastButtonClicked(Button lastButtonClicked) {
+        this.lastButtonClicked = lastButtonClicked;
+    }
+    
+    public static void setTransferFragment( TransferTicketsFragment fragment ) {
+        thisFragment = fragment;
+    }
+    
+    public static TransferTicketsFragment getTransferFragment() {
+        return thisFragment;        
     }
 
     @Override

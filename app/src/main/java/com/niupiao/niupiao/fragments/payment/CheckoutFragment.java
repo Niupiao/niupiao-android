@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.niupiao.niupiao.R;
@@ -99,7 +100,7 @@ public class CheckoutFragment extends Fragment {
             // If the request was for the contact picker
             if (resultCode == Activity.RESULT_OK) {
                 Uri contactURI = data.getData();
-
+                
                 String[] projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
                 Cursor cursor = getActivity().getContentResolver().query(contactURI, projection,
                         null, null, null);
@@ -108,10 +109,11 @@ public class CheckoutFragment extends Fragment {
                 int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 String number = cursor.getString(column);
 
-                // Sets the textView with the chosen number
-                // TODO fix button issue
-                TransferTicketsFragment.contactButton.setText(number);
-                TransferTicketsFragment.contactButton.setBackground(null);
+                TransferTicketsFragment fragment = TransferTicketsFragment.getTransferFragment();
+                
+                Button contactButton = fragment.getLastButtonClicked();
+                contactButton.setText(number);
+                contactButton.setBackground(null);
             }
 
         } else if (requestCode == ConfirmPurchaseFragment.REQUEST_PAYPAL_PAYMENT) {
